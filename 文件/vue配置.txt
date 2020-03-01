@@ -112,54 +112,6 @@ ESLint-应用
 
 ###########################################################################################################################
 
-给vscode安装扩展，名称为eslint,这个扩展可以对程序文件的代码做自动eslint规范修改优化操作
-
-1. 给vscode编辑器安装扩展：VS Code ESLint extension
-
-
-2. 安装全局的eslint依赖包
-       npm install -g eslint
-   该依赖包安装完毕是对1步骤扩展做支撑的
-
-
-1. 打开vscode配置文件 settings.json  (by File-> Preferences->Settings)
-   
-
-在最末尾如下内容
-
-
-"eslint.enable": true,
-"eslint.autoFixOnSave": true,
-"eslint.run": "onType",
-"eslint.options": {
-    "extensions": [".js",".vue"]
-},
-"eslint.validate": [
-    { "language": "html", "autoFix": true },
-    { "language": "javascript", "autoFix": true },
-    { "language": "vue", "autoFix": true }
-]
-
-现在重启vscode编辑器,之后把项目服务开启 npm run serve
-
-Ctrl+s： 保存编辑的文件后，会对vue文件做自动代码格式化操作，并且是遵守eslint规范的
-
-#################################################################################################################################
-
-npm i -g yarn			安装yarn
-
-初始化package.js		yarn init -y
-
-yarn add 依赖包名字    		安装
-
-yarn remove element-ui		删除依赖
-
-yarn upgrade			更新
-
-yarn add axios vue-axios	同时下载多个
-
-########################################################################################################################################
-
 首页搭建-退出系统
 
 <el-button @click="logout()">退出</el-button>  // 退出事件ok

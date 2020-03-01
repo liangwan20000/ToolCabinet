@@ -4927,13 +4927,14 @@
 			25. 全局自定义指令操作 DOM
 				1. 在 Vue 实例之前定义全局自定义指令 Vue.directive(),就是全局自定义指令;
 				2. Vue.directive('指令的名称',{ inserted: (使用指令的DOM对象) => { 具体的DOM操作 } } );
-				3. 第二个参数为一个对象  对象中要实现 inserted的方法
+				3. 第二个参数为一个对象  对象中要实现 inserted 的方法，inserted 是固定写法
 				4. inserted中的参数为当前指令所在元素的dom对象
 					Vue.directive("focus", {
     				    inserted(dom) {
     				    	dom.focus();
     				    }
     				});
+    				<input v-focus> 自定义指令的使用
 			26. 局部自定义指令操作 DOM
 				1. 在Vue 实例中定义就是局部自定义指令
 					directives: {
@@ -4943,6 +4944,7 @@
 							}
 						}
 					} // 局部自定义指令实现
+					<input v-focus> 自定义指令的使用
 			27. 计算属性-文档分析
 				1. 当表达式过于复杂的情况下 可以采用计算属性 对于任何复杂逻辑都可以采用计算属性
 				2. 使用: 在Vue实例选项中 定义 computed:{ 计算属性名: 带返回值的函数 }
@@ -4990,18 +4992,6 @@
 					5. 上传/添加 POST /brands 请求体
 					6. PUT和POST用法一样  请求体 {name:"张三"}
 					7. 查询 GET /brands?title_like=关键字  -> 模糊搜索
-			32. axios-介绍-及基本使用
-				1. 本地引入axios文件
-				2. 在npm 中引入axios文件
-				3. 	axios.get(url).then((res) => {
-					// 请求成功 会来到这  res响应体
-					}).catch((err) => {
-					// 请求失败 会来到这 处理err对象
-					})	
-				4. 发送get请求 axios.get('http://localhost:3000/brands').then();
-				5. 发送delete请求 axios.delete('http://localhost:3000/brands/109').then();
-				6. 发送post请求 axios.post('http://localhost:3000/brands', {数据}).then();
-				7. 注意:post 成功 status===201 其他是200
 			33. watch-基本使用
 				1. 当需要根据数据变化 进行相应业务操作,且该操作是异步操作时,可以使用监听
 				2. 计算属性和watch区别
