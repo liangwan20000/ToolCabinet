@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 树形的数组结构 => 数据库存储的就是这种结构
+      var list = [
+        {
+          id: 1, // 标识
+          pid: 0, // 父标识 0是根节点
+          name: "根节点"
+        },
+        {
+          id: 2,
+          pid: 1,
+          name: "儿子节点1"
+        },
+        {
+          id: 3,
+          pid: 1,
+          name: "儿子节点2"
+        },
+        {
+          id: 4,
+          pid: 2,
+          name: "孙子节点1"
+        },
+        {
+          id: 5,
+          pid: 3,
+          name: "孙子节点2"
+        }
+      ];
+      // 一定要传入一个最基础的根节点值
+      // 将数组转化成树形结构  递归就是自身调用自身
+      var transArrTree = function(rootValue) {
+        var arr = [];
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].pid == rootValue) {
+            // 等于这个rootValue的一定是根
+            // 如果找到了根 就要继续找它的儿子和孙子
+            var o = list[i];
+            var newarr = transArrTree(list[i].id);
+            if (newarr.length) {
+              o.child = newarr;
+            }
+            arr.push(list[i]);
+          }
+        }
+        return arr;
+      };
+      console.log(transArrTree(0));
+    </script>
+  </body>
+</html>

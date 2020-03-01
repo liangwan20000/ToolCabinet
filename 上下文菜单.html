@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: lime;
+		}
+		.ul {
+			position: absolute;
+			visibility: hidden;
+			background-color: silver;
+		}
+	</style>
+</head>
+<body>
+	<div id="div" class="box">上下文菜单</div>
+	<ul id="ul" class="ul">
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+	</ul>
+	<script>
+		// 跨浏览器的事件处理对象
+		var EventUtil = {
+			// 添加事件处理程序
+			addHandler: function (element, type, handler) {
+				if (element.addEventListener) {
+					// 判断是否支持DOM二级
+					element.addEventListener(type, handler, false);
+				} else if (element.attachEvent) {
+					// 判断是否是IE
+					element.attachEvent('on' + type, handler);
+				} else {
+					// 这里使用DOM0级
+					element['on' + type] = null;
+				}
+			},
+			// 获取事件对象
+			getEvent: function (event) {
+				return event ? event : window.event;
+			},
+			// 获取事件目标
+			getTarget: function (event) {
+				return event.target || event.srcElement;
+			},
+			// 阻止默认行为
+			preventDefault: function (event) {
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+			},
+			// 清理事件处理程序
+			removeHandler: function (element, type, handler) {
+				if (element.addEventListener) {
+					// 判断是否支持DOM二级
+					element.addEventListener(type, handler, false);
+				} else if (element.attachEvent) {
+					// 判断是否是IE
+					element.attachEvent('on' + type, handler);
+				} else {
+					// 这里使用DOM0级
+					element['on' + type] = null;
+				}
+			},
+			// 取消默认行为
+			stopPropagation: function (event) {
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			}
+		};
+		// 自定义上下文菜单
+		EventUtil.addHandler(window, 'load', function (event) {
+			// 获取DIV
+			var div = document.querySelector('#div');
+			// 添加contextmenu事件
+			EventUtil.addHandler(div, 'contextmenu', function (event) {
+				// 获取事件对象
+				event = EventUtil.getEvent(event);
+				// 阻止默认行为
+				EventUtil.preventDefault(event);
+				// 获取ul
+				var ul = document.querySelector('#ul');
+				// 设置ul左上位置
+				ul.style.left = event.clientX + 'px';
+				ul.style.top = event.clientY + 'px';
+				// 设置显示UL
+				ul.style.visibility = "visible"
+			})
+			// 给document添加单击事件，关闭菜单
+			EventUtil.addHandler(document, 'click', function (event) {
+				document.querySelector('#ul').style.visibility = 'hidden';
+			})
+		});
+		// 关闭页面前提示框
+		EventUtil.addHandler(window, 'beforeunload', function (event) {
+			event = EventUtil.getEvent(event);
+			var message = "确定要离开吗？";
+			event.returnValue = message;
+			return message;
+		});
+		var handler = function (event) {
+			alert('hello');
+		}
+		// DOM树加载完后触发，早于window的load事件
+		EventUtil.addHandler(document, 'DOMContentLoaded', handler);
+		EventUtil.removeHandler(document, 'DOMContentLoaded', handler);
+	</script>
+</body>
+</html>

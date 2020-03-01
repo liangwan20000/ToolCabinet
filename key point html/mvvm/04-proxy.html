@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var data = {
+      name: 'zs',
+      age: 18
+    }
+    // ES6 Proxy
+    var p = new  Proxy(data, {
+      // 第一个参数，是被代理的对象
+      // 第二个参数，是当前访问的属性名称
+      get (target, prop) {
+        // console.log(a)
+        // console.log(b)
+        return target[prop]
+      },
+      set (target, prop, value) {
+        // console.log(target)
+        // console.log(prop)
+        // console.log(value)
+        if (value < 0) {
+          throw new Error('age不能使负数')
+        }
+        if (value >= 200) {
+          throw new Error('这不是人')
+        }
+        target[prop] = value
+      }
+    })
+  </script>
+</body>
+</html>

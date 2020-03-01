@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="按钮" id="btn">
+  <input type="button" value="close" id="btnClose">
+  <input type="text" id="msg">
+  <script>
+    var websocket = new WebSocket('wss://echo.websocket.org')
+    // 建立连接
+    websocket.onopen = function () {
+      websocket.send('我发的 Hello')
+    }
+    websocket.onmessage = function (e) {
+      console.log('服务器给我的  ' + e.data)
+    }
+    websocket.onclose = function () {
+      console.log('连接关闭')
+    }
+    
+    document.querySelector('#btn').onclick = function () {
+      var m = document.querySelector('#msg').value
+      websocket.send(m)
+    }
+
+
+    document.querySelector('#btnClose').onclick = function () {
+      websocket.close()
+    }
+
+  </script>
+</body>
+</html>

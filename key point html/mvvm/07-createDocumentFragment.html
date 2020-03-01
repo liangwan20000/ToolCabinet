@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <ul id="ul"></ul>
+
+  <script>
+    var list = ['冰冰', '西施', '方伟', '班主任']
+
+    document.querySelector('#btn').onclick = function () {
+      // 创建文档片段
+      var fragment = document.createDocumentFragment()
+      
+      list.forEach((item) => {
+        var li = document.createElement('li')
+        li.textContent = item
+        fragment.appendChild(li)
+      })
+      // 把文档片段追加到li中
+      document.querySelector('#ul').appendChild(fragment)
+    }
+
+
+  </script>
+</body>
+</html>

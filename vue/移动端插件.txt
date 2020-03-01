@@ -1,0 +1,120 @@
+	1.        框架 	vue.js
+
+	2.   使用的cli	3.10.0		vue create
+
+	3.      组件是 	vant UI		npm i vant	https://youzan.github.io/vant/#/zh-CN/quickstart
+
+	4.    发送请求 	axios		封装请求模块request	封装 api 请求函数
+
+	5.        路由 	vuerouter
+
+	6.    存储数据 	vuex		token 存储
+
+	7.	存储库  gitHub
+
+	7.    模板地址 	http://toutiao.research.itcast.cn/#/
+
+	8.在线接口服务 	http://ttapi.research.itcast.cn/
+
+	9.	资源库	awesome-vue	https://github.com/vuejs/awesome-vue
+
+	10.   rem适配	postcss-pxtorem	  npm i -D postcss-pxtorem  https://github.com/cuth/postcss-pxtorem  https://github.com/youzan/vant/issues/1181
+
+	10-1.设置rem基准值  lib-flexible	npm i amfe-flexible	https://github.com/amfe/lib-flexible
+		
+		module.exports = {
+  			plugins: {
+    				'autoprefixer': {
+      					overrideBrowserslist: ['Android >= 4.0', 'iOS >= 7']
+    				},
+    				'postcss-pxtorem': {
+      					rootValue: 37.5,
+      					propList: ['*']
+    				}
+  			}
+		}
+
+	11.Vue 官方 Cookbook 写的表单校验	https://cn.vuejs.org/v2/cookbook/form-validation.html
+
+	12.专门的验证插件	vuelidate	https://github.com/monterail/vuelidate
+
+	12-1.验证插件	VeeValidate	npm install vee-validate	http://vee-validate.logaretm.com/
+
+	13.Tabbar 标签栏	https://youzan.github.io/vant/#/zh-CN/tabbar
+
+	14.处理头部和频道导航固定定位	/deep/文档	https://vue-loader.vuejs.org/zh/guide/scoped-css.html
+
+	15.相对时间处理	dayjs	npm i dayjs	
+
+	16.大数处理	json-bigint
+
+	17.图片懒加载	lazy-load  <vant-image lazy-load>标签可以使用懒加载  1.main.js中注册lazy-load插件  2.import { Lazyload } from 'vant'; 3.Vue.use(Lazyload)
+
+	18.相对时间处理	dayjs	npm i dayjs
+
+	19.函数节流和函数防抖	https://segmentfault.com/a/1190000016261602	
+
+		函数防抖（debounce）概念：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。
+
+		函数节流（throttle）概念：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。
+	
+	
+
+##################################################################################################################################################################
+
+	19.上拉加载延时	main.js中添加一个原型方法	Vue.prototype.$sleep = (time) => { ...}
+
+	20.切换图标	控制组件显示隐藏
+	
+	21.搜索关键字高亮	text.toLocaleLowerCase().split(keyword).join(`<span style="color: red;">${keyword}</span>`)
+
+	21.组件中的 v-model 实现了两层含义	1.:value='value'    通过 props 绑定 value	2.@input="$emit('input', $event)"
+
+	22.nextTick 生命周期函数，等待本次更新后的数据在界面上渲染之后再执行
+
+	23.native
+
+	23.@click="$router.push({ name: 'article', params: { id: item.art_id } })" 标签内点击跳转
+
+	23.1 path: this.$route.query.redirect || '/layout'	重定向到携带的路由的页面
+
+	17.vuex	 存储数据  mutation：store.commit 提交 mutation 的数据；Action 通过 store.dispatch 方法触发：
+
+	18.请求拦截器中设置请求头  1.判断是否登录	2.config.headers.Authorization = `Bearer ${user.token}`
+
+	19.从本地存储中获取数据	this.channels = JSON.parse(window.localStorage.getItem('channels')) || []
+
+	20.请求到数据后存储到本地存储中	 window.localStorage.setItem('channels', JSON.stringify(this.channels))
+
+	21.每一个channel都需要记录他里面的文章
+
+		1.forEach
+
+		2.动态增加的成员想要成为响应式数据，需要使用 $set，this.$set(item, 'articles', [])
+
+		3.记录当前时间戳  Date.now()
+
+
+
+做一个页面，功能，接口，先去掌握需要的东西，然后思路就有了
+
+如何搭建页面？什么时候使用插槽？什么时候绑定属性，绑定属性后如何改变值？怎样展示数据？
+
+vue本身相关的可以用 this.$直接调用，后边接什么需要再总结一下查一下资料
+
+寻找并准备数据成员，搭建页面，设置数据成员，书写功能，绑定属性和显示值，记录遇到的问题
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

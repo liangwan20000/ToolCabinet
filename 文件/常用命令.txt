@@ -1,0 +1,7 @@
+rd/s/q 加文件夹名  		cmd 删除文件夹
+
+npm cache clean -force		npm 清除缓存
+
+yarn cache clean		yarn 清除缓存
+
+git reset --hard 加版本号  	git 版本回退

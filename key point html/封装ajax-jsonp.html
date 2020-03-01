@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
+  <script type="text/javascript">
+    let $ = jQuery = function () {}
+    $.ajax = function (options) {
+      if(options.dataType === 'jsonp') {
+        // 跨域
+        let defaultCallback = 'callback'
+        if(options.jsonp) {
+          defaultCallback = options.jsonp
+        }
+        let cname = 'jQuery' + ('v1.11.1' + Math.random()).replace(/\D/g, '') + '_' + new Date().getTime()
+        if(options.jsonpCallback) {
+          cname = options.jsonpCallback
+        }
+        // 定义回调函数
+        window[cname] = function(data) {
+          // console.log(data)
+          options.success(data)
+        }
+        let script = document.createElement('script')
+        script.src = options.url + '?' + defaultCallback + '=' + cname
+        let head = document.getElementsByTagName('head')[0]
+        head.appendChild(script)
+      } else {
+        // ajax
+        let xhr = new XMLHttpRequest()
+        xhr.open(options.type, options.url)
+        xhr.send(null)
+        xhr.onreadystatechange = function () {
+          if(xhr.readyState === 4 && xhr.status === 200) {
+            // 获取正常的服务器数据
+            let ret = xhr.responseText
+            options.success(ret)
+          }
+        }
+      }
+    }
+    $.ajax({
+      url: 'http://localhost:3000/data',
+      dataType: 'jsonp',
+      // jsonp属性值决定了参数等号左边的名称
+      // jQuery 的 jsonp 默认名称 callback
+      jsonp: 'cb',
+      // jsonp属性值决定了参数等号右边的名称
+      jsonpCallback: 'hello',
+      success: function(data) {
+        console.log(data)
+      }
+    })
+  </script>
+</body>
+</html>

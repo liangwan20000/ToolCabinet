@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file" id="file">
+  <img src="" id="img">
+  <script>
+    var file = document.querySelector('#file')
+    var img = document.querySelector('#img')
+
+    file.onchange = function () {
+      // console.dir(file)
+      // 浏览器端不允许操作本地文件
+      // 浏览器默认不允许img标签展示本地绝对路径的图片
+
+      // html5以后浏览器端提供了一个api，fileReader
+      // 把本地文件的内容，转换成base64编码的字符串形式
+      // var fileReader = new FileReader()
+      // // 把文件转换成base64的字符串
+      // fileReader.readAsDataURL(file.files[0])
+      // fileReader.onload = function (e) {
+      //   // base64的图片
+      //   // console.log(e.target.result)
+      //   img.src = e.target.result
+      // }
+
+
+      // HTML5, URL.createObjectURL() 在当前浏览器标签中生成的临时的内容中的图片的访问地址
+      // 标签一旦关闭，地址就不可用了
+      // console.log(URL.createObjectURL(file.files[0]))
+
+      img.src = URL.createObjectURL(file.files[0])
+    }
+
+  </script>
+</body>
+</html>

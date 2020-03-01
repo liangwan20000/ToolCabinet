@@ -1,0 +1,78 @@
+// 字体
+.text (@size, @color, @weight, @letter) {
+	font-size: @size;
+	color: @color;
+	font-weight: @weight;
+	letter-spacing: @letter;
+}
+// 大盒子
+.bigbox (@width, @margin, @paddiing) {
+	width: @width;
+	margin: @margin;
+	padding: @padding;
+}
+// 小盒子
+.littlebox (@width, @height, @margin, @padding) {
+	width: @width;
+	height: @height;
+	margin: @margin;
+	padding: @padding;
+}
+// 对齐方式 子绝
+.top-left (@top, @left, @margin-top, @margin-left) {
+	top: @top;
+	left: @left;
+	margin-top: @margin-top;
+	margin-left: @margin-left;
+}
+.top-right (@top, @right, @margin-top, @margin-right) {
+	top: @top;
+	left: @right;
+	margin-top: @margin-top;
+	margin-right: @margin-right;
+}
+.bottom-left (@bottom, @left, @margin-bottom, @margin-left) {
+	bottom: @bottom;
+	left: @left;
+	margin-bottom: @margin-bottom;
+	margin-left: @margin-left;
+}
+.bottom-right (@bottom, @right, @margin-bottom, @margin-right) {
+	bottom: @bottom;
+	left: @right;
+	margin-bottom: @margin-bottom;
+	margin-right: @margin-right;
+}
+// 2D对齐
+.late-t-l (@top, @left, @late) {
+	top: @top;
+	left: @left;
+	transform: @late;
+}
+.late-t-r (@top, @right, @late) {
+	top: @top;
+	right: @right;
+	transform: @late;
+}
+.late-b-l (@bottom, @left, @late) {
+	bottom: @bottom;
+	left: @left;
+	transform: @late;
+}
+.late-b-r (@bottom, @right, @late) {
+	bottom: @bottom;
+	right: @right;
+	transform: @late;
+}
+// 比例单位
+@number: 20;
+@rem: 640px/@number;
+
+.box (@width, @margin, @bgc) {
+	width: @width;
+	height: @margin;
+	background-color: @bgc;
+}
+.one {
+	.box(20px, 20px, lime)
+}

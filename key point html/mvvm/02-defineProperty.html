@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="d1">hello</div>
+  <script>
+    // Model 数据模型
+    var data = {
+      name: 'zhangsan'
+    }
+
+
+    // ViewModel，数据劫持
+    var vm = {}
+    // 第一个参数，是对象
+    // 第二个参数，是属性
+    // 第三个参数，是配置信息  
+    //           value 给属性赋值
+    //           get和set数据拦截 （属性的过滤器）
+    // vm.name = ''
+
+    Object.defineProperty(vm, 'name', {
+      // value: 'lisi',
+      get () {
+        // 访问器
+        // 获取属性的值
+        console.log('get')
+        return data.name
+      },
+      set (value) {
+        // 设置器
+        // 给属性赋值
+        console.log('set ', value)
+        document.querySelector('#d1').textContent = value
+        data.name = value
+      }
+    })
+
+    
+  </script>
+</body>
+</html>

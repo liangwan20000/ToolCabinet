@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // 基于构造函数 
+    // function Student (uname, age) {
+    //   this.uname = uname;
+    //   this.age = age;
+    // }
+    // Student.prototype.showInfo = function () {
+    //   console.log(this.uname + '的年龄是' + this.age)
+    // }
+    // let stu = new Student('lisi', 12);
+    // console.log(stu.uname)
+    // console.log(stu.age)
+    // stu.showInfo()
+
+    // 基于类的方式
+    class Student {
+      // 固定方法
+      constructor(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+      // 这里定义的方法本质上就是原型方法
+      showInfo () {
+        console.log(this.uname + '的年龄是' + this.age)
+      }
+    }
+    
+    class TypeStudent extends Student {
+      constructor(uname, age, type) {
+        // 调用父类构造函数并且把参数传递过去
+        // 构造函数中第一行代码必须是super()
+        super(uname, age);
+        // 在子类再添加一个属性
+        this.type = type;
+      }
+      showType () {
+        console.log(this.type)
+      }
+    }
+
+    let ts = new TypeStudent('lisi', 12, '三好学生');
+    ts.showInfo();
+    ts.showType();
+
+    // let stu = new Student('zhangsan', 13);
+    // console.log(stu.uname)
+    // console.log(stu.age)
+    // stu.showInfo()
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="d1">hello</div>
+  <script>
+    'use strict'
+    // Model 数据模型
+    var data = {
+      name: 'zhangsan',
+      age: 18
+    }
+
+
+    // ViewModel，数据劫持
+    var vm = {}
+    // 第一个参数，是对象
+    // 第二个参数，是属性
+    // 第三个参数，是配置信息  
+    //           value 给属性赋值
+    //           get和set数据拦截 （属性的过滤器）
+    Object.defineProperty(vm, 'name', {
+      // 不可配置（1. 不可重新调用defineProperty设置name,  2. 不可以删除）
+      configurable: false,
+      // 枚举，是否可以遍历该属性
+      enumerable: true,
+      // 是否可写，（如果writable的值为false，该属性只读）, 不能跟set一起存在
+      writable: false,
+      value: 'lisi',
+      // get () {
+      //   // 访问器
+      //   // 获取属性的值
+      //   console.log('get')
+      //   return data.name
+      // },
+      // set (value) {
+      //   // 设置器
+      //   // 给属性赋值
+      //   console.log('set ', value)
+      //   document.querySelector('#d1').textContent = value
+      //   data.name = value
+      // }
+    })
+
+    // delete vm.name
+    // for (var key in vm) {
+    //   console.log(key)
+    // }
+
+    // Cannot assign to read only property 'name'
+    vm.name = '123'
+  </script>
+</body>
+</html>

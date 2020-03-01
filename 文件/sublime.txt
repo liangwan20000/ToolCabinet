@@ -1,0 +1,3 @@
+Sublime自带代码整理功能.Ctrl+Shift+P调出命令面板,输入Reindent可以调节格式错乱的代码.可以试试.
+
+html/css/js prettify  解压缩

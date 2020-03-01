@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button{
+            border-radius: 5px;
+            outline:none;
+        }
+    </style>
+</head>
+<body>
+    <!--定义三个按钮,用来操作三个页面-->
+    <button id="top">top</button>
+    <button id="left">left</button>
+    <button id="right">right</button>
+    <button id="toutiao">在左侧打开头条</button>
+    <button id="baidu">在右侧打开百度</button>
+</body>
+<script type="text/javascript">
+    var wind = window.top.frames;
+    console.log(wind);
+    document.getElementById("top").onclick = function(){
+        var topid = wind[0].document.documentElement.style.background;
+        
+        if(topid == "red"){
+            wind[0].document.documentElement.style.background = "white";
+        }else{
+            wind[0].document.documentElement.style.background = "red";
+        }
+    }
+    document.getElementById("left").onclick = function(){
+        var leftid = wind[1].document.documentElement.style.background;
+        if(leftid == "blue"){
+            wind[1].document.documentElement.style.background = "white";
+        }else{
+            wind[1].document.documentElement.style.background = "blue";
+        }
+    }
+    document.getElementById("right").onclick = function(){
+        if(wind[2].document.documentElement.style.background == "green"){
+            wind[2].document.documentElement.style.background = "white";
+        }else{
+            wind[2].document.documentElement.style.background = "green";
+        }
+    }
+    document.getElementById("toutiao").onclick = function(){
+        console.log(wind[1])
+        wind[1].location = "https://www.toutiao.com/";
+    }
+    document.getElementById("baidu").onclick = function(){
+        wind[2].location= "https://www.baidu.com/?tn=78000241_5_hao_pg";
+    }
+</script>
+
+</html>

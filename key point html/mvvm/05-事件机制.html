@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // bus.$on('click', fn1)
+    // bus.$on('click', fn2)
+    // bus.$on('over', fn)
+
+    // bus.$emit('click', 1)
+
+    function EventEmitter () {
+      // { 'click': [fn1, fn2], 'over': [fn] }
+      this.handlers = {}
+      // {'click': [fn1]}
+    }
+
+    EventEmitter.prototype.$on = function (eventType, handler) {
+      // 如果handlers里面没有内容的时候，需要初始化成数组
+      // if (!this.handlers[eventType]) {
+      //   this.handlers[eventType] = []
+      // }
+      // this.handlers[eventType].push(handler)
+
+      this.handlers[eventType] = this.handlers[eventType] || []
+      this.handlers[eventType].push(handler)
+    }
+
+
+    //  ...rest 剩余参数，把调用时候的参数，放到了 rest 数组中
+    EventEmitter.prototype.$emit = function (eventType, ...rest) {
+      // 当没有注册事件，直接返回
+      if (!this.handlers[eventType]) {
+        return
+      }
+      console.log(this)
+      this.handlers[eventType].forEach((handler) => {
+        // 执行函数
+        // handler()
+        // handler(...rest)
+        // 改变this
+        handler.apply(this, rest)
+      })
+    }
+
+    var em = new EventEmitter()
+
+    em.$on('click', () => {
+      console.log('click')
+    })
+
+    em.$on('click', () => {
+      console.log('click1111')
+    })
+
+    // 传参数
+    em.$on('demo', function (a, b) {
+      console.log(a + b)
+      console.log('demo')
+      console.log(this)
+    })
+
+
+    em.$emit('click')
+
+    em.$emit('demo', 1, 2)
+
+
+
+
+
+  </script>
+</body>
+</html>

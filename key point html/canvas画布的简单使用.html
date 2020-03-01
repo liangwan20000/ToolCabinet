@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    canvas {
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="cas"></canvas>
+  <script type="text/javascript">
+    let canvas = document.getElementById('cas');
+    let ctx = canvas.getContext('2d');
+    
+    ctx.strokeStyle = 'red'
+    ctx.fillStyle = 'orange'
+    // ctx.moveTo(100, 100);
+    // ctx.lineTo(200, 100);
+    ctx.rect(50, 50, 100, 100);
+    // ctx.stroke();
+    ctx.fill();
+  </script>
+</body>
+</html>

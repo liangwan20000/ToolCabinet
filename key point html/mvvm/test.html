@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ES5中的严格模式：取消js中的部分缺陷
+    'use strict'
+
+    // 在严格模式下： a is not defined
+    // a = 10
+
+    // 数组的prototype是只读的
+    // 但是默认情况下赋值不会报错  Cannot assign to read only property 'prototype'
+    // Array.prototype = {}
+
+    delete Array.prototype
+
+    // 严格模式下，全局调用的函数内部this指向 undefined
+    function fn () {
+      console.log(this)
+    }
+    fn()
+
+    
+
+  </script>
+</body>
+</html>
