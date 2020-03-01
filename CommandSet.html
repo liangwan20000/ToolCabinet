@@ -5647,7 +5647,12 @@
 			git merge 分支名称	合并分支
 			vi 文件名	创建并进入编辑文件模式
 			i 输入i才可以编辑  esc退出编辑	冒号wq退出编辑模式  cat查看文件内容
-			git .gitignore	忽略文件
+			忽略文件
+				vi .gitignore 创建忽略文件并进入编辑文件模式
+				填写需要忽略的文件或文件夹：i 输入i才可以编辑  esc退出编辑	冒号wq退出编辑模式
+				git add .gitignore
+				git commit -m '添加忽略文件'
+				git push	完事
 			git push origin master		推送master
 			git pull	拉取分支
 			git fetch origin master		fetch：相当于是从远程获取最新版本到本地，不会自动merge
