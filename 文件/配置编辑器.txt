@@ -10,7 +10,30 @@ Sublime×Ô´ø´úÂëÕûÀí¹¦ÄÜ.Ctrl+Shift+Pµ÷³öÃüÁîÃæ°å,ÊäÈëReindent¿ÉÒÔµ÷½Ú¸ñÊ½´íÂÒµÄ´
 
 html/css/js prettify  ½âÑ¹Ëõ
 
+ÎÒµÄÉèÖÃ
+{
+	"expand_tabs_on_save": true, // ±£´æÊ±×Ô¶¯½«tab×ª»»³É¿Õ¸ñ
+	"font_size": 13, // ×ÖÌå´óĞ¡
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"show_definitions": false, // ½ûÖ¹µ¯´°
+	"tab_size": 4, // Ëõ½ø¾àÀë
+	"translate_tabs_to_spaces": true// ÉèÖÃÄ¬ÈÏ¿Õ¸ñËõ½ø falseÊ±ÎªTabËõ½ø
+}
 
+HTML-CSS-JS Prettify	¸ñÊ½»¯²å¼şµÄ¹Ø¼üÅäÖÃ
+
+1.´ò¿ªÅäÖÃÎÄ¼şPreferences > Package settings > HTML/CSS/JS prettify > Plugins Options-Default
+
+2.ÕÒµ½¡±global_file_rules¡± > ¡°html¡± > ¡°allowed_file_extensions¡±£¬Ìí¼Ó¡±vue¡±
+
+3.¹ö¶¯µ½µ×²¿£¬ÕÒµ½¡±use_editor_indentation¡±, °Ñfalse¸ÄÎªtrue£»ÒâË¼ÊÇÊ¹ÓÃ±à¼­Æ÷µÄËõ½ø
+
+4.ÅäÖÃ×Ô¼ºÏëÒªµÄËõ½ø¾Í¿ÉÒÔ¸ñÊ½»¯³É×Ô¼ºÏëÒªµÄ¸ñÊ½ÁË
+
+5."format_on_save"£¬°Ñfalse¸ÄÎªtrue  ±£´æÊ±×Ô¶¯¸ñÊ½»¯£¬Ò»°ã²»¿ªÆô
 
 #####################################################################################################
 

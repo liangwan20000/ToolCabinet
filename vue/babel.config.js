@@ -2,9 +2,8 @@ module.exports = {
     presets: [
         '@vue/app',
         '@vue/cli-plugin-babel/preset',
-        '@babel/preset-env'
+        '@babel/preset-env' //  babel 的降级处理配置
     ],
-    // 配置使保存时根据配置自动格式化
     plugins: [ // 按需引入element-ui样式的配置
         [
             'component',

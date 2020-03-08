@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-
 </head>
 <body>
 	<!-- body和HTML有8px的内外边距,HTML和浏览器页面一样大,body要比(html)页面小这8px的边距 -->
@@ -50,76 +49,7 @@
 
 	jquery案例思路
 	<script>
-		var 精品服饰 {
-			案例：淘宝服饰精品案例 : 【index()获取索引值
-			①核心原理：鼠标经过左侧盒子某个小li，就让内容区盒子相对应图片显示，其余的图片隐藏。
-			②需要得到当前小li 的索引号，就可以显示对应索引号的图片
-			③jQuery 得到当前元素索引号 $(this).index()  
-			④中间对应的图片，可以通过  eq(index) 方法去选择 
-			⑤显示元素 show()   隐藏元素 hide()
-		}
-		var tab切换 {
-			案例 ： tab栏切换
-			点击上部的li，当前li 添加current类，其余兄弟移除类。
-			点击的同时，得到当前li 的索引号
-			让下部里面相应索引号的item显示，其余的item隐藏
-		}
-		var 下拉菜单 {
-			显示隐藏效果
-			滑动效果
-		}
-		var 高亮显示 {
-			淡入淡出效果
-			练习：高亮显示  
-			原理：鼠标结果让当前元素的所有兄弟透明度降低，鼠标离开恢复既可
-			注意：动画排队问题
-		}
-		var 王者荣耀手风琴效果 {
-			鼠标经过某个小li 有两步操作：
-				1、当前小li 宽度变为 224px， 同时里面的小图片淡出，大图片淡入
-				2、其余兄弟小li宽度变为69px， 小图片淡入， 大图片淡出
-		}
-		var 购物车案例 {
-			模块 ; 增减 : 商品数量
-				①核心思路：首先声明一个变量，当我们点击+号（increment），就让这个值++，然后赋值给文本框。
-				②注意1： 只能增加本商品的数量， 就是当前+号的兄弟文本框（itxt）的值。 
-				③修改表单的值是 val() 方法
-				④注意2： 这个变量初始值应该是这个文本框的值，在这个值的基础上++。要获取表单的值
-				⑤减号（decrement）思路同理，但是如果文本框的值是1，就不能再减了，直接return false即可
-			模块 : 修改商品小计
-				①核心思路：每次点击+号或者-号，根据文本框的值 乘以 当前商品的价格  就是 商品的小计
-				②注意1： 只能增加本商品的小计， 就是当前商品的小计模块（p-sum）  
-				③修改普通元素的内容是text() 方法
-				④注意2： 当前商品的价格，要把￥符号去掉再相乘 截取字符串 substr(1)
-				⑤parents(‘选择器’) 可以返回指定祖先元素  
-				⑥最后计算的结果如果想要保留2位小数 通过 toFixed(2)  方法
-				⑦用户也可以直接修改表单里面的值，同样要计算小计。 用表单change事件
-				⑧用最新的表单内的值 乘以 单价即可  但是还是当前商品小计
-				点击获取单价和数量相乘的结果保存给小计既可
-				注意:
-					用户直接输入数字问题
-					parents获取祖先元素方法;
-					操作文本值;
-			模块 : 计算总计和总额
-				①核心思路：把所有文本框里面的值相加就是总计数量。总额同理
-				②文本框里面的值不相同，如果想要相加需要用到each遍历。声明一个变量，相加即可
-				③点击+号-号，会改变总计和总额，如果用户修改了文本框里面的值同样会改变总计和总额
-				④因此可以封装一个函数求总计和总额的， 以上2个操作调用这个函数即可。
-				⑤注意1： 总计是文本框里面的值相加用 val()     总额是普通元素的内容用text()  
-				⑥要注意普通元素里面的内容要去掉￥并且转换为数字型才能相加
-				多次需要求总计，所有封装函数最为合适
-			模块 : 删除商品模块
-				①核心思路：把商品remove() 删除元素即可
-				②有三个地方需要删除： 1. 商品后面的删除按钮 2. 删除选中的商品 3. 清理购物车
-				③商品后面的删除按钮： 一定是删除当前的商品，所以从 $(this) 出发
-				④删除选中的商品： 先判断小的复选框按钮是否选中状态，如果是选中，则删除对应的商品
-				⑤清理购物车： 则是把所有的商品全部删掉
-			模块 : 选中商品添加背景
-				①核心思路：选中的商品添加背景，不选中移除背景即可
-				②全选按钮点击：如果全选是选中的，则所有的商品添加背景，否则移除背景
-				③小的复选框点击： 如果是选中状态，则当前商品添加背景，否则移除背景
-				④这个背景，可以通过类名修改，添加类和删除类
-		}
+		var 1. 块级作用域就是大括号内的区域，大括号外访问不到大括号内的变量；
 	</script>
 
 
@@ -208,6 +138,22 @@
 		var Object {
 			Object.keys(); 获取对象所有的键，返回一个数组;
 			Object.defineProperty(obj, prop, descriptor); 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
+				1. configurable:当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。
+				2. enumerable:当且仅当该属性的enumerable为true时，该属性才能够出现在对象的枚举属性中。默认为 false。数据描述符同时具有以下可选键值：
+
+				3. value:该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。
+				4. writable:当且仅当该属性的writable为true时，value才能被赋值运算符改变。默认为 false。存取描述符同时具有以下可选键值：
+
+				5. get:一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。当访问该属性时，该方法会被执行，方法执行时没有参数传入，但是会传入this对象（由于继承关系，这里的this并不一定是定义该属性的对象）。默认为 undefined。
+				6. set:一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。当属性值修改时，触发执行该方法。该方法将接受唯一参数，即该属性新的参数值。默认为 undefined。
+				7. get和set是一组，value和writable是一组，一个属性只能定义一组，不能两组同时定义
+			Object.getOwnPropertyDescriptor(obj, prop);方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）
+				1. value:该属性的值(仅针对数据属性描述符有效)
+				2. writable:当且仅当属性的值可以被改变时为true。(仅针对数据属性描述有效)
+				3. get:获取该属性的访问器函数（getter）。如果没有访问器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)
+				4. set:获取该属性的设置器函数（setter）。 如果没有设置器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)
+				5. configurable:当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。
+				6. enumerable:当且仅当指定对象的属性可以被枚举出时，为 true。
 		}
 	</script>
 
@@ -2324,8 +2270,7 @@
 			    	+function () { };
 			    	var fn = function() {}; 表达式创建函数
 				作用：常用来包裹对象
-					可以避免全局变量污染（命名冲突），实现模块化。重要 
-					可以模拟块级作用域
+					可以避免全局变量污染（命名冲突），实现模块化。重要可以模拟块级作用域
 			4. 	函数创建和调用
 				函数声明创建 函数声明是语句，语句结束要添加;号
 				    function 函数名(形参,形参...){
@@ -2372,10 +2317,8 @@
 					函数的名字
 		}
 		var 函数内部this的指向 {
-			1. 普通函数
-        		【普通函数-this指向window】
-        		普通函数，直接调用的函数
-        		[代码1]
+			1. 普通函数，直接调用的函数 - this指向window
+        		// [代码1]
         		function fn() {
         		  console.log(this);  // this指向widnow
         		}
@@ -2425,7 +2368,7 @@
 				    setTimeout(fn,10);
 				    // setTimeout(fn(),1000);  // 注意：不要直接调用
 			3.  构造函数
-				this指向，指向当前创建的对象，（当前所开辟的空间）
+				this指向当前创建的函数本身，（当前所开辟的空间）
 				原理：基于new关键字的执行过程
 				注意事项：构造函数一定要通过new关键字调用
 				    function Fn(name,age) {
@@ -2602,11 +2545,14 @@
 				递归返回段
 			2. 递归的作用 : 减少代码量
 		}
+	</script>
+
+
+	正则
+	<script>
+		测试地址：https://tool.oschina.net/regex/
 		var 正则表达式 {
-			1. 什么是正则表达式【了解】   操作字符串的逻辑公式
-				正则表达式Regular Expression：正则表达式是对字符串操作的一种逻辑公式
-				,就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字
-				符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。
+			1. 正则表达式Regular Expression：是对字符串操作的一种逻辑公式
 			正则表达式在其他语言中也广泛应用。
 			正则表达式，就是定义好一个字符串规则 ，然后根据规则实现对象字符串的匹配、提取、替换等
 			2. 正则表达式的作用【了解】 1. 匹配 2. 提取 3. 替换
@@ -2616,27 +2562,27 @@
 			3. 正则表达式的组成
 				普通字符abc  123  我爱你
 				特殊字符(元字符、限定符、中括号)：正则表达式中有特殊意义的字符
-			4. 元字符
-				元字符就是，在正则表达式中具有特殊含义的字符。
-  					元字符 	说明                
-  					\d  	匹配数字              
-  					\D  	匹配非数字             
-  					\w  	匹配字母或数字或下划线_      
-  					\W  	匹配非字母、数字、下划线_     
-  					\s  	匹配空白符（空格）         
-  					\S  	匹配非空白符            
-  					.   	匹配任意除了回车换行符之外的单个字符
-  			5.	限定符
-					控制字符出现的个数。
-					  	限定符   	说明                                      
-					  	n*    	匹配任何包含零个或多个 n 的字符串。n{0,}。 若找到最后，后面没有也算符合。 	若有符合正则值，					按照最多的匹配
-					  	n+    	匹配任何包含至少一个 n 的字符串。{1,} 。                
-					  	n?    	匹配任何包含零个或一个 n 的字符串。{0,1}       若找到最后，后面没有也算符合。	若有符合正则值，					按照1个匹配
-					  	n{x}  	匹配包含 x 个 n 的序列的字符串                      
-					  	n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
-					  	n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
-					  	n$    	匹配任何结尾为 n 的字符串                          
-					  	^n    	匹配任何开头为 n 的字符串                          
+			4. 元字符：在正则表达式中具有特殊含义的字符。
+				元字符 	说明                
+				\d  	匹配数字              
+				\D  	匹配非数字             
+				\w  	匹配字母或数字或下划线_      
+				\W  	匹配非字母、数字、下划线_     
+				\s  	匹配空白符（空格）         
+				\S  	匹配非空白符            
+				.   	匹配任意除了回车换行符之外的单个字符
+				\r		匹配回车
+				\n 		匹配换行
+  			5.	限定符：控制字符出现的个数。
+				  	限定符   	说明                                      
+				  	n*    	匹配任何包含零个或多个 n 的字符串。n{0,}。 若找到最后，后面没有也算符合。 	若有符合正则值，					按照最多的匹配
+				  	n+    	匹配任何包含至少一个 n 的字符串。{1,} 。                
+				  	n?    	匹配任何包含零个或一个 n 的字符串。{0,1}       若找到最后，后面没有也算符合。	若有符合正则值，					按照1个匹配
+				  	n{x}  	匹配包含 x 个 n 的序列的字符串                      
+				  	n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
+				  	n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
+				  	n$    	匹配任何结尾为 n 的字符串                          
+				  	^n    	匹配任何开头为 n 的字符串                          
 					注意：==^正则表达式$==   使用时，会对字符串整体校验，完全符合才能够匹配。否则，不匹配。
 					注意：在使用花括号限制字符个数时，将来在去匹配时，首先从前向后匹配，先按照至多的要求匹配，至多不满足时，再降低要求匹配，若将至最少时还不匹配→ 最终是不匹配。
 					注意：关于次数至少是0时，表示的有没有都符合。  没有符合，内容不是也符合
@@ -2686,340 +2632,14 @@
 				字符串.match(正则对象);   提取所有匹配的内容;获取匹配正则的子字符串，返回一个数组。 
 				字符串.replace(正则对象,替换后的内容); 替换所匹配正则的子字符串。返回替换后的字符串。
 		}
-	</script>
-
-
-	ajax
-	<script>
-		var Ajax {
-			简介 : 简单来说，Ajax是一种技术、是能够使浏览器和服务器进行交互（请求响应）的一种技术。
-					Ajax也是一套内置在浏览器端的API，核心对象是内置在浏览的中的 XMLHttpRequest ，
-					通过这些API的调用，可以实现发送Ajax类型的请求和收取服务器端响应的数据。
-				1. 请求，指浏览器向服务器发出的请求（请求HTML页面和留言数据）；
-				2. 响应，指服务器接收到浏览器的请求后，做出的回应（把请求的数据给你）
-				3. 看到一个页面，也许会向服务器发很多次请求。
-			Ajax的核心是内置在浏览器中的 XMLHttpRequest 对象。我们可以通过调用这套API，实现发送Ajax请求。
-				var xhr = new XMLHttpRequest();
-				xhr.open(); 请求的方式, 请求的地址
-				xhr.send(); 发送请求
-				xhr.onload = function (result) { 当服务器的响应结束，然后再接收服务器响应的结果
-					var data = JSON.parse(result);
-					xhr.response 接收服务器返回的结果
-					result : 返回值;
-				};
-			URL数据接口 : 数据接口其实就是一个网址，访问它，就能够得到一些数据。
-			简化url :　	在发送Ajax请求的时候，比如AB两个网页文件或接口地址，都属于同一个服务器上的
-						资源，则请求URL可以省略前面的IP和端口	
-			通用的IP地址
-				127.0.0.1 永远指向自己的计算机
-				localhost 永远指向自己的计算机
-				注意：浏览器使用的那个IP，代码中也要使用相应的IP
-			GET : 字面意思获取，一般指用户从服务器获取数据;
-				请求参数 : 请求参数又叫做查询字符串,一般用于告诉服务器此次请求的详细目的
-					格式：http://www.baidu.com/s?q=word&sug=5017
-					查询字符串只适合传输少量数据,因为搜索框本身有限制输入个数;
-					一般把要查询的值放在等号后边 q=值&a=值;
-			缓存问题(了解)
-				1. 	只有IE浏览器会有缓存问题，所以作为了解内容
-				2. 	缓存问题指的是：两次或多次 AJAX GET 请求同一个 URL ，IE浏览器在第二次请求的
-					时候，并不会重新向服务器发请求，而是直接使用上次请求的结果。
-				3.	解决方案 : 让每次请求的URL都不同 (加一个时间戳);
-			POST : 把数据提交给服务器;
-				1. post 请求，必须调用setRequestHeader方法设置 Content-Type
-				2. 请求头中的 Content-Type，告诉服务器发送过去的数据的格式
-				3. send方法的参数就是post方式发送给服务器的数据。（和get不同）
-			4. xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				请求头必须写在open下
-			非Ajax请求：(也有两种方式)没有XMLHttpRequest对象
-				GET方式：
-					地址栏输入地址，按下回车
-					点击页面中的超链接跳转
-					表单提交（表单的method属性为GET或不指定）
-				POST方式：表单提交（表单的method属性为POST）
-					'<form action="/time" method="GET"></form>'
-			响应数据格式 : 	服务器返回的数据不一定是非常简单的字符串，需要转成数组或对象
-							;不同语言之间的数组和对象语法又不同，所以服务器直接返回该语言的数组或对象是不行的。
-							语言设计人员早已意识到这个问题，所以专门设计了两种数据表示格式，他们分别是JSON
-							和XML;在服务器和浏览器之间传输数据的时候，需要先把数据转换成双方都能够识别的
-							格式，即JSON或XML
-
-				JSON : 	JS对象表示法;是一种通过普通==字符串==描述数据的手段，用于表示有结构的
-						数据。类似于编程语言中字面量的概念，语法上跟 JavaScript 的字面量非常类似。
-				JS = JSON.parse(JSON); JSON 格式转 JS 数据
-				JSON = JSON.stringify(JS); JS 数据转 JSON
-					注意 :
-						1. JSON 中属性名称==必须用双引号==包裹
-						2. JSON 中表述字符串==（"值"）必须使用双引号==
-						3. JSON 中不能有单行或多行注释
-						4. JSON 没有 undefined 这个值
-						5. 一个完整的JSON，不能有其他内容掺杂
-					有了 JSON 这种格式，我们就可以更加容易的表示拥有复杂结构的数据了。
-						注意：
-							1. 不管是 JSON 也好，还是 XML，只是在 AJAX 请求过程中用到，并不代表它们与AJAX
-								之间有必然的联系，它们只是数据协议罢了。
-							2. 不管服务端是采用 XML 还是采用 JSON 本质上都是将数据返回给客户端。
-							3. 服务端应该根据响应内容的格式设置一个合理的 Content-Type。
-				HTML:超文本标记语言
-					XML: e==X==tension ==M==arkup ==L==anguage   可扩展标记语言
-					淘汰的原因：数据冗余太多
-					XML语法规范：
-						和html写法差不多
-						有且只有一个根标签
-						标签区分大小写
-						标签必须闭合
-						属性值必须加引号
-					如果服务器返回的是XML格式的数据，JS收到数据之后，把收到的数据当做document对象来处理即可。
-		}
-		var 整个请求响应过程 {
-			访问网站时请求响应流程
-				1. 用户打开浏览器
-				2. 输入地址 http://127.0.0.1:3000/message.html 向服务器发送请求，请求message.html 页面
-				3. 检测浏览器DNS缓存，看是否有域名和IP的对应关系
-				4. 检查本机的 hosts 文件，看是否有域名和IP的对应关系
-				5. 浏览器通过  DNS 服务器 获取即将访问的网站  IP 地址
-				6. 浏览器和网站服务器进行三次握手
-				7. 浏览器发起一个对这个 IP地址的 请求，即http请求
-				8. 服务端监听指定的 端口 的服务器软件接收到这个请求，进行相应的处理
-				9. 服务端将处理完的结果返回给客户端浏览器（响应）服务器返回给浏览器 message.html 中的代码
-				10. 浏览器将服务端返回的结果呈现到界面上 ; 浏览器接受到 message.html 中的代码，然后解析
-			   	11. 遇到加载css的link标签，再次去服务器请求css文件
-			   	12. 遇到图片的img标签，再次去服务器请求图片
-			   	13. 遇到js代码，发送Ajax请求，请求所有的留言数据
-			    	  1. 服务器响应的结果是JSON格式的留言数据
-			    	  2. 将JSON格式的数据转成JS数组
-			    	  3. 通过拼接li的方式，拼接所有的留言
-			    	  4. 把拼接好的所有的li，放到ul中
-		}
-		var 浏览器 {
-			与浏览器相关是BOM
-			浏览器工具
-				Network
-					Name : 请求列表;
-					Status : 响应状态码; 200 表示请求成功;400 表示没找到;304 表示本地存储;
-					Type : 请求的类型; xhr为ajax类型 其他都是非ajax类型;
-					Request Method : 请求方式 GET：得到，获取; POST：邮寄，推送，提交;
-						点击请求列表下的一项,弹出的headers里就有Request Method
-					Response : 响应结果;在弹出的headers里;
-		}
-		var 服务器 {
-			服务器 :
-				1. 服务器上的资源（html文件、css文件、图片、js文件、数据）可以被任何人访问；
-				2. 服务器上的数据可以永久保存；
-				3. 服务器就是一台安装了服务器软件的电脑。
-			Ajax工作，必须有服务器，所以需要搭建一个服务器环境，
-				搭建服务器的具体步骤：
-					1. 将app-win.exe软件复制到随便一个文件夹（文件夹路径最好不要包含中文）
-					2. 在app-win.exe同级目录中，创建public文件夹（public文件夹里面的内容就是服务器上的资源）
-					3. 在public里面创建html文件，写js代码，发送ajax请求
-			URL数据接口 : 数据接口其实就是一个网址，访问它，就能够得到一些数据。
-			服务器可以从硬件、软件(系统软件、应用软件)两个角度描述。
-				按硬件描述
-					服务器就是一台超级计算机。可以达到常年不关机。
-				按系统划分
-					在硬件上安装了什么操作系统，就可以称为该系统的服务器
-					例如:  linux服务器、windows服务器、unix服务器等。
-				按软件划分
-					在操作系统中安装了什么软件，就可以称作该软件的服务器
-					例如:  Apache服务器、MySQL服务器、邮件服务器等。
-			Web服务器就是安装了Web服务软件，能够提供网站服务的服务器。
-				常见的Web服务器软件： 
-					web服务器又叫做http/httpd服务器
-					Apache、Nginx、IIS、Tomcat、Nodejs 等。
-			服务器用于保存开发好的网页和网页中用到的数据
-				通过服务器的IP地址或域名可以访问到服务器上的资源(网页或数据接口)
-				只要是能够连接到服务器，任何人都可以访问服务器上的资源
-			Apache服务器 
-				WampServer软件是一个集成软件，包含了：Apache、MySQL等服务器软件。
-				下载：https://sourceforge.net/projects/wampserver/
-				安装
-					1.  检测计算机的端口是否被占用了
-						Apache会使用80端口
-						MySQL会使用3306端口
-						如果计算机中的这两个端口被占用了，就会影响到wampserver。
-					2. 	打开命令行工具  netstat -an
-					3. 	如果发现端口被占用了，则需要使用管理员打开命令行工具
-						netstat -anb   查看哪个程序使用了3306端口
-					4.	打开任务管理器，找到占用程序，结束任务
-					5. 	核心重点：  安装任何与开发相关的软件时都必须安装到英文路径下。
-		}
-		var postman { postman : 测试接口的软件 }
-		var 同步异步 {
-			同步：在执行一些耗时的操作的时候，不做别的事，只是等待
-			异步：在执行一些耗时的操作的时候，同时去做别的事，不是等待
-				Deprecation -- 反对的，不赞成的
-				synchronous -- 异步的
-				ynchronous -- 同步的
-			同步与异步 : 了解同步模式即可，切记不要使用同步模式。
-				xml.open()第一个参数是请求类型,第二个参数是借口与请求数据,第三个数据是控制同步异步(布尔类型);
-			readyState : (状态值)请求响应阶段
-				状态描述说明
-				0 UNSENT 			代表（XHR）被创建，但尚未调用 open() 方法。
-				
-				1 OPENED 			open() 方法已经被调用，建立了连接。
-				
-				2 HEADERS_RECEIVED 	send() 方法已经被调用，并且已经可以获取状态行和响应头。
-				
-				3 LOADING 			响应体（服务器返回的数据）下载中， responseText 属性可能已经包含部分数据。
-				
-				4 DONE 				响应体（服务器返回的数据）下载完成，可以直接使用 responseText或
-																				response 获取完整的结果。
-			onreadystatechange : 当Ajax状态发生变化的时候 (on... 表示一个事件，翻译过来就是“当...时候”，readystate前面说过，是一个数字，表示ajax的状态，change是改变的意思。所以这个事件的意思是，当Ajax状态发生变化的时候，就会触发这个事件。)
-			xhr对象分块接收数据 : 如果服务器返回的数据量非常大，xhr对象是分块接收数据的，一次性接收一部分（大小
-				不确定），直至接收完毕为止。
-			注意的是，当xhr对象接收的数据发生变化的时候，这里readyState的值不会发生变化,一直
-				为3,但接收到的数据变化了，也表示ajax的状态变化了，此时也会触发onreadystatechange事件。
-			另外下面还有几个补充的事件及所表示的意义：
-				onreadystatechange : 当Ajax状态发生变化的时候
-				onload -- 当readyState等于4的时候触发
-				onprogress -- 当readyState等于3的时候触发（数据正在返回途中的时候触发）
-				onloadstart() -- 当开始发送请求的时候触发
-				onloadend() -- 当请求响应过程结束的时候触发
-			progress -- 过程、进度
-			FormData 是根据表单各项的name来获取值的,(必须用dom对象);
-			file.files[0] : files[0]就是文件对象的地址,
-			readyState : (状态值)请求响应阶段
-			创建XHR对象的兼容方案 XMLHttpRequest 在老版本浏览器（IE5/6）中有兼容问题，可以通过另外一种方式代替。
-				var xhr = window.XMLHttpRequest ? new XMLHttpRequest() :
-					  			new ActiveXObject('Microsoft.XMLHTTP')
-				xhr 的成员相同，即后续的open、send方法一样使用、onreadystatechange也可以使用
-				但是h5新增的 response、onprogress、onloadstart、onload、responseType不能使用的
-			xhr.responseType = 'json';(XHR会根据responseType的值来自动处理服务器返回的结果)写在send上边
-		}
-		var 模板引擎 {
-			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/; 修改界定符
-			https://aui.github.io/art-template/
-			客户端(浏览器)拿到请求的数据过后最常见的就是把这些数据呈现到界面上。
-				如果数据结构简单，可以直接通过字符串操作（拼接）的方式处理，但是如果数据过于复杂，
-				字符串拼接维护成本太大。
-			模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易更高效的将数据渲染到HTML字符串中。==通俗的说，模板引擎的目的就是将服务器返回的数据显示到HTML页面中==。
-			使用模板引擎-1.加载js文件
-				'<script src="./assets/template-web.js">''<script>'
-				//  使用模板引擎-2.设置模板
-				<script id="xxx" type="text/html">
-				    <h2>{{title}}<h2>
-				    <p>{{age}}<p>
-				<script>
-				<script>
-				    // 使用模板引擎-3.调用template函数
-				    // var 模板和数据组合好的结果 = template(模板id, 模板中使用的数据必须是js对象类型);
-				    var str = template('xxx', {
-				        title: '哈哈哈哈，这是模板引擎',
-				        age: 20,
-				    });
-				    // 将替换好的结果，放到页面上
-				    document.body.innerHTML = str;
-				<script>
-			定义模板时的script标签一定好指定id和type,tempalte函数语法：var html = template(模板id,  Object);
-			使用模板引擎处理响应数据
-				引入template-web.js
-				//<script src="/template-web.js"></script>
-				<!-- 定义模板 -->
-				<!-- <script id="abcd" type="text/html">
-				    {{each arr}}
-				    <li class="media">
-				      <img class="mr-3" src="avatar.png" alt="">
-				      <div class="media-body">
-				        <h4>{{$value.name}}</h4>
-				        <p>{{$value.content}}</p>
-				    </div>
-				    </li>
-				    {{/each}}
-				</script>
-				<script> -->
-					<!-- xhr.onload = function () {
-						// 完全接收到服务器返回的数据
-					    var result = this.responseText;
-					    // 将JSON格式的数据，转换成JS数据
-					    data = JSON.parse(result);
-					    // 使用模板引擎，不用拼接字符串了
-					    var str = template('abcd', {
-					    	arr: data
-					    });
-					    // 把处理好的html放到ul中
-					    document.getElementById('messages').innerHTML = str;
-					};
-				</script> -->
-		}
-		var 重要操作 {	ajax需要一个事件触发
-			1.	for (var i = 0; i < data.length; i++) {
-        			lis += `<li class="media">
-        			          <img class="mr-3" src="./assets/avatar.png">
-        			          <div class="media-body">
-        			            <h4>${data[i].name}<h4>
-        			            <p>${data[i].content}<p>
-        			          <div>
-        			        <li>;
-      			}
-      			// 3. 循环结束，把拼接好的所有li放到ul中
-      			document.getElementById('messages').innerHTML = lis;
-      		2.	xhr.send(`name=${chenghu.value}&content=${neirong.value}`);
-      		3.	
-		}
-		var 自己封装 {
-			contentType : false; // 不让jq设置请求头
-			processData : false; // 不让jQuery去将对象类型的data处理成字符串
-			提交 FormData
-			注意事项：接口需要的三个参数分别为name/bio/avatar
-			表单中的input需要设置对应的name值，否则FormData是收集不到数据的
+		let 常用表达式 {
+			1. 匹配标签结构
+				/<td(((?!form|table)[\s\S])*?)<\/el-button>/g：取反form或table
+			2. 匹配 <el-button><el-button>：/<el-button.+class="(.*?)".+/g;
+			3. 匹配 class="xxx"：/class="(.*?)"/
 		}
 	</script>
 
-	
-	跨域
-	<script>
-		let 同源政策 {
-			1.	1995 年，同源政策由 Netscape（网景） 公司引入浏览器。目前，所有浏览器都实行这个政策。
-			2.	最初，它的含义是指，A 网站设置的 Cookie，B 网站不能打开，除非这两个网页同源
-				。所谓同源指的是三个相同。
-					协议相同（http https）域名相同 (www...) 端口相同（http默认80端口，https默认443端口）
-			3.	如果非同源，共有三种行为受到限制。
-				Cookie无法读取。
-				DOM 无法获得。
-				AJAX 请求无效（可以发送，但浏览器会拒绝接受响应）。
-		}
-		let 跨域请求 : 在发送Ajax请求的时候，请求的地址只要违反了同源政策，那么就属于跨域请求。
-		let 实现跨域请求的方案--JSONP {
-			1.	JSON with Padding，是一种借助于 script 标签发送跨域请求的技巧。
-			2.	其原理就是在客户端借助 script 标签请求其他服务端的一个地址
-				，服务端的这个地址返回自身的某个全局函数，这个函数将需要返回给客户端的数据放入形参传递给客户端，客户端的函数中就可以得到服务端想要返回的数据。
-				注意：返回的数据是 JavaScript 脚本（而非一段 HTML），返回的脚本可以被执行
-		}
-		let 实现跨域操作 {
-			1.	响应的结果会被请求的网站当做js代码来执行
-				<script>
-					// 因为4000网站，返回的结果是，调用一个叫做abcd的函数
-					// 所以要先准备好这个函数
-					// 形参x就是4000网站返回的数据
-					function abcd (x) {
-					    console.log(x);
-					}
-				<script>
-				<script src="http://127.0.0.1:4000/getStu"><script>
-			2.	获取url中传递的参数的值，这个值就是请求的函数的名字，将要返回的数据当做函数的参数
-				，传递给函数
-			3.	// 服务端把数据转成JSON格式
-     			data = JSON.stringify(data); // 这样请求的客户端得到的结果可以在客户端直接执行
-     		4.	// getStu函数就是获取到的url中传递的参数的值，并传递data数据
-     			res.send('getStu(' + data + ')');
-     		5.	jQuery封装的ajax方法跨域请求
-     			// 联网，加载百度的jquery文件，来学习jquery
-  				<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-  				<script>
-  				    // 向4000网站中的 getStu2 接口，发送请求，请求所有的学生信息
-  				    $.ajax({
-  				        type: 'GET',
-  				        // 为了兼容各个版本的jQuery，最好在url上加入如下所示的callback
-  				        // url: 'http://127.0.0.1:4000/getStu2?callback=?',
-  				        url: 'http://127.0.0.1:4000/getStu2',
-  				        success: function (res) {
-  				            console.log(res);
-  				        },
-  				        dataType: 'jsonp' // 必须指定预期服务器返回数据的类型为jsonp
-  				    });
-  				</script>
-		}
-	</script>
-	
 
 	ES6
 	<script>
@@ -3038,47 +2658,47 @@
 				3. 在不同的作用域中，常量名是可以重复的。
 				4. 常量也具有块级作用域,没有变量提升;
 			var ES5关键字,用于声明变量
-				1. var声明的变量都在window中
+				1. var声明的变量是全局变量，都在window中，window就是全局作用域；
 				2. 不具有块级作用域
 				3. 有变量提升;
 		}
 		var	解构 {
-				数组解构:
-					1. 变量和数组的值一一对应
-						let arr = ['apple', 'pear', 'banana'];
-        				let [a, b, c] = arr;
-        			2. 变量多，值少
-        				let [a, b, c, d] = ['apple', 'pear', 'banana'];
-        			3. 变量少，值多
-        				let [a, b] = ['apple', 'pear', 'banana'];
-        			4. 按需取值
-        				let [, a, ,b] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
-        			5. 剩余值，只能最后一个变量能当做剩余值 剩余值组成一个数组
-        				let [a, b, ...c] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
-        			6. 复杂的情况 按他的结构写
-        				let [, , a, [b]] = ['黄柯硕', '李勇', '路飞', ['陈云', '吕王大人']];
-        		对象解构:
-        			1. 默认要求 : 变量名和属性名一样
-        				let {id, nickname} = {id: 1, name: '宋江', nickname: '及时雨'};
-        			2. 如果变量名和前面定义变量有冲突，则可以使用别名
-        				let name = '张三疯';
-        				let {id, name: nameone} = {id: 1, name: '宋江', nickname: '及时雨'};
-        			3. 剩余值 : 剩余值组成一个对象
-        				let {id, name, ...other} = {id: 1, name: '张三疯', age: 99, height: 175};
-        			4. 复杂的情况
-        				let person = {
-        				    name: '张三疯',
-        				    age: 99,
-        				    dog: {
-        				        name: '大黄',
-        				        age: 3
-        				    },
-        				    cat: {
-        				        name: '小花'
-        				    }
-        				};
-        				let {name: pname, dog: {name}} = person;
-        				console.log(pname, name);
+			数组解构:
+				1. 变量和数组的值一一对应
+					let arr = ['apple', 'pear', 'banana'];
+        			let [a, b, c] = arr;
+        		2. 变量多，值少
+        			let [a, b, c, d] = ['apple', 'pear', 'banana'];
+        		3. 变量少，值多
+        			let [a, b] = ['apple', 'pear', 'banana'];
+        		4. 按需取值
+        			let [, a, ,b] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
+        		5. ...c：剩余值，只能最后一个变量能当做剩余值 剩余值组成一个数组
+        			let [a, b, ...c] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
+        		6. 复杂的情况 按他的结构写
+        			let [, , a, [b]] = ['黄柯硕', '李勇', '路飞', ['陈云', '吕王大人']];
+        	对象解构:
+        		1. 默认要求 : 变量名和属性名一样
+        			let {id, nickname} = {id: 1, name: '宋江', nickname: '及时雨'};
+        		2. 如果变量名和前面定义变量有冲突，则可以使用别名
+        			let name = '张三疯';
+        			let {id, name: nameone} = {id: 1, name: '宋江', nickname: '及时雨'};
+        		3. 剩余值 : 剩余值组成一个对象 other最后是{ id: 1, age: 99, height: 175};
+        			let {name, ...other} = {id: 1, name: '张三疯', age: 99, height: 175};
+        		4. 复杂的情况
+        			let person = {
+        			    name: '张三疯',
+        			    age: 99,
+        			    dog: {
+        			        name: '大黄',
+        			        age: 3
+        			    },
+        			    cat: {
+        			        name: '小花'
+        			    }
+        			};
+        			let {name: pname, dog: {name}} = person;
+        			console.log(pname, name);
         }
         var	箭头函数 {
         	1. 箭头函数内部没有arguments对象
@@ -3117,26 +2737,14 @@
         			    console.log(x + y);
         			}
         		如果参数需要设置默认值，则需要将带有默认值的形参放到参数列表中的最后，否则没有意义
-        	6. 剩余参数 : ...val
+        	6. 剩余参数 : ...rest;
         		1. 箭头函数内部没有arguments对象,如果想获取实参可以用剩余参数
-        			let fn = (...val) => {
+        			除去第一个形参外，其他传入的参数都在ary对象中；
+        			当不确定后面会传入几个参数时使用
+        			let fn = (x, ...val) => {
         			    console.log(val);
         			}
         			fn(10, 20, 30, 40, 50);
-        }
-        var 参数默认值 { 如果参数需要设置默认值，则需要将带有默认值的形参放到参数列表中的最后，否则没有意义
-        	// ES6之前，为参数设置默认值
-        	function fn (x, y) {
-        	    // 调用函数的时候，如果没有第二个参数，让y的值默认是5
-        	    if (y === undefined) {
-        	        y = 5;
-        	    }
-        	    console.log(x + y);
-        	}
-        	// ES6定义默认值
-        	function fn (x, y = 5) {
-            	console.log(x + y);
-        	}
         }
         var	数组扩展 { 
         	1. ... 扩展运算符 ...赋值给一个值
@@ -3151,6 +2759,7 @@
         		console.log(Math.max(...arr4));
         	3. 数组新增 :
         		1. 将伪数组转换成数组
+        			必须给伪数组添加length属性
         			// 真正的数组 = Array.from(伪数组);
         			let arr = Array.from(obj);
         		2. forEach 方法，用于遍历数组
@@ -3175,14 +2784,14 @@
         				    return i > 3;
         				});
         		4. includes(value, start) -- 查找数组中是否含有某个值
-        			console.log([3, 2, 8, 7, 4].includes(2, 2)); false
+        			[3, 2, 8, 7, 4].includes(2, 2); false
         			// 从索引为2的值开始向后查找，查找2，结果false
         }
         var	字符串新增 {
         		startsWith('字符串', 索引的值开始向后查找); 以哪一个字符串开始
         		endsWith('字符串', 字符长度);
-        			console.log('abcdef'.endsWith('d', 4)); 
-        			// 4表示从前面选取4个字符，然后看这4个字符的结尾是否是d。结果是true
+    			console.log('abcdef'.endsWith('d', 4)); 
+    			// 4表示从前面选取4个字符，然后看这4个字符的结尾是否是d。结果是true
         }
         var	Number的扩展 {
 				ES6 将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。
@@ -3232,6 +2841,85 @@
         		console.log(obj.id);
         		obj.fn();
         }
+        var 模块的导入和导出 {
+			1. ES6提供import   别名   from  路径   语法 来引入 组件
+				export default vue //导出对象 vue
+				import vue from 'vue' //引入组件是一个方法文件
+				import '样式等'	// 引入样式等
+			2. 扩展---;
+				export const function  fn1() {} // 方法1
+				export const function  fn2() {} // 方法2
+				export const function  fn3() {} // 方法3
+				import { fn1,fn2, fn3 } from '文件'
+				import * as content from '文件' 
+        }
+        let Promise - ES6新对象 {
+			1. 回调地狱
+				JS中或node中，都大量的使用了回调函数进行异步操作，而异步操作什么时候返回结果是不可控的
+				，如果我们希望几个异步请求按照顺序来执行，那么就需要将这些异步操作嵌套起来，嵌套的层数
+				特别多，就叫做回调地狱。
+			2. Promise简介
+				Promise对象可以解决回调地狱的问题
+				Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理和更强大
+				Promise可以理解为一个容器，里面可以编写异步请求的代码
+				从语法上说，Promise 是一个对象，从它可以获取异步操作的消息
+			3. Promise简单使用
+				Promise是“承诺”的意思，实例中，它里面的异步操作就相当于一个承诺，而承诺就会有两种结果
+					，要么完成了承诺的内容，要么失败。所以，使用Promise，分为两大部分，首先是有一个承
+					诺（异步操作），然后再兑现结果。
+				1. 定义“承诺”
+					// 实例化Promise，表示定义一个容器，需要给它传递一个函数作为参数,该函数里面可以写异步请求的代码
+					// 而该函数又有两个形参，通常用resolve和reject来表示。这两个形参是回调函数,拿到返回的结果
+					// 换个角度，也可以理解为定下了一个承诺
+					let p = new Promise((resolve, reject) => {
+					    // 形参resolve，单词意思是 完成
+					    // 形参reject ，单词意思是 失败
+					    fs.readFile('./a.txt', 'utf-8', (err, data) => {
+					        if (err) {
+					            // 失败，就告诉别人，承诺失败了
+					            reject(err);
+					        } else {
+					            // 成功，就告诉别人，承诺实现了
+					            resolve(data);
+					        };
+					    });
+					});
+				2. 获取“承诺”的结果
+					// 通过调用 p 的then方法，可以获取到上述 “承诺” 的结果
+					// then有两个函数类型的参数，参数1表示承诺成功时调用的函数，参数2可选，表示承诺失败时执行的函数
+					p.then((data) => {},(err) => {});
+			4. then方法的链式调用
+				1. 前一个then里面返回的字符串，会被下一个then方法接收到
+				2. 前一个then里面返回的Promise对象，并且调用resolve的时候传递了数据，数据会被下一个then接收到
+				3. 前一个then里面如果没有调用resolve，则后续的then不会接收到任何值
+				4. catch 方法可以统一获取错误信息
+			5. Promise 应用 (封装db函数)
+				// 省去把函数放入 module.exports 的一步;ES6设置默认值
+				module.exports = (sql, params = null) => {
+					// Promise 后面可以点(.)then,如果放入一个函数就不能点then了,所以需要 return 返回Promise
+					// 两个形参是回调函数,与then配合使用
+        			return new Promise((resolve, reject) => {
+        			    const mysql = require('mysql');
+        			    const conn = mysql.createConnection({
+        			        host: 'localhost',
+        			        user: 'root',
+        			        password: '',
+        			        database: 'ali_admin'
+        			    });
+        			    conn.connect();
+        			    // 执行异步操作
+        			    conn.query(sql, params, (err, result) => {
+        			        if (err) {
+        			            reject(err);
+        			        } else {
+        			            resolve(result);
+        			        }
+        			        // 无论成功，还是失败，都要关闭连接
+        			        conn.end();
+        			    });
+        			});
+    			};
+		}
 	</script>
 
 
@@ -3241,10 +2929,225 @@
 			padStart(2, '0'); 第一个参数规定字符串长度，第二个参数不足时在头部用什么填充
         	padEnd()；用于尾部补全，与 padStart() 一样。
 		}
+		let ES7 async await {
+			Promise的then方法和catch方法依然有点奇怪，实现过程也比较复杂。
+			ES7提供了async和await关键字。await和async关键词能够将异步请求的结果以返回值的方式返回给我们。
+			await和async 是es7扩展出的关键词，功能接收Promise中resolve或者reject的返回值
+			async和await需要配合使用，没有async修改的函数中使用await是没有意义的
+			async用来修饰一个包含有Promise调用的函数
+			await需要定义在async函数内部，用来修饰调用Promise返回值的函数
+			function read(path) {
+			    return new Promise((resolve, reject) => {
+			        fs.readFile(path, 'utf-8', (err, data) => {
+			            if (err) reject(err);
+			            resolve(data);
+			        })
+			    });
+			}
+			// 使用async修饰一个函数
+			async function abcd() {
+			    // 下面的三个调用，都使用await来修饰getData，这样就可以将resolve的异步结果以返回值的形式获取到
+			    let a = await read('./a.txt');
+			    let b = await read('./b.txt');
+			    let c = await read('./c.txt');
+			    console.log(a);
+			    console.log(b);
+			    console.log(c);
+			}
+			abcd();
+		}
 	</script>
 
 
-	Node
+	ajax
+	<script>
+		var Ajax概述 {
+			简介 : 简单来说，Ajax是一种技术、是能够使浏览器和服务器进行交互（请求响应）的一种技术。
+					Ajax也是一套内置在浏览器端的API，核心对象是内置在浏览的中的 XMLHttpRequest ，
+					通过这些API的调用，可以实现发送Ajax类型的请求和收取服务器端响应的数据。
+			简化url：在发送Ajax请求的时候，比如AB两个网页文件或接口地址，都属于同一个服务器上的资源，则请求的URL可以省略前面的IP和端口	
+			通用的IP地址
+				127.0.0.1 永远指向自己的计算机
+				localhost 永远指向自己的计算机
+				注意：浏览器使用的那个IP，代码中也要使用相应的IP
+			GET : 字面意思获取，一般指用户从服务器获取数据;
+				请求参数 : 请求参数又叫做查询字符串,一般用于告诉服务器此次请求的详细目的
+					格式：http://www.baidu.com/s?q=word&sug=5017
+					查询字符串只适合传输少量数据,因为搜索框本身有限制输入个数;
+					问号后边的内容就是查询字符串 q=值&a=值;
+			缓存问题(了解)
+				1. 	只有IE浏览器会有缓存问题，所以作为了解内容
+				2. 	缓存问题指的是：两次或多次 AJAX GET 请求同一个 URL ，IE浏览器在第二次请求的
+					时候，并不会重新向服务器发请求，而是直接使用上次请求的结果。
+				3.	解决方案 : 让每次请求的URL都不同 (加一个时间戳);
+			POST : 把数据提交给服务器;
+				1. post 请求，必须调用setRequestHeader方法设置 Content-Type
+				2. 请求头中的 Content-Type，告诉服务器发送过去的数据的格式
+				3. send方法的参数就是post方式发送给服务器的数据。（和get不同）
+				4. xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					请求头必须写在open下
+			非Ajax请求：(也有两种方式)没有XMLHttpRequest对象
+				GET方式：
+					地址栏输入地址，按下回车
+					点击页面中的超链接跳转
+					表单提交（表单的method属性为GET或不指定）
+					'<form action="/time" method="GET"></form>'
+				POST方式：表单提交（表单的method属性为POST）
+					'<form action="/time" method="POST"></form>'
+		}
+		var Ajax {
+			Ajax的核心是内置在浏览器中的 XMLHttpRequest 对象。我们可以通过调用这套API，实现发送Ajax请求。
+				var xhr = new XMLHttpRequest();
+				xhr.open(); // 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.responseType = 'json'; // 自动处理服务器返回的结果
+				xhr.send(); // 发送请求，请求参数写在里面
+				xhr.onreadystatechange = function () {
+					console.log('状态值为：' + this.readyState);
+				};
+				xhr.onload = function (result) { // 当服务器的响应结束，然后再接收服务器响应的结果
+					var data = JSON.parse(result);
+					this.response：服务器返回的结果
+					this.result：返回值;
+				};
+			post请求需要设置请求头，请求头必须写在open下
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.responseType = 'json';会自动将 JSON 数据处理为 JS 数据;写在send之前
+				"":  -- 空，表示文本，和text一样。空为默认值
+				text -- 文本
+				json -- JSON格式数据
+				document -- 文档对象。当服务器返回的结果是XML类型的时候，需要指定为document
+			XHR 1 版 API （IE5和IE6也可以使用的API）
+				xhr.open -- 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
+				xhr.send -- 发送请求，请求参数写在里面
+				xhr.readyState -- ajax请求到哪个阶段了
+				xhr.onreadystatechange() -- 当Ajax发生变化的时候(状态和数据都算)
+				xhr.responseText -- 服务器返回的结果
+			XHR 2.0 新增API
+				xhr.onload() -- 当readyState等于4的时候触发
+				xhr.onprogress() -- 当readyState等于3的时候触发（数据正在返回途中的时候触发）
+				xhr.onloadstart() -- 当开始发送请求的时候触发
+				xhr.onloadend() -- 当请求响应过程结束的时候触发
+				xhr.response -- 服务器返回的结果
+				xhr.responseType -- 会自动将 JSON 数据处理为 JS 数据;写在send之前
+		}
+		let 报文 {
+  			请求报文
+  				请求行：包含请求方式、请求的url 
+  					xhr.open('POST', '/query-post')  体现了请求行的信息
+  				请求头
+					setRequestHeader(); 必须使用此方法设置请求头
+						Host : 请求的主机
+						Cache-Control : 控制缓存（例如：max-age=60 缓存 60 秒）
+  						Content-Type: 告诉服务器，浏览器发送过去的数据是什么编码的，是什么格式
+						Accept : 客户端接收的文档类型，逗号分隔
+						User-Agent : 可以通过它获取到发送请求的浏览器是什么浏览器，版本是哪个版本
+						Referer : 这次请求的来源
+						Accept-Encoding : 可以接受的压缩编码
+  					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 设置请求头
+  					xhr.setRequestHeader('Accept', 'text/html'); 设置请求头
+  				请求体
+  					GET请求没有请求体
+  					xhr.send() 方法体现了请求体的内容
+			响应报文
+			  	响应行
+			  		xhr.status 获取响应状态码，比如200
+			  		xhr.statusText 获取响应状态描述信息 ，比如OK
+			  	响应头
+			  		服务器返回响应的时候携带了附加信息
+		  				Date            响应时间
+		  				Server          服务器信息
+		  				Content-Type	响应体的内容类型，告诉浏览器，服务器返回的数据是什么类型的，编码格式是怎样的
+		  				Content-Length  响应的内容大小
+			  		Content-Type: 告诉浏览器，服务器返回的内容是什么类型的，编码格式是怎样的
+			  		xhr.getResponseHeader('content-type'); 获取一个响应头
+			  		xhr.getAllResponseHeaders(); 获取所有的响应头
+			  	响应体
+			  		服务器返回的数据
+			  		xhr.response 获取响应体的内容 
+			  		xhr.responseText 获取响应体的内容
+		}
+		var JSON {
+			响应数据格式：服务器返回数据只有两种数据表示格式，分别是JSON和XML;在服务器和浏览器之间传输数据的时候，需要先把数据转换成双方都能够识别的格式，即JSON或XML
+
+			JS = JSON.parse(JSON); JSON 格式转 JS 数据
+			JSON = JSON.stringify(JS); JS 数据转 JSON
+			JSON：JS对象表示法;用于表示有结构的数据。类似于编程语言中字面量的概念，语法上跟JavaScript的字面量非常类似。
+				注意 :
+					1. JSON 中属性名称==必须用双引号==包裹
+					2. JSON 中表述字符串==（"值"）必须使用双引号==
+					3. JSON 中不能有单行或多行注释
+					4. JSON 没有 undefined 这个值
+					5. 一个完整的JSON，不能有其他内容掺杂
+			XML: e==X==tension ==M==arkup ==L==anguage   可扩展标记语言
+				淘汰的原因：数据冗余太多
+				XML语法规范：
+					和html写法差不多
+					有且只有一个根标签
+					标签区分大小写
+					标签必须闭合
+					属性值必须加引号
+				如果服务器返回的是XML格式的数据，JS收到数据之后，把收到的数据当做document对象来处理即可。
+			注意：
+				1. 不管是 JSON 也好，还是 XML，只是在 AJAX 请求过程中用到，并不代表它们与AJAX之间有必然的联系，它们只是数据协议罢了。
+				2. 不管服务端是采用 XML 还是采用 JSON 本质上都是将数据返回给客户端。
+				3. 服务端应该根据响应内容的格式设置一个合理的 Content-Type。
+		}
+		var 同步异步 {
+			同步：在执行一些耗时的操作的时候，不做别的事，只是等待
+			异步：在执行一些耗时的操作的时候，同时去做别的事，不是等待
+			同步与异步 : 了解同步模式即可，切记不要使用同步模式。
+				synchronous -- 默认异步的
+				ynchronous -- 同步的
+				Deprecation -- 反对的，不赞成的
+		}
+		var progress -- 过程、进度 {
+			readyState : (状态值)请求响应阶段
+				状态描述说明
+				0 UNSENT 			代表（XHR）被创建，但尚未调用 open() 方法。
+				
+				1 OPENED 			open() 方法已经被调用，建立了连接。
+				
+				2 HEADERS_RECEIVED 	send() 方法已经被调用，并且已经可以获取状态行和响应头。
+				
+				3 LOADING 			响应体（服务器返回的数据）下载中， responseText 属性可能已经包含部分数据。
+				
+				4 DONE 				响应体（服务器返回的数据）下载完成，可以直接使用 responseText或
+																				response 获取完整的结果。
+			onreadystatechange : 当Ajax发生变化的时候就会触发这个事件；
+			xhr对象分块接收数据 : 如果服务器返回的数据量非常大，xhr对象是分块接收数据的，一次性接收一部分（大小
+				不确定），直到接收完毕为止。注意的是，当xhr对象接收的数据发生变化的时候，这里readyState的值不会发生变化,一直为3,但接收到的数据变化了，也表示ajax的状态变化了，此时也会触发onreadystatechange事件。
+		}
+		var IE5和6 {
+			XMLHttpRequest 在老版本浏览器（IE5/6）中有兼容问题，可以通过另外一种方式代替。
+				var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
+				xhr 的成员相同，即后续的open、send方法一样使用、onreadystatechange也可以使用
+				但是h5新增的 response、onprogress、onloadstart、onload、responseType不能使用的
+		}
+		var FormData {
+			FormData 是根据表单各项的name来获取值的,(必须用dom对象);
+			<form id="fm" name="myform">
+				<input type="text" name="sex"/>
+			<form>
+			1. document.myform:通过表单名字可以在document中选中表单对象，通过name属性可以选中对应的input
+				document.myform.sex.vlue
+			2. let fm = document.getElementById('fm');
+				let fd = new FormData(fm);
+				这种方式input必须要有name属性
+			3. 如果没有form标签只有input
+				let fd = new FormData();
+				fd.append('avatar', fileObj);
+				fd.append('avatar', fileObj);
+				等
+			3. 图片需要使用formdata上传
+				var fileObj = this.files[0]; // files[0]就是文件对象
+				var fd = new FormData();
+				fd.append('avatar', fileObj);
+		}
+	</script>
+
+
+	网络与跨域
 	<script>
 		let 网络基础 {
 			HTTP 协议
@@ -3252,7 +3155,8 @@
 				HTTP 是一种能够获取如 HTML 这样的网络资源的 protocol (通讯协议)。
 				是一种 client客户端 - server服务器 同时都要遵守的协议
 				请求通常是由像浏览器这样的接受方发起的
-				==HTTP 协议中规定了请求数据和响应数据的格式(报文)==
+				HTTP 协议中规定了请求数据和响应数据的格式(报文)
+				HTTP 就是请求报文和响应报文，就是它们俩；
 			网络的基础概念
 				URL作用：表示网络上的资源
 					URL（Uniform Resource Locator），统一资源定位符，通俗点来说就是表示网络当中某一个网页的
@@ -3364,46 +3268,81 @@
 						这里我们选择 Node.js 作为我们了解服务端动态网页开发的技术方案，注意：
 							我们学习的重心不在 Node.js，而是了解服务端开发，以及某些其他对前端开发有帮助的东西。
 		}
-		let 报文 {
-			HTTP 协议中规定了请求数据和响应数据的格式(报文)
-			请求头
-				浏览器在向服务器发送请求的时候携带了附加信息，由键值对组成
-				如果需要设置请求头，使用setRequestHeader()方法来设置
-					Host : 请求的主机
-					Cache-Control : 控制缓存（例如：max-age=60 缓存 60 秒）
-					Accept : 客户端接收的文档类型，逗号分隔
-					User-Agent : 标识发请求的浏览器是什么浏览器
-					Referer : 这次请求的来源
-					Accept-Encoding : 可以接受的压缩编码
-			响应头
-				服务器返回响应的时候携带了附加信息
-  				Date            	响应时间
-  				Server          	服务器信息
-  				Content-Type		响应体的内容类型，告诉浏览器，服务器返回的数据是什么类型的，编码格式是怎样的
-  				Content-Length  	响应的内容大小
-  			请求报文
-  				请求行：里面包含请求方式、请求的url 
-  					xhr.open('POST', '/query-post')  体现了请求行的信息
-  				请求头
-  					xhr.setRequestHeader('Content-Type', 'xxxxxxx'); 设置请求头
-  					Content-Type: 告诉服务器，浏览器发送过去的数据是什么编码的，是什么格式
-  					User-Agent: 可以通过它获取到发送请求的浏览器是什么浏览器，版本是哪个版本
-  				请求体
-  					GET请求没有请求体
-  					xhr.send() 方法体现了请求体的内容
-			响应报文
-			  	响应行
-			  		xhr.status 获取响应状态码，比如200
-			  		xhr.statusText 获取响应状态描述信息 ，比如OK
-			  	响应头
-			  		Content-Type: 告诉浏览器，服务器返回的内容是什么类型的，编码格式是怎样的
-			  		xhr.getResponseHeader('content-type'); 获取一个响应头
-			  		xhr.getAllResponseHeaders(); 获取所有的响应头
-			  	响应体
-			  		服务器返回的数据
-			  		xhr.response 获取响应体的内容 
-			  		xhr.responseText 获取响应体的内容
+		var 整个请求响应过程 {
+			1. 用户打开浏览器
+			2. 输入地址 http://127.0.0.1:3000/message.html 向服务器发送请求，请求message.html 页面
+			3. 检测浏览器DNS缓存，看是否有域名和IP的对应关系
+			4. 检查本机的 host 文件，看是否有域名和IP的对应关系
+			5. 浏览器通过  DNS 服务器 获取即将访问的网站  IP 地址
+			6. 浏览器发起TCP请求，和网站服务器进行三次握手
+			7. 浏览器发起一个对这个 IP地址的 请求，即http请求
+			8. 服务端监听指定的 端口 的服务器软件接收到这个请求，进行相应的处理
+			9. 服务端将处理完的结果返回给客户端浏览器（响应）;服务器返回给浏览器 message.html 中的代码
+			10. 浏览器将服务端返回的结果呈现到界面上 ; 浏览器接受到 message.html 中的代码，然后解析
+		   	11. 遇到加载css的link标签，再次去服务器请求css文件
+		   	12. 遇到图片的img标签，再次去服务器请求图片
+		   	13. 遇到js代码，发送Ajax请求，请求所有的留言数据
+		    	  1. 服务器响应的结果是JSON格式的留言数据
+		    	  2. 将JSON格式的数据转成JS数组
+		    	  3. 通过拼接li的方式，拼接所有的留言
+		    	  4. 把拼接好的所有的li，放到ul中
 		}
+		let 同源政策 {
+			1.	1995 年，同源政策由 Netscape（网景） 公司引入浏览器。目前，所有浏览器都实行这个政策。
+			2.	最初，它的含义是指，A 网站设置的 Cookie，B 网站不能打开，除非这两个网页同源
+				。所谓同源指的是三个相同。
+					协议相同（http https）域名相同 (www...) 端口相同（http默认80端口，https默认443端口）
+			3.	如果非同源，共有三种行为受到限制。
+				Cookie无法读取。
+				DOM 无法获得。
+				AJAX 请求无效（可以发送，但浏览器会拒绝接受响应）。
+		}
+		let 跨域请求 : 在发送Ajax请求的时候，请求的地址只要违反了同源政策，那么就属于跨域请求。
+		let 实现跨域请求的方案--JSONP {
+			1.	JSON with Padding，是一种借助于 script 标签发送跨域请求的技巧。
+			2.	其原理就是在客户端借助 script 标签请求其他服务端的一个地址
+				，服务端的这个地址返回自身的某个全局函数，这个函数将需要返回给客户端的数据放入形参传递给客户端，客户端的函数中就可以得到服务端想要返回的数据。
+				注意：返回的数据是 JavaScript 脚本（而非一段 HTML），返回的脚本可以被执行
+		}
+		let 实现跨域操作 {
+			1.	响应的结果会被请求的网站当做js代码来执行
+				<script>
+					// 因为4000网站，返回的结果是，调用一个叫做abcd的函数
+					// 所以要先准备好这个函数
+					// 形参x就是4000网站返回的数据
+					function abcd (x) {
+					    console.log(x);
+					}
+				<script>
+				<script src="http://127.0.0.1:4000/getStu"><script>
+			2.	获取url中传递的参数的值，这个值就是请求的函数的名字，将要返回的数据当做函数的参数
+				，传递给函数
+			3.	// 服务端把数据转成JSON格式
+     			data = JSON.stringify(data); // 这样请求的客户端得到的结果可以在客户端直接执行
+     		4.	// getStu函数就是获取到的url中传递的参数的值，并传递data数据
+     			res.send('getStu(' + data + ')');
+     		5.	jQuery封装的ajax方法跨域请求
+     			// 联网，加载百度的jquery文件，来学习jquery
+  				<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+  				<script>
+  				    // 向4000网站中的 getStu2 接口，发送请求，请求所有的学生信息
+  				    $.ajax({
+  				        type: 'GET',
+  				        // 为了兼容各个版本的jQuery，最好在url上加入如下所示的callback
+  				        // url: 'http://127.0.0.1:4000/getStu2?callback=?',
+  				        url: 'http://127.0.0.1:4000/getStu2',
+  				        success: function (res) {
+  				            console.log(res);
+  				        },
+  				        dataType: 'jsonp' // 必须指定预期服务器返回数据的类型为jsonp
+  				    });
+  				</script>
+		}
+	</script>
+
+
+	Node
+	<script>
 		let Node概述 {
 			Node介绍
 				Node全名是Node.js，但它不是一个js文件，而是一个软件
@@ -3523,7 +3462,7 @@
 						request.method   获取请求行中的请求方法
 						request.headers    获取请求头
 					2. res : 响应对象，服务器给浏览器返回的响应内容，可以通过该对象设置
-						res.setHeader()  设置响应头，比如设置响应体的编码
+						response.setHeader()  设置响应头，比如设置响应体的编码
 						statusCode 设置状态码
 						res.write() 设置响应体（返回给浏览器的内容）的内容，可以多次调用
 									但是只调用write不会做出响应，发送响应要调用 end() 
@@ -3612,7 +3551,10 @@
 		}
 		let express框架 {
 			require()  用于加载其他的js文件或json文件
-			res.sendFile(文件绝对路径); -- 功能是读取文件，并将读取到的结果响应给浏览器。参数必须是文件的绝对路径
+			response.sendFile(文件绝对路径); -- 功能是读取文件，并将读取到的结果响应给浏览器。参数必须是文件的绝对路径
+			response.json();
+			response.render();
+
 			说明
 				1. 在code中安装了express，在code及其子（后代）目录中都可以使用express
 				2. express框架把浏览器请求的每一个url地址都由一个独立方法接收并处理，没有了 if
@@ -4023,68 +3965,69 @@
 					// 读取db.json，并响应给浏览器
     				let data = require('./db.json'); // 得到数组
     				res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
-    }
-    let use 中间件 {通常是只有一个函数
+    	}
+    	let use 中间件 {通常是只有一个函数
     		1. // 定义一个中间件，来接收浏览器提交的POST类型的数据
-					const bodyParser = require('body-parser');
-					app.use(bodyParser.urlencoded({extended: false}));
-				3. //处理静态资源文件 : 直接判断文件夹
-					app.use('/abcd/', express.static(__dirname + '/public/abcd'));
-    			1. // 定义中间件，处理静态资源文件
-					// app.use([请求的url的开头],  函数);
-					app.use((req, res, next) => {
-					    // console.log(req.url);
-					    if (req.url.startsWith('/assets/')) {
-					        // 进入到这个区间，表示是静态资源文件。然后读取他们并做出响应
-					        res.sendFile(__dirname + '/public' + req.url);
-					    } else {
-					        next(); // 当前的中间件已经处理完毕了，让程序向后走
-					    }
-					});
-				2. // 定义中间件，处理静态资源文件
-					// app.use([请求的url的开头],  函数);
-					app.use('/assets/', (req, res, next) => {
-					    // console.log(req.url);  // /bootstrap.css   /avatar.png
-					    // 进入到这个中间件，说明请求的url满足开头是 /assets/ 这个条件
-					    // 所以直接响应结果
-					    res.sendFile(__dirname + '/public/assets' + req.url);
-					});
-				
-				4. // 定义一个中间件，来接收浏览器提交的POST类型的数据
-					const querystring = require('querystring');
-					app.use((req, res, next) => {
-					    // 判断请求是否是POST类型的
-					    if (req.method === 'POST') {
-					        // 接收浏览器提交的数据
-					        let str = '';
-					        req.on('data', (chunk) => {
-					            str += chunk;
-					        });
-					        req.on('end', () => {
-					            // 将接收到的数据，添加到db.json中
-					            req.body = querystring.parse(str);
-					            next();
-					        });
-					    } else {
-					        next();
-					    }
-					});
-					// 上面的中间件，做了一件事   req.body = 接收到数据；
-				5. 	// 注册中间件，判断是否登录
-					app.use((req, res, next) => {
-					    // console.log(req.session.isLogin); // 没有登录得到undefined、登录了得到true。
-					    // 判断是否登录了
-					    if (!req.session.isLogin) {
-					        // res.send('<p>请先</p>');
-					        // res.send('请先<a href="/login.html">登录</a>');
-					        res.send('<script>alert("请先登录"); location.href="/login.html";</'script'>');
-					        return;
-					    } else {
-					        next();
-					    }
-					});
+				const bodyParser = require('body-parser');
+				app.use(bodyParser.urlencoded({extended: false}));
+			3. //处理静态资源文件 : 直接判断文件夹
+				app.use('/abcd/', express.static(__dirname + '/public/abcd'));
+			1. // 定义中间件，处理静态资源文件
+				// app.use([请求的url的开头],  函数);
+				app.use((req, res, next) => {
+				    // console.log(req.url);
+				    if (req.url.startsWith('/assets/')) {
+				        // 进入到这个区间，表示是静态资源文件。然后读取他们并做出响应
+				        res.sendFile(__dirname + '/public' + req.url);
+				    } else {
+				        next(); // 当前的中间件已经处理完毕了，让程序向后走
+				    }
+				});
+			2. // 定义中间件，处理静态资源文件
+				// app.use([请求的url的开头],  函数);
+				app.use('/assets/', (req, res, next) => {
+				    // console.log(req.url);  // /bootstrap.css   /avatar.png
+				    // 进入到这个中间件，说明请求的url满足开头是 /assets/ 这个条件
+				    // 所以直接响应结果
+				    res.sendFile(__dirname + '/public/assets' + req.url);
+				});
+			
+			4. // 定义一个中间件，来接收浏览器提交的POST类型的数据
+				const querystring = require('querystring');
+				app.use((req, res, next) => {
+				    // 判断请求是否是POST类型的
+				    if (req.method === 'POST') {
+				        // 接收浏览器提交的数据
+				        let str = '';
+				        req.on('data', (chunk) => {
+				            str += chunk;
+				        });
+				        req.on('end', () => {
+				            // 将接收到的数据，添加到db.json中
+				            req.body = querystring.parse(str);
+				            next();
+				        });
+				    } else {
+				        next();
+				    }
+				});
+				// 上面的中间件，做了一件事   req.body = 接收到数据；
+			5. 	// 注册中间件，判断是否登录
+				app.use((req, res, next) => {
+				    // console.log(req.session.isLogin); // 没有登录得到undefined、登录了得到true。
+				    // 判断是否登录了
+				    if (!req.session.isLogin) {
+				        // res.send('<p>请先</p>');
+				        // res.send('请先<a href="/login.html">登录</a>');
+				        res.send('<script>alert("请先登录"); location.href="/login.html";</'script'>');
+				        return;
+				    } else {
+				        next();
+				    }
+				});
 		}
 		let Node中的模块化 {
+			一个单独的文件，就是一个模块
 			js模块化规范有四种标准： AMD   CMD   CommonJS   ES6
 			Node属于CommonJS标准
 			使用模块化可以很好的解决变量、函数名冲突问题，也能灵活的解决文件依赖问题
@@ -4567,99 +4510,83 @@
 						Node 中将所有的阻塞操作交给了内部实现的线程池 
 						Node 本身主线程主要就是不断的往返调度
 		}
-		let Promise - ES6新对象 {
-			1. 回调地狱
-				JS中或node中，都大量的使用了回调函数进行异步操作，而异步操作什么时候返回结果是不可控的
-				，如果我们希望几个异步请求按照顺序来执行，那么就需要将这些异步操作嵌套起来，嵌套的层数
-				特别多，就叫做回调地狱。
-			2. Promise简介
-				Promise对象可以解决回调地狱的问题
-				Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理和更强大
-				Promise可以理解为一个容器，里面可以编写异步请求的代码
-				从语法上说，Promise 是一个对象，从它可以获取异步操作的消息
-			3. Promise简单使用
-				Promise是“承诺”的意思，实例中，它里面的异步操作就相当于一个承诺，而承诺就会有两种结果
-					，要么完成了承诺的内容，要么失败。所以，使用Promise，分为两大部分，首先是有一个承
-					诺（异步操作），然后再兑现结果。
-				1. 定义“承诺”
-					// 实例化Promise，表示定义一个容器，需要给它传递一个函数作为参数,该函数里面可以写异步请求的代码
-					// 而该函数又有两个形参，通常用resolve和reject来表示。这两个形参是回调函数,拿到返回的结果
-					// 换个角度，也可以理解为定下了一个承诺
-					let p = new Promise((resolve, reject) => {
-					    // 形参resolve，单词意思是 完成
-					    // 形参reject ，单词意思是 失败
-					    fs.readFile('./a.txt', 'utf-8', (err, data) => {
-					        if (err) {
-					            // 失败，就告诉别人，承诺失败了
-					            reject(err);
-					        } else {
-					            // 成功，就告诉别人，承诺实现了
-					            resolve(data);
-					        };
+		var postman { postman : 测试接口的软件 }
+		var 模板引擎 {
+			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/; 修改界定符
+			https://aui.github.io/art-template/
+			客户端(浏览器)拿到请求的数据过后最常见的就是把这些数据呈现到界面上。
+				如果数据结构简单，可以直接通过字符串操作（拼接）的方式处理，但是如果数据过于复杂，
+				字符串拼接维护成本太大。
+			模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易更高效的将数据渲染到HTML字符串中。==通俗的说，模板引擎的目的就是将服务器返回的数据显示到HTML页面中==。
+			使用模板引擎-1.加载js文件
+				'<script src="./assets/template-web.js">''<script>'
+				//  使用模板引擎-2.设置模板
+				<script id="xxx" type="text/html">
+				    <h2>{{title}}<h2>
+				    <p>{{age}}<p>
+				<script>
+				<script>
+				    // 使用模板引擎-3.调用template函数
+				    // var 模板和数据组合好的结果 = template(模板id, 模板中使用的数据必须是js对象类型);
+				    var str = template('xxx', {
+				        title: '哈哈哈哈，这是模板引擎',
+				        age: 20,
+				    });
+				    // 将替换好的结果，放到页面上
+				    document.body.innerHTML = str;
+				<script>
+			定义模板时的script标签一定好指定id和type,tempalte函数语法：var html = template(模板id,  Object);
+			使用模板引擎处理响应数据
+				引入template-web.js
+				//<script src="/template-web.js"></script>
+				<!-- 定义模板 -->
+				<!-- <script id="abcd" type="text/html">
+				    {{each arr}}
+				    <li class="media">
+				      <img class="mr-3" src="avatar.png" alt="">
+				      <div class="media-body">
+				        <h4>{{$value.name}}</h4>
+				        <p>{{$value.content}}</p>
+				    </div>
+				    </li>
+				    {{/each}}
+				</script>
+				<script> -->
+					<!-- xhr.onload = function () {
+						// 完全接收到服务器返回的数据
+					    var result = this.responseText;
+					    // 将JSON格式的数据，转换成JS数据
+					    data = JSON.parse(result);
+					    // 使用模板引擎，不用拼接字符串了
+					    var str = template('abcd', {
+					    	arr: data
 					    });
-					});
-				2. 获取“承诺”的结果
-					// 通过调用 p 的then方法，可以获取到上述 “承诺” 的结果
-					// then有两个函数类型的参数，参数1表示承诺成功时调用的函数，参数2可选，表示承诺失败时执行的函数
-					p.then((data) => {},(err) => {});
-			4. then方法的链式调用
-				1. 前一个then里面返回的字符串，会被下一个then方法接收到
-				2. 前一个then里面返回的Promise对象，并且调用resolve的时候传递了数据，数据会被下一个then接收到
-				3. 前一个then里面如果没有调用resolve，则后续的then不会接收到任何值
-				4. catch 方法可以统一获取错误信息
-			5. Promise 应用 (封装db函数)
-				// 省去把函数放入 module.exports 的一步;ES6设置默认值
-				module.exports = (sql, params = null) => {
-					// Promise 后面可以点(.)then,如果放入一个函数就不能点then了,所以需要 return 返回Promise
-					// 两个形参是回调函数,与then配合使用
-        			return new Promise((resolve, reject) => {
-        			    const mysql = require('mysql');
-        			    const conn = mysql.createConnection({
-        			        host: 'localhost',
-        			        user: 'root',
-        			        password: '',
-        			        database: 'ali_admin'
-        			    });
-        			    conn.connect();
-        			    // 执行异步操作
-        			    conn.query(sql, params, (err, result) => {
-        			        if (err) {
-        			            reject(err);
-        			        } else {
-        			            resolve(result);
-        			        }
-        			        // 无论成功，还是失败，都要关闭连接
-        			        conn.end();
-        			    });
-        			});
-    			};
+					    // 把处理好的html放到ul中
+					    document.getElementById('messages').innerHTML = str;
+					};
+				</script> -->
 		}
-		let ES7 async await {
-			Promise的then方法和catch方法依然有点奇怪，实现过程也比较复杂。
-			ES7提供了async和await关键字。await和async关键词能够将异步请求的结果以返回值的方式返回给我们。
-			await和async 是es7扩展出的关键词，功能接收Promise中resolve或者reject的返回值
-			async和await需要配合使用，没有async修改的函数中使用await是没有意义的
-			async用来修饰一个包含有Promise调用的函数
-			await需要定义在async函数内部，用来修饰调用Promise返回值的函数
-			function read(path) {
-			    return new Promise((resolve, reject) => {
-			        fs.readFile(path, 'utf-8', (err, data) => {
-			            if (err) reject(err);
-			            resolve(data);
-			        })
-			    });
-			}
-			// 使用async修饰一个函数
-			async function abcd() {
-			    // 下面的三个调用，都使用await来修饰getData，这样就可以将resolve的异步结果以返回值的形式获取到
-			    let a = await read('./a.txt');
-			    let b = await read('./b.txt');
-			    let c = await read('./c.txt');
-			    console.log(a);
-			    console.log(b);
-			    console.log(c);
-			}
-			abcd();
+		var 重要操作 {	ajax需要一个事件触发
+			1.	for (var i = 0; i < data.length; i++) {
+        			lis += `<li class="media">
+        			          <img class="mr-3" src="./assets/avatar.png">
+        			          <div class="media-body">
+        			            <h4>${data[i].name}<h4>
+        			            <p>${data[i].content}<p>
+        			          <div>
+        			        <li>;
+      			}
+      			// 3. 循环结束，把拼接好的所有li放到ul中
+      			document.getElementById('messages').innerHTML = lis;
+      		2.	xhr.send(`name=${chenghu.value}&content=${neirong.value}`);
+      		3.	
+		}
+		var 自己封装 {
+			contentType : false; // 不让jq设置请求头
+			processData : false; // 不让jQuery去将对象类型的data处理成字符串
+			提交 FormData
+			注意事项：接口需要的三个参数分别为name/bio/avatar
+			表单中的input需要设置对应的name值，否则FormData是收集不到数据的
 		}
 	</script>
 
@@ -5410,15 +5337,15 @@
 			this.$nextTick(function () {}) // dom加载完成后要执行的操作
 			watch: { // 下面这样是深层次监听
 				xxx: {
-					handler: function () {},
-					deep: true
+					deep: true,
+					handler: function () {}
 				}
 			}
 		}
 	</script>
 
 
-	辅助Vue
+	辅助工具
 	<script>
 		let SPA {
 			1. 单页应用-SPA的特点
@@ -5515,16 +5442,6 @@
 				5. package.json => 用于存放依赖信息 及 其他项目信息
 				6. README.md => 项目介绍信息 github上的页面信息
 				7. webpack.config.js => wepack工具的配置文件 => webpack是一个前端工程化的工具
-			5. ES6模块的导入和导出
-				1. ES6提供import   别名   from  路径   语法 来引入 组件
-					export default vue //导出对象 vue
-					import vue from 'vue' //引入组件是一个方法文件
-					import '样式等'	// 引入样式等
-				2. 扩展---;
-					export const function  fn1() {} // 方法1
-					export const function  fn2() {} // 方法2
-					export const function  fn3() {} // 方法3
-					import { fn1,fn2, fn3 } from '文件'
 			6. 单文件组件及入口解析
 				1. 注意Vue 选项中的 render 函数若存在，则 Vue 构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。
 					render 把指定的文件渲染到 el 选中的标签里
@@ -5623,9 +5540,12 @@
 				}];
 		}
 		let git {
+			git init   创建本地仓库
 			git remote add origin 地址；关联git仓库地址
 			git add .
 			git commit -m '备注'
+			git pull	拉取分支
+			git push -u origin master	推送master
 			git show （版本号）	查看某个版本的提交
 			git diff 比较工作区和暂存区的差异
 			git diff --cached 文件名  比较暂存区和上一次提交的差异
@@ -5643,25 +5563,23 @@
 				git add .gitignore
 				git commit -m '添加忽略文件'
 				git push	完事
-			git push origin master		推送master
-			git pull	拉取分支
 			git fetch origin master		fetch：相当于是从远程获取最新版本到本地，不会自动merge
 			git reset --hard 版本号	版本回退
 			git checkout -- 文件名	暂存区回退到工作区
 			git reflog	可以拿到所有的历史命令
 		}
-		let yarn npm {
+		let yarn {
 			npm i -g yarn;	全局安装yarn
 			yarn --version;	产看版本
-			| 初始化package.js |           yarn init -y           |           npm init -y           |
-			|   安装全部依赖   |      yarn install 或者 yarn       |           npm install           |
-			|     新增依赖     |        yarn add element-ui        |     npm install element-ui      |
-			|                 |       yarn add react --dev        |  npm install react --save-dev   |
-			|     删除依赖     |      yarn remove element-ui       |    npm uninstall element-ui     |
-			|     更新依赖     |           yarn upgrade            |           npm update            |
-			|     清除缓存     |           yarn cache clean        |     npm cache clean -force      |
-			|  全局安装或删除  | yarn global add/remove 依赖包名字  | npm install/uninstall 依赖包 -g  |
-			|   同时下载多个   |     yarn add axios vue-axios      |  npm install  axios vue-axios    |
+			| 初始化package.js |           yarn init -y
+			|   安装全部依赖   |      yarn install 或者 yarn
+			|     新增依赖     |        yarn add element-ui
+			|                 |       yarn add react --dev
+			|     删除依赖     |      yarn remove element-ui
+			|     更新依赖     |           yarn upgrade
+			|     清除缓存     |           yarn cache clean
+			|  全局安装或删除  | yarn global add/remove 依赖包名字
+			|   同时下载多个   |     yarn add axios vue-axios
 			dev: 简写为-D 开发依赖
 			save: 简写为-S 运行依赖
 			global: 简写为-g 全局
@@ -5669,6 +5587,38 @@
 			一定注意配置的源地址不能带引号
 			yarn config get registry	// 查看当前使用的源
 			yarn config set registry https://registry.npm.taobao.org	// 配置为taobao的镜像源
+			yarn config set registry https://registry.npmjs.org/	// 配置为原来的的镜像源
+		}
+		let npm {
+			| 初始化package.js |  npm init -y
+			|   安装全部依赖   |  npm install
+			|     新增依赖     |  npm install element-ui
+			|                 |  npm install react --save-dev
+			|     删除依赖     |  npm uninstall element-ui
+			|     更新依赖     |  npm update
+			|     清除缓存     |  npm cache clean -force
+			|  全局安装或删除  |  npm install/uninstall 依赖包 -g
+			|   同时下载多个   |  npm install  axios vue-axios
+			指定包的版本进行安装
+				npm install 包名@版本号
+			从缓存目录下载包	--cache-min 后面跟的是时间，单位是分钟，超过这个时间才去服务器下载
+				npm install 包名 --cache-min 9999999
+			查看全局安装目录
+				npm root -g
+			查看当前的源
+				npm config ls
+			在上面命令的结果有，有下面一行，该行记录的网站就是我们安装第三方模块的网站
+				registry = "https://registry.npmjs.org/"
+			  
+			下载包的时候切换源
+				npm install express --registry=https://registry.npm.taobao.org
+			全局设置
+				npm config set registry https://registry.npm.taobao.org
+			原始的路径
+				https://registry.npmjs.org/
+			nrm 是管理镜像源的模块，通过nrm来管理镜像源
+				npm i nrm  #-- 自己搜索如何使用
+			start 是唯一可以省略 run 的命令 npm start
 		}
 		let cmd {
 			cmd是command的缩写.即命令提示符（CMD）,在windows环境下，命令行程序为cmd.exe，是一个32位的命令行程序,比如输入shutdown -s -t 30 就会在30秒后关机
@@ -5706,6 +5656,29 @@
 			2. notepad  - 打开记事本
 			3. mstsc    - 链接远程桌面(连接服务器)
 			4. shutdown - 关闭系统
+		}
+		var 浏览器工具 Network {
+			Network
+				Name : 请求列表;
+				Status : 响应状态码; 200 表示请求成功;400 表示没找到;304 表示本地存储;
+				Type : 请求的类型; xhr为ajax类型 其他都是非ajax类型;
+				Request Method : 请求方式 GET：得到，获取; POST：邮寄，推送，提交;
+					点击请求列表下的一项,弹出的headers里就有Request Method
+				Response : 响应结果;在弹出的headers里;
+		}
+		var Apache服务器 {
+			WampServer软件是一个集成软件，包含了：Apache、MySQL等服务器软件。
+			下载：https://sourceforge.net/projects/wampserver/
+			安装
+				1.  检测计算机的端口是否被占用了
+					Apache会使用80端口
+					MySQL会使用3306端口
+					如果计算机中的这两个端口被占用了，就会影响到wampserver。
+				2. 	打开命令行工具  netstat -an
+				3. 	如果发现端口被占用了，则需要使用管理员打开命令行工具
+					netstat -anb   查看哪个程序使用了3306端口
+				4.	打开任务管理器，找到占用程序，结束任务
+				5. 	核心重点：  安装任何与开发相关的软件时都必须安装到英文路径下。
 		}
 	</script>
 
