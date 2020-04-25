@@ -741,7 +741,7 @@
               			✔ 然后修改变量，然后继续判断条件是否成立
               			✔ 如果条件表达式为false，循环体中的代码不执行
 		}
-		var 冒泡排序 = {
+		var 冒泡排序 {
 			for (var i = 0; i < arguments.length-1; i++) {
         
        			for (var j = 0; j < arguments.length-1-i; j++) {
@@ -755,7 +755,7 @@
         		}
     		}
 		}
-		var 作用域(链) = {
+		var 作用域(链) {
 			作用域： 代码能够发生作用的区域 
 			✔ 全局作用域： 函数外部的区域就是全局作用域，在全局作用域中定义的变量称为全局变量
 	 	 		全局变量： 在任何作用域中都可以使用
@@ -763,7 +763,7 @@
 	 	 		局部变量： 局部变量只能在当前所处的局部作用域中使用
 	 	 	作用域链： 作用域和作用域之间形成的一个链装结构
 		}
-		var 代码预解析 = {
+		var 代码预解析 {
 			代码预解析(理解)： 在代码执行之前的一个过程。
 			✔ 变量提升： 代码在执行之前，先将变量的声明提升到当前作用域的开始位置【不包括变量赋值】
 	 		✔ 函数提升：代码在执行之前，先将函数的声明提升到当前作用域的开始位置【不包括函数的调用】
@@ -2925,6 +2925,71 @@
         			    });
         			});
     			};
+		}
+		let try catch finally {
+			1. try/catch/finally 语句用于处理代码中可能出现的错误信息。
+			2. 错误可能是语法错误，通常是程序员造成的编码错误或错别字。也 可能是拼写错误或语言中缺少的功能（可能由于浏览器差异）。
+			3. try语句允许我们定义在执行时进行错误测试的代码块。
+			4. catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+			5. finally 语句在 try 和 catch 之后无论有无异常都会执行。
+			注意： catch 和 finally 语句都是可选的，但你在使用 try 语句时必须至少使用一个。
+			提示： 当错误发生时， JavaScript 会停止执行，并生成一个错误信息。使用 throw 语句 来创建自定义消息(抛出异常)。如果你将 throw 和 try 、 catch一起使用，就可以控制程序输出的错误信息。
+		}
+		let Harmony {
+			1. Generator: 生成器
+        		function* test (x) {
+		            var y = 2 * (yield (x + 1))
+		            var z = 2 * (yield (y / 3))
+		            var a = yield z + 1
+		            console.log("x=" + x + ",y=" + y + ",z=" + z + ",a=" + a)
+		            return (x + y + z + a)
+		        }
+		        let generator = test(5);
+		        try {
+		            console.log(generator.next())
+		            console.log(generator.next(12))
+		            console.log(generator.next(14))
+		        } catch (er) {
+
+		        } finally {
+		            // generator.close()
+		        }
+		    2. Iterator 迭代器
+		    	Iterator(object, [keyOnly])：1.要迭代的对象，2.布尔值，为假时抛出建和值，为真时只抛出键
+		    3. proxy 代理对象
+		    4. Map 简单映射: key 是可枚举的，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。因此，如果你想要这种类型对象的 key 值的列表，你应该使用 Map。
+		    	let map = new Map();
+		    	map.set('name', 'zs')
+		    	map.has('name') // true
+		    	map.get('name') // 'zs'
+		    	map.delete('name')
+		    5. WeakMap : WeakMap 的 key 是不可枚举的 (没有方法能给出所有的 key)。如果key 是可枚举的话，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。如果你要往对象上添加数据，又不想干扰垃圾回收机制，就可以使用 WeakMap。
+		    	set get has delete length
+			6. class 类
+				class Person {
+		            constructor (props) {
+		                this.name = name;
+		                this.age = age;
+		                this.innerTitle = "";
+		            }
+		            get title () {
+		                return this.innerTitle
+		            }
+		            set title (value) {
+		                this.innerTitle = value + '111'
+		            }
+		            sayName () {
+		                alert(this.name)
+		            }
+		            getOlder (years) {
+		                this.age += years
+		            }
+		        }
+				class One extends Person {
+					constructor (props) {
+						super(props)
+					}
+				}
 		}
 	</script>
 
