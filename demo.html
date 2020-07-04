@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			
+			let list = [0, 1, 2, 3, 4, 5, 6],
+				ary = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+				aryList = []
+				// i = 0, j = 0,
+				// len = list.length,
+				// length = ary.length
+			
+			for (var i = 0; i < list.length; i++) {
+			        
+				for (var j = 0; j < ary.length; j++) {
+					<!-- 定义一个最小值 -->
+					// var z = arguments[0];
+					// if (arguments[j] < arguments[j+1]) {
+			  //   		z = arguments[j];
+			  //   		arguments[j] = arguments[j+1];
+			  //   		arguments[j+1] = z;
+					// }
+					if (list[i] === ary[j]) {
+						aryList.push(i)
+					}
+				}
+			}
+			// for (i; i < len; i++) {
+			// 	for (j; j < length; j++) {
+			// 		if (list[i] === ary[j]) {
+			// 			aryList.push(i)
+			// 		}
+			// 	}
+			// }
+			console.log(aryList)
+		</script>
+	</body>
+</html>
