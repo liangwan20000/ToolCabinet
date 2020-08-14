@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>第一个三维场景</title>
+    <style>
+        body{
+            overflow:hidden;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="./three/build/three.js"></script>
+    <script src="./three/examples/js/controls/OrbitControls.js"></script>
+    <script>
+/////////////////////////////////////////////////////////////  几何对象  ///////////////////////////////////////////////////
+        // 声明一个原始几何体对象
+        THREE.Geometry();
+        // 创建一个立方体几何对象
+        THREE.BoxGeometry(100, 100, 100);
+        // 创建一个球体几何对象
+        THREE.SphereGeometry(60, 40, 40);
+        // 创建一个圆柱几何对象
+        THREE.CylinderGeometry(50, 50, 100, 25);
+        // 创建一个BufferGeometry类型几何体对象
+        THREE.BufferGeometry()
+/////////////////////////////////////////////////////////////  网格模型对象：BufferGeometry会用  ///////////////////////////////////////////////////
+        // 点渲材质对象
+        THREE.PointsMaterial({});
+        // 点网格模型对象
+        THREE.Points('几何对象', '材质对象');
+
+        // 线条材质对象
+        THREE.LineBasicMaterial({});
+        // // 线条网格模型对象
+        THREE.Line('几何对象', '材质对象');
+
+        // 三角面网格材质对象
+        THREE.MeshBasicMaterial({});
+        // 面网格模型对象
+        THREE.Mesh('几何对象', '材质对象');
+/////////////////////////////////////////////////////////////  操作  ///////////////////////////////////////////////////
+        // 创建一个BufferGeometry类型几何体对象
+        THREE.BufferGeometry() = {
+            '属性缓冲区对象': THREE.BufferAttribute('属性', '几个一组'),
+            '属性缓冲区对象传入参数': '顶点坐标属性/顶点法向量属性/几何体颜色属性/顶点索引属性',
+            '顶点坐标': geometryBuffer.attributes.position,
+            '顶点法向量属性': geometryBuffer.attributes.normls,
+            '几何体颜色属性': geometryBuffer.attributes.color,
+            '顶点索引属性': geometry.index, // geometry.index: new THREE.BufferAttribute(indexes, 1), //1个为一组
+            '顶点坐标属性/顶点法向量属性/几何体颜色属性': '这三个都是Float32Array类型',
+            '顶点索引属性': '是Uint16Array类型',
+            indexes: new Uint16Array([ // Uint16Array类型数组创建顶点索引数据
+                // 0对应第1个顶点位置数据、第1个顶点法向量数据
+                // 1对应第2个顶点位置数据、第2个顶点法向量数据
+                // 索引值3个为一组，表示一个三角形的3个顶点
+                0, 1, 2,
+                0, 2, 3,
+            ])
+        };
+        '设置Geometry顶点位置，顶点颜色数据' = {
+            '顶点坐标': new THREE.Vector3(80, 70, 0),
+            '顶点坐标添加到几何对象': geometry.vertices.push(t1, t2, t3),
+            '顶点颜色数据': new THREE.Color(0x0000ff),
+            '颜色数据添加到几何对象': geometry.colors.push(c1, c2, c3)
+        };
+        'Face3对象定义Geometry的三角形面' = {
+            'face3构造函数创建一个三角面': new THREE.Face3(0, 1, 2),
+            '顶点的法向量': new THREE.Vector3(0, 0, -1),
+            '设置三角面顶点的法向量': face1.vertexNormals.push(n1, n2, n3),
+            '顶点的颜色': face1.vertexColors = [new THREE.Color(0x00ff00)],
+            '三角面添加到几何体中': geometry.faces.push(face1, face2)
+        };
+        '操作几何体对象的数据' = {
+            '直接打印': console.log(geometry.vertices),
+            '遍历设置': geometry.faces.forEach(face => {
+                face.vertexColors = [
+                    new THREE.Color(0xffff00),
+                    new THREE.Color(0xff00ff),
+                    new THREE.Color(0x00ffff)
+                ];
+            }),
+            '删除': [geometry.faces.pop(), geometry.faces.shift()]
+        };
+        '几何体旋转，缩放，平移变换' = {
+            'xyz方向都放大3倍': geometry.scale(0.5, 1.5, 2),
+            '几何体沿X轴平移50': geometry.translate(50, 0, 0),
+            '几何体围绕X轴旋转45度': geometry.rotateX(Math.PI / 4),
+            '居中，偏移的几何体居中': geometry.center(),
+            '网格模型xyz方向分别缩放': mesh.scale.set(0.5, 1.5, 2)
+        }
+/////////////////////////////////////////////////////////////    ///////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////    ///////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////    ///////////////////////////////////////////////////
+    </script>
+    <script>
+        /**
+         * 创建场景对象
+         */
+        let scene = new THREE.Scene();
+        /**
+         * 创建网格模型
+         */
+//////////////////////////////////////////////////////////////  常见的网格模型  ////////////////////////////////////////////
+        // 创建一个立方体几何对象  长：高： 宽
+        // let geometryBox = new THREE.BoxGeometry(100, 100, 100);
+        // // 材质对象 Material    漫反射MeshLambertMaterial()；镜面反射MeshPhongMaterial
+        // let materialBox = new THREE.MeshLambertMaterial({
+        //     color: 0x0000ff, // 几何图形颜色
+        //     // wireframe: true, // 将几何图形渲染为线框
+        //     opacity: 0.7, // 透明度
+        //     transparent: true // 开启透明度
+        // });
+        // // 网络模型对象 Mash
+        // let meshBox = new THREE.Mesh(geometryBox, materialBox);
+        // // 网格模型添加到场景中
+        // scene.add(meshBox);
+
+        // 创建一个球体几何对象
+        // let geometrySphere = new THREE.SphereGeometry(60, 40, 40);
+        // 材质对象         漫反射MeshLambertMaterial()；镜面反射MeshPhongMaterial
+        // let materialSphere = new THREE.MeshPhongMaterial({
+        //     color: 0xff00ff,
+        //     specular: 0x4488ee, // 高光颜色
+        //     shineness: 12 // 光照强度系数
+        // })
+        // 网格模型对象
+        // let mashSphere = new THREE.Mesh(geometrySphere, materialSphere);
+        // 球体网格模型沿Y轴正方向平移120
+        // mashSphere.translateY(120);
+        // 网格模型添加到场景中
+        // scene.add(mashSphere);
+
+        // 圆柱网格模型
+        // let geometryCylinder = new THREE.CylinderGeometry(50, 50, 100, 25);
+        // 材质对象         漫反射MeshLambertMaterial()；镜面反射MeshPhongMaterial
+        // let materialCylinder = new THREE.MeshStandardMaterial({
+        //     color: 0xffff00
+        // });
+        // 网格模型对象
+        // let mashCylinder = new THREE.Mesh(geometryCylinder, materialCylinder);
+        // 设置圆柱模型的xyz坐标为（120，0，0）
+        // mashCylinder.position.set(120, 0, 0);
+        // 网格模型添加到场景中
+        // scene.add(mashCylinder);
+
+//////////////////////////////////////////////////////////////  常见的渲染模式  ////////////////////////////////////////////
+
+        // 点渲染模式
+        // let materialSpot = new THREE.PointsMaterial({
+        //     // color: 0xff0000,
+        //     vertexColors: THREE.VertexColors,
+        //     size: 10.0 // 点对象像素尺寸
+        // });
+        // 点模型对象
+        // let spot = new THREE.Points(geometryBuffer, materialSpot);
+
+        // 线条渲染模式
+        // let materialLine = new THREE.LineBasicMaterial({
+        //     color: 0xff0000
+        // });
+        // // 线条模型对象
+        // let line = new THREE.Line(geometryBuffer, materialLine);
+
+        // 三角面网格渲染模式
+        // let materialTriangle = new THREE.MeshBasicMaterial({
+        //     color: 0x0000ff, // 三角面颜色
+        //     // vertexColors: THREE.VertexColors,
+        //     side: THREE.DoubleSide // 两面可见
+        // }); // 材质对象
+        // 面网格模型对象
+        // let mashTriangle = new THREE.Mesh(materialBox, materialTriangle);
+        // scene.add(mashTriangle);
+
+/////////////////////////////////////////////////////////////  顶点位置数据解析渲染  ////////////////////////////////////////////////
+
+        // 创建一个BufferGeometry类型几何体对象
+        // let geometryBuffer = new THREE.BufferGeometry();
+        // // 类型数组创建顶点对象
+        // let vertices = new Float32Array([
+        //     0, 0, 0, // 顶点1坐标
+        //     80, 0, 0, // 顶点2坐标
+        //     80, 80, 0, // 顶点3坐标
+
+        //     0, 0, 0, // 顶点4坐标
+        //     80, 80, 0, // 顶点5坐标
+        //     0, 80, 0, // 顶点6坐标
+        // ]);
+        // // 创建属性缓冲区对象
+        // let attribue = new THREE.BufferAttribute(vertices, 3); // 3个一组，表示一个顶点的xyz坐标
+        // 设置几何体attributes属性的位置属性
+        // geometryBuffer.attributes.position = attribue;
+
+/////////////////////////////////////////////////////////////  顶点索引服用顶点数据  ////////////////////////////////////////////////
+
+        // 类型数组创建顶点颜色
+        // let colors = new Float32Array([
+        //     1, 0, 0, // 
+        //     0, 1, 0, // 
+        //     0, 0, 1, // 
+
+        //     1, 1, 0, // 
+        //     0, 1, 1, // 
+        //     1, 0, 1 //
+        // ]);
+        // 设置几何体颜色属性
+        // geometryBuffer.attributes.color = new THREE.BufferAttribute(colors, 3);
+
+        // 定点法向量数据
+        // let normls = new Float32Array([
+        //     0, 0, 1,
+        //     0, 0, 1,
+        //     0, 0, 1,
+
+        //     0, 0, 1,
+        //     0, 0, 1,
+        //     0, 0, 1
+        // ]);
+        // 设置几何体定点法向量属性
+        // geometryBuffer.attributes.normls = new THREE.BufferAttribute(normls, 3);
+        
+        // 创建一个空的几何体对象
+        // let materialBox = new THREE.BufferGeometry();
+        // // 类型数组创建顶点位置
+        // let ary = new Float32Array([
+        //     0, 0, 0,
+        //     80, 0, 0,
+        //     80, 80, 0,
+        //     0, 80, 0,
+        // ]);
+        // // 创建属性缓冲区对象
+        // let attribue = new THREE.BufferAttribute(ary, 3);
+        // // 设置几何体位置属性
+        // materialBox.attributes.position = attribue;
+        // // 法向量
+        // let topOne = new Float32Array([
+        //     0, 0, 1,
+        //     0, 0, 1,
+        //     0, 0, 1,
+        //     0, 0, 1,
+        // ]);
+        // // 设置法向量属性
+        // materialBox.attributes.normal = new THREE.BufferAttribute(topOne, 3);
+        // // unit16Array类型数组创建顶点索引数据
+        // let indexes = new Uint16Array([
+        //     0, 1, 2,
+        //     0, 2, 3,
+        // ]);
+        // materialBox.index = new THREE.BufferAttribute(indexes, 1);
+
+        // 三角面网格渲染模式
+        // let materialTriangle = new THREE.MeshBasicMaterial({
+        //     color: 0x0000ff, // 三角面颜色
+        //     // vertexColors: THREE.VertexColors,
+        //     side: THREE.DoubleSide // 两面可见
+        // }); // 材质对象
+        // 网格模型对象
+        // let mashTriangle = new THREE.Mesh(materialBox, materialTriangle);
+        // scene.add(mashTriangle);
+
+/////////////////////////////////////////////////////////////  设置Geometry顶点位置，顶点颜色数据  ////////////////////////////////////////////////
+        
+        // 声明一个几何体对象
+        // let geometry = new THREE.Geometry();
+        // // 顶点1坐标
+        // let t1 = new THREE.Vector3(50, 0, 0);
+        // // 顶点2坐标
+        // let t2 = new THREE.Vector3(0, 70, 0);
+        // // 顶点3坐标
+        // let t3 = new THREE.Vector3(80, 70, 0);
+        // // 顶点坐标添加到几何对象
+        // geometry.vertices.push(t1, t2, t3);
+
+        // // 顶点颜色数据
+        // let c1 = new THREE.Color(0x00ff00);
+        // let c2 = new THREE.Color(0xff0000);
+        // let c3 = new THREE.Color(0x0000ff);
+        // // 颜色数据添加到几何对象
+        // geometry.colors.push(c1, c2, c3);
+
+        // // 材质对象
+        // let material = new THREE.PointsMaterial({
+        //     vertexColors: THREE.VertexColors,
+        //     side: THREE.DoubleSide
+        // });
+        // // 网格模型对象
+        // let points = new THREE.Points(geometry, material);
+        // scene.add(points);
+
+/////////////////////////////////////////////////////////////  Face3对象定义Geometry的三角形面  ////////////////////////////////////////////////
+
+        // 创建一个几何对象
+        // let geometry = new THREE.Geometry();
+        // let t1 = new THREE.Vector3(0, 0, 0);
+        // let t2 = new THREE.Vector3(0, 100, 0);
+        // let t3 = new THREE.Vector3(50, 0, 0);
+        // let t4 = new THREE.Vector3(0, 0, 100);
+        // // 顶点坐标添加到 geometry 对象
+        // geometry.vertices.push(t1, t2, t3, t4);
+
+        // // face3构造函数创建一个三角面
+        // let face1 = new THREE.Face3(0, 1, 2);
+        // // 三角面每个顶点的法向量
+        // let n1 = new THREE.Vector3(0, 0, -1);
+        // let n2 = new THREE.Vector3(0, 0, -1);
+        // let n3 = new THREE.Vector3(0, 0, -1);
+        // 设置三角面三个顶点的法向量
+        // face1.vertexNormals.push(n1, n2, n3);
+        // face1.vertexColors = [
+        //     new THREE.Color(0x0000ff),
+        //     new THREE.Color(0xffff00),
+        //     new THREE.Color(0x00ff00)
+        // ]
+
+        // // 三角面2
+        // let face2 = new THREE.Face3(0, 2, 3);
+        // // 设置三角面法向量
+        // face2.normal = new THREE.Vector3(0, -1, 0);
+
+        // // 三角面添加到几何体中
+        // geometry.faces.push(face1, face2);
+
+        // // 材质对象
+        // let material = new THREE.MeshBasicMaterial({
+        //     // color: 0xff0000,
+        //     vertexColors: THREE.VertexColors,
+        //     side: THREE.DoubleSide
+        // });
+        // // 网格模型对象
+        // let mesh = new THREE.Mesh(geometry, material);
+
+        // scene.add(mesh);
+/////////////////////////////////////////////////////////////  访问几何体对象的数据  ////////////////////////////////////////////////
+        // 创建一个立方体
+        // let geometry = new THREE.BoxGeometry(100, 100, 100);
+        // console.log(geometry);
+        // console.log(geometry.vertices);
+
+        // // 材质对象  MeshLambertMaterial
+        // let material = new THREE.MeshLambertMaterial({
+        //     color: 0x00ffff
+        // });
+        // // 网格模型对象
+        // let mesh = new THREE.Mesh(geometry, material);
+        // scene.add(mesh);
+
+        // 创建一个矩形平面几何体
+        // let geometry = new THREE.PlaneBufferGeometry(100, 100);
+        // 材质对象
+        // let material = new THREE.MeshLambertMaterial({
+        //     color: 0x0000ff
+        // });
+        // 网格模型对象
+        // let mesh = new THREE.Mesh(geometry, material);
+        // scene.add(mesh);
+
+        // 创建一个立方体几何对象
+        // let geometry = new THREE.BoxGeometry(100, 100, 100);
+        // geometry.faces.forEach(face => {
+        //     face.vertexColors = [
+        //         new THREE.Color(0xffff00),
+        //         new THREE.Color(0xff00ff),
+        //         new THREE.Color(0x00ffff)
+        //     ];
+        // });
+        // // 创建材质对象
+        // let material = new THREE.MeshBasicMaterial({
+        //     vertexColors: THREE.VertexColors,
+        // });
+        // // 创建网格模型对象
+        // let mesh = new THREE.Mesh(geometry, material);
+        // scene.add(mesh);
+
+        // 创建一个立方体几何对象
+        // let geometry = new THREE.BoxGeometry(100, 100, 100);
+        // geometry.faces.pop();
+        // geometry.faces.pop();
+        // geometry.faces.shift();
+        // geometry.faces.shift();
+        // // 材质对象
+        // let material = new THREE.MeshLambertMaterial({
+        //     color: 0x00ffff,
+        //     side: THREE.DoubleSide
+        // });
+        // // 创建网格模型对象
+        // let mesh = new THREE.Mesh(geometry, material);
+        // scene.add(mesh);
+/////////////////////////////////////////////////////////////  几何体旋转，平移变换，缩放  ////////////////////////////////////////////////
+        // 创建一个立方体几何对象
+        let geometry = new THREE.BoxGeometry(100, 100, 100);
+        // xyz方向都放大3倍
+        geometry.scale(0.5, 1.5, 2);
+        // 几何体沿X轴平移50
+        geometry.translate(50, 0, 0);
+        // 几何体围绕X轴旋转45度
+        geometry.rotateX(Math.PI / 4);
+        // 居中，偏移的几何体居中
+        geometry.center();
+        // 创建材质对象
+        let material = new THREE.MeshLambertMaterial({
+            color: 0xff00ff
+        });
+        // 创建网格模型对象
+        let mesh = new THREE.Mesh(geometry, material);
+        mesh.scale.set(0.5, 1.5, 2);
+        scene.add(mesh);
+////////////////////////////////////////////////////////////////////////  不常改变  ////////////////////////////////////////////////////////////////
+        /**
+         * 辅助坐标系
+        */
+        let AxesHelper = new THREE.AxesHelper(500);
+        scene.add(AxesHelper);
+        /**
+         * 光源设置
+         */
+        // 点光源
+        let point = new THREE.PointLight(0xffffff);
+        // 点光源位置
+        point.position.set(400, 200, 300);
+        // 点光源添加到场景中
+        scene.add(point);
+        // 第二个点光源
+        let pointTwo = new THREE.PointLight(0xffffff);
+        pointTwo.position.set(-400, -200, -300);
+        scene.add(pointTwo);
+        // 环境光
+        let ambient = new THREE.AmbientLight(0x444444);
+        // 环境光源添加到场景中
+        scene.add(ambient);
+        /**
+         * 相机设置
+        */
+        // 窗口宽度
+        let width = window.innerWidth;
+        // 窗口高度
+        let height = window.innerHeight;
+        // 窗口宽高比
+        let k = width / height;
+        // 三维场景显示范围控制系数，系数越大，显示的范围越大
+        let s = 200;
+        // 创建相机对象
+        let camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+        // 设置相机位置
+        camera.position.set(200, 300, 200);
+        // 设置相机方向（指定的场景对象）
+        camera.lookAt(scene.position)
+        /**
+         * 创建渲染器对象
+        */
+        // 渲染区域对象
+        let renderer = new THREE.WebGLRenderer();
+        // 设置渲染区域尺寸
+        renderer.setSize(width, height);
+        // 设置背景颜色
+        renderer.setClearColor(0xb9d3ff, 1)
+        // body对象中插入渲染区域（canvas）对象
+        document.body.appendChild(renderer.domElement);
+        /**
+         * 旋转
+        */
+        let T0 = new Date(); // 上次时间
+        function render () {
+            let T1 = new Date(); // 本次时间
+            let t = T0 - T1; // 时间差
+            T0 = T1; // 把本次时间赋值给上次时间
+            requestAnimationFrame(render);
+            // 执行渲染操作  指定场景、相机作为参数
+            renderer.render(scene, camera);
+            // mesh.rotateY(0.001*t);
+        };
+        render();
+        /**
+         * 鼠标操作
+        */
+        // 创建控件对象
+        let controls = new THREE.OrbitControls(camera, renderer.domElement);
+        // 监听键盘鼠标事件  当使用requestAnimationFrame事件实现渲染器渲染方法render()的周期性调用，就不需要再使用监听事件了
+        // controls.addEventListener('change', render);
+
+    </script>
+</body>
+</html>
