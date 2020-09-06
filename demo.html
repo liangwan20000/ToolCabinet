@@ -3,40 +3,65 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script src="./js/EventUtil.js"></script>
+		<script src="./js/hao.js"></script>
+		<style>
+			#droptarget {
+				width: 200px;
+				height: 200px;
+				background-color: lime;
+			}
+			img {
+				width: 200px;
+				height: 200px;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="droptarget"></div>
+		<span>奥瑟金佛违法</span>
+		<img src="./1.jpg" alt="">
+		<!-- <iframe src="file:///D:/myplay/ToolCabinet/demo.html" frameborder="0"></iframe> -->
 		<script>
-			
-			let list = [0, 1, 2, 3, 4, 5, 6],
-				ary = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-				aryList = []
-				// i = 0, j = 0,
-				// len = list.length,
-				// length = ary.length
-			
-			for (var i = 0; i < list.length; i++) {
-			        
-				for (var j = 0; j < ary.length; j++) {
-					<!-- 定义一个最小值 -->
-					// var z = arguments[0];
-					// if (arguments[j] < arguments[j+1]) {
-			  //   		z = arguments[j];
-			  //   		arguments[j] = arguments[j+1];
-			  //   		arguments[j+1] = z;
-					// }
-					if (list[i] === ary[j]) {
-						aryList.push(i)
-					}
-				}
-			}
-			// for (i; i < len; i++) {
-			// 	for (j; j < length; j++) {
-			// 		if (list[i] === ary[j]) {
-			// 			aryList.push(i)
-			// 		}
+			// let iframeWindow = document.querySelector('iframe').contentWindow;
+			// iframeWindow.postMessage('A secret', 'file:///D:/myplay/ToolCabinet/demo.html')
+			// EventUtil.addHandler(window, 'message', (event) => {
+			// 	if (event.origin === 'file:///D:/myplay/ToolCabinet/demo.html') {
+			// 		console.log(event.data);
+			// 		event.source.postMessage('Received', 'file:///D:/myplay/ToolCabinet/demo.html');
 			// 	}
-			// }
-			console.log(aryList)
+			// })
+			// console.dir(iframeWindow);
+			// 监听拖动事件
+			EventUtil.addHandler(window, 'dragstart', (event) => {
+				console.log('22', typeof event.toElement)
+				// 查看拖动目标的内容
+				if (event.toElement.nodeName === 'IMG') {
+					console.log('3')
+				} else if (event.toElement.nodeName === '#text') {
+					console.log('4')
+				}
+				console.log('2', event)
+			})
+
+			let droptarget = queryE('#droptarget');
+			// 进入放置对象事件
+			EventUtil.addHandler(droptarget, 'dragenter', (event) => {
+				EventUtil.preventDefault(event);
+				event.dataTransfer.setData('text', 'some text')
+
+			})
+			// 鼠标在放置对象上时就会一直触发
+			EventUtil.addHandler(droptarget, 'dragover', (event) => {
+				EventUtil.preventDefault(event);
+				console.log('1')
+			});
+			// 放开鼠标
+			EventUtil.addHandler(droptarget, 'drop', (event) => {
+				EventUtil.preventDefault(event);
+				console.log(event.dataTransfer.getData('text'))
+			})
+
 		</script>
 	</body>
 </html>
