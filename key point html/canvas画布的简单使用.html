@@ -11,17 +11,28 @@
 </head>
 <body>
   <canvas id="cas"></canvas>
+  <img src="" alt="" usemap ="#planetmap">
+  <map style="width: 400px;height: 400px;" name="planetmap">
+    <area shape ="rect" coords ="100,100,20,20" class="box" href ="javascript:;" alt="Sun" title="百度"/>
+    <area shape ="circle" coords ="80,80,20" href ="https://fanyi.baidu.com/?aldtype=16047#auto/zh" alt="Mercury" />
+    <area shape ="circle" coords ="40,40,20" href ="http://yapi.dashenw.com/project/56/interface/api" alt="Venus" />
+   </map>
   <script type="text/javascript">
     let canvas = document.getElementById('cas');
     let ctx = canvas.getContext('2d');
     
     ctx.strokeStyle = 'red'
     ctx.fillStyle = 'orange'
-    // ctx.moveTo(100, 100);
-    // ctx.lineTo(200, 100);
+    ctx.moveTo(100, 100);
+    ctx.lineTo(200, 100);
     ctx.rect(50, 50, 100, 100);
-    // ctx.stroke();
+    ctx.stroke();
     ctx.fill();
+    let image = document.querySelector('img');
+    image.src = canvas.toDataURL("image/png");
+
+    let asd = [[1,2,3]]
+    console.log(asd)
   </script>
 </body>
 </html>
