@@ -1089,8 +1089,6 @@
    	   			✔ 通过给a 标签注册事件，在事件中设置 return false
    	   			✔ <a href="javascript:;">百度''</a>;
    	   			✔ <a href='javascript:void(0)'>百度''<a>;
-   			6.2 事件中的this指向;
-   	   			在事件中，this就指向当前事件源
    	    }
    	    var 事件 {
    	    	给元素注册事件（捕获用户的动作）语法：事件源.事件类型 = function () {};
@@ -1298,6 +1296,54 @@
 					readonly : 属性设置控件是否为只读
 					display = 'none'   : 隐藏元素
 					display = 'block'  : 显示元素
+   	    }
+   	    let 拖放事件 {
+   	    	draggable: 设置元素是否可被拖动
+   	    	ondragstart: 在拖动元素上按下鼠标并拖动时触发
+   	    	ondrag: 拖动期间一直触发
+   	    	ondragend: 放置拖动的元素后，无论放在有效还是无效放置目标都触发
+   	    	ondragenter: 有元素被拖动到放置目标上触发
+   	    	ondragover: 被拖动元素只要在放置目标上就会持续触发
+   	    	ondragleave: 被拖动元素被拖出放置目标时触发
+   	    	ondrop: 被拖拽元素放到了放置目标中触发
+   	    	'自定义放置目标'
+	   	    	let droptarget = document.querySelector('#droptarget')
+	   	    	EventUtil.addHandler(droptarget, 'dragenter', (event) => {
+	   	    		EventUtil.preventDefault(event)
+	   	    		let dataTransfer = event.dataTransfer
+	   	    		// 读取URL
+	   	    		let url = dataTransfer.getData('url') || dataTransfer.getData('text/uri-list')
+	   	    		// 读取文本
+	   	    		let text = dataTransfer.getData('Text')
+
+	   	    	})
+	   	    	EventUtil.addHandler(droptarget, 'dragover', (event) => {
+	   	    		EventUtil.preventDefault(event)
+	   	    	})
+	   	    	EventUtil.addHandler(droptarget, 'drop', (event) => {
+	   	    		EventUtil.preventDefault(event)
+	   	    		
+	   	    	})
+	   	    event.dataTransfer 属性包含下列成员
+	   	    	dropEffect: 支持的放置行为；必须在ondragenter事件处理程序中针对放置目标来设置它
+	   	    		none: 不能把拖动的元素放在这里。这是除文本框之外所有元素的默认值
+	   	    		move: 应该把拖动的元素移动到放置目标
+	   	    		copy: 应该把拖动的元素复制到放置目标
+	   	    		link: 表示放置目标会打开拖动的元素，但拖动的元素必须是一个链接，有URL
+	   	    	effectAllowed: 表示允许拖动元素的哪种dropEffect;dropEffect属性只有搭配effectAllowed才有用。必须在 ondragstart 事件处理程序中设置 effectAllowed属性
+	   	    		uninitialized: 没有给被拖动的元素设置任何放置行为
+	   	    		none: 被拖动的元素不能有任何行为
+	   	    		copy: 只允许值为copy的dropEffect
+	   	    		link: 只允许值为link的dropEffect
+	   	    		move: 只允许值为move的dropEffect
+	   	    		copyLink: 允许值为 copy 和 link 的 dropEffect
+	   	    		copyMove: 允许值为 copy 和 move 的 dropEffect
+	   	    		linkMove: 允许值为 link 和 move 的 dropEffect
+	   	    		all: 允许任意 dropEffect
+	   	    	addElement(element): 为拖动操作添加一个元素。添加这个元素只影响数据(即增加作为拖动源而响应回调的对象)，不会影响拖动操作时页面元素的外观。
+	   	    	clearData(format): 清除以固定格式保存的数据。
+	   	    	setDragImage(element, x, y): 指定一幅图像，当拖动发生时，显示在光标下方
+	   	    	types: 当前保存的数据类型。这是一个类似数组的集合，以'text'这样的字符串形式保存着数据类型
    	    }
 	</script>
 
@@ -5959,6 +6005,34 @@
 					netstat -anb   查看哪个程序使用了3306端口
 				4.	打开任务管理器，找到占用程序，结束任务
 				5. 	核心重点：  安装任何与开发相关的软件时都必须安装到英文路径下。
+		}
+		let MIME类型 {
+			文件后缀					Mime类型										说明
+			.flv				flv/flv-flash 								在线播放
+			.html或.htm 			text/html 									超文本标记语言文本
+			.rtf 				application/rtf								RTF文本
+			.gif 				image/gif									GIF图形
+			.jpeg或.jpg 			image/jpeg									JPEG图形
+			.au					audio/basic 								au声音文件
+			.mid或.midi			audio/midi或audio/x-midi 					MIDI音乐文件
+			.ra或.ram或.rm 		audio/x-pn-realaudio						RealAudio音乐文件
+			.mpg或.mpeg或.mp3 	video/mpeg									MPEG文件
+			.avi 				video/x-msvideo								AVI文件
+			.gz					application/x-gzip							GZIP文件
+			.tar				application/x-tar 							TAR文件
+			.exe 				application/octet-stream					下载文件类型
+			.rmvb 				video/vnd.rn-realvideo 						在线播放
+			.txt 				text/plain									普通文本
+			.mrp 				application/octet-stream 					MRP文件（国内普遍的手机）
+			.ipa				application/iphone-package-archive			IPA文件(IPHONE)
+			.deb 				application/x-debian-package-archive		DED文件(IPHONE)
+			.apk				application/vnd.android.package-archive 	APK文件(安卓系统)
+			.cab				application/vnd.cab-com-archive 			CAB文件(Windows Mobile)
+			.xap				application/x-silverlight-app 				XAP文件(Windows Phone 7)
+			.sis				application/vnd.symbian.install-archive		SIS文件(symbian平台)
+			.jar 				application/java-archive					JAR文件(JAVA平台手机通用格式)
+			.jad				text/vnd.sun.j2me.app-descriptor			JAD文件(JAVA平台手机通用格式)
+			.sisx 				application/vnd.symbian.epoc/x-sisx-app 	SISX文件(symbian平台)
 		}
 	</script>
 
