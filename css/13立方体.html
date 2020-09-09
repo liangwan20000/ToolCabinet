@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.box {
+			 width: 300px;
+			 height: 300px;
+			 margin: 150px auto;
+			 position: relative;
+			  /*perspective: 1000px; */
+			 /* 将平面图形转为立体图形 */
+			 transform-style: preserve-3d;
+			 transform: rotateY(50deg) rotateX(50deg);
+		}
+
+		.public {
+			width: 1000px;
+			height: 100%;
+			position: absolute;
+		}
+
+		/*.left {
+			background-color: pink;
+			transform: rotateY(-90deg) translateZ(150px);
+		}
+
+		.right {
+			background-color: red;
+			transform: rotateY(90deg) translateZ(150px);
+		}*/
+
+		.top {
+			background-color: blue;
+			transform: rotateX(120deg) translateZ(260px);
+		}
+
+		/*.bot {
+			background-color: green;
+			transform: rotateX(-90deg) translateZ(150px);
+		}*/
+
+		/*.before {
+			 background-color: yellow;
+			 transform:  translateZ(150px);
+		}*/
+		.back {
+			background-color: yellowgreen;
+			transform:  translateZ(-260px);
+		}
+
+
+
+	</style>
+</head>
+<body>
+	 <div class="box">
+	 	 <!-- <div class="public left"></div> -->
+	 	 <!-- <div class="public right"></div> -->
+	 	 <div class="public top"></div>
+	 	 <!-- <div class="public bot"></div> -->
+	 	 <!-- <div class="public before"></div> -->
+	 	 <div class="public back"></div>
+	 </div>
+</body>
+</html>
