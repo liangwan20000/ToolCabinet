@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>富文本编辑器</title>
+		<link rel="shortcut icon" href="favicon.ico">
+		
+		<link href="summernote/summernote.css" rel="stylesheet">
+		<link href="summernote/summernote-bs3.css" rel="stylesheet">
+
+		<link href="summernote/style.css" rel="stylesheet">
+		<link href="summernote/font-awesome.css" rel="stylesheet">
+
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body class="gray-bg">
+		
+		<div class="wrapper wrapper-content cur" id="vueContent" v-cloak>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="ibox">
+						<div class="ibox-content">
+							<div class="summernote"></div>
+							<button @click="submitForm">查看</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./jquery.min.js"></script>
+		<script src="./bootstrap.min.js"></script>
+		<script src="./vue.min.js"></script>
+		<script src="./fn.js"></script>
+		<script src="./summernote.min.js"></script>
+		<script src="./summernote-zh-CN.js"></script>
+		<script>
+			const page = new Vue({
+				el: "#vueContent",
+				data() {
+					return {
+						ruleForm: {
+							description: '',
+						}
+					}
+				},
+				mounted() {
+					let that = this
+					$('.summernote').summernote({
+						lang: 'zh-CN',
+						toolbar: [
+							['style', ['style']],
+							['font', ['bold', 'italic', 'underline', 'clear']],
+							['fontname', ['fontname']],
+							['fontsize', ['fontsize']],
+							['color', ['color']],
+							['para', ['ul', 'ol', 'paragraph']],
+							['height', ['height']],
+							['table', ['table']],
+							['insert', ['picture']],
+							['view', ['fullscreen', 'help']]
+						],
+						onImageUpload: function(files, editor, welEditable) {
+							console.log(files)
+							console.log(editor)
+							console.log(welEditable)
+							that.sendFile(files[0], editor, welEditable);
+						}
+					})
+				},
+				methods: {
+					// 提交 or 暂存
+					submitForm() {
+						if ($('.summernote').code() == '' || $('.summernote').code() == '<p><br></p>') {
+							win.alert('提示', '请填写活动正文');
+							return false
+						} else {
+							this.ruleForm.description = $('.summernote').code();
+							console.log(this.ruleForm.description)
+						}
+					},
+					sendFile(file, editor, welEditable) {
+						var editorReturn = function(re) {
+							console.log(re.data)
+							if (re.code == 200) {
+								editor.insertImage(welEditable, re.data[0].url);
+							} else {
+								win.alert('提示', messageToUser);
+							}
+						}
+						fn.fileupload("files", file, editorReturn);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

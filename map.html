@@ -4,68 +4,68 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<style type="text/css">
-    body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    body, html,#container {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
 	</style>
     <!-- <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script>
 
     <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script> -->
     <!-- 弹出信息窗口 -->
-    <!-- <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script>
-    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script> -->
+    <script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script>
 </head>
 <body>
-    <img src="./客户端.png" width="600" height="100%" alt="">
-    <div id="allmap"></div>
-    <!-- <script type="text/javascript">
+    <!-- <img src="./客户端.png" width="600" height="100%" alt=""> -->
+    <div id="container"></div>
+    <script type="text/javascript">
              // 设置地图类型为地球模式
         // 定义经纬度
         // let lng,lat;
-        // 百度地图API功能
-        // var map = new BMap.Map("allmap");
-        // var point = new BMap.Point(116.331398,39.897445);
-        // map.centerAndZoom(point, 20);
+        // // 百度地图API功能
+        // var map = new BMapGL.Map('container'); // 创建Map实例
+        // map.centerAndZoom(new BMapGL.Point(116.404, 39.915), 12); // 初始化地图,设置中心点坐标和地图级别
+        // map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
 
-        var geolocation = new BMap.Geolocation();
+        // var geolocation = new BMap.Geolocation();
         // var gc = new BMap.Geocoder();//创建地理编码器
-        geolocation.getCurrentPosition(function(r){
-            if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                var mk = new BMap.Marker(r.point);
-                console.log('您的位置：', r.point);
+        // geolocation.getCurrentPosition(function(r){
+        //     if(this.getStatus() == BMAP_STATUS_SUCCESS){
+        //         var mk = new BMap.Marker(r.point);
+        //         console.log('您的位置：', r.point);
 
-                locationHandler(r.point.lng, r.point.lat)
+        //         locationHandler(r.point.lng, r.point.lat)
 
-                // var pt = r.point;   
-                // map.panTo(pt);//移动地图中心点
-                //alert(r.point.lng);//X轴
-                //alert(r.point.lat);//Y轴
+        //         var pt = r.point;   
+        //         map.panTo(pt);//移动地图中心点
+        //         alert(r.point.lng);//X轴
+        //         alert(r.point.lat);//Y轴
 
-                // gc.getLocation(pt, function(rs){    
-                //     var addComp = rs.addressComponents;
-                //     console.log(addComp);
-                //     //alert(addComp.city);
-                //     console.log(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);    
-                // });
-            }
-            else {
-                console.log('failed'+this.getStatus());
-            }        
-        },{enableHighAccuracy: true})
+        //         gc.getLocation(pt, function(rs){    
+        //             var addComp = rs.addressComponents;
+        //             console.log(addComp);
+        //             //alert(addComp.city);
+        //             console.log(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);    
+        //         });
+        //     }
+        //     else {
+        //         console.log('failed'+this.getStatus());
+        //     }        
+        // },{enableHighAccuracy: true})
 
         function locationHandler (lng, lat) {
-            var map = new BMapGL.Map("allmap");    // 创建Map实例
-            var point = new BMapGL.Point(lng, lat);
+            var map = new BMapGL.Map("container");    // 创建Map实例
+            var point = new BMapGL.Point(new BMapGL.Point(116.404, 39.915), 12);
             map.centerAndZoom(point, 20);  // 初始化地图,设置中心点坐标和地图级别
             map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
             // 开启地图模式
             map.setMapType(BMAP_EARTH_MAP);
 
             // 创建图标
-            // var pt = new BMapGL.Point(lng, lat);
+            var pt = new BMapGL.Point(116.404, 39.915);
             // var myIcon = new BMapGL.Icon("./2.jpg", new BMapGL.Size(52, 52));
-            // var marker = new BMapGL.Marker(pt, {
-            //     icon: myIcon
-            // });  // 创建标注
-            // map.addOverlay(marker);              // 将标注添加到地图中
+            var marker = new BMapGL.Marker(pt, {
+                icon: myIcon
+            });  // 创建标注
+            map.addOverlay(marker);              // 将标注添加到地图中
 
             var marker = new BMapGL.Marker(point);  // 创建标注
             map.addOverlay(marker);              // 将标注添加到地图中
@@ -87,6 +87,7 @@
         function alertHandler () {
             alert('哈哈')
         }
-    </script> -->
+        locationHandler()
+    </script>
 </body>
 </html>
