@@ -3,89 +3,92 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	<style type="text/css">
-    body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
-	</style>
-    <!-- <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
 
-    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script> -->
-    <!-- 弹出信息窗口 -->
-    <!-- <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script>
-    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=rkcBgo9e4NnD1QFhBqbP3GGSDFZFbpah"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <style>
+        .box {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
-    <div id="allmap"></div>
-    <!-- <script type="text/javascript">
-             // 设置地图类型为地球模式
-        // 定义经纬度
-        // let lng,lat;
-        // 百度地图API功能
-        // var map = new BMap.Map("allmap");
-        // var point = new BMap.Point(116.331398,39.897445);
-        // map.centerAndZoom(point, 20);
+    <div id="app">
+        <div class="box">
+            <el-table
+                :data="tableData"
+                height="250"
+                border
+                style="width: 100%">
+                <el-table-column
+                  prop="date"
+                  label="日期"
+                  width="180">
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="姓名"
+                  width="180">
+                </el-table-column>
+                <el-table-column
+                  prop="address"
+                  label="地址">
+                </el-table-column>
+              </el-table>
+        </div>
+    </div>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- <div id="allmap"></div> -->
+    <!-- <script src=?content=getData"></script> -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                tableData: [{
+                      date: '2016-05-03',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                      date: '2016-05-02',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                      date: '2016-05-04',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                      date: '2016-05-01',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                      date: '2016-05-08',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                      date: '2016-05-06',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                      date: '2016-05-07',
+                      name: '王小虎',
+                      address: '上海市普陀区金沙江路 1518 弄'
+                }]
+            },
+            mounted() {
 
-        var geolocation = new BMap.Geolocation();
-        // var gc = new BMap.Geocoder();//创建地理编码器
-        geolocation.getCurrentPosition(function(r){
-            if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                var mk = new BMap.Marker(r.point);
-                console.log('您的位置：', r.point);
+            },
+            methods: {
 
-                locationHandler(r.point.lng, r.point.lat)
-
-                // var pt = r.point;   
-                // map.panTo(pt);//移动地图中心点
-                //alert(r.point.lng);//X轴
-                //alert(r.point.lat);//Y轴
-
-                // gc.getLocation(pt, function(rs){    
-                //     var addComp = rs.addressComponents;
-                //     console.log(addComp);
-                //     //alert(addComp.city);
-                //     console.log(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);    
-                // });
             }
-            else {
-                console.log('failed'+this.getStatus());
-            }        
-        },{enableHighAccuracy: true})
-
-        function locationHandler (lng, lat) {
-            var map = new BMapGL.Map("allmap");    // 创建Map实例
-            var point = new BMapGL.Point(lng, lat);
-            map.centerAndZoom(point, 20);  // 初始化地图,设置中心点坐标和地图级别
-            map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-            // 开启地图模式
-            map.setMapType(BMAP_EARTH_MAP);
-
-            // 创建图标
-            // var pt = new BMapGL.Point(lng, lat);
-            // var myIcon = new BMapGL.Icon("./2.jpg", new BMapGL.Size(52, 52));
-            // var marker = new BMapGL.Marker(pt, {
-            //     icon: myIcon
-            // });  // 创建标注
-            // map.addOverlay(marker);              // 将标注添加到地图中
-
-            var marker = new BMapGL.Marker(point);  // 创建标注
-            map.addOverlay(marker);              // 将标注添加到地图中
-            var opts = {
-                width : 200,     // 信息窗口宽度
-                height: 100,     // 信息窗口高度
-                title : "秀芬超市" , // 信息窗口标题
-                message:"这是我的位置"
-            }
-            // 百度地图API功能
-            var sContent =
-            "<button id='bt'>进入</button>";
-            var infoWindow = new BMapGL.InfoWindow(sContent, opts);  // 创建信息窗口对象 
-            marker.addEventListener("click", function(){
-                map.openInfoWindow(infoWindow, point); //开启信息窗口
-                document.getElementById('bt').onclick = alertHandler
-            });
-        }
-        function alertHandler () {
-            alert('哈哈')
-        }
-    </script> -->
+        })
+    </script>
 </body>
 </html>
