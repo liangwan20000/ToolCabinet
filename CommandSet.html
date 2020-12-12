@@ -3,6 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		.box {
+			width: 10px;
+			display: inline-block;
+		}
+	</style>
 </head>
 <body>
 	<!-- body和HTML有8px的内外边距,HTML和浏览器中的页面一样大,body要比(html)页面小这8px的边距 -->
@@ -12,7 +18,6 @@
 	<!-- css  双飞翼布局  遮罩效果(模态窗口) -->
 
 	以对象的形式展开查看所有属性,console.dir();学习方法
-
 	<style>
 		js操作标签与操作数据类型;js把标签/数据,看成一个个对象,用方法
 			(函数)操作他们,操作他们需要给他们起个名字,这个名字就是变量;  
@@ -932,12 +937,12 @@
 						var date = new Date();
 						var year = date.getFullYear();
 						var month = date.getMonth() + 1;
-							month = month >= 10? month : '0'+month;
+							month = month >= 10 ? month : '0' + month;
 						var d1 = date.getDate();
 						var h = date.getHours();
 						var m = date.getMinutes();
 						var s = date.getSeconds();
-						var time_str = year + '-' + month + '-' + d1 + ' '+h + ':'+ m + ':' + s;
+						var time_str = year + '-' + month + '-' + d1 + ' ' + h + ':' + m + ':' + s;
 						return [time_str,date];
 					}
 					console.log(typeof date);
@@ -2114,7 +2119,15 @@
 		let '视图' {
 			DataView(ArrayBuffer, 从该字节开始选择, 选择多少字节数): 常见视图
 			let view = new DataView(buffer, 9, 10); // 创建一个共20字节，从字节9开始到字节18的新视图
-
+			getInt8(byteOffset): setInt8(byteOffset, value); // 有符号8位整数
+			getUint8(byteOffset): setUint8(byteOffset, value); // 无符号8位整数
+			getInt16(byteOffset, littleEndian): setInt16(byteOffset, value, littleEndian); // 有符号16位整数
+			getUint16(byteOffset, littleEndian): setUint16(byteOffset, value, littleEndian; // 无符号16位整数
+			getInt32(byteOffset, littleEndian): setInt32(byteOffset, value, littleEndian); // 有符号32位整数
+			getUint32(byteOffset, littleEndian): setUint32(byteOffset, value, littleEndian); // 无符号32位整数
+			getFloat32(byteOffset, littleEndian): setFloat32(byteOffset, value, littleEndian); // 32位浮点数
+			getFloat64(byteOffset, littleEndian): setFloat64(byteOffset, value, littleEndian); // 64位浮点数
+			所有这些方法的第一个参数都是一个字节偏移量，表示要从哪个字节开始读取或写入。无符号8位整数要用1B，而32位浮点数则要用4B.
 		}
 	</script>
 
@@ -2267,7 +2280,7 @@
 			表单的值 val(); 相当于原生(value)
 				val(); 获取   // 获取表单的值
 				val('内容'); 设置  // 设置表单的值
-			.toFixed(2); 保留几位有效数字,(括号里是几就保留几位);
+			.toFixed(2); 方法可把 Number 四舍五入为指定小数位数的数字。
 		}
 		var 遍历元素 {
 			jQuery 隐式迭代是对同一类元素做了同样的操作。如果想要给同一类元素做不同操作，就需要用到遍历。
@@ -3856,7 +3869,7 @@
 			2. http服务器处理模块是一个系统模块，让我们能够通过简单的流程创建一个Web服务器
 			3. 搭建步骤
 				1. const http = require('http'); 导入 http 核心模块
-				3. const server = server = http.createServer(); server 对象负责建立连接，接收数据
+				3. const server = http.createServer(); server 对象负责建立连接，接收数据
 				4. server.listen(4000, () => console.log('Server is running at port 3000.'));监听端口
 				5. server.on('request', (req, res) => {});监听客户端的 request 请求事件，设置请求处理函数
 				6. 当服务器接收到浏览器的请求后，如果没有做出响应，浏览器会等待
@@ -5951,6 +5964,7 @@
 			git init   创建本地仓库
 			git remote add origin 地址；关联git仓库地址
 			git remote -v	查看远程仓库地址
+			git remote set-url origin 地址；替换仓库地址
 			git add .
 			git commit -m '备注'
 			git pull	拉取分支

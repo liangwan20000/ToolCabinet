@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		ul, li {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		ul {
+			margin-left: 40px;
+		}
+		li {
+			padding: 10px 0;
+		}
+		.label {
+			color: #8B658B;
+			font-size: 14px;
+			font-weight: 700;
+		}
+		.value {
+			color: #EE7621;
+			font-weight: 700;
+		}
+		.title {
+			margin-left: 20px;
+			font-size: 16px;
+			font-weight: 700;
+			color: #8B8B7A;
+		}
+		.font {
+			font-weight: 700;
+			color: #EE7621;
+		}
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" v-cloak>
+		<el-collapse>
+			<el-collapse-item title="一致性 Consistency" :name="index" v-for="(item, index) in list" :key="index">
+				<template slot="title">
+					<span class="title">{{ item.title }}</span>
+				</template>
+				<ul>
+					<li v-for="(edit, ind) in item.list" :key="ind">
+						<p v-if="edit.label">
+							<span class="label">{{ edit.label }}</span>:&nbsp;&nbsp;<span class="value">{{ edit.value }}</span>
+						</p>
+						<p v-else class="font">
+							{{ edit }}
+						</p>
+					</li>
+				</ul>
+			</el-collapse-item>
+		</el-collapse>
+	</div>
+	<script src="./ToolCabinet/js/vue.js"></script>
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script>
+		window.resizeTo(100, 100)
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				list: [
+					{
+						title: '面向对象编程',
+						list: [
+							'js操作标签与操作数据类型;js把标签/数据,看成一个个对象,用方法(函数)操作他们,操作他们需要给他们起个名字,这个名字就是变量;',
+							'用方法把他们组合起来这种思想就是面向对象编程思想;',
+							'当开始写的时候,你需要把对象划分出来,划分对象;',
+							'看到这些标签/数据就是一个个对象,给他们添加方法就是面向对象编程;',
+							'方法中的每一步就是面向过程;',
+							'面向对象就是找对象做事，就是通过构造函数创建对象，并调用方法；'
+						]
+					},
+					{
+						title: 'js代码是如何写出来的',
+						list: [
+							'd就是你要干啥,c就是具体化目标,通过a来控制b',
+							'a .(点) / =(赋值) / if(判断,逻辑运算符) / ()[]{}(三个括号) / 运算符 +(拼接) - * /',
+							'b 属性 / 方法 ',
+							'c 数组/ 函数(方法) / 对象',
+							'd 获取元素 创建元素 删除元素 修改属性方法 查看属性方法'
+						]
+					},
+					{
+						title: '字体(font-family)',
+						list: [
+							'microsoft yahei',
+							'sans-serif'
+						]
+					},
+					{
+						title: '块级作用域',
+						list: [
+							'点：点代表对象结构中具有作用域链，访问一级一级的作用域下的属性或方法，需要用点来打开作用域',
+							'块级作用域就是大括号内的区域，大括号外访问不到大括号内的变量；',
+						]
+					},
+					{
+						title: '关键属性',
+						list: [
+							{ label: 'a:link', value: '英文link就是链接的意思，代表当一段文本为链接时的属性' },
+							{ label: 'a:visited', value: '英文visited就是访问过的意思，代表这段文本被点击之后的属性' },
+							{ label: 'a:hover', value: '英文hover就是悬停的意思，代表鼠标指针放在这个链接上时的属性' },
+							{ label: 'a:active', value: '英文active就是有效的、快速的意思，代表鼠标按下时一瞬间的属性' },
+							{ label: 'cursor:pointer', value: '鼠标小手状态' },
+							{ label: 'cursor:default', value: '默认值  箭头' },
+							{ label: 'cursor:text', value: '文本' },
+							{ label: 'cursor:move', value: '移动' },
+							{ label: 'cursor:url(图片地址)', value: '替换的样式' },
+							{ label: 'border-collapse:collapse', value: '细线表格' },
+							{ label: 'duration', value: '时间相关（动画、视频、axios）' },
+							{ label: 'opacity', value: '透明属性 元素内所有元素透明' },
+							{ label: 'required', value: '规定 input 必需在提交之前填写输入字段' },
+							{ label: 'maxlength = "200"', value: '最大输入数 直接寫在標籤里 多行文本輸入框用 (內置屬性)' },
+							{ label: 'disabled', value: '设置input禁用  (內置屬性)' },
+							{ label: 'checked', value: '单选框/复选框设置默认选中(內置屬性)' },
+							{ label: 'resize: none', value: '禁止拉伸  多行文本輸入框用' },
+							{ label: 'selected', value: '下拉框的默认选中项 selected  (內置屬性)' },
+							{ label: 'multiple', value: '表单可选择多个值' },
+							{ label: 'required', value: '规定 input 必需在提交之前填写输入字段' },
+							{ label: 'required', value: '规定 input 必需在提交之前填写输入字段' },
+							{ label: 'required', value: '规定 input 必需在提交之前填写输入字段' },
+						]
+					},
+					{
+						title: '关键字',
+						list: [
+							{ label: 'NaN', value: '不是一个数字' },
+							{ label: 'isNaN(变量)', value: '判断变量是不是一个数字  true证明NaN是对的,false证明NaN是错的' },
+							{ label: 'null', value: '发生隐式类型转换时,会变成布尔类型的值' },
+							{ label: 'break', value: '会立即结束break所在的循环的循环体代码' },
+							{ label: 'continue', value: '跳过本次循环进入下个循环' },
+							{ label: 'length', value: '共有多少个索引(数组,函数,对象)' },
+							{ label: 'throw', value: '抛出，和return功能相似' },
+							{ label: 'instanceof', value: '判断zs 这个对象是不是 People构造函数创建的 console.log(zs instanceof People)' },
+							{ label: 'typeof', value: '判断变量的数据类型 Number Boolean 等; typeof data' },
+							{ label: 'property', value: '属性' },
+							{ label: 'value', value: '值' },
+							{ label: 'index', value: '索引' },
+							{ label: 'target', value: 'a连接中表示跳转方式 _self(当前页面打开)，_blank(新窗口打开)' },
+							{ label: 'delete', value: '删除数组中的项' }
+						]
+					},
+					{
+						title: 'arguments',
+						list: [
+							'arguments对象中是用来保存用户传递实参的信息。【实参的个数，实参的具体值】;',
+							'如果函数中无法确定实参的个数，考虑使用arguments;',
+							'如果能够确定实参个数，推荐使用length。'
+						]
+					},
+					{
+						title: 'return',
+						list: [
+							'在函数内部的变量，如果希望在函数外部使用，是无法直接获取的',
+							'如果希望在函数外部使用函数内部中的值，那么就可以给函数设置返回值',
+							'代码执行完return后，后面的代码不再执行。(本作用域有效)',
+							'任何一种数据类型都可以作为返回值【数组和函数既可以作为参数又可以作为返回值】',
+							'如果一个函数没有返回值，那么默认的返回值是 undefined',
+							'在哪里都能使'
+						]
+					},
+					{
+						title: 'this',
+						list: [
+							'普通函数中的this     指向Window',
+							'在方法中的this	   指向当前方法所属的对象',
+							'在构造函数的this	   指向创建的对象',
+							'构造函数谁调用函数，this就指向谁'
+						]
+					},
+					{
+						title: 'new',
+						list: [
+							'在内存中开辟一块空间,创建一个空对象',
+							'this指向创建的对象',
+							'执行函数',
+							'返回当前对象',
+							'构造函数有返回值  在构造函数中，默认的返回值就是当前创建的对象'
+						]
+					},
+					{
+						title: '所有对象',
+						list: [
+							'window',
+							'Object',
+							'document',
+							'Array',
+							'Number',
+							'String',
+							'Function',
+							'Date',
+							'RegExp',
+							'XMLHttpRequest'
+						]
+					},
+					{
+						title: 'Object',
+						list: [
+							{ label: 'Obejct.keys()', value: '获取对象所有的键，返回一个数组' },
+							{ label: 'Obejct.assign()', value: '方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象' },
+							{ label: 'Obejct.hasOwnProperty(prop)', value: '方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）' },
+							{ label: 'Object.defineProperty(obj, prop, descriptor)', value: '方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象' },
+							{ label: 'Object.getOwnPropertyDescriptor(obj, prop)', value: '方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）' }
+						]
+					},
+					{
+						title: 'descriptor: Object.defineProperty(obj, prop, descriptor)',
+						list: [
+							{ label: 'configurable', value: '当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。' },
+							{ label: 'enumerable', value: '当且仅当该属性的enumerable为true时，该属性才能够出现在对象的枚举属性中。默认为 false。数据描述符同时具有以下可选键值' },
+							{ label: 'value', value: '该属性对应的值可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined' },
+							{ label: 'writable', value: '当且仅当该属性的writable为true时，value才能被赋值运算符改变。默认为 false。存取描述符同时具有以下可选键值' },
+							{ label: 'get', value: '一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。当访问该属性时，该方法会被执行，方法执行时没有参数传入，但是会传入this对象（由于继承关系，这里的this并不一定是定义该属性的对象）。默认为 undefined' },
+							{ label: 'set', value: '一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。当属性值修改时，触发执行该方法。该方法将接受唯一参数，即该属性新的参数值。默认为 undefined' },
+							{ label: 'get和set是一组', value: 'value和writable是一组，一个属性只能定义一组，不能两组同时定义' }
+						]
+					},
+					{
+						title: 'Object.getOwnPropertyDescriptor(obj, prop)',
+						list: [
+							{ label: 'configurable', value: '当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。' },
+							{ label: 'enumerable', value: '当且仅当指定对象的属性可以被枚举出时，为 true' },
+							{ label: 'value', value: '该属性的值(仅针对数据属性描述符有效)' },
+							{ label: 'writable', value: '当且仅当属性的值可以被改变时为true。(仅针对数据属性描述有效)' },
+							{ label: 'get', value: '获取该属性的访问器函数（getter）。如果没有访问器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)' },
+							{ label: 'set', value: '获取该属性的设置器函数（setter）。 如果没有设置器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)' }
+						]
+					},
+					{
+						title: '2D',
+						list: [
+							{ label: 'transition', value: 'all  1s  linear 2s' },
+							{ label: 'transition', value: 'transparent（透明色）' },
+							{ label: 'transition-property', value: 'all(默认代表所有的属性都有动画效果) | 单独设置具体的属性名称' },
+							{ label: 'transition-duration', value: '执行多长时间' },
+							{ label: 'transition-delay', value: '延迟时间,多长时间后执行' },
+							{ label: 'transition-timing-function', value: 'linear 执行速度' },
+							{ label: '动画的速度类型', value: 'ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)' }
+						]
+					},
+					{
+						title: 'transform',
+						list: [
+							{ label: 'translate(length, length)', value: '位移x轴 y轴' },
+							{ label: 'rotate(deg)', value: '旋转 单位deg' },
+							{ label: 'transform-origin', value: '设置圆点的位置  transform-origin: 方位名称 || 值' },
+							{ label: 'scale(0, 0)', value: '缩放（scale）： 改变元素大小' },
+							{ label: 'skew(angle, angle)', value: '倾斜（skew）:  让元素发生倾斜（deg）' }
+						]
+					},
+					{
+						title: '3D',
+						list: [
+							{ label: 'transform-style', value: 'preserve-3d; 将平面图形转为立体图形' },
+							{ label: 'perspective', value: '透视 页面中出现近大远小的效果' },
+							{ label: 'transform-origin', value: '在3d转化中 改变轴的位置' },
+							{ label: 'transform', value: 'transform的各种值' }
+						]
+					},
+					{
+						title: '动画',
+						list: [
+							{ label: '动画合写', value: 'animation: move 1s  infinite  2s alternate' },
+							{ label: 'animation-name', value: '动画名称' },
+							{ label: 'animation-duration', value: '动画时间' },
+							{ label: 'animation-iteration-count', value: '动画执行次数  【infinite无限次】' },
+							{ label: 'animation-delay', value: '动画延时' },
+							{ label: 'animation-direction', value: '动画逆播（动画在返回的时候也有动画效果） 【alternate】' },
+							{ label: 'animation-fill-mode', value: '动画在结束位置处停下【forwards】' },
+							{ label: 'animation-play-state', value: 'paused(停止); 设置动画播放状态' },
+							{ label: '注意', value: '在百分比写法中，百分比是相对动画执行时间' },
+							{ label: '@keyframes + 自定义动画名称', value: '0%: {},20%: {},等' }
+						]
+					},
+					{
+						title: 'web布局',
+						list: [
+							{ label: '流式布局', value: '百分比布局' },
+							{ label: '伸缩布局', value: 'flex' },
+							{ label: 'rem适配（单位）', value: '要实现页面精细化适配方案' },
+							{ label: '响应式布局', value: '根据设备不同（宽度），网页的布局方式存在差异' },
+							{ label: '正常预览', value: '页面不能出现缩放，页面水平方向不能出现滚动条,所以在最外层加一个盒子包裹' },
+							{ label: 'window.devicePixelRatio', value: '获取设备独立像素' }
+						]
+					},
+					{
+						title: '流式布局【百分比布局】',
+						list: [
+							{ label: '二倍图', value: 'Ul会准备一个是原来图片2倍大小的图片，解决了图片在不同设备中能够正常预览（没有图片拉伸后的模糊效果）' },
+							{ label: '匹配视口', value: '<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"></meta>' },
+							{ label: '浏览器内核别名', value: '-webkit- -moz- -ms- -o-' }
+						]
+					},
+					{
+						title: '伸缩布局',
+						list: [
+							{ label: '伸缩盒子', value: '默认有两条轴【主轴，侧轴】 主轴： 默认的显示方向是水平从左向右显示的 侧轴： 始终垂直于主轴' },
+							{ label: 'display', value: 'flex;先将直接父元素设置为伸缩盒子  将标准流的盒子转化为伸缩盒子' },
+							{ label: 'flex-direction (调整主轴的方向)', value: 'row(水平) column (垂直显示) row-reverse(水平翻转) column-reverse (垂直翻转)' },
+							{ label: 'justify-content (设置在主轴方向的对齐方式)', value: 'flex-start; (左边开始往右排) flex-end; (右边开始往左排) center; (盒子居中排列) space-between; (空余区域被盒子等分) space-around; (平均分布在盒子两侧)' },
+							{ label: 'align-items (设置元素在侧轴对齐方式,要清楚侧轴的方向)', value: 'stretch(拉伸) flex-start' },
+							{ label: 'flex-wrap(换行)', value: 'nowrap(不换行) flex-start' },
+							{ label: 'flex', value: '将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上' },
+							{ label: 'order (对子元素进行排序显示效果)', value: '值；注意： 值越小，元素越靠前显示' }
+						]
+					},
+				],
+			},
+			methods: {
+
+			}
+		})
+	</script>
+</body>
+</html>

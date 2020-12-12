@@ -1,67 +1,89 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<script src="./js/EventUtil.js"></script>
-		<script src="./js/hao.js"></script>
-		<style>
-			#droptarget {
-				width: 200px;
-				height: 200px;
-				background-color: lime;
-			}
-			img {
-				width: 200px;
-				height: 200px;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="droptarget"></div>
-		<span>奥瑟金佛违法</span>
-		<img src="./1.jpg" alt="">
-		<!-- <iframe src="file:///D:/myplay/ToolCabinet/demo.html" frameborder="0"></iframe> -->
-		<script>
-			// let iframeWindow = document.querySelector('iframe').contentWindow;
-			// iframeWindow.postMessage('A secret', 'file:///D:/myplay/ToolCabinet/demo.html')
-			// EventUtil.addHandler(window, 'message', (event) => {
-			// 	if (event.origin === 'file:///D:/myplay/ToolCabinet/demo.html') {
-			// 		console.log(event.data);
-			// 		event.source.postMessage('Received', 'file:///D:/myplay/ToolCabinet/demo.html');
-			// 	}
-			// })
-			// console.dir(iframeWindow);
-			// 监听拖动事件
-			EventUtil.addHandler(window, 'dragstart', (event) => {
-				console.log('22', typeof event.toElement)
-				// 查看拖动目标的内容
-				if (event.toElement.nodeName === 'IMG') {
-					console.log('3')
-				} else if (event.toElement.nodeName === '#text') {
-					console.log('4')
-				}
-				console.log('2', event)
-			})
-
-			let droptarget = queryE('#droptarget');
-			// 进入放置对象事件
-			EventUtil.addHandler(droptarget, 'dragenter', (event) => {
-				EventUtil.preventDefault(event);
-				event.dataTransfer.setData('text', 'some text')
-
-			})
-			// 鼠标在放置对象上时就会一直触发
-			EventUtil.addHandler(droptarget, 'dragover', (event) => {
-				EventUtil.preventDefault(event);
-				console.log('1')
-			});
-			// 放开鼠标
-			EventUtil.addHandler(droptarget, 'drop', (event) => {
-				EventUtil.preventDefault(event);
-				console.log(event.dataTransfer.getData('text'))
-			})
-
-		</script>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <!-- 引入样式 -->
+        <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+        <!-- <link href="./js/summernote/summernote.css" rel="stylesheet">
+        <link href="./js/summernote/summernote-bs3.css" rel="stylesheet"> -->
+        <!-- 引入组件库 -->
+        <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+        <!-- <script src="./js/EventUtil.js"></script> -->
+        <!-- <script src="./js/hao.js"></script> -->
+        <!-- <script src="./js/jquery.min.js"></script>
+        <script src="./js/fn.js"></script>
+        <script src="./js/summernote-zh-CN.js"></script>
+        <script src="./js/summernote.min.js"></script>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/fn.js"></script> -->
+        <!-- 引入样式 -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <!-- 引入组件库 -->
+        <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+        <!-- <script src="./js/vue.min.js"></script> -->
+        <style>
+            .box{
+                width: 200px;
+                height: 100px;
+                background-color: lime;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <anchored-heading :level="2">
+                你好
+            </anchored-heading>
+        </div>
+        <!-- import Vue before Element -->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <!-- import JavaScript -->
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <script>
+            let vm = new Vue({
+                el: '#app',
+                components: {
+                    'anchored-heading': {
+                        props: {
+                            level: {
+                                type: Number,
+                                required: true
+                            }
+                        },
+                        render: function (createElement) {
+                            let a = null
+                            let num = a.length
+                            return createElement(
+                                'h' + this.level,   // 标签名称
+                                this.$slots.default // 子节点数组
+                            )
+                        },
+                        renderError (createElement, err) {
+                            console.log(err.stack)
+                            return createElement('pre', { style: { color: 'red' }}, err.stack)
+                        }
+                    }
+                },
+                data: {
+                    value: null,
+                    options: [
+                        { label: '柯比亚', value: 1 },
+                        { label: '汤一膳', value: 2 },
+                        { label: '吉雅日料', value: 3 },
+                        { label: '4', value: 4 },
+                        { label: '5', value: 5 },
+                        { label: '6', value: 6 }
+                    ]
+                },
+                mounted() {
+                    
+                },
+                methods: {
+                    
+                }
+            })
+            
+        </script>
+    </body>
 </html>
