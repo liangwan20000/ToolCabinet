@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title></title>
         <!-- 引入样式 -->
         <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
         <!-- <link href="./js/summernote/summernote.css" rel="stylesheet">
@@ -17,11 +16,18 @@
         <script src="./js/summernote.min.js"></script>
         <script src="./js/jquery.min.js"></script>
         <script src="./js/fn.js"></script> -->
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="renderer" content="webkit">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
         <!-- 引入样式 -->
         <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
         <!-- 引入组件库 -->
-        <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
-        <!-- <script src="./js/vue.min.js"></script> -->
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <script src="./js/vue.min.js"></script>
+        <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <style>
             .box{
                 width: 200px;
@@ -33,8 +39,23 @@
     <body>
         <div id="app">
             <anchored-heading :level="2">
-                你好
+                <span>你好</span><span>你好</span>
+                <p>hellow</p>
             </anchored-heading>
+            <form action="">
+                <fieldset>
+                    <legend>注册信息</legend>
+
+                    <span>用户名:</span>
+                    <input type="text" class="form-control">
+
+                    <br>
+                    <br>
+                    <span>用户名:</span>
+                    <input type="text" class="form-control">
+
+                </fieldset>
+            </form>
         </div>
         <!-- import Vue before Element -->
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -52,8 +73,6 @@
                             }
                         },
                         render: function (createElement) {
-                            let a = null
-                            let num = a.length
                             return createElement(
                                 'h' + this.level,   // 标签名称
                                 this.$slots.default // 子节点数组

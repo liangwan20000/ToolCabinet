@@ -35,6 +35,10 @@
 			font-weight: 700;
 			color: #EE7621;
 		}
+		.labelWidth {
+			width: 100px;
+			opacity: 0;
+		}
 		[v-cloak] {
 			display: none;
 		}
@@ -50,7 +54,7 @@
 				<ul>
 					<li v-for="(edit, ind) in item.list" :key="ind">
 						<p v-if="edit.label">
-							<span class="label">{{ edit.label }}</span>:&nbsp;&nbsp;<span class="value">{{ edit.value }}</span>
+							<span class="label" :class="edit.label && edit.label.toString() === 'true' ? 'labelWidth' : ''">{{ edit.label }}</span>:&nbsp;&nbsp;<span class="value">{{ edit.value }}</span>
 						</p>
 						<p v-else class="font">
 							{{ edit }}
@@ -60,7 +64,7 @@
 			</el-collapse-item>
 		</el-collapse>
 	</div>
-	<script src="./ToolCabinet/js/vue.js"></script>
+	<script src="./js/vue.js"></script>
 	<!-- 引入样式 -->
 	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 	<!-- 引入组件库 -->
@@ -316,6 +320,170 @@
 							{ label: 'order (对子元素进行排序显示效果)', value: '值；注意： 值越小，元素越靠前显示' }
 						]
 					},
+					{
+						title: 'rem适配（单位）[要实现页面精细化适配方案]',
+						list: [
+							{ label: 'em', value: '相对当前标签中的文字大小;' },
+							{ label: 'rem', value: '相对根标签中的文字大小 （HTML标签中的文字大小），假设将一张640图片分成20份,每份32px;再把你要操作的图片除以32,就是得到的rem;' },
+							{ label: '语法', value: '图片如果是二倍图可以用rem,如果不是就要在外边加盒子,给盒子设置rem,把图片放盒子里宽百分之百' }
+						]
+					},
+					{
+						title: '响应式布局：@media only screen and (width: 320px)',
+						list: [
+							{ label: '媒体类型', value: 'all screen(屏幕设备，PC和移动) print（打印设备）' },
+							{ label: '媒体特性', value: 'width （max-width,min-width）横屏 竖屏 ' },
+							{ label: '关键字', value: 'only 只；not 排除；and 并且' },
+							{ label: '语法', value: '图片如果是二倍图可以用rem,如果不是就要在外边加盒子,给盒子设置rem,把图片放盒子里宽百分之百' }
+						]
+					},
+					{
+						title: 'bootstrap',
+						list: [
+							{ label: '介绍', value: 'Bootstrap[Bootstrap 是移动设备优先的]:用来开发响应式布局的 HTML + CSS  +JS 的框架;' },
+							{ label: '设置移动端视口', value: '<meta name="viewport" content="width=device-width, initial-scale=1">' },
+							{ label: '设置兼容IE最高版本', value: '<meta http-equiv="X-UA-Compatible" content="IE=edge">' },
+							{ label: '兼容国产浏览器', value: '<meta name="renderer" content="webkit">' },
+							{ label: '引用框架对应的css文件', value: '<link href="css/bootstrap.min.css" rel="stylesheet">' },
+							{ label: '解决Ie低版本不支持H5新标签写法', value: 'script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"' },
+							{ label: '标题标签', value: '通过类名的方式可以设置对应的标题标签' },
+							{ label: 'H5中的新标签', value: '<mark>标记</mark>  | <small></small> 或者类名.small' },
+							{ label: '对齐方式', value: '.text-left |  .text-center  |  .text-right' },
+							{ label: '字母大小转化( text-transform: lowercase | uppercase | capitalize )', value: '.text-uppercase(将所有的小写字母转化为大写) .text-lowercase(将大写转为小写) .text-capitalize(单词首字母大写)' },
+							{ label: '去掉列表默认样式', value: '.list-unstyled' },
+							{ label: '实现列表一行显示', value: '.list-inline' },
+							{ label: '实现自定义列表一行显示', value: '.dl-horizontal' },
+							{ label: '表格中基本样式', value: '.table' },
+							{ label: '设置带边框的表格', value: '.table-bordered' },
+							{ label: '设置隔行变色表格', value: '.table-striped' },
+							{ label: '设置鼠标悬停时候的样式', value: '.table-hover' },
+							{ label: '鼠标悬停在行或单元格上时所设置的颜色', value: '.active' },
+							{ label: '标识成功或积极的动作', value: '.success' },
+							{ label: '标识普通的提示信息或动作', value: '.info' },
+							{ label: '标识警告或需要用户注意', value: '.warning' },
+							{ label: true, value: '.danger' },
+							{ label: '实现表单控件通栏显示类名', value: '.form-control' },
+							{ label: '控件一行显示', value: '.form-inline' },
+							{ label: '控件水平一列显示', value: '.form-horizontal' },
+							{ label: '禁止控件使用', value: 'disabled属性  和 .disabled类名' },
+							{ label: '单选控件一行显示', value: '.radio-inline' },
+							{ label: '复选框一行显示', value: '.checkbox-inline' },
+							{ label: '给表单控件设置一个外部的容器', value: '<fieldset></fieldset>' },
+							{ label: '表单控件外部容器设置标题', value: '<legend>注册信息</legend>' },
+							{ label: '在超小屏幕(小于768px)下元素占几份(移动端)', value: '.col-xs-值' },
+							{ label: '在小屏幕(大于等于768px)设备下元素占几份(平板)', value: '.col-sm-值' },
+							{ label: '在PC端(大于等于992px)元素占几份(电脑)', value: '.col-md-值' },
+							{ label: '在超大屏幕(大于等于1200px)下元素占几份', value: '.col-lg-值' },
+							{ label: '栅格系统使用步骤', value: '' },
+							{ label: '1. 必须准备一个父元素，该父元素的类名必须叫', value: '.container(有固定宽度) .container-fluid（将视口沾满）' },
+							{ label: '2. 依据栅格盒子实现响应式布局', value: '<div class="box  container-fluid clearfix"><div class="one col-md-12  col-sm-4  col-xs-3"></div></div>' },
+							{ label: '3. 注意', value: '当给元素设置了栅格参数后，该元素就浮动脱标了;通过给父元素设置 clearfix 即可清除浮动' },
+							{ label: '4. 在栅格系统中实现列偏移', value: '.col-md-offset-值 .col-xs-offset-值 .col-sm-offset-值' },
+							{ label: '5. 实现列排序', value: 'col-md-push-值 col-sm-pull-值' },
+						]
+					},
+					{
+						title: 'js语法基础',
+						list: [
+							'1. 尽管并不安全，但声明语句中忽略var关键字是合法的 JScript 语法。这时，JScript解释器给予变量全局范围的可见度。当在过程级中声明一个变量时，它不能用于全局范围；这种情况下，变量声明必须用var关键字。',
+							{ label: '2. 从上面的描述看来，对待这两种定义方法要区分以下两种情况', value: '' },
+							{ label: true, value: '1. 在一个过程级中（即位于function的定义范围内，无论是函数，还是类）的任何地方，包括在一个区块里（for,while,if……），定义变量时，使用var定义，则此变量只在这个过程级内起作用，反之为全局变量。' },
+							{ label: true, value: '2. 在过程级外定义变量时，无论是否忽略var，都将定义一个全局变量。从这点看来，JS和其他语言有不一样的' + 
+								'地方，变量的范围不以“{}”作为边界，而是以"function(){}"为边界,而且在过程内可以很轻松的定义全局' + 
+								'变量。如果不注意这个问题的话，是很容易产生不可预知的错误的。' },
+							{ label: '3. 对于使用var，我的建议是要养成好的使用习惯', value: 'preserve-3d; 将平面图形转为立体图形' },
+							{ label: true, value: '1. 在程序的开头，统一定义全局变量；' },
+							{ label: true, value: '2. 所有的变量在定义时都要加上var；' },
+							{ label: true, value: '3. 尽量不要在不同的过程中使用相同的变量名。' },
+							{ label: '网页中输出消息方式', value: '' },
+							{ label: true, value: '1. alert("今天开始学习js基础，好无聊");' },
+							{ label: true, value: '2. document.write("今天开始学习js基础，好无聊"); 在body标签中输出消息（网页中）' },
+							{ label: true, value: '3. console.log("今天开始学习js基础，好无聊"); 在控制台中输出消息' },
+							{ label: true, value: '4. confirm("这是一个问答式输出消息的方式,需要选择是或否,是对应的是true,否对应的是false");' },
+							{ label: true, value: '5. prompt("在网页中弹出输入框,让用户输入");' },
+							{ label: '命名规范', value: '' },
+							{ label: true, value: '1. 不能使用关键字定义变量名' },
+							{ label: true, value: '2. 推荐不要使用系统中内置的属性名作为变量名 （name）' },
+							{ label: true, value: '3. 不推荐使用保留字作为变量名' },
+							{ label: true, value: '4. 不推荐使用汉字定义变量名' },
+							{ label: true, value: '5. 在定义变量名的时候不能出现空格' },
+							{ label: true, value: '6. 在js中是区分字母大小写的(大写是一个变量,小写是一个变量' },
+							{ label: '变量(重点)', value: '变量是在程序中用来保存数据的一个容器' },
+							{ label: '定义变量', value: 'var age' },
+							{ label: '赋值', value: 'age = 20' },
+							{ label: '注意', value: '' },
+							{ label: true, value: '1. 在js中是区分字母大小写的(大写是一个变量,小写是一个变量' },
+							{ label: true, value: '2. 如果要输出的信息是一个变量，那么不需要加引号' },
+							{ label: true, value: '3. 一个变量一次只能保存一个值，最后一次赋值结果' },
+							{ label: true, value: '4. 不推荐使用汉字定义变量名' },
+							{ label: true, value: '5. 可以在定义变量的时候给变量赋值  例如 ： var age = 123;' },
+							{ label: true, value: '6. 可以同时定义多个变量并赋值 中间用,隔开    例如： var age=12,uname,uheight;' },
+							{ label: true, value: '7. 定义变量的时候必须使用var 关键字 ;' },
+							{ label: '数据类型：', value: '用来判断当前变量在内存中的具体存储位置' },
+							{ label: '简单数据类型', value: '1. 数字类型（number）：2. 字符串类型（string）：3. 布尔类型(boolean)：4. undefined类型:如果一个变量没有赋值，默认值是undefined：5. null ：6. NaN  isNaN' },
+							{ label: "复杂数据类型", value: '数组,函数,对象' },
+							{ label: '数据类型判断', value: 'typeof 变量名' },
+							{ label: '将其他数据类型转换为数字类型', value: '' },
+							{ label: true, value: '1. Number(变量)' },
+							{ label: true, value: '2. parseInt(变量): 只会保留整数部分' },
+							{ label: true, value: '3. parseFloat(变量): 整数小数部分都保留' },
+							{ label: true, value: '4. String(变量)' },
+							{ label: true, value: '5. 变量.toString()' },
+							{ label: true, value: '3. Boolean(变量)' },
+							{ label: '隐式类型转换', value: '让变量在程序中自己通过运算后发生的类型转换' },
+							{ label: true, value: '1. 通过数学运算后得到数字类型（- *  /  %(取余));数学运算可以发生隠式转换 不包括加运算;' },
+							{ label: true, value: '2. 使用加号拼接字符串可以发生隠式转换' },
+							{ label: '运算符 +', value: '' },
+							{ label: true, value: '1. 如果是数字类型的变量相加，那么得到的结果就是一个数字类型的结果' },
+							{ label: true, value: '2. 如果有字符串参与相加运算，那么最后的结果就是一个字符串（加号起到的是一个连接的作用）' },
+							{ label: '运算符 -', value: '' },
+							{ label: true, value: '1. 如果是数字类型的变量相减，那么得到的结果就是一个数字类型的结果' },
+							{ label: true, value: '2. 如果变量是一个字符串类型的数字进行相减，那么得到的结果也是数字【发生了隐式类型转换】' },
+							{ label: true, value: '3. 如果是非数字变量相减，那么得到的结果是 NaN ' },
+							{ label: '运算符 * / ', value: '' },
+							{ label: true, value: '1. 如果是数字类型的变量相除，那么得到的结果就是一个数字类型的结果' },
+							{ label: true, value: '2. 如果除数是0，那么得到的结果是 Infinity（无穷大）,也是数字类型' },
+							{ label: '运算符 %', value: '模运算 | 取余运算' },
+							{ label: '运算符 () []', value: '() [] 优先级问题' },
+							{ label: '=', value: '赋值运算符   将运算符右侧的结果赋值左侧的变量' },
+							{ label: true, value: 'a+=b    ===>   a = a+b;' },
+							{ label: '比较运算符', value: '' },
+							{ label: true, value: '> < >= <= [条件有一个满足即可]' },
+							{ label: true, value: '== 只是用来判断变量中的值是否相等，没有判断数据类型' },
+							{ label: true, value: '=== 同时要判断数据类型和值是否相等' },
+							{ label: true, value: '!= 只用来判断值是否不相等' },
+							{ label: true, value: '!== 值和数据类型同时判断' },
+							{ label: '逻辑运算符 &&', value: '&& (且运算) 并且必须同时满足(true) [绝对运算]' },
+							{ label: true, value: '1. false  &&  true ---> 结果是 false' },
+							{ label: true, value: '2. true && true    ---> 结果是 true' },
+							{ label: true, value: '3, false  && false ---> 结果是 false' },
+							{ label: '逻辑运算符 ||', value: '|| (或运算)： 或者（条件有一个满足即可） [易满运算]' },
+							{ label: true, value: '1.  false || false  ----> 结果是false' },
+							{ label: true, value: '2.  false  || true  ----> 结果是true' },
+							{ label: true, value: '3.  true  || true   ---> 结果是 true' },
+							{ label: true, value: '3. 不推荐使用保留字作为变量名' },
+							{ label: true, value: '4. 不推荐使用汉字定义变量名' },
+							{ label: true, value: '5. 在定义变量名的时候不能出现空格' },
+							{ label: true, value: '3. 不推荐使用保留字作为变量名' },
+							{ label: true, value: '4. 不推荐使用汉字定义变量名' },
+							{ label: true, value: '5. 在定义变量名的时候不能出现空格' },
+						]
+					},
+					{
+						title: '变量(重点)',
+						list: [
+							'',
+							{ label: '定义变量', value: 'var age' },
+							{ label: '赋值', value: 'age = 20' },
+							{ label: '注意', value: '' },
+							{ label: true, value: '1. 字母大小写' },
+							{ label: true, value: '2. 如果要输出的信息是一个变量，那么不需要加引号' },
+							{ label: true, value: '3. 一个变量一次只能保存一个值，最后一次赋值结果' },
+							{ label: true, value: '4. 不推荐使用汉字定义变量名' },
+							{ label: true, value: '5. 可以在定义变量的时候给变量赋值  例如 ： var age = 123;' },
+							{ label: true, value: '6. 在js中是区分字母大小写的(大写是一个变量,小写是一个变量' }
+						]
+					}
 				],
 			},
 			methods: {
