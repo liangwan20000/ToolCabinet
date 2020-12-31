@@ -86,6 +86,10 @@
                 },
                 data: {
                     value: null,
+                    obj: {
+                        name: 'zs',
+                        age: 20
+                    },
                     options: [
                         { label: '柯比亚', value: 1 },
                         { label: '汤一膳', value: 2 },
@@ -96,7 +100,9 @@
                     ]
                 },
                 mounted() {
-                    
+                    for (let i of this.obj) {
+                        console.log(i)
+                    }
                 },
                 methods: {
                     
