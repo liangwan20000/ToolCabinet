@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        .active {
+            background-color: #00868B;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div ref="div">
+            <p>
+                大问题: 代码越写越乱；写代码的步骤流程；修改Element Ui等封装好的组件的样式（比如添加了.is-active的样式）；
+            </p>
+            <p>
+                按钮：v-logind，重置；删除功能不可以直接调用接口，需添加气泡确认框
+                <br>
+                搜索框：几个基本功能
+                <br>
+                下拉框：几个基本功能；联动
+                <br>
+                时间选择框：格式控制
+                <br>
+                报错处理；如果不存在；必填项；跳转页面初始化数据；
+            </p>
+            <p class="box div list">{{ value }}</p>
+        </div>
+    </div>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script type="text/javascript">
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                value: 1234,
+            },
+            mounted() {
+                this.$refs.div.addEventListener('click', (event) => {
+                    event.target.classList.add('active')
+                    console.log(event.target.className)
+                })
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+</html>
