@@ -180,7 +180,7 @@ const mixin = {
           break
       }
     },
-    // 处理程序
+    // 编辑处理程序
     async editHandleProgram (obj) {
       // 重置表单
       this.resetFormData()
@@ -200,7 +200,7 @@ const mixin = {
       // 查询参数处理
       // let postData = await this.searchDataHandleProgram(obj.row)
       // 查询编辑的数据
-      await this.searchData(obj.row, obj.searchData)
+      await this.searchEditData(obj.row, obj.searchData)
 
       this.$nextTick(() => {
         if (this.$refs.RefForm) {
@@ -210,7 +210,45 @@ const mixin = {
       })
     },
     // 查询编辑的数据
-    async searchData(row, postData) {
+    async searchEditData(row, postData) {
+      try {
+        let res = await request({ url: row.url, method: row.method, [row.key]: postData})
+
+        await this.responseDataHandleProgram(res)
+      } catch (err) {
+        let one = err
+      }
+      
+      this.$_loadingPageClose()
+    },
+    
+    // 详情处理程序
+    async detailsHandleProgram (obj) {
+      this.pagerData = {
+        pageIndex: 1,
+        count: 0,
+        pageSize: 10
+      }
+      // 改变模态窗状态
+      this.dialogVisible = true
+      // 保存数据
+      this.row = obj.row
+      // 开启背景
+      // this.$_loadingPageOpen()
+      // 查询参数处理
+      // let postData = await this.searchDataHandleProgram(obj.row)
+      // 查询详情的数据
+      await this.searchdetailsData(obj.row, obj.searchData)
+
+      this.$nextTick(() => {
+        if (this.$refs.RefForm) {
+          // 移除表单项的校验结果
+          this.$refs.RefForm.clearValidate()
+        }
+      })
+    },
+    // 查询详情的数据
+    async searchdetailsData(row, postData) {
       try {
         let res = await request({ url: row.url, method: row.method, [row.key]: postData})
 

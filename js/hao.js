@@ -1,14 +1,51 @@
-// 获取当前时间
-function getTime () {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var d1 = date.getDate();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    var s = date.getSeconds();
-    var time_str = year + '-' + month + '-' + d1 + ' '+h + ':'+ m + ':' + s;
-    return time_str;
+// 处理时间
+/**
+ * Parse the time to string
+ * @param {(Object|string|number)} time
+ * @param {string} cFormat
+ * @returns {string | null}
+ */
+function parseTime(time, cFormat) {
+	if (arguments.length === 0 || !time) {
+		return null
+	}
+	const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+	let date
+	if (typeof time === 'object') {
+		date = time
+	} else {
+		if ((typeof time === 'string')) {
+			if ((/^[0-9]+$/.test(time))) {
+				// support "1548221490638"
+				time = parseInt(time)
+			} else {
+				// support safari
+				// https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+				time = time.replace(new RegExp(/-/gm), '/')
+			}
+		}
+
+		if ((typeof time === 'number') && (time.toString().length === 10)) {
+			time = time * 1000
+		}
+		date = new Date(time)
+	}
+	const formatObj = {
+		y: date.getFullYear(),
+		m: date.getMonth() + 1,
+		d: date.getDate(),
+		h: date.getHours(),
+		i: date.getMinutes(),
+		s: date.getSeconds(),
+		a: date.getDay()
+	}
+	const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
+		const value = formatObj[key]
+		// Note: getDay() returns 0 on Sunday
+		if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+		return value.toString().padStart(2, '0')
+	})
+	return time_str
 }
 // 获取当前月的最后一天
 function getLastDay () {
@@ -24,7 +61,7 @@ function getLastDay () {
     var oneDay = 1000 * 60 * 60 * 24;
     // 上个月的第一天减去一天得到当前月的最后一天的时间
     var lastTime = new Date(nextMonthFirstDay - oneDay);
-    console.log(lastTime.getMonth())
+    // console.log(lastTime.getMonth())
     // 得到当前月
     var month = parseInt(lastTime.getMonth() + 1);
     // 得到当前月最后一天
@@ -35,8 +72,42 @@ function getLastDay () {
     if (day < 10) {
         day = '0' + day
     }
-    console.log(date.getFullYear() + '-' + month + '-' + day)
+    return date.getFullYear() + '-' + month + '-' + day
 }
+
+/**
+ *根据指定的分割数，将数组（字符串）分割成块，剩余数量不足以达到分割数的亦形成一个数组
+ *
+ * @param {Array} array 获取的数组
+ * @param {number} size 每一块的数量
+ * @example
+ *
+ * _.chunk([1,2,3,4,5],2);
+ * //=>[[1,2],[3,4],[5]]
+ */
+function chunk(array, size) {
+	// 获取数组长度
+	let length = array == null ? 0 : array.length
+	// 如果为空返回空数组
+	if (!length || size < 1) {
+	  	return []
+	}
+	// 初始化
+	let index = 0, resIndex = 0, result = Array(Math.ceil(length / size)) // 向上取整,得到一个已知 length 大小的数组
+
+	// while (index < length) {
+	// 	result[resIndex] = array.slice(index, index + size)
+	// 	index = index + size
+	// 	resIndex++
+	// }
+
+	// 循环
+	while (index < length) {
+		result[resIndex++] = array.slice(index, (index += size))
+	}
+	return result
+}
+
 // 获取单个元素
 function queryE (element) {
 	return document.querySelector(element);
