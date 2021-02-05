@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script type="text/javascript" src="one.js"></script>
+    <script type="text/javascript">
+        // let a = 0
+        // function chunk (array, process, context) {
+        //     setTimeout(function () {
+        //         let item = array.shift();
+        //         process.call(context, item);
+        //         a++
+        //         console.log(a)
+        //         if (array.length > 0) {
+        //             setTimeout(arguments.callee, 1000)
+        //         }
+        //     })
+        // }
+        // let data = [12, 123,124, 453, 436, 23, 23, 5, 4123, 45, 46, 564, 2234, 45, 42]
+        // console.log(data)
+        // function printValue (item) {
+        //     let div = document.getElementById('myDiv');
+        //     div.innerHTML += item + '<br/>'
+        // }
+        // chunk(data, printValue)
+        function EventTarget () {
+            this.handlers = {};
+        }
+        EventTarget.prototype = {
+            constructor: EventTarget,
+            addHandler: function (type, handler) {
+                if (typeof this.handlers[type] === 'undefined') {
+                    this.handlers[type] = [];
+                }
+
+                this.handlers[type].push(handler);
+            },
+            fire: function (event) {
+                if (!event.target) {
+                    event.target = this;
+                }
+                if (this.handlers[event.type] instanceof Array) {
+                    let handlers = this.handlers[event.type];
+                    for (var i = 0, len = handlers.length; i < len; i++) {
+                        handlers[i](event);
+                    }
+                }
+            },
+            removeHandler: function (type, handler) {
+                if (this.handlers[type] instanceof Array) {
+                    var handlers = this.handlers[type];
+                    for (var i = 0, len = handlers.length; i++) {
+                        if (handlers[i] === handler) {
+                            break;
+                        }
+                    }
+                    handlers.splice(i, 1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

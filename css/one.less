@@ -68,11 +68,15 @@
 @number: 20;
 @rem: 640px/@number;
 
-.box (@width, @margin, @bgc) {
+@wid: 200px;
+@hei: 200px;
+@col: lime;
+
+.box (@width, @height, @bgc) {
 	width: @width;
-	height: @margin;
+	height: @height;
 	background-color: @bgc;
 }
 .one {
-	.box(20px, 20px, lime)
+	.box(@wid, @hei, @col)
 }
