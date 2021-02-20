@@ -1,24 +1,43 @@
-// 处理时间
 /**
- * Parse the time to string
+ * 处理时间
  * @param {(Object|string|number)} time
  * @param {string} cFormat
  * @returns {string | null}
  */
 function parseTime(time, cFormat) {
 	if (arguments.length === 0 || !time) {
-		return null
+		return null;
 	}
-	const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
-	let date
+  
+	const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+
+	let datetime;
+
 	if (typeof time === 'object') {
-		date = time
+		datetime = time
 	} else {
-		if ((typeof time === 'string')) {
+		if ((typeof time === 'string') && time.includes('GMT')) {
 			if ((/^[0-9]+$/.test(time))) {
 				// support "1548221490638"
 				time = parseInt(time)
-			} else {
+			} else if ((typeof time === 'string') && !time.includes('GMT')) {
+        // 转为正常的时间格式 年-月-日 时:分:秒
+        let T_pos = time.indexOf('T');
+        let Z_pos = time.indexOf('Z');
+        let year_month_day = time.substr(0, T_pos);
+        let hour_minute_second = time.substr(T_pos + 1, Z_pos-T_pos - 1);
+        let new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
+        // 处理成为时间戳
+        let timestamp = new Date(Date.parse(new_datetime));
+        let new_timestamp = timestamp.getTime();
+        timestamp = new_timestamp/1000;
+        /**计算当前偏离UTC的小时数 */
+        let disparityDate = new Date().getTimezoneOffset() / 60
+        // 增加时差
+        timestamp = timestamp - disparityDate * 60 * 60;
+        // 时间戳转为时间
+        time = parseInt(timestamp) * 1000;
+      } else {
 				// support safari
 				// https://stackoverflow.com/questions/4310953/invalid-date-in-safari
 				time = time.replace(new RegExp(/-/gm), '/')
@@ -28,16 +47,17 @@ function parseTime(time, cFormat) {
 		if ((typeof time === 'number') && (time.toString().length === 10)) {
 			time = time * 1000
 		}
-		date = new Date(time)
+		datetime = new Date(time)
 	}
+
 	const formatObj = {
-		y: date.getFullYear(),
-		m: date.getMonth() + 1,
-		d: date.getDate(),
-		h: date.getHours(),
-		i: date.getMinutes(),
-		s: date.getSeconds(),
-		a: date.getDay()
+		y: datetime.getFullYear(),
+		m: datetime.getMonth() + 1,
+		d: datetime.getDate(),
+		h: datetime.getHours(),
+		i: datetime.getMinutes(),
+		s: datetime.getSeconds(),
+		a: datetime.getDay()
 	}
 	const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
 		const value = formatObj[key]
@@ -73,6 +93,52 @@ function getLastDay () {
         day = '0' + day
     }
     return date.getFullYear() + '-' + month + '-' + day
+}
+// json数据导出为exsl表格
+function tableToExcel(jsonData) {
+  //要导出的json数据
+  // const jsonData = [
+  //     {
+  //         name: '张先生',
+  //         phone: '123456789',
+  //         email: '000@123456.com'
+  //     },
+  //     {
+  //         name: '王先生',
+  //         phone: '123456789',
+  //         email: '000@123456.com'
+  //     },
+  //     {
+  //         name: '李先生',
+  //         phone: '123456789',
+  //         email: '000@123456.com'
+  //     },
+  //     {
+  //         name: '赵先生',
+  //         phone: '123456789',
+  //         email: '000@123456.com'
+  //     },
+  // ]
+  //列标题，逗号隔开，每一个逗号就是隔开一个单元格
+  let str = `姓名,电话,邮箱\n`;
+  //增加\t为了不让表格显示科学计数法或者其他格式
+  for (let i = 0; i < jsonData.length; i++) {
+      for (let item in jsonData[i]) {
+          str += `${jsonData[i][item] + '\t'},`;
+      }
+      str += '\n';
+  }
+  //encodeURIComponent解决中文乱码
+  let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+  //通过创建a标签实现
+  let link = document.createElement("a");
+  link.href = uri;
+  link.innerHTML = 'json数据表.csv下载';
+  //对下载的文件命名
+  link.download = "json数据表.csv";
+  document.body.appendChild(link);
+  link.click()
+  document.body.removeChild(link)
 }
 
 /**
