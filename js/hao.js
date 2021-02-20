@@ -1,7 +1,7 @@
 /**
  * 处理时间
- * @param {(Object|string|number)} time
- * @param {string} cFormat
+ * @param {(Object|string|number)} time 时间
+ * @param {string} cFormat 格式
  * @returns {string | null}
  */
 function parseTime(time, cFormat) {
@@ -94,8 +94,17 @@ function getLastDay () {
     }
     return date.getFullYear() + '-' + month + '-' + day
 }
-// json数据导出为exsl表格
-function tableToExcel(jsonData) {
+
+/**
+ * json数据导出为exsl表格
+ * 
+ * @param {json} jsonData json数据
+ * @param {string} str 表头
+ * @param {string} surfaceName 表名字
+ * @returns {string | null}
+ */
+//  参数1：json数据
+function tableToExcel(jsonData, str, surfaceName) {
   //要导出的json数据
   // const jsonData = [
   //     {
@@ -120,7 +129,7 @@ function tableToExcel(jsonData) {
   //     },
   // ]
   //列标题，逗号隔开，每一个逗号就是隔开一个单元格
-  let str = `姓名,电话,邮箱\n`;
+  // let str = `姓名,电话,邮箱\n`;
   //增加\t为了不让表格显示科学计数法或者其他格式
   for (let i = 0; i < jsonData.length; i++) {
       for (let item in jsonData[i]) {
@@ -135,7 +144,7 @@ function tableToExcel(jsonData) {
   link.href = uri;
   link.innerHTML = 'json数据表.csv下载';
   //对下载的文件命名
-  link.download = "json数据表.csv";
+  link.download = surfaceName;
   document.body.appendChild(link);
   link.click()
   document.body.removeChild(link)

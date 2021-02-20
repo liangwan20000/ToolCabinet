@@ -9,8 +9,30 @@
     <script src="./js/hao.js"></script>
     <script>
         // utc 时间
-        var utc_datetime = "2017-03-31T08:02:06Z";
-        console.log(parseTime(utc_datetime))
+        const jsonData = [
+            {
+                name: '张先生',
+                phone: '123456789',
+                email: '000@123456.com'
+            },
+            {
+                name: '王先生',
+                phone: '123456789',
+                email: '000@123456.com'
+            },
+            {
+                name: '李先生',
+                phone: '123456789',
+                email: '000@123456.com'
+            },
+            {
+                name: '赵先生',
+                phone: '123456789',
+                email: '000@123456.com'
+            },
+        ]
+        let str = `姓名,电话,邮箱\n`;
+        tableToExcel(jsonData, str, "oneJson数据表.csv")
     </script>
 </body>
 </html>
