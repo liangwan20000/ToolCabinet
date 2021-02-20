@@ -1,10 +1,8 @@
 /*
  * 验证封装
  */
-import _ from 'lodash'
-import { duplicateCheck } from '@/api/api'
-import store from '@/store'
 const strategies = {
+  // 必填校验
   required(val, errMsg) {
     if (val === '' || typeof val === 'undefined') {
       return errMsg
@@ -59,32 +57,10 @@ const strategies = {
       return errMsg
     }
   },
-  // 只能输入数字和字母
-  isNumberLetter(val, errMsg) {
-    let noChinese = /^[0-9a-zA-Z]{1,}$/
-    if (!noChinese.test(val)) {
-      return errMsg
-    }
-  },
-  // 只能输入数字母下划线
-  isNumberLetterLine(val, errMsg) {
-    let noChinese = /\w/
-    if (!noChinese.test(val)) {
-      return errMsg
-    }
-  },
   // ip
   isIp(val, errMsg) {
     let noChinese = /^[0-9\.]{1,}$/
     if (!noChinese.test(val)) {
-      return errMsg
-    }
-  },
-  // 只能输入数字和一个点
-  isNumber (val, errMsg) {
-    let ary = val.match(/[.]/g)
-    let noChinese = /^[0-9.]{1,}$/
-    if (!noChinese.test(val) && ary.length > 1) {
       return errMsg
     }
   },
@@ -102,52 +78,11 @@ const strategies = {
       return errMsg
     }
   },
-  // 验证重复
-  async isRepeat (val, errMsg) {
-    if (!val) { return }
-    let ary
-    if (store.getters.editStatus.status) {
-      ary = [
-        { key: errMsg.key, value: val, operation: 0, sequence: 0 },
-        { key: 'id', value: store.getters.editStatus.id, operation: 1, relationship: 0, sequence: 1 },
-      ]
-    } else {
-      ary = [
-        { key: errMsg.key, value: val, operation: 0 },
-      ]
-    }
-    let result = await duplicateCheck(errMsg.url, 'POST', ary)
-    if (result.code === 200) {
-      if (result.data.exists) {
-        return errMsg.value
-      }
-    }
-  },
-  // 验证
+  // 验证现在的值是否在目标值范围内
   isCompareSize(standard, value, errMsg) {
-      if (parseFloat(value.start) < parseFloat(standard.start) || parseFloat(value.end) < parseFloat(standard.end)) {
+      if ((parseFloat(value.start) < parseFloat(standard.start)) || (parseFloat(value.end) < parseFloat(standard.end))) {
           return { flag: false, message: errMsg }
       }
-  },
-  /**
-   * 唯一性校验
-   *
-   * @example
-   * { rule: 'isUnique:user/unique:val', msg: '手机号已被使用' }
-   * @param {string} val - 需要验证的值，element自动传入
-   * @param {string} apiPath - user/unique: 接口地址
-   * @param {string} key - val: 接口传参的参数名
-   * @param {string} errMsg - msg: 返回的错误信息。“手机号已被使用”
-   * @returns {Object} - 例如：{value: "xxx", status: false, msg: "手机号已被使用"}
-   */
-  async isUnique(val, apiPath, key, errMsg) {
-    try {
-      const formData = {}
-      formData[key] = val
-      await api[apiPath](formData)
-    } catch (err) {
-      return err.message ? err.message : errMsg
-    }
   }
 }
 const validate = async arr => {
