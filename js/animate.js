@@ -1,5 +1,5 @@
 
-function animate (element,up,down,juli,time) {
+function animate (element, up, down, juli, time) {
 	var timeID = null;
 	// 设置只存在一个定时器,就是重置一下定时器的值
 	if (element.timeID) {

@@ -1,68 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div id="myDiv"></div>
-    <script type="text/javascript" src="one.js"></script>
-    <script type="text/javascript">
-        // let a = 0
-        // function chunk (array, process, context) {
-        //     setTimeout(function () {
-        //         let item = array.shift();
-        //         process.call(context, item);
-        //         a++
-        //         console.log(a)
-        //         if (array.length > 0) {
-        //             setTimeout(arguments.callee, 1000)
-        //         }
-        //     })
-        // }
-        // let data = [12, 123,124, 453, 436, 23, 23, 5, 4123, 45, 46, 564, 2234, 45, 42]
-        // console.log(data)
-        // function printValue (item) {
-        //     let div = document.getElementById('myDiv');
-        //     div.innerHTML += item + '<br/>'
-        // }
-        // chunk(data, printValue)
-        function EventTarget () {
-            this.handlers = {};
-        }
-        EventTarget.prototype = {
-            constructor: EventTarget,
-            addHandler: function (type, handler) {
-                if (typeof this.handlers[type] === 'undefined') {
-                    this.handlers[type] = [];
-                }
+<html>
+    <head>
+        <meta charset="utf-8" />
+        
+        <!-- <link href="./js/summernote/summernote.css" rel="stylesheet">
+        <link href="./js/summernote/summernote-bs3.css" rel="stylesheet"> -->
+        <!-- 引入组件库 -->
+        <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+        <!-- <script src="./js/EventUtil.js"></script> -->
+        <!-- <script src="./js/hao.js"></script> -->
+        <!-- <script src="./js/jquery.min.js"></script>
+        <script src="./js/fn.js"></script>
+        <script src="./js/summernote-zh-CN.js"></script>
+        <script src="./js/summernote.min.js"></script>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/fn.js"></script> -->
 
-                this.handlers[type].push(handler);
-            },
-            fire: function (event) {
-                if (!event.target) {
-                    event.target = this;
-                }
-                if (this.handlers[event.type] instanceof Array) {
-                    let handlers = this.handlers[event.type];
-                    for (var i = 0, len = handlers.length; i < len; i++) {
-                        handlers[i](event);
-                    }
-                }
-            },
-            removeHandler: function (type, handler) {
-                if (this.handlers[type] instanceof Array) {
-                    var handlers = this.handlers[type];
-                    for (var i = 0, len = handlers.length; i++) {
-                        if (handlers[i] === handler) {
-                            break;
-                        }
-                    }
-                    handlers.splice(i, 1);
-                }
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="renderer" content="webkit">
+        <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+
+        <!-- 引入样式 -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <!-- <script src="./js/vue.min.js"></script> -->
+        <!-- <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script> -->
+        <style>
+            .box{
+                width: 200px;
+                height: 100px;
+                background-color: lime;
             }
-        }
-    </script>
-</body>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <el-date-picker
+                type="datetimerange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                value-format="yyyy/MM/dd HH:mm:ss"
+                :default-time="['00:00:00', '23:59:59']"
+                unlink-panels>
+            </el-date-picker>
+            <!-- <anchored-heading :level="2">
+                <span>你好</span><span>你好</span>
+                <p>hellow</p>
+            </anchored-heading>
+            <form action="">
+                <fieldset>
+                    <legend>注册信息</legend>
+
+                    <span>用户名:</span>
+                    <input type="text" class="form-control">
+
+                    <br>
+                    <br>
+                    <span>用户名:</span>
+                    <input type="text" class="form-control">
+
+                </fieldset>
+            </form> -->
+        </div>
+        <!-- import Vue before Element -->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <!-- import JavaScript -->
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <script>
+            let vm = new Vue({
+                el: '#app',
+                // components: {
+                //     'anchored-heading': {
+                //         props: {
+                //             level: {
+                //                 type: Number,
+                //                 required: true
+                //             }
+                //         },
+                //         render: function (createElement) {
+                //             return createElement(
+                //                 'h' + this.level,   // 标签名称
+                //                 this.$slots.default // 子节点数组
+                //             )
+                //         },
+                //         renderError (createElement, err) {
+                //             console.log(err.stack)
+                //             return createElement('pre', { style: { color: 'red' }}, err.stack)
+                //         }
+                //     }
+                // },
+                data: {
+                    value: null,
+                    // obj: {
+                    //     name: 'zs',
+                    //     age: 20
+                    // },
+                    // options: [
+                    //     { label: '柯比亚', value: 1 },
+                    //     { label: '汤一膳', value: 2 },
+                    //     { label: '吉雅日料', value: 3 },
+                    //     { label: '4', value: 4 },
+                    //     { label: '5', value: 5 },
+                    //     { label: '6', value: 6 }
+                    // ]
+                },
+                mounted() {
+                    document.cookie = encodeURIComponent('name') + '=' + encodeURIComponent('Nicholas') + "; domain=.wrox.com; path=/"
+
+                    let cookieName = encodeURIComponent('name') + '=';
+                    let cookieStart = document.cookie.indexOf(cookieName)
+                    console.log(cookieStart)
+                },
+                methods: {
+                    chunk(array, size) {
+                        // 获取数组长度
+                        let length = array == null ? 0 : array.length
+                        // 如果为空返回空数组
+                        if (!length || size < 1) {
+                            return []
+                        }
+                        // 初始化
+                        let index = 0,
+                        resIndex = 0,
+                        // 向上取整,得到一个已有大小的数组
+                        result = Array(Math.ceil(length / size))
+                        // 循环  
+                        while (index < length) {
+                            result[resIndex] = array.slice(index, index + size)
+                            index = index + size
+                            resIndex++
+                        }
+                        return result
+                    },
+                    handleOpen(key, keyPath) {
+                        console.log(key, keyPath);
+                    },
+                    handleClose(key, keyPath) {
+                        console.log(key, keyPath);
+                    }
+                }
+            })
+            
+        </script>
+    </body>
 </html>

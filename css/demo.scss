@@ -1,0 +1,10 @@
+// 变量
+$color: #fff;
+
+// 混入样式 形参
+@mixin color($color, $bgc) {
+  color: $color;
+  background-color: $bgc;
+}
+// 调用 实参
+@include color(#fff, lime);

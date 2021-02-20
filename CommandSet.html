@@ -3,16 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		.box {
+			width: 10px;
+			display: inline-block;
+		}
+	</style>
 </head>
 <body>
+	<!-- 处理程序 Handle-->
+    <!-- 应用程序 application -->
 	<!-- body和HTML有8px的内外边距,HTML和浏览器中的页面一样大,body要比(html)页面小这8px的边距 -->
-
+	<!-- map 标签 -->
 	<!-- js  假设法 假设一个最小值  定标假设法,设置一个返回值 一个开关 -->
 
 	<!-- css  双飞翼布局  遮罩效果(模态窗口) -->
 
 	以对象的形式展开查看所有属性,console.dir();学习方法
-
 	<style>
 		js操作标签与操作数据类型;js把标签/数据,看成一个个对象,用方法
 			(函数)操作他们,操作他们需要给他们起个名字,这个名字就是变量;  
@@ -118,6 +125,10 @@
 			target a连接中表示跳转方式 _self(当前页面打开)，_blank(新窗口打开)
 
 			delete  删除数组中的项
+
+			encodeURIComponent: URL编码
+
+			decodeURIComponent: URL解码
 		}
 	</script>
 
@@ -141,6 +152,9 @@
 		}
 		var Object {
 			Object.keys(); 获取对象所有的键，返回一个数组;
+			Object.values(); 一个包含对象自身的所有可枚举属性值的数组;
+			Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+			Object.hasOwnProperty(prop); 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）。
 			Object.defineProperty(obj, prop, descriptor); 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
 				1. configurable:当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。
 				2. enumerable:当且仅当该属性的enumerable为true时，该属性才能够出现在对象的枚举属性中。默认为 false。数据描述符同时具有以下可选键值：
@@ -259,18 +273,28 @@
 					flex-direction: column (垂直显示);
 					flex-direction: row-reverse(水平翻转);
 					flex-direction: column-reverse (垂直翻转);
-				设置在主轴方向的对齐方式：;
+				设置在主轴方向的对齐方式
 					justify-content: flex-start; (左边开始往右排);
 					justify-content: flex-end; (右边开始往左排) ;
 					justify-content: center; (盒子居中排列) ;
 					justify-content: space-between; (空余区域被盒子等分);
 					justify-content: space-around; (平均分布在盒子两侧)
 				设置元素在侧轴对齐方式【要清楚侧轴的方向】：
-					align-items: stretch(拉伸) ;
+					align-items: stretch(拉伸占满整个容器的高度) ;
+					align-items: baseline;(项目的第一行文字的基线对齐)
 					align-items: flex-start;
 				在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
 					flex-wrap: nowrap(不换行) ;
-					flex-wrap: flex-start 
+					flex-wrap: wrap(换行，第一行在上方);
+					flex-wrap: wrap-reverse(换行，第一行在下方)
+					flex-wrap: flex-start;
+				多根轴线的对齐方式（换行后形成多行），如果项目只有一根轴线，该属性不起作用
+					align-content：flex-start：与交叉轴的起点对齐
+					align-content：flex-end：与交叉轴的终点对齐。
+					align-content：center：与交叉轴的中点对齐
+					align-content：space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+					align-content：space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+					align-content：stretch（默认值）：轴线占满整个交叉轴。
 					等等;
 				flex: 值；将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上;
 
@@ -495,17 +519,16 @@
 				2. 所有的变量在定义时都要加上var；
 				3. 尽量不要在不同的过程中使用相同的变量名。
 		var 基本语法 = {
-			基本语法：
-				✔ 书写位置：
-	 			☞ 内嵌式 ： 将JS代码写到HTML文件中
+			基本语法：书写位置：
+	 			内嵌式 ： 将JS代码写到HTML文件中
 		 			在网页中通过 <script type="text/javascript"></script>  设置js代码
 		 			推荐： 将script标签放到body标签最下面
-	 			☞ 外联式 ： 将js代码单独放到一个js文件中
+	 			外联式 ： 将js代码单独放到一个js文件中
 	 	  			在网页中通过 <script type="text/javascript" src="02外联式.js"></script>
 	 	  			注意：
 	 	  				1. 可以在页面中任何一个位置引用js文件，推荐在body标签中引用
 	 	  				2.  内嵌式和外联式不能混着用
-	 			☞ 行内式（少用）： 将js代码写到标签内部  + 事件名称
+	 			行内式（少用）： 将js代码写到标签内部  + 事件名称
 	 	     		例如：  <div onclick="js代码"></div>;
 	 		网页中输出消息方式：
 	 			1. alert('今天开始学习js基础，好无聊');
@@ -528,7 +551,7 @@
 	     		4. 不推荐使用汉字定义变量名
 	     		5. 与css中类的命名规范一样了。
 	     		6. 在定义变量名的时候不能出现空格
-	     		7. 在js中是区分字母大小写的(大写是一个变量,小写是一个变量).
+	     		7. 在js中是区分字母大小写的(大写是一个变量,小写是一个变量
 	   		注意：
 	     		1. 如果要输出的信息是一个变量，那么不需要加引号
 	     		2. 一个变量一次只能保存一个值，最后一次赋值结果
@@ -694,7 +717,7 @@
 			☞  循环结构： 在程序中反复做某一件事情。【注意避免死循环：程序一直执行，没有停下来】
               		避免死循环也就是条件表达式不能有问题
   	    		1. while循环
-  	    			☞语法：初始化一个变量;var a = 1;
+  	    			语法：初始化一个变量;var a = 1;
   	    	    	while(条件表达式) {
   	    	    		循环体代码;
   	    	    		变量的改变;
@@ -930,12 +953,12 @@
 						var date = new Date();
 						var year = date.getFullYear();
 						var month = date.getMonth() + 1;
-							month = month >= 10? month : '0'+month;
+							month = month >= 10 ? month : '0' + month;
 						var d1 = date.getDate();
 						var h = date.getHours();
 						var m = date.getMinutes();
 						var s = date.getSeconds();
-						var time_str = year + '-' + month + '-' + d1 + ' '+h + ':'+ m + ':' + s;
+						var time_str = year + '-' + month + '-' + d1 + ' ' + h + ':' + m + ':' + s;
 						return [time_str,date];
 					}
 					console.log(typeof date);
@@ -1023,7 +1046,7 @@
 		    			2. 如果设置第二个参数，那么代表从指定位置起找对应的值，如果找到返回对应的索引，如果没有找到返回 -1
 	 			5.  trim() 方法： 将字符串中首尾的空格去掉。
 			 	数组与字符串转换 : 变量.toString();
-			 		6.  replace('a','b'):   将 a 替换 为 b,返回一个字符串; 只替换一个,需要加一个for循环
+			 		6.  replace('a','b',):   将 a 替换 为 b,返回一个字符串; 只替换一个,需要加一个for循环;第二个参数也可以是一个返回了字符串的函数
 	     			7.	split(): 返回的是一个数组 split('=')以等号分割 (不选取等号,把其它字符按顺序放到一个数组中.)
 	     			8.	join('-');把数组以-拼接,返回一个字符串;
 	     		9.  toLocaleUpperCase()  //转化为大写
@@ -1087,8 +1110,6 @@
    	   			✔ 通过给a 标签注册事件，在事件中设置 return false
    	   			✔ <a href="javascript:;">百度''</a>;
    	   			✔ <a href='javascript:void(0)'>百度''<a>;
-   			6.2 事件中的this指向;
-   	   			在事件中，this就指向当前事件源
    	    }
    	    var 事件 {
    	    	给元素注册事件（捕获用户的动作）语法：事件源.事件类型 = function () {};
@@ -1173,10 +1194,10 @@
 			 	 	只有第三个参数是true的时候才会出现事件捕获
 		}
 		var 委托思想 {
-			【给li注册事件】 委托给父元素,通过事件对象参数来选中要执行的子元素
+			【给li注册事件】 委托给父元素ul,通过事件对象参数来选中要执行的子元素
 			事件对象参数保存了用户在执行事件时候的一些信息  
 			var ul = document.querySelector('ul');
-			event是ul里的所有事件对象参数 : 必须设置形参e;
+			event是ul里的所有事件对象参数 : 必须设置形参event;
 			ul.onclick = function (event) {
 		 		console.log(event.target.innerText);
 		 	}
@@ -1208,7 +1229,7 @@
    	    	文档树（Document）
 				节点：node		(元素：element 就是标签)
 				获取节点类型 和 节点名称
-					DOM.nodeType :  1 代表是元素[标签]  3 代表的是空文本   2 代表是标签中的一个属性
+					DOM.nodeType :  1 代表是元素[标签]  2 代表是标签中的一个属性    3 代表的是空文本
 					DOM.nodeName :  用来获取当前节点的名字
 			1. 创建元素
 				document.write(): 可以创建元素（效率不高）;
@@ -1271,7 +1292,7 @@
 					☞ 自定义属性
 			  			1. 自定义属性是程序员自己定义的一个属性
 			  			2. 自定义属性 data-自定义属性名
-			  			3. data是一个对象,以他开头的属性都在data对象里
+			  			3. 自定义属性都在dataset对象里
 					☞ 使用H5的方式获取自定义属性值
 		   				注意：H5中提供的操作自定义属性值的方式不能用来操作系统属性，只能操作自定义属性
 		  				obj.classList.add(类名,类名);	☞ 添加样式  
@@ -1296,6 +1317,54 @@
 					readonly : 属性设置控件是否为只读
 					display = 'none'   : 隐藏元素
 					display = 'block'  : 显示元素
+   	    }
+   	    let 拖放事件 {
+   	    	draggable: 设置元素是否可被拖动
+   	    	ondragstart: 在拖动元素上按下鼠标并拖动时触发
+   	    	ondrag: 拖动期间一直触发
+   	    	ondragend: 放置拖动的元素后，无论放在有效还是无效放置目标都触发
+   	    	ondragenter: 有元素被拖动到放置目标上触发
+   	    	ondragover: 被拖动元素只要在放置目标上就会持续触发
+   	    	ondragleave: 被拖动元素被拖出放置目标时触发
+   	    	ondrop: 被拖拽元素放到了放置目标中触发
+   	    	'自定义放置目标'
+	   	    	let droptarget = document.querySelector('#droptarget')
+	   	    	EventUtil.addHandler(droptarget, 'dragenter', (event) => {
+	   	    		EventUtil.preventDefault(event)
+	   	    		let dataTransfer = event.dataTransfer
+	   	    		// 读取URL
+	   	    		let url = dataTransfer.getData('url') || dataTransfer.getData('text/uri-list')
+	   	    		// 读取文本
+	   	    		let text = dataTransfer.getData('Text')
+
+	   	    	})
+	   	    	EventUtil.addHandler(droptarget, 'dragover', (event) => {
+	   	    		EventUtil.preventDefault(event)
+	   	    	})
+	   	    	EventUtil.addHandler(droptarget, 'drop', (event) => {
+	   	    		EventUtil.preventDefault(event)
+	   	    		
+	   	    	})
+	   	    event.dataTransfer 属性包含下列成员
+	   	    	dropEffect: 支持的放置行为；必须在ondragenter事件处理程序中针对放置目标来设置它
+	   	    		none: 不能把拖动的元素放在这里。这是除文本框之外所有元素的默认值
+	   	    		move: 应该把拖动的元素移动到放置目标
+	   	    		copy: 应该把拖动的元素复制到放置目标
+	   	    		link: 表示放置目标会打开拖动的元素，但拖动的元素必须是一个链接，有URL
+	   	    	effectAllowed: 表示允许拖动元素的哪种dropEffect;dropEffect属性只有搭配effectAllowed才有用。必须在 ondragstart 事件处理程序中设置 effectAllowed属性
+	   	    		uninitialized: 没有给被拖动的元素设置任何放置行为
+	   	    		none: 被拖动的元素不能有任何行为
+	   	    		copy: 只允许值为copy的dropEffect
+	   	    		link: 只允许值为link的dropEffect
+	   	    		move: 只允许值为move的dropEffect
+	   	    		copyLink: 允许值为 copy 和 link 的 dropEffect
+	   	    		copyMove: 允许值为 copy 和 move 的 dropEffect
+	   	    		linkMove: 允许值为 link 和 move 的 dropEffect
+	   	    		all: 允许任意 dropEffect
+	   	    	addElement(element): 为拖动操作添加一个元素。添加这个元素只影响数据(即增加作为拖动源而响应回调的对象)，不会影响拖动操作时页面元素的外观。
+	   	    	clearData(format): 清除以固定格式保存的数据。
+	   	    	setDragImage(element, x, y): 指定一幅图像，当拖动发生时，显示在光标下方
+	   	    	types: 当前保存的数据类型。这是一个类似数组的集合，以'text'这样的字符串形式保存着数据类型
    	    }
 	</script>
 
@@ -1425,7 +1494,6 @@
 		window.dispatchEvent(new Event('resize'));窗口尺寸变化时->触发resize事件->重新设置动态高
 		JS中顶级对象： window
 				✔ 文档对象document也属于window对象中的一个
-					你写的东西,只要不是函数他就在window中,函数在object里面
 				✔ window代表整个窗口
 		var BOM {
 			1. 作用： 在web中使用javascript,BOM(浏览器对象模型)是核心。BOM提供了很多对象，来访问浏览器的功能；
@@ -1769,16 +1837,326 @@
     	}
     	var 操作多媒体 {
     		http://www.w3school.com.cn/tags/html_ref_audio_video_dom.asp
-			canplay     判断加载完成事件
-			paused      播放状态 为 true 的时候是暂停;为 false 的时候是播放;
-			duration    获取总时长（秒）
-			currentTime 当前播放时间（秒）
-			play()      播放
-			pause()     暂停
+    		video 和 audio 共有属性：很多属性可以在元素中直接设置
+	    		autoplay			布尔值 		取得或设置autoplay标致
+	    		buffered			时间范围		表示已下载的缓冲的时间范围的对象
+	    		bufferedBytes		字节范围		表示已下载的缓冲的字节范围的对象
+	    		bufferingRate		整数 		下载过程中每秒钟平均接收到的位数
+	    		bufferingThrottled	布尔值 		表示浏览器是否对缓冲进行了节流
+	    		controls 			布尔值 		取得或设置 controls 属性，用于显示或隐藏浏览器内置的控件
+	    		currentLoop 		整数 		媒体文件已经循环的次数
+	    		currentSrc			字符串 		当前播放的媒体文件的URL
+	    		currentTime			浮点数		已经播放的秒数
+	    		defaultPlaybackRate	浮点数		取得或设置默认的播放速度。默认值为 1.0 ，秒
+				duration    		浮点数		获取总时长（秒）
+				ended 				布尔值 		表示媒体文件是否播放完成
+				loop 				布尔值 		取得或设置媒体文件在播放完成后是否再从头开始播放
+				muted 				布尔值 		取得或设置媒体文件是否静音
+				networkState		整数 		表示当前媒体的连接状态：0 表示空、1 表示正在加载、2 表示正在加载元数据、3 表示已经加载了第一帧、4、 表示加载完成
+				paused	     		布尔值 		表示播放器是否暂停
+				playbackRate 		浮点数		取得或设置当前的播放速度
+				played 				时间范围		到目前为止已经播放的时间范围
+				readyState			整数 		表示媒体是否已经就绪（可以播放了）。0 表示数据不可用、1 表示可以显示当前帧、2 表示可以开始播放、3 表示媒体可以从头到尾播放
+				seekable			时间范围		可以搜索的时间范围
+				seeking				布尔值 		表示播放器是否正移动到媒体文件中的新位置
+				src 				字符串 		媒体文件的来源。任何时候都可以重写这个属性
+				start 				浮点数 		取得或设置媒体文件中开始播放的位置，以秒表示
+				totalBytes			整数 		当前资源所需的总字节数
+				volume				浮点数		取得或设置当前音量，值为 0.0 到 1.0
+				videoHeight			整数 		返回视频的高度(不一定是元素)，只适用于 video
+				videoWidth			整数 		返回视频的宽度(不一定是元素)，只适用于 video
+			video 和 audio 共有事件：
+				abort				下载中断
+				canplay     		可以播放时；readyState 值为2
+				canplaythrough		播放可继续，而且应该不会中断；readyState 值为3
+				canshowcurrentframe 当前帧已经下载完成；readyState 值为1
+				dataunavailable		因为没有数据而不能播放；readyState 值为0
+				durationchange		duration属性的值改变
+				emptied				网络连接关闭
+				empty				发生错误阻止了媒体下载
+				ended 				媒体已播放到末尾，播放停止
+				error 				下载期间发生网络错误
+				load 				所有媒体已加载完成。这个事件可能被废弃，建议使用 canplaythrough
+				loadeddata			媒体的第一帧已加载完成
+				loadedmetadata		媒体的元数据已加载完成
+				loadstart			下载已开始
+				pause 				播放已暂停
+				play 	     		媒体已接收到指令开始播放
+				playing				媒体已实际开始播放
+				progress			正在下载
+				ratechange			播放媒体的速度改变
+				seeked				搜索结束
+				seeking				正移动到新位置
+				stalled				浏览器尝试下载，但未接收到数据
+				timeupdate			currentTime被以不合理或意外的方式更新
+				volumechange		volume属性值或muted属性值已改变
+				waiting				播放暂停，等待下载更多数据
 			注意： 存在一定的兼容信息
 				video.webkitRequestFullScreen(); 全屏
 				video.webkitExitFullScreen();  退出全屏
+			检测编解码器的支持情况：两个媒体元素都有一个 canPlayType() 方法；
+				canPlayType(): 接收一种格式/编解码器字符串，返回 probably、maybe或 '' 空字符串;同时传入MIME类型和编解码器，返回 probably 的可能性会增加
+				if (audio.canPlayType("audio/ogg; codecs='vorbis'"))  编解码器必须用引号引起来才行。
+			已受支持的音频格式编解码器
+				AAC 	audio/mp4; codecs="mp4a.40.2"		IE9+、Safari4+、iOS版Safari
+				MP3 	audio/mpeg 							IE9+、Chrome
+				Vorbis 	audio/ogg; codecs="vorbis"			Firefox 3.5+、Chrome、Opera 10.5+
+				WAV 	audio/wav; codecs="1"				Firefox 3.5+、Chrome、Opera 10.5+
+			已受支持的视频格式和编解码器
+				H.264	 	video/mp4; codecs="avc1.42E01E, mp4a.40.2"		IE9+、Safari4+、iOS版Safari、Android版WebKit
+				Theora 		video/ogg; codecs="theora"						Firefox 3.5+、Chrome、Opera 10.5+
+				WebM 		dideo/webm; codecs="vp8, vorbis"				Firefox 3.5+、Chrome、Opera 10.5+
+			Audio: 有一个原生的JavaScript构造函数Audio,可以在任何时候播放音频；只要创建一个新实例，并传入音频源文件即可。
+				let audio = new Audio("sound.mp3")
+				// 下载指定文件，下载完成就播放
+				EventUtil.addHandler(audio, "canplaythrough", (event) => {
+					audio.play()
+				})
+				在iOS中，调用play()时会弹出一个对话框，得到用户的许可后才能播放声音。如果想在一段音频播放后再播放另一段音频，必须在onfinish事件处理程序中调用 play()方法。
     	}
+	</script>
+
+
+	Canvas
+	<script>
+		let '使用前' {
+			1： '要使用canvas元素，必须先设置其width和height属性，指定可以绘图的区域大小。如果浏览器不支持canvas元素，就会显示标签内的文字。',
+			2： '<canvas id="drawing" width="640" height="360">A drawing of something.<canvas>',
+			3： {
+				'获取canvas元素'
+				let drawing = document.getElementById('drawing'); 
+				'确定浏览器支持canvas'
+				if (drawing.getContext) {
+					'取得2d上下文对象'
+					let context = drawing.getContext('2d');
+					'取得图像的数据URL;base64格式；来自不同的域会抛出错误'
+					let imgUrl = drawing.toDataURL('image/png')
+				}
+			},
+			4: '2D上下文坐标开始于canvas元素的左上角，原点坐标是(0, 0),所有坐标值都基于这个原点计算'
+		}
+		let '填充、描边、绘制矩形' {
+			'所有涉及描边和填充的操作都将使用这两个样式，直至重新设置这两个值。这两个属性的值也可以是渐变对象或模式对象': {
+				fillStyle: '填充颜色',
+				strokeStyle: '描边颜色',
+			},
+			'与矩形有关的方法'： {
+				fillRect(x, y, width, height): '从(x, y)处开始绘制矩形;填充',
+				strokeRect(x, y, width, height): '从(x, y)处开始绘制矩形;描边',
+				clearRect(x, y, width, height): '从(x, y)处开始擦除矩形;挖掉一部分',
+			}
+		}
+		let '绘制路径' {
+			beginPath(): '表示开始绘制新路径，然会使用其他方法来实际地绘制路径',
+			arc(x, y, radius, startAngle, endAngle, counterclockwise): '以(x, y)为圆心绘制一条弧线，弧线半径为radius，起始和结束角度(用弧度表示)分别为startAngle和endAngle.最后一个参数表示startAngle和endAngle是否按逆时针方向计算，值为false表示按顺时针方向计算',
+			arcTo(x1, y1, x2, y2, radius): '从上一点开始绘制一条曲线,到(x2, y2)为止,并且以给定的半径radius,穿过(x1, y1)',
+			bezierCurveTo(c1x, c1y, c2x, c2y, x, y): '从上一点开始绘制一条曲线，到x,y为止，并且以(c1x, c1y)和(c2x, c2y)为控制点',
+			lineTo(x, y): '从上一点开始绘制一条直线，到(x, y)为止',
+			moveTo(x, y): '将绘图游标移动到(x, y), 不画线',
+			quadraticCurveTo(cx, cy, x, y): '从上一点开始绘制一条二次曲线,到(x, y)为止,并且以(cx, cy)为控制点',
+			rect(x, y, width, height): '从点(x, y)开始绘制一个矩形，这个方法绘制的是矩形路径',
+			closePath(): '创建路径后，绘制一条连接到路径起点的线条',
+			fill(): '路径完成，使用fillStyle填充',
+			stroke(): '路径完成，使用strokeStyle描边',
+			clip(): '在路径上创建一个剪切区域',
+			isPointInPath(x, y): '在路劲关闭前，确定画布上的某一点是否位于路径上'
+		}
+		let '绘制文本' {
+			'fillText()模仿了网页正常显示文本，使用的更多',
+			fillText(text, x, y, pixelWidth): '要绘制的文本字符串，(x, y)坐标，最大像素宽度',
+			strokeText(text, x, y, pixelWidth): '要绘制的文本字符串，(x, y)坐标，最大像素宽度',
+			'上面这两个方法，都以下列3个属性为基础',
+			font: '表示文本样式，大小和字体; bold 14px Arial;',
+			textAlign: '表示文本对齐方式，值有 start、end、left、right、center;建议使用start和end;',
+			textBaseLine: '表示文本的基线；值有 top、hanging、middle、alphabetic、ideographic、bottom',
+			'这几个属性都有默认值不必每次都重新设置',
+			measureText(text): '计算指定文本大小；参数是要绘制的文本，返回TextMetrics对象。返回的对象只有一个width属性。'
+			let fontSize = 100
+			context.font = fontSize + 'px Arial'
+			while (context.measureText('hello world').width > 140) {
+				fontSize--
+				context.font = fontSize + 'px Arial'
+			}
+			context.fillText('hello world', 10, 10)
+			context.fillText('font size is' + fontSize + 'px', 10, 50)
+			'上面这段代码计算出了文字的大小'
+		}
+		let '变换' {
+			rotate(angle): '围绕原点旋转图像angle弧度',
+			scale(scaleX, scaleY): '缩放图像，在X方向乘以scaleX,在Y方向乘以scaleY。scaleX和scaleY的默认值都是1.0',
+			translate(x, y): '将坐标原点移动到(x, y)。执行这个变换之后，坐标(0, 0)会变成之前由(x, y)表示的点。',
+			transform(水平缩放, 水平倾斜, 垂直倾斜, 垂直缩放, 水平移动, 垂直移动): '直接修改变换矩阵',
+			setTransform(水平缩放, 水平倾斜, 垂直倾斜, 垂直缩放, 水平移动, 垂直移动): '将上一个变换矩阵重置，然后再调用transForm',
+			save(): '保存上下文的状态变化，调用方法后，所有设置会进入一个栈结构，得以妥善保管',
+			restore(): '在保存设置的栈结构中向前返回一级，恢复之前的状态。',
+			'连续调用save()可以把更多设置保存到栈结构中，之后再连续调用restore()则可以一级一级返回。'
+		}
+		let '绘制图像' {
+			drawImage(img或vdio或canvas, x, y, width, height, x1, y1, width1, height1): '绘制的图像元素，源图像X坐标，源图像Y坐标，源图像宽度，源图像高度，目标图像X坐标，目标图像Y坐标，目标图像宽度，目标图像高度'
+		}
+		let '阴影' {
+			shadowColor: '用CSS颜色格式表示的阴影颜色，默认为黑色',
+			shadowOffsetX: '形状或路径x轴方向的阴影偏移量，默认为0',
+			shadowOffseTY: '形状或路径y轴方向的阴影偏移量，默认为0',
+			shadowBlur: '模糊的像素数，默认0，既不模糊',
+			'这些属性都可以通过context对象来修改，只要在绘制前为他们设置适当的值，就能产生阴影'
+		}
+		let '渐变' {
+			createLinearGradient(startX, startY, endX, endY): '创建并返回CanvasGradient实例'
+			addColorStop(色标位置, color): '色标位置是包括并介于0-1之间的数字'
+			let gradient = context.createLinearGradient(30, 30, 70, 70)
+			gradient.addColorStop(0, 'white')
+			gradient.addColorStop(1, 'black')
+			'绘制红色矩形'
+			context.fillStyle = '#ff0000'
+			context.fillRect(10, 10, 50, 50)
+			'绘制渐变矩形'
+			context.fillStyle = gradient
+			context.fillRect(30, 30, 50, 50)
+			'确保渐变与形状对齐'
+			creatRectLinearGradient = (context, x, y, width, height) => {
+				return context.createLinearGradient(x, y, x + width, y + height)
+			}
+			let gradient = createRctLinearGradient(context, 30, 30, 50, 50)
+			gradient.addColorStop(0, 'white')
+			gradient.addColorStop(1, 'black')
+			'绘制渐变矩形'
+			context.fillStyle = gradient
+			context.fillRect(30, 30, 50, 50)
+			createRectLinearGradient(startX, startY, startRadius, endX, endY, endRadius): '创建径向渐变和放射渐变'
+			'可以把径向渐变想象成一个长圆桶，如果想从某个形状的中心点开始创建一个向外扩散的径向渐变效果，就要将两个圆定义为同心圆'
+			let gradient = context.createRadialGradient(55, 55, 10, 55, 55, 30)
+			gradient.addColorStop(0, 'white')
+			gradient.addColorStop(1, 'black')
+			'绘制红色矩形'
+			context.fillStyle = '#ff0000'
+			context.fillRect(10, 10, 50, 50)
+			'绘制渐变矩形'
+			context.fillStyle = gradient
+			context.fillRect(30, 30, 50, 50)
+		}
+		let '模式' {
+			'模式其实就是重复的图像，可以用来填充或描边图形。'
+			createPattern(img、video、canvas, string): 'img或video或canvas元素；第二个参数与CSS的backgrund-repeat属性值相同，包括 repeat、repeat-x、repeat-y、no-repeat'
+			let img = document.images[0]
+			pattern = context.createPattern(img, 'repeat')
+			'绘制矩形'
+			context.fillStyle = pattern
+			context.fillRect(10, 10, 150, 150)
+		}
+		let '使用图像数据' {
+			putImageData(imageData, x, y): '把图像数据绘制到画布上'
+			getImageData(x, y, width, height): '取得原始图像数据；参数：要取得的画面区域的X和Y坐标以及该区域的像素宽度和高度。返回对象是ImageData的实例。'
+			'ImageData对象都有三个属性：width、height、data。其中data属性是一个数组，保存着图像中每一个像素的数据。在data数组中，每一个像素用4个元素来保存，分别表示红、绿、蓝和透明度值。因此，第一个像素的数据就保存在数组的第0到第3个元素中，例如'
+				let data = imageData.data
+				red = data[0]
+				green = data[1]
+				blue = data[2]
+				alpha = data[3]
+			'数组中每个元素的值都包括并介于0到255之间。能够直接访问到原始图像数据，就能够以各种方式来操作这些数据。例如通过修改图像数据，可以像下面这样创建一个简单的灰阶过滤器。'
+			let drawing = document.getElementById('drawing')
+			'确定浏览器是否支持canvas'
+			if (drawing.getContext) {
+				let context = drawing.getContext('2d'),
+					image = document.images[0],
+					imageData, data, i, len, average, red, green, blue, alpha
+				'绘制原始图像'
+				context.drawing(image, 0, 0)
+				'取得图像数据'
+				imageData = context.getImageData(0, 0, image.width, image.height)
+				data = imageData.data
+				len = data.length
+				for (i = 0; i < len; i += 4) {
+
+					red = data[i]
+					green = data[i + 1]
+					blue = data[i + 2]
+					alpha = data[i + 3]
+
+					'求得rgb平均值'
+					average = Math.floor((red + green + blue) / 3)
+
+					'设置颜色值，透明度不变'
+					data[i] = average
+					data[i + 2] = average
+					data[i + 3] = average
+				}
+				'写回图像数据，并显示结果'
+				imageData.data = data
+				context.putImageData(imageData, 0, 0)
+			}
+		}
+		let '合成' {
+			globalAlpha: '是一个包括并介于0-1之间的值，用于指定所有绘制的透明度。默认值为0。如果所有后续操作都要基于相同的透明度，就可以先把globalAlpha设置为适当值，然后绘制，最后再把他设置回默认值0；例子: 绘制蓝色矩形前设置 globalAlpha 为0.5，所以蓝色矩形呈现半透明效果，可以看到下面的红色矩形'
+				'绘制红色矩形'
+				context.fillStyle = '#ff0000'
+				context.fillRect(10, 10, 50, 50)
+				'修改全局透明度'
+				context.globalAlpha = 0.5
+				'绘制蓝色矩形'
+				context.fillStyle = 'rgba(0, 0, 255, 1)'
+				context.fillRect(30, 30, 50, 50)
+				'重置全局透明度'
+				context.globalAlpha = 0
+			globalCompositeOperation: '表示后绘制的图形怎样与先绘制的图形结合。这个属性的值是字符串，可能的值如下：'
+			source-over: '(默认值)后绘制的图形位于先绘制的图形上方。'
+			source-in: '后绘制的图形与先绘制的图形重叠的部分可见，两者其他部分完全透明'
+			source-out: '后绘制的图形与先绘制的图形不重叠的部分可见，先绘制的图形完全透明'
+			source-atop: '后绘制的图形与先绘制的图形重叠的部分可见，先绘制的图形不受影响'
+			destination-over: '后绘制的图形位于先绘制的图形下方，只有之前透明像素下的部分才可见'
+			destination-in: '后绘制的图形位于先绘制的图形下方，两者不重叠的部分完全透明'
+			destination-out: '后绘制的图形擦除与先绘制的图形重叠的部分'
+			destination-atop: '后绘制的图形位于先绘制的图形下方，在两者不重叠的地方，先绘制的图形会变透明'
+			lighter: '后绘制的图形与先绘制的图形重叠部分的值相加，使该部分变量'
+			copy: '后绘制的图形完全替代与之重叠的先绘制的图形'
+			xor: '后绘制的图形与先绘制的图形重叠的部分执行 异或 操作'
+			'例子'
+				'绘制红色矩形'
+				context.fillStyle = '#ff0000'
+				context.fillRect(10, 10, 50, 50)
+				'设置合成操作'
+				context.globalCompositeOperation = 'destination-over'
+				'绘制蓝色矩形'
+				context.fillStyle = 'rgba(0, 0, 255, 1)'
+				context.fillRect(30, 30, 50, 50)
+		}
+	</script>
+
+
+	WebGL
+	<script>
+		let 'WebGL' {
+			'WebGL是针对Canvas的3D上下文'
+			ArrayBuffer: '类型化数组,表示的是内存中指定的字节数，但不会指定这些字节用于保存什么类型的数据。通过ArrayBuffer所能做的，就是为了将来使用而分配一定数量的字节'
+			let buffer = new ArrayBuffer(20) // 单位是B，1字节就是1B
+			let bytes = buffer.byteLength // 获取类型化数组包含的字节数
+		}
+		let '视图' {
+			DataView(ArrayBuffer, 从该字节开始选择, 选择多少字节数): 常见视图
+			let view = new DataView(buffer, 9, 10); // 创建一个共20字节，从字节9开始到字节18的新视图
+			getInt8(byteOffset): setInt8(byteOffset, value); // 有符号8位整数
+			getUint8(byteOffset): setUint8(byteOffset, value); // 无符号8位整数
+			getInt16(byteOffset, littleEndian): setInt16(byteOffset, value, littleEndian); // 有符号16位整数
+			getUint16(byteOffset, littleEndian): setUint16(byteOffset, value, littleEndian; // 无符号16位整数
+			getInt32(byteOffset, littleEndian): setInt32(byteOffset, value, littleEndian); // 有符号32位整数
+			getUint32(byteOffset, littleEndian): setUint32(byteOffset, value, littleEndian); // 无符号32位整数
+			getFloat32(byteOffset, littleEndian): setFloat32(byteOffset, value, littleEndian); // 32位浮点数
+			getFloat64(byteOffset, littleEndian): setFloat64(byteOffset, value, littleEndian); // 64位浮点数
+			所有这些方法的第一个参数都是一个字节偏移量，表示要从哪个字节开始读取或写入。无符号8位整数要用1B，而32位浮点数则要用4B。
+			用于读写16位或更大数值的方法都有一个可选的参数littleEndian。这个参数是一个布尔值，表示读写数值时是否采用小端字节序（即将数据的最低有效位保存在低内存地址中），而不是大端字节序（即将数据的最低有效位保存在高内存地址中）。默认为大端字节序
+		}
+		let '类型化视图' {
+			类型化试图一般也被称为类型化数组，因为他们除了元素必须是某种特定的数据类型外，与常规的数组无异。
+			Int8Array: 表示8位二补整数。
+			Uint8Array: 表示8位无符号整数。
+			Int16Array: 表示16位二补整数。
+			Uint16Array: 表示16位无符号整数。
+			Int32Array: 表示32位二补整数。
+			Uint32Array: 表示32位无符号整数。
+			Float32Array: 表示32位IEEE浮点值。
+			Float64Array: 表示64位IEEE浮点值。
+			第一个参数是要使用ArrayBuffer对象，第二个参数是作为起点的字节偏移量（默认为0），第三个参数是要包含的字节数。只有第一个参数是必须的。
+		}
 	</script>
 
 
@@ -1930,7 +2308,7 @@
 			表单的值 val(); 相当于原生(value)
 				val(); 获取   // 获取表单的值
 				val('内容'); 设置  // 设置表单的值
-			.toFixed(2); 保留几位有效数字,(括号里是几就保留几位);
+			.toFixed(2); 方法可把 Number 四舍五入为指定小数位数的数字。
 		}
 		var 遍历元素 {
 			jQuery 隐式迭代是对同一类元素做了同样的操作。如果想要给同一类元素做不同操作，就需要用到遍历。
@@ -2580,48 +2958,48 @@
 				\r		匹配回车
 				\n 		匹配换行
   			5.	限定符：控制字符出现的个数。
-				  	限定符   	说明                                      
-				  	n*    	匹配任何包含零个或多个 n 的字符串。n{0,}。 若找到最后，后面没有也算符合。 	若有符合正则值，					按照最多的匹配
-				  	n+    	匹配任何包含至少一个 n 的字符串。{1,} 。                
-				  	n?    	匹配任何包含零个或一个 n 的字符串。{0,1}       若找到最后，后面没有也算符合。	若有符合正则值，					按照1个匹配
-				  	n{x}  	匹配包含 x 个 n 的序列的字符串                      
-				  	n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
-				  	n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
-				  	n$    	匹配任何结尾为 n 的字符串                          
-				  	^n    	匹配任何开头为 n 的字符串                          
-					注意：==^正则表达式$==   使用时，会对字符串整体校验，完全符合才能够匹配。否则，不匹配。
-					注意：在使用花括号限制字符个数时，将来在去匹配时，首先从前向后匹配，先按照至多的要求匹配，至多不满足时，再降低要求匹配，若将至最少时还不匹配→ 最终是不匹配。
-					注意：关于次数至少是0时，表示的有没有都符合。  没有符合，内容不是也符合
+				限定符   	说明                                      
+				n*    	匹配任何包含零个或多个 n 的字符串。n{0,}。 若找到最后，后面没有也算符合。 	若有符合正则值，					按照最多的匹配
+				n+    	匹配任何包含至少一个 n 的字符串。{1,} 。                
+				n?    	匹配任何包含零个或一个 n 的字符串。{0,1}       若找到最后，后面没有也算符合。	若有符合正则值，					按照1个匹配
+				n{x}  	匹配包含 x 个 n 的序列的字符串                      
+				n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
+				n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
+				n$    	匹配任何结尾为 n 的字符串                          
+				^n    	匹配任何开头为 n 的字符串                          
+				注意：==^正则表达式$==   使用时，会对字符串整体校验，完全符合才能够匹配。否则，不匹配。
+				注意：在使用花括号限制字符个数时，将来在去匹配时，首先从前向后匹配，先按照至多的要求匹配，至多不满足时，再降低要求匹配，若将至最少时还不匹配→ 最终是不匹配。
+				注意：关于次数至少是0时，表示的有没有都符合。  没有符合，内容不是也符合
 			6.  中括号
-					一个中括号就代表一个字符，中括号的目的就是控制了一个字符的==范围==。 
-					对象字符种类限制
-						中括号            	说明                           
-						[abc]          	查找一个方括号之间的任何字符。              
-						[ ^abc]        	查找一个任何不在方括号之间的字符。^在中括号中有取反的意思
-						[0-9]          	查找一个任何从 0 至 9 的数字。           
-						[a-z]          	查找一个任何从小写 a 到小写 z 的字符。       
-						[A-Z]          	查找一个任何从大写 A 到大写 Z 的字符。       
-						[A-z]          	查找一个字母（包含大小写和下划线）            
-						[\u4e00-\u9fa5]	查找一个汉字                       
-						在匹配时，从前向后按照【规则】去找，若是全局匹配，前面若有满足项时，
-						后面再匹配时，从满足项下一个开始匹配。
+				一个中括号就代表一个字符，中括号的目的就是控制了一个字符的==范围==。 
+				对象字符种类限制
+					中括号            	说明                           
+					[abc]          	查找一个方括号之间的任何字符。              
+					[ ^abc]        	查找一个任何不在方括号之间的字符。^在中括号中有取反的意思
+					[0-9]          	查找一个任何从 0 至 9 的数字。           
+					[a-z]          	查找一个任何从小写 a 到小写 z 的字符。       
+					[A-Z]          	查找一个任何从大写 A 到大写 Z 的字符。       
+					[A-z]          	查找一个字母（包含大小写和下划线）            
+					[\u4e00-\u9fa5]	查找一个汉字                       
+					在匹配时，从前向后按照【规则】去找，若是全局匹配，前面若有满足项时，
+					后面再匹配时，从满足项下一个开始匹配。
 			7.  或模式
-					特殊符号：正则1|正则2, 或者。 符合或两边其中一个就可以匹配。
-						如：google，baidu，bing;  // 匹配三种其中一种字符串
-						正则：google|baidu|bing
+				特殊符号：正则1|正则2, 或者。 符合或两边其中一个就可以匹配。
+					如：google，baidu，bing;  // 匹配三种其中一种字符串
+					正则：google|baidu|bing
 			8.  分组模式
-					特殊符号：(正则);
-						组指的是一个小集体，分组就是将一个大集体可以分成几个小集体。
-						如：控制你的名字连续出现的次数，最少1次，最多3次
-							正则：^(bruce){1,3}$
+				特殊符号：(正则);
+					组指的是一个小集体，分组就是将一个大集体可以分成几个小集体。
+					如：控制你的名字连续出现的次数，最少1次，最多3次
+						正则：^(bruce){1,3}$
 			9.  修饰符
-					→ g ，全称global，有 全局 的意思，表示全局匹配。
-					    如： var reg = /hello/g;
-					→ i ，全称ignore，有 忽视、忽略 的意思，表示匹配字母时，可以忽略字母的大小写。
-						如： var reg = /hello/i;
-					→ gi  ig ，全局匹配和忽略大小写一起使用。
-					    如： var reg = /hello/gi; 
-					    如： var reg = /hello/ig; 
+				→ g ，全称global，有 全局 的意思，表示全局匹配。
+					如： var reg = /hello/g;
+				→ i ，全称ignore，有 忽视、忽略 的意思，表示匹配字母时，可以忽略字母的大小写。
+					如： var reg = /hello/i;
+				→ gi  ig ，全局匹配和忽略大小写一起使用。
+					如： var reg = /hello/gi; 
+					如： var reg = /hello/ig; 
 			10. 正则转义符 : .(点)在正则中表示特殊符号。去除.(点)的特殊意义，需要转义：  \.
 		}
 		var 正则对象 {
@@ -3519,7 +3897,7 @@
 			2. http服务器处理模块是一个系统模块，让我们能够通过简单的流程创建一个Web服务器
 			3. 搭建步骤
 				1. const http = require('http'); 导入 http 核心模块
-				3. const server = server = http.createServer(); server 对象负责建立连接，接收数据
+				3. const server = http.createServer(); server 对象负责建立连接，接收数据
 				4. server.listen(4000, () => console.log('Server is running at port 3000.'));监听端口
 				5. server.on('request', (req, res) => {});监听客户端的 request 请求事件，设置请求处理函数
 				6. 当服务器接收到浏览器的请求后，如果没有做出响应，浏览器会等待
@@ -4218,339 +4596,6 @@
 				db文件 
 				multer FromData的上传控件
 		}
-	</script>
-
-	项目
-	<script>
-		let alishow {
-			1. 项目目标和需求分析
-				1.1 项目目标
-					1. 该项目是站在后端程序员角度进行开发的，==理解后端程序的开发流程==是项目中的重要环节
-   					2. 重点掌握后端程序和前端程序是如何交互的 （Ajax）
-   			1. 一般项目的开发流程
-   				第一阶段: 需求分析
-   					研究客户到底想做一个什么东西
-					产出:  
-					    需求分析文档:  规划软件模块及每个模块中的功能 
-					    项目原型:  用户最终使用到的软件界面，以静态页面形式提交
-				第二阶段: 设计概要
-    				在需求分析的基础上进一步细致化项目整体结构。 包括：系统的组织结构、模块划分、功能流程设计、
-    				接口设计、数据表设计、容错模块等。
-    				产出:  
-    					设计概要文档
-    			第三阶段: 详细设计
-    				在设计概要基础上进一步细化。包括:算法、数据结构、类的[继承结构]及调用关系，并发量等。
-    				产出:  详细设计文档
-    			第四阶段: 编码==
-    				完成代码开发工作。
-    			第五阶段: 测试
-    				α测试、β测试、白盒测试、黑盒测试（case测试/用例测试）、单例测试、集成测试等等。 
-    			第六阶段: 交付/验收 
-    				交付给客户上线运行。
-    			第七阶段: 维护
-    				项目上线之后可能会暴露一些开发环境下未发现的问题，仍需要有人的项目进行debug操作。
-    			很多项目都只有一四五六七几个阶段，因为有了这几个阶段就可以完成项目开发了。 但是，如果希望项目有
-    				高扩展性、高维护性，那么第二三阶段非常重要。因为二三阶段是规划一个项目基础架构的重要组成。
-    		2. 前台和后台
-    			一般网站类项目都有前台和后台之分。
-					前台: 给网友（游客）使用页面叫做前台。
-					后台: 系统管理员使用页面
-				在开发任何一个功能的时候，都需要前端程序员和后端程序员共同来完成。
-					前端程序员: 写 css、html、js的程序员，主要任务是页面显示结构、样式，页面特效，==Ajax==
-					后端程序员: 写php、jsp、asp、nodejs的程序员，主要任务是对数据表进行增删改查操作
-				前台：
-					首页:   信息聚合页面，各种方式显示文章列表
-					列表页: 显示某个栏目下的所有文章列表
-					详情页: 显示文章的详细内容 
-				后台：
-					管理员登录功能
-					文章管理：文章的增删改查
-					栏目管理：栏目的增删改查
-					用户管理：用户的增删改
-					评论管理：批准/驳回评论
-					设置：图片轮播、网站设置等。
-			3. 项目结构搭建
-				1. 在实现上述描述的各项功能之前，必须先定好在哪里开发这个项目，项目所需的包有
-					哪些，项目的目录结构是怎样的才够清晰，等等一系列问题，这是做项目之前都要解决的。
-					在自己的计算机上找一个位置，创建一个文件夹，比如 alishow。然后我们将项目代码全部放到这里面。
-				2. 安装项目所需的包
-					express：搭建服务器必须的包
-					art-template：模板引擎
-					express-art-template：专门配合express使用的模板引擎
-					express-session：session管理（用户登录后，需要使用session记录用户的状态）
-					mysql：对MySQL数据库操作，必须用到的包
-					moment：时间处理包（比如登录时间、文章发布时间等地方可能会需要到）
-					body-parser：处理编码格式为 x-www-form-urlencoded 的表单数据
-					multer：处理编码格式为 form-data 的表单数据文件。上传需要用的包（会员头像上传、文章或栏目配图都需要）
-				3. 文件目录结构,和项目概览
-					1. alishow
-						node_modules
-						package-lock.json
-						pageage.json
-						view （文件夹存放项目的模板，静态页面）
-						app.js （开启服务的文件，项目入口文件）
-						router （存放所有的路由文件）
-						db.js （连接数据库）
-					2. 创建 View 目录
-						View 目录，顾名思义，是存放视图文件的目录，视图即模板，通俗的说，就是前端HTML页面。
-						所以在网站根目录中创建View文件夹，将alishow的HTML文件及静态资源文件全部放到View文件夹中。
-					3. 创建 app.js
-						下面一步创建服务器。因为页面已经拿到项目中了，下面首要任务是实现访问这些
-						页面，所以要创建服务器 app.js。另外模板引擎的配置、静态资源的托管、加载路由
-						、配置 session等一系列的工作都要放到app.js中，所以这一步我们创建 app.js
-						目标： 创建并开启服务器，托管静态资源，配置模板引擎，加载路由模块
-					4. 路由文件命名规则
-						1. 阿里百秀项目会涉及到非常非常多的接口（接口地址），所以不能把接口全部定义到 app.js 
-							中。应该按功能将接口定义到不同的文件中，我们把这些路由文件全部放到router文件夹中
-							，显得文件比较整齐。
-						2. 当前项目，可以按文件夹（功能）来定义路由，也就是==路由文件的名字和模板所在的文件夹
-							同名==，这样做的好处是，看到路由文件的名字就知道它里面存放了哪些路由。
-					5. 定义接口
-						1. 将接口的名字 定义成和文件所在路径一样
-						2. 处理模板路径的问题。解决方案是在 app.js 中，向全局对象 global 中添加一个属性 rootPath，
-							值是 __dirname。那么 rootPath 就始终表示网站的根目录(alishow文件夹)
-							，另外rootPath在其他的路由文件中也可以随意使用。
-					6. 让项目看起来像真实的项目
-						1. 修改前台首页的接口为/，这样的话，浏览器直接输入 127.0.0.1:4000 就可以访问到了home.js 代码
-						2. 修改app.js中的端口为默认的80端口，这样的话，浏览器直接输入127.0.0.1 就可以访问了
-							需要将其他的占用80端口的程序关闭掉才可以，比如wampserver中的Apache服务要停止。
-						3. 在hosts文件中，加入一条记录。自己设置一个域名，让他指向127.0.0.1 
-					7. 处理静态资源
-						1. 静态资源的处理，通过浏览器工具，来查看使用的静态资源的url是以什么开头的
-						2. 所以在app.js 中可以设置静态资源目录：就是这个开头文件名
-					8. 创建 db.js 模块
-						案例中的数据全部要放到数据库中，所以会有很多的增删改查操作，为了方便，定义db.js，
-						封装连接、配置数据库的代码，当然，最后要导出对象或函数，方便其他位置使用db。
-					9. 抽取页面公共部分
-						将页面相同的部分抽离出来当做父模板，并将不同的地方“挖坑”。
-						子模板继承父模板，“填坑”
-						父模板（抽离出来的html，假如名字为layout.html）：
-						    '<html>'
-						     	.....
-						    	{{block '坑名1'}} {{/block}}
-						    	..... 
-						        {{block '坑名2'}} {{/block}}
-						    '</html>'
-						子模板：
-						    // 使用下面的extend标签继承父模板
-						    {{extend './layout.html'}}
-						    
-						    // 填坑
-						    {{block '坑名1'}}
-						    	// 这里是你填坑的代码
-						    {{'/block'}}
-						    
-						    {{block '坑名2'}}
-						    	// 这里是你填坑的代码
-						    {{'/block'}}
-					10 解决静态资源错误加载问题
-						当使用了模板继承之后，后台首页还是正常的，后台其他页面出现了静态资源不能正确加载的问题。
-						解决办法是，根据浏览器的报错信息，查看此时的静态资源的url是以什么开头的，查看的信息如下：
-						可以使用 * 表示任意的字符串，所以后台静态资源处理代码如下
-						// express中，app.use 方法的第一个参数，可以写成类似于正则表达式的形式，其中 * 表示任意的字符串
-						app.use('/admin/*assets/', express.static(__dirname + '/view/admin/assets/'));
-			4. 设计数据表
-				1. CREATE TABLE `ali_admin` (
-					  	`admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id 主键 自增长',
-					  	`admin_email` varchar(50) NOT NULL COMMENT '管理员邮箱 唯一，非空',
-					  	`admin_nickname` varchar(30) NOT NULL COMMENT '管理员昵称',
-					  	`admin_pwd` char(32) NOT NULL COMMENT '密码',
-					  	`admin_tel` char(11) DEFAULT NULL COMMENT '手机号',
-					  	`admin_gender` enum('男','女','人妖') DEFAULT '人妖' COMMENT '性别',
-					  	`admin_age` tinyint(3) unsigned DEFAULT NULL COMMENT '年龄',
-					  	`admin_sign` text COMMENT '个人介绍',
-					  	`admin_addtime` char(10) DEFAULT NULL COMMENT '添加时间2019-02-12',
-					  	`admin_pic` varchar(255) DEFAULT NULL,
-					  	`admin_state` enum('激活','禁用') DEFAULT '激活' COMMENT '用户状态',
-					  	PRIMARY KEY (`admin_id`),
-					  	UNIQUE KEY `admin_email` (`admin_email`),
-					  	UNIQUE KEY `admin_nickname` (`admin_nickname`)
-					) 	ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-					PRIMARY KEY 主键
-					UNIQUE kEY 唯一索引，表示该字段的值不能有重复
-			5. 接口文档
-				在实际工作中，各个公司的文档结构可能不太相同，但是主要的几个说明都有。
-				功能描述 : 描述该接口的实际功能
-				请求URL地址 :  ajax请求的url地址
-				请求方式： post、get
-				请求参数： 随Ajax请求一起发送到后端页面的数据
-				返回参数： 后端一般返回的是json，此处就是说明返回json结构 
-			6. 实现各个功能
-				1. 设计数据表
-				2. 开发功能前的准备工作
-					1. 确定路由文件是否为要编辑的文件
-					2. 编写路由接口，展示页面
-					3. 在app.js 中，加载路由文件，并注册成中间件
-					4. html页面模板中使用模板继承,展示需要的数据
-				3. 完成功能
-					1. 处理表单
-						查看表单各项name属性是否和接口要求一致（字段个数及name属性是否对应）
-						表单中多的字段删除
-						表单中缺少的字段自行添加
-						设置添加按钮为button类型，
-					2. 前端给a标签设置超链接值为 javascript:;
-					3. 前端给a标签，添加一个自定义属性data-id，值就是当前分类的id {{$value.cate_id}}
-					4. 前端表单中加入隐藏域,保存需要的数据,以便提交表单或其他用途使用
-					5. 前端写js，获取表单数据，发送给对应的接口
-					6. 前端，写js代码，给点击的的a标签，添加单击事件。将id提交给对应的接口
-					7. 后端编写接口，接收传过来的id，然后查询数据，分配到模板(完成数据与数据库的交互工作)
-					8. 模板循环数据
-				4. 异步上传图片 : 展示告知用户选择的图片,便于用户选择想要的图片;这也是一次ajax请求
-					// 图片需要使用formdata上传
-    				var fd = new FormData();
-    				// fd.append('avatar', 文件对象);
-    				var fileObj = this.files[0];
-    				fd.append('avatar', fileObj);
-    				// 发送ajax请求
-    				提交后,会在服务器生成一个专门存放图片的文件夹,得到的响应结果就是包括了这个文件夹的一个路径,
-    				我们需要用隐藏域保存这个包含路径的结果,以便提交表单时使用
-    		5. 自行定义 模板解析规则 语法，避免和后端的模板方法冲突
-    			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/;
-    			模板代码：'{#each arr#}' '<td>{#$value.pic_text#}</td>' '{#/each#}'
-    			解决图片不显示的问题。查看浏览器的 Network面板，查看图片的url是开头是什么，然后去app.js中配置静态资源。
-    		6. 登录功能
-    			1. 查看 login.html 中的表单的name属性是否符合接口要求
-					2. 设置登录超链接的href="javascript:"
-					3. 当点击登录的时候，发送ajax请求到接口（看接口文档）
-					   	这里需要查看一下接口文档，会看到登录后，将用户信息记录到了session==
-							// /api/login/checkLogin 接口
-							//登录成功后，注册session
-							req.session.isLogin = true;
-							req.session.userInfo = result[0];
-					4. 登录完成，给出提示
-					5. 登录成功，控制后台所有页面都需要登录才能访问
-						1. 可以在app.js中，使用中间件来判断是否登录了，然后做出后续决定
-						2. 前台页面不需要登录，所以放到中间件前面
-						3. 登录页面也要放到中间件前面
-				7. 统一处理后台侧边栏 : 就是挂好超链接，方便跳转。
-				8. 前台首页开发
-					1. session验证登录不应该限制前台页面
-					2. 分析页面中需要的数据有
-					3. 在接口中，应该分别写SQL来查询他们，然后将查询到的所有数据分配到模板
-			7. 表单验证
-				1. jquery.validate.js使用方法：引入3个文件
-					//<script src="/jquery.js">
-					//<script src="/jquery.validate.js">
-					//<script src="/localization/messages_zh.js">
-				2. obj 是验证方案配置项 --- js对象形式
-					$('#mainForm').validate(obj)
-				3. obj 结构
-					rules: 验证方案
-					messages: 当验证未通过时的提示信息
-					submitHandler: 表单提交事件，当表单验证全部通过时才能提交表单到目标地址，否则显示错误信息
-					$('表单').validate({
-    					rules: { 
-      						admin_email: {
-      							required: true, // 验证该项必填
-      							email: true// 验证邮箱格式正确
-      						},
-    					    admin_nickname: {
-      							required: true, // 验证昵称必填
-      							maxlength: 8,
-      							minlength: 2
-      						}
-    					},
-    					messages: { //验证未通过时的提示信息
-    					    admin_email: {
-      							required: '邮箱必填~~~', // 验证该项必填的提示
-      							email: '邮箱格式不正确~~~'// 验证邮箱格式正确的提示
-      						},
-    						admin_nickname: {
-        						required: '昵称必填', // 验证昵称必填
-        						maxlength: '长度不能超过8位',
-        						minlength: '长度不能低于2位'
-							}
-    					},
-    					submitHandler: function () {
-    					    alert('验证通过');
-    					    // 如果验证通过，会调用这个方法，我们可以在这里完成ajax提交工作
-    					    $.ajax({...});
-    					}
-					})
-			8. 分页
-				1. 分页需要使用插件 twbs-pagination
-					压缩包中有具体示例代码
-				2. 加载bootstrap的css和js文件、需要jquery文件、需要插件js文件
-				4. 分页功能
-					// <script type="text/javascript" src="./assets/vendors/twbs-pagination/jquery.twbsPagination.min.js"><script>
-					// <script type="text/javascript" src="./assets/vendors/art-template/template-web.js"><script>
-					// <!-- 模板 -->
-					// <script id="tm" type="text/html">
-					//   {#each arr#}
-					//     <tr>
-					//       <td class="text-center"><input type="checkbox"></td>
-					//       <td>{#$value.title#}</td>
-					//       <td>{#$value.admin_nickname#}</td>
-					//       <td>{#$value.cate_name#}</td>
-					//       <td class="text-center">{#$value.addtime#}</td>
-					//       <td class="text-center">{#$value.state#}</td>
-					//       <td class="text-center">
-					//         <a href="/admin/post/edit.html?id={#$value.id#}" class="btn btn-default btn-xs">编辑</a>
-					//         <a href="javascript:;" data-id="{#$value.id#}" id="delete" class="btn btn-danger btn-xs">删除</a>
-					//       </td>
-					//     </tr>
-					//   {#/each#}
-					// <script>
-					
-					// <script>
-					// 	// 修改界定符
-					// 	template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/;
-					// 	$(function () {
-					// 						$('#mypage'):获取分页条对应的ul
-					// 	    window.pagObj = $('#mypage').twbsPagination({
-					// 	        totalPages: 6,
-					// 	        visiblePages: 10,
-					// 	        onPageClick: function (event, page) {
-					// 	          // 发送请求
-					// 	          $.post('/api/post/page', {pageno : page}, function (res) {
-					// 	            if(res.code == 200) {
-					// 	              let str = template('tm', {
-					// 	                arr : res.data,
-					// 	              });
-					// 	              $('tbody').html(str);
-					// 	            };
-					// 	          }, 'json');
-					// 	        },
-					// 	    });
-					// 	});
-					// <script>
-			9. ueditor副文本编辑器
-				副文本编辑器，也叫做HTML编辑器。
-				下载ueditor，将压缩包里面的文件夹解压出来，重命名为ueditor，然后复制到项目后台第三方资源文件夹里
-				然后在添加文章的时候，使用它
-				html文件中需要将前面的文章内容的textarea注释掉，然后加入script标签
-					<div class="form-group">
-						<label for="content">内容</label>
-						<!-- <textarea id="content" class="form-control input-lg" name="content" cols="30" rows="10"
-						  placeholder="内容"></textarea> -->
-						<script id="content" type="text/plain" name="content"><script>
-					// <!-- </div> -->
-				html文件中添加如下代码即可实现效果
-    			// <script src="assets/vendors/ueditor/ueditor.config.js"><script>
-    			// <script src="assets/vendors/ueditor/ueditor.all.min.js"><script>
-    			// <script src="assets/vendors/ueditor/lang/zh-cn/zh-cn.js"><script>
-    			// <script>
-    				// 创建编辑器，getEditor方法括号里放容器的id
-    				var ue = UE.getEditor('content');
-    			// <script>
-		}
-		let MVC开发模式 {
-			1. MVC开发模式，可以人员分配更加合理，有效的提供开发效率，使得代码的结构更加清晰。
-				M：model （模型） --  模式是用于处理数据的
-				V：view（视图）-- 视图，即模板，即HTML页面
-				C：controller（控制器） -- 起到调度的作用，调用模型和模板，完成用户的请求
-			2. 前台首页使用MVC模式：
-				view文件夹就是V层
-				router文件夹就是C层
-				alishow中创建model文件夹，它里面的文件就是M层
-			3. 在前台首页体验使用MVC：
-				1. alishow中创建model文件夹，它里面的文件就是M层
-				2. 在model文件夹创建home.js模型文件，负责查询前台所需的数据
-				3. model/home.js中创建三个方法，分别获取前台首页、列表页、详情页的数据
-				4. 将model/home.js中的方法导出，目的是在控制器层使用它们
-				5. router里面的home.js在需要数据到时候，加载model/home.js模型文件，调用里面的
-					db 方法获取数据，并通过模板展示数据
-		}
 		let 异步与单线程 {
 			1. 同步和异步
 				sync 同步，async 异步
@@ -4580,84 +4625,6 @@
 						Node.js (libuv)内部维护了一个线程池
 						Node 中将所有的阻塞操作交给了内部实现的线程池 
 						Node 本身主线程主要就是不断的往返调度
-		}
-		var postman { postman : 测试接口的软件 }
-		var 模板引擎 {
-			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/; 修改界定符
-			https://aui.github.io/art-template/
-			客户端(浏览器)拿到请求的数据过后最常见的就是把这些数据呈现到界面上。
-				如果数据结构简单，可以直接通过字符串操作（拼接）的方式处理，但是如果数据过于复杂，
-				字符串拼接维护成本太大。
-			模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易更高效的将数据渲染到HTML字符串中。==通俗的说，模板引擎的目的就是将服务器返回的数据显示到HTML页面中==。
-			使用模板引擎-1.加载js文件
-				'<script src="./assets/template-web.js">''<script>'
-				//  使用模板引擎-2.设置模板
-				<script id="xxx" type="text/html">
-				    <h2>{{title}}<h2>
-				    <p>{{age}}<p>
-				<script>
-				<script>
-				    // 使用模板引擎-3.调用template函数
-				    // var 模板和数据组合好的结果 = template(模板id, 模板中使用的数据必须是js对象类型);
-				    var str = template('xxx', {
-				        title: '哈哈哈哈，这是模板引擎',
-				        age: 20,
-				    });
-				    // 将替换好的结果，放到页面上
-				    document.body.innerHTML = str;
-				<script>
-			定义模板时的script标签一定好指定id和type,tempalte函数语法：var html = template(模板id,  Object);
-			使用模板引擎处理响应数据
-				引入template-web.js
-				//<script src="/template-web.js"></script>
-				<!-- 定义模板 -->
-				<!-- <script id="abcd" type="text/html">
-				    {{each arr}}
-				    <li class="media">
-				      <img class="mr-3" src="avatar.png" alt="">
-				      <div class="media-body">
-				        <h4>{{$value.name}}</h4>
-				        <p>{{$value.content}}</p>
-				    </div>
-				    </li>
-				    {{/each}}
-				</script>
-				<script> -->
-					<!-- xhr.onload = function () {
-						// 完全接收到服务器返回的数据
-					    var result = this.responseText;
-					    // 将JSON格式的数据，转换成JS数据
-					    data = JSON.parse(result);
-					    // 使用模板引擎，不用拼接字符串了
-					    var str = template('abcd', {
-					    	arr: data
-					    });
-					    // 把处理好的html放到ul中
-					    document.getElementById('messages').innerHTML = str;
-					};
-				</script> -->
-		}
-		var 重要操作 {	ajax需要一个事件触发
-			1.	for (var i = 0; i < data.length; i++) {
-        			lis += `<li class="media">
-        			          <img class="mr-3" src="./assets/avatar.png">
-        			          <div class="media-body">
-        			            <h4>${data[i].name}<h4>
-        			            <p>${data[i].content}<p>
-        			          <div>
-        			        <li>;
-      			}
-      			// 3. 循环结束，把拼接好的所有li放到ul中
-      			document.getElementById('messages').innerHTML = lis;
-      		2.	xhr.send(`name=${chenghu.value}&content=${neirong.value}`);
-      		3.	
-		}
-		var 自己封装 {
-			contentType : false; // 不让jq设置请求头
-			processData : false; // 不让jQuery去将对象类型的data处理成字符串
-			提交 FormData
-			注意事项：接口需要的三个参数分别为name/bio/avatar
-			表单中的input需要设置对应的name值，否则FormData是收集不到数据的
 		}
 	</script>
 
@@ -5613,7 +5580,8 @@
 		let git {
 			git init   创建本地仓库
 			git remote add origin 地址；关联git仓库地址
-			git remote -v	查看仓库地址
+			git remote -v	查看远程仓库地址
+			git remote set-url origin 地址；替换仓库地址
 			git add .
 			git commit -m '备注'
 			git pull	拉取分支
@@ -5625,7 +5593,8 @@
 			git branch	查看当前分支
 			git checkout -b login	创建login分支并切换过去
 			git checkout master	切换回master分支
-			git branch -d 分支名称	删除分支
+			git branch -a 查看远程分支
+			git branch -D 分支名称	删除分支
 			git merge 分支名称	合并分支
 			vi 文件名	创建并进入编辑文件模式
 			i 输入i才可以编辑  esc退出编辑	冒号wq退出编辑模式  cat查看文件内容
@@ -5752,12 +5721,484 @@
 				4.	打开任务管理器，找到占用程序，结束任务
 				5. 	核心重点：  安装任何与开发相关的软件时都必须安装到英文路径下。
 		}
+		let MIME类型 {
+			文件后缀					Mime类型										说明
+			.flv				flv/flv-flash 								在线播放
+			.html或.htm 			text/html 								超文本标记语言文本
+			.rtf 				application/rtf								RTF文本
+			.gif 				image/gif									GIF图形
+			.jpeg或.jpg 			image/jpeg								JPEG图形
+			.au					audio/basic 								au声音文件
+			.mid或.midi			audio/midi或audio/x-midi 					MIDI音乐文件
+			.ra或.ram或.rm 		audio/x-pn-realaudio						RealAudio音乐文件
+			.mpg或.mpeg或.mp3 	video/mpeg									MPEG文件
+			.avi 				video/x-msvideo								AVI文件
+			.gz					application/x-gzip							GZIP文件
+			.tar				application/x-tar 							TAR文件
+			.exe 				application/octet-stream					下载文件类型
+			.rmvb 				video/vnd.rn-realvideo 						在线播放
+			.txt 				text/plain									普通文本
+			.mrp 				application/octet-stream 					MRP文件（国内普遍的手机）
+			.ipa				application/iphone-package-archive			IPA文件(IPHONE)
+			.deb 				application/x-debian-package-archive		DED文件(IPHONE)
+			.apk				application/vnd.android.package-archive 	APK文件(安卓系统)
+			.cab				application/vnd.cab-com-archive 			CAB文件(Windows Mobile)
+			.xap				application/x-silverlight-app 				XAP文件(Windows Phone 7)
+			.sis				application/vnd.symbian.install-archive		SIS文件(symbian平台)
+			.jar 				application/java-archive					JAR文件(JAVA平台手机通用格式)
+			.jad				text/vnd.sun.j2me.app-descriptor			JAD文件(JAVA平台手机通用格式)
+			.sisx 				application/vnd.symbian.epoc/x-sisx-app 	SISX文件(symbian平台)
+		}
 	</script>
 
 
 	React
 	<script>
 		
+	</script>
+
+
+	项目
+	<script>
+		let alishow {
+			1. 项目目标和需求分析
+				1.1 项目目标
+					1. 该项目是站在后端程序员角度进行开发的，==理解后端程序的开发流程==是项目中的重要环节
+   					2. 重点掌握后端程序和前端程序是如何交互的 （Ajax）
+   			1. 一般项目的开发流程
+   				第一阶段: 需求分析
+   					研究客户到底想做一个什么东西
+					产出:  
+					    需求分析文档:  规划软件模块及每个模块中的功能 
+					    项目原型:  用户最终使用到的软件界面，以静态页面形式提交
+				第二阶段: 设计概要
+    				在需求分析的基础上进一步细致化项目整体结构。 包括：系统的组织结构、模块划分、功能流程设计、
+    				接口设计、数据表设计、容错模块等。
+    				产出:  
+    					设计概要文档
+    			第三阶段: 详细设计
+    				在设计概要基础上进一步细化。包括:算法、数据结构、类的[继承结构]及调用关系，并发量等。
+    				产出:  详细设计文档
+    			第四阶段: 编码==
+    				完成代码开发工作。
+    			第五阶段: 测试
+    				α测试、β测试、白盒测试、黑盒测试（case测试/用例测试）、单例测试、集成测试等等。 
+    			第六阶段: 交付/验收 
+    				交付给客户上线运行。
+    			第七阶段: 维护
+    				项目上线之后可能会暴露一些开发环境下未发现的问题，仍需要有人的项目进行debug操作。
+    			很多项目都只有一四五六七几个阶段，因为有了这几个阶段就可以完成项目开发了。 但是，如果希望项目有
+    				高扩展性、高维护性，那么第二三阶段非常重要。因为二三阶段是规划一个项目基础架构的重要组成。
+    		2. 前台和后台
+    			一般网站类项目都有前台和后台之分。
+					前台: 给网友（游客）使用页面叫做前台。
+					后台: 系统管理员使用页面
+				在开发任何一个功能的时候，都需要前端程序员和后端程序员共同来完成。
+					前端程序员: 写 css、html、js的程序员，主要任务是页面显示结构、样式，页面特效，==Ajax==
+					后端程序员: 写php、jsp、asp、nodejs的程序员，主要任务是对数据表进行增删改查操作
+				前台：
+					首页:   信息聚合页面，各种方式显示文章列表
+					列表页: 显示某个栏目下的所有文章列表
+					详情页: 显示文章的详细内容 
+				后台：
+					管理员登录功能
+					文章管理：文章的增删改查
+					栏目管理：栏目的增删改查
+					用户管理：用户的增删改
+					评论管理：批准/驳回评论
+					设置：图片轮播、网站设置等。
+			3. 项目结构搭建
+				1. 在实现上述描述的各项功能之前，必须先定好在哪里开发这个项目，项目所需的包有
+					哪些，项目的目录结构是怎样的才够清晰，等等一系列问题，这是做项目之前都要解决的。
+					在自己的计算机上找一个位置，创建一个文件夹，比如 alishow。然后我们将项目代码全部放到这里面。
+				2. 安装项目所需的包
+					express：搭建服务器必须的包
+					art-template：模板引擎
+					express-art-template：专门配合express使用的模板引擎
+					express-session：session管理（用户登录后，需要使用session记录用户的状态）
+					mysql：对MySQL数据库操作，必须用到的包
+					moment：时间处理包（比如登录时间、文章发布时间等地方可能会需要到）
+					body-parser：处理编码格式为 x-www-form-urlencoded 的表单数据
+					multer：处理编码格式为 form-data 的表单数据文件。上传需要用的包（会员头像上传、文章或栏目配图都需要）
+				3. 文件目录结构,和项目概览
+					1. alishow
+						node_modules
+						package-lock.json
+						pageage.json
+						view （文件夹存放项目的模板，静态页面）
+						app.js （开启服务的文件，项目入口文件）
+						router （存放所有的路由文件）
+						db.js （连接数据库）
+					2. 创建 View 目录
+						View 目录，顾名思义，是存放视图文件的目录，视图即模板，通俗的说，就是前端HTML页面。
+						所以在网站根目录中创建View文件夹，将alishow的HTML文件及静态资源文件全部放到View文件夹中。
+					3. 创建 app.js
+						下面一步创建服务器。因为页面已经拿到项目中了，下面首要任务是实现访问这些
+						页面，所以要创建服务器 app.js。另外模板引擎的配置、静态资源的托管、加载路由
+						、配置 session等一系列的工作都要放到app.js中，所以这一步我们创建 app.js
+						目标： 创建并开启服务器，托管静态资源，配置模板引擎，加载路由模块
+					4. 路由文件命名规则
+						1. 阿里百秀项目会涉及到非常非常多的接口（接口地址），所以不能把接口全部定义到 app.js 
+							中。应该按功能将接口定义到不同的文件中，我们把这些路由文件全部放到router文件夹中
+							，显得文件比较整齐。
+						2. 当前项目，可以按文件夹（功能）来定义路由，也就是==路由文件的名字和模板所在的文件夹
+							同名==，这样做的好处是，看到路由文件的名字就知道它里面存放了哪些路由。
+					5. 定义接口
+						1. 将接口的名字 定义成和文件所在路径一样
+						2. 处理模板路径的问题。解决方案是在 app.js 中，向全局对象 global 中添加一个属性 rootPath，
+							值是 __dirname。那么 rootPath 就始终表示网站的根目录(alishow文件夹)
+							，另外rootPath在其他的路由文件中也可以随意使用。
+					6. 让项目看起来像真实的项目
+						1. 修改前台首页的接口为/，这样的话，浏览器直接输入 127.0.0.1:4000 就可以访问到了home.js 代码
+						2. 修改app.js中的端口为默认的80端口，这样的话，浏览器直接输入127.0.0.1 就可以访问了
+							需要将其他的占用80端口的程序关闭掉才可以，比如wampserver中的Apache服务要停止。
+						3. 在hosts文件中，加入一条记录。自己设置一个域名，让他指向127.0.0.1 
+					7. 处理静态资源
+						1. 静态资源的处理，通过浏览器工具，来查看使用的静态资源的url是以什么开头的
+						2. 所以在app.js 中可以设置静态资源目录：就是这个开头文件名
+					8. 创建 db.js 模块
+						案例中的数据全部要放到数据库中，所以会有很多的增删改查操作，为了方便，定义db.js，
+						封装连接、配置数据库的代码，当然，最后要导出对象或函数，方便其他位置使用db。
+					9. 抽取页面公共部分
+						将页面相同的部分抽离出来当做父模板，并将不同的地方“挖坑”。
+						子模板继承父模板，“填坑”
+						父模板（抽离出来的html，假如名字为layout.html）：
+						    '<html>'
+						     	.....
+						    	{{block '坑名1'}} {{/block}}
+						    	..... 
+						        {{block '坑名2'}} {{/block}}
+						    '</html>'
+						子模板：
+						    // 使用下面的extend标签继承父模板
+						    {{extend './layout.html'}}
+						    
+						    // 填坑
+						    {{block '坑名1'}}
+						    	// 这里是你填坑的代码
+						    {{'/block'}}
+						    
+						    {{block '坑名2'}}
+						    	// 这里是你填坑的代码
+						    {{'/block'}}
+					10 解决静态资源错误加载问题
+						当使用了模板继承之后，后台首页还是正常的，后台其他页面出现了静态资源不能正确加载的问题。
+						解决办法是，根据浏览器的报错信息，查看此时的静态资源的url是以什么开头的，查看的信息如下：
+						可以使用 * 表示任意的字符串，所以后台静态资源处理代码如下
+						// express中，app.use 方法的第一个参数，可以写成类似于正则表达式的形式，其中 * 表示任意的字符串
+						app.use('/admin/*assets/', express.static(__dirname + '/view/admin/assets/'));
+			4. 设计数据表
+				1. CREATE TABLE `ali_admin` (
+					  	`admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id 主键 自增长',
+					  	`admin_email` varchar(50) NOT NULL COMMENT '管理员邮箱 唯一，非空',
+					  	`admin_nickname` varchar(30) NOT NULL COMMENT '管理员昵称',
+					  	`admin_pwd` char(32) NOT NULL COMMENT '密码',
+					  	`admin_tel` char(11) DEFAULT NULL COMMENT '手机号',
+					  	`admin_gender` enum('男','女','人妖') DEFAULT '人妖' COMMENT '性别',
+					  	`admin_age` tinyint(3) unsigned DEFAULT NULL COMMENT '年龄',
+					  	`admin_sign` text COMMENT '个人介绍',
+					  	`admin_addtime` char(10) DEFAULT NULL COMMENT '添加时间2019-02-12',
+					  	`admin_pic` varchar(255) DEFAULT NULL,
+					  	`admin_state` enum('激活','禁用') DEFAULT '激活' COMMENT '用户状态',
+					  	PRIMARY KEY (`admin_id`),
+					  	UNIQUE KEY `admin_email` (`admin_email`),
+					  	UNIQUE KEY `admin_nickname` (`admin_nickname`)
+					) 	ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+					PRIMARY KEY 主键
+					UNIQUE kEY 唯一索引，表示该字段的值不能有重复
+			5. 接口文档
+				在实际工作中，各个公司的文档结构可能不太相同，但是主要的几个说明都有。
+				功能描述 : 描述该接口的实际功能
+				请求URL地址 :  ajax请求的url地址
+				请求方式： post、get
+				请求参数： 随Ajax请求一起发送到后端页面的数据
+				返回参数： 后端一般返回的是json，此处就是说明返回json结构 
+			6. 实现各个功能
+				1. 设计数据表
+				2. 开发功能前的准备工作
+					1. 确定路由文件是否为要编辑的文件
+					2. 编写路由接口，展示页面
+					3. 在app.js 中，加载路由文件，并注册成中间件
+					4. html页面模板中使用模板继承,展示需要的数据
+				3. 完成功能
+					1. 处理表单
+						查看表单各项name属性是否和接口要求一致（字段个数及name属性是否对应）
+						表单中多的字段删除
+						表单中缺少的字段自行添加
+						设置添加按钮为button类型，
+					2. 前端给a标签设置超链接值为 javascript:;
+					3. 前端给a标签，添加一个自定义属性data-id，值就是当前分类的id {{$value.cate_id}}
+					4. 前端表单中加入隐藏域,保存需要的数据,以便提交表单或其他用途使用
+					5. 前端写js，获取表单数据，发送给对应的接口
+					6. 前端，写js代码，给点击的的a标签，添加单击事件。将id提交给对应的接口
+					7. 后端编写接口，接收传过来的id，然后查询数据，分配到模板(完成数据与数据库的交互工作)
+					8. 模板循环数据
+				4. 异步上传图片 : 展示告知用户选择的图片,便于用户选择想要的图片;这也是一次ajax请求
+					// 图片需要使用formdata上传
+    				var fd = new FormData();
+    				// fd.append('avatar', 文件对象);
+    				var fileObj = this.files[0];
+    				fd.append('avatar', fileObj);
+    				// 发送ajax请求
+    				提交后,会在服务器生成一个专门存放图片的文件夹,得到的响应结果就是包括了这个文件夹的一个路径,
+    				我们需要用隐藏域保存这个包含路径的结果,以便提交表单时使用
+    		5. 自行定义 模板解析规则 语法，避免和后端的模板方法冲突
+    			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/;
+    			模板代码：'{#each arr#}' '<td>{#$value.pic_text#}</td>' '{#/each#}'
+    			解决图片不显示的问题。查看浏览器的 Network面板，查看图片的url是开头是什么，然后去app.js中配置静态资源。
+    		6. 登录功能
+    			1. 查看 login.html 中的表单的name属性是否符合接口要求
+					2. 设置登录超链接的href="javascript:"
+					3. 当点击登录的时候，发送ajax请求到接口（看接口文档）
+					   	这里需要查看一下接口文档，会看到登录后，将用户信息记录到了session==
+							// /api/login/checkLogin 接口
+							//登录成功后，注册session
+							req.session.isLogin = true;
+							req.session.userInfo = result[0];
+					4. 登录完成，给出提示
+					5. 登录成功，控制后台所有页面都需要登录才能访问
+						1. 可以在app.js中，使用中间件来判断是否登录了，然后做出后续决定
+						2. 前台页面不需要登录，所以放到中间件前面
+						3. 登录页面也要放到中间件前面
+				7. 统一处理后台侧边栏 : 就是挂好超链接，方便跳转。
+				8. 前台首页开发
+					1. session验证登录不应该限制前台页面
+					2. 分析页面中需要的数据有
+					3. 在接口中，应该分别写SQL来查询他们，然后将查询到的所有数据分配到模板
+			7. 表单验证
+				1. jquery.validate.js使用方法：引入3个文件
+					//<script src="/jquery.js">
+					//<script src="/jquery.validate.js">
+					//<script src="/localization/messages_zh.js">
+				2. obj 是验证方案配置项 --- js对象形式
+					$('#mainForm').validate(obj)
+				3. obj 结构
+					rules: 验证方案
+					messages: 当验证未通过时的提示信息
+					submitHandler: 表单提交事件，当表单验证全部通过时才能提交表单到目标地址，否则显示错误信息
+					$('表单').validate({
+    					rules: { 
+      						admin_email: {
+      							required: true, // 验证该项必填
+      							email: true// 验证邮箱格式正确
+      						},
+    					    admin_nickname: {
+      							required: true, // 验证昵称必填
+      							maxlength: 8,
+      							minlength: 2
+      						}
+    					},
+    					messages: { //验证未通过时的提示信息
+    					    admin_email: {
+      							required: '邮箱必填~~~', // 验证该项必填的提示
+      							email: '邮箱格式不正确~~~'// 验证邮箱格式正确的提示
+      						},
+    						admin_nickname: {
+        						required: '昵称必填', // 验证昵称必填
+        						maxlength: '长度不能超过8位',
+        						minlength: '长度不能低于2位'
+							}
+    					},
+    					submitHandler: function () {
+    					    alert('验证通过');
+    					    // 如果验证通过，会调用这个方法，我们可以在这里完成ajax提交工作
+    					    $.ajax({...});
+    					}
+					})
+			8. 分页
+				1. 分页需要使用插件 twbs-pagination
+					压缩包中有具体示例代码
+				2. 加载bootstrap的css和js文件、需要jquery文件、需要插件js文件
+				4. 分页功能
+					// <script type="text/javascript" src="./assets/vendors/twbs-pagination/jquery.twbsPagination.min.js"><script>
+					// <script type="text/javascript" src="./assets/vendors/art-template/template-web.js"><script>
+					// <!-- 模板 -->
+					// <script id="tm" type="text/html">
+					//   {#each arr#}
+					//     <tr>
+					//       <td class="text-center"><input type="checkbox"></td>
+					//       <td>{#$value.title#}</td>
+					//       <td>{#$value.admin_nickname#}</td>
+					//       <td>{#$value.cate_name#}</td>
+					//       <td class="text-center">{#$value.addtime#}</td>
+					//       <td class="text-center">{#$value.state#}</td>
+					//       <td class="text-center">
+					//         <a href="/admin/post/edit.html?id={#$value.id#}" class="btn btn-default btn-xs">编辑</a>
+					//         <a href="javascript:;" data-id="{#$value.id#}" id="delete" class="btn btn-danger btn-xs">删除</a>
+					//       </td>
+					//     </tr>
+					//   {#/each#}
+					// <script>
+					
+					// <script>
+					// 	// 修改界定符
+					// 	template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/;
+					// 	$(function () {
+					// 						$('#mypage'):获取分页条对应的ul
+					// 	    window.pagObj = $('#mypage').twbsPagination({
+					// 	        totalPages: 6,
+					// 	        visiblePages: 10,
+					// 	        onPageClick: function (event, page) {
+					// 	          // 发送请求
+					// 	          $.post('/api/post/page', {pageno : page}, function (res) {
+					// 	            if(res.code == 200) {
+					// 	              let str = template('tm', {
+					// 	                arr : res.data,
+					// 	              });
+					// 	              $('tbody').html(str);
+					// 	            };
+					// 	          }, 'json');
+					// 	        },
+					// 	    });
+					// 	});
+					// <script>
+			9. ueditor副文本编辑器
+				副文本编辑器，也叫做HTML编辑器。
+				下载ueditor，将压缩包里面的文件夹解压出来，重命名为ueditor，然后复制到项目后台第三方资源文件夹里
+				然后在添加文章的时候，使用它
+				html文件中需要将前面的文章内容的textarea注释掉，然后加入script标签
+					<div class="form-group">
+						<label for="content">内容</label>
+						<!-- <textarea id="content" class="form-control input-lg" name="content" cols="30" rows="10"
+						  placeholder="内容"></textarea> -->
+						<script id="content" type="text/plain" name="content"><script>
+					// <!-- </div> -->
+				html文件中添加如下代码即可实现效果
+    			// <script src="assets/vendors/ueditor/ueditor.config.js"><script>
+    			// <script src="assets/vendors/ueditor/ueditor.all.min.js"><script>
+    			// <script src="assets/vendors/ueditor/lang/zh-cn/zh-cn.js"><script>
+    			// <script>
+    				// 创建编辑器，getEditor方法括号里放容器的id
+    				var ue = UE.getEditor('content');
+    			// <script>
+		}
+		let MVC开发模式 {
+			1. MVC开发模式，可以人员分配更加合理，有效的提供开发效率，使得代码的结构更加清晰。
+				M：model （模型） --  模式是用于处理数据的
+				V：view（视图）-- 视图，即模板，即HTML页面
+				C：controller（控制器） -- 起到调度的作用，调用模型和模板，完成用户的请求
+			2. 前台首页使用MVC模式：
+				view文件夹就是V层
+				router文件夹就是C层
+				alishow中创建model文件夹，它里面的文件就是M层
+			3. 在前台首页体验使用MVC：
+				1. alishow中创建model文件夹，它里面的文件就是M层
+				2. 在model文件夹创建home.js模型文件，负责查询前台所需的数据
+				3. model/home.js中创建三个方法，分别获取前台首页、列表页、详情页的数据
+				4. 将model/home.js中的方法导出，目的是在控制器层使用它们
+				5. router里面的home.js在需要数据到时候，加载model/home.js模型文件，调用里面的
+					db 方法获取数据，并通过模板展示数据
+		}
+		let 异步与单线程 {
+			1. 同步和异步
+				sync 同步，async 异步
+				I/O 操作都是耗时(阻塞)操作，例如：文件操作、网络操作
+				fs 模块对文件的几乎所有操作都有同步和异步两种形式
+					例如：readFile() 和 readFileSync()。
+				同步与异步文件系统调用的区别
+				同步调用立即执行，会阻塞后续代码继续执行
+				异步调用不阻塞后续代码继续执行，需要回调函数作为额外的参数，通常包含一个错误作为回调函数的第一个参数
+				异步调用通过判断第一个 err 对象来处理异常
+				异步调用结果往往通过回调函数来进行获取
+				Node 只在文件IO操作中，提供了同步调用和异步调用两种形式，两者可以结合使用，
+				但是推荐能使用异步调用解决问题的情况下，少用同步调用。
+			2. 进程和线程(了解)
+					进程
+						正在执行的应用程序
+						一个进程至少有一个线程
+					线程
+						用来执行应用程序中的代码 
+						在一个进程内部，可以有很多的线程，至少有一个线程
+						在一个线程内部，同时只可以干一件事 
+						而且传统的开发方式大部分都是 I/O 阻塞的 
+						所以需要多线程来更好的利用硬件资源 
+						给人带来一种错觉：线程越多越好(线程的创建需要耗时，线程本身需要占用内存)
+					Node.js 是单线程的
+						Node.js 用来执行 js 的线程只有一个
+						Node.js (libuv)内部维护了一个线程池
+						Node 中将所有的阻塞操作交给了内部实现的线程池 
+						Node 本身主线程主要就是不断的往返调度
+		}
+		var postman {
+			postman : 测试接口的软件
+		}
+		var 模板引擎 {
+			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/; 修改界定符
+			https://aui.github.io/art-template/
+			客户端(浏览器)拿到请求的数据过后最常见的就是把这些数据呈现到界面上。
+				如果数据结构简单，可以直接通过字符串操作（拼接）的方式处理，但是如果数据过于复杂，
+				字符串拼接维护成本太大。
+			模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易更高效的将数据渲染到HTML字符串中。==通俗的说，模板引擎的目的就是将服务器返回的数据显示到HTML页面中==。
+			使用模板引擎-1.加载js文件
+				'<script src="./assets/template-web.js">''<script>'
+				//  使用模板引擎-2.设置模板
+				<script id="xxx" type="text/html">
+				    <h2>{{title}}<h2>
+				    <p>{{age}}<p>
+				<script>
+				<script>
+				    // 使用模板引擎-3.调用template函数
+				    // var 模板和数据组合好的结果 = template(模板id, 模板中使用的数据必须是js对象类型);
+				    var str = template('xxx', {
+				        title: '哈哈哈哈，这是模板引擎',
+				        age: 20,
+				    });
+				    // 将替换好的结果，放到页面上
+				    document.body.innerHTML = str;
+				<script>
+			定义模板时的script标签一定好指定id和type,tempalte函数语法：var html = template(模板id,  Object);
+			使用模板引擎处理响应数据
+				引入template-web.js
+				//<script src="/template-web.js"></script>
+				<!-- 定义模板 -->
+				<!-- <script id="abcd" type="text/html">
+				    {{each arr}}
+				    <li class="media">
+				      <img class="mr-3" src="avatar.png" alt="">
+				      <div class="media-body">
+				        <h4>{{$value.name}}</h4>
+				        <p>{{$value.content}}</p>
+				    </div>
+				    </li>
+				    {{/each}}
+				</script>
+				<script> -->
+					<!-- xhr.onload = function () {
+						// 完全接收到服务器返回的数据
+					    var result = this.responseText;
+					    // 将JSON格式的数据，转换成JS数据
+					    data = JSON.parse(result);
+					    // 使用模板引擎，不用拼接字符串了
+					    var str = template('abcd', {
+					    	arr: data
+					    });
+					    // 把处理好的html放到ul中
+					    document.getElementById('messages').innerHTML = str;
+					};
+				</script> -->
+		}
+		var 重要操作 {	ajax需要一个事件触发
+			1.	for (var i = 0; i < data.length; i++) {
+        			lis += `<li class="media">
+        			          <img class="mr-3" src="./assets/avatar.png">
+        			          <div class="media-body">
+        			            <h4>${data[i].name}<h4>
+        			            <p>${data[i].content}<p>
+        			          <div>
+        			        <li>;
+      			}
+      			// 3. 循环结束，把拼接好的所有li放到ul中
+      			document.getElementById('messages').innerHTML = lis;
+      		2.	xhr.send(`name=${chenghu.value}&content=${neirong.value}`);
+      		3.	
+		}
+		var 自己封装 {
+			contentType : false; // 不让jq设置请求头
+			processData : false; // 不让jQuery去将对象类型的data处理成字符串
+			提交 FormData
+			注意事项：接口需要的三个参数分别为name/bio/avatar
+			表单中的input需要设置对应的name值，否则FormData是收集不到数据的
+		}
 	</script>
 </body>
 </html>

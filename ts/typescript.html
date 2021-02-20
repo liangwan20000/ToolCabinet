@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // TypeScript 是 JavaScript 的一个超集，主要提供了类型系统和对 ES6 的支持，它由 Microsoft 开发，代码开源于 GitHub 上。
+        // var __extends = (this && this.__extends) || function (d, b) {
+        //     // window.console.log(b.prototype)
+        //     // d获取b的可枚举属性
+        //     for (var p in b) {
+        //         window.console.log('1')
+        //         // if (b.hasOwnProperty(p)) d[p] = b[p];
+        //     }
+            
+        //     function __() {
+        //         // 重写了d的原型，原型里的constructor必须回指回自己的构造函数
+        //         this.constructor = d;
+        //     }
+        //     // 重新获取d的原型   如果为空就重新创建一个对象；如果不为空，就获取父类的原型方法,实例化一个原型赋值给d的原型
+        //     d.prototype = b === null ? Object.create(b) : ((__.prototype = b.prototype), new __());
+        //     window.console.log(d)
+        // };
+        
+        // var Animal = (function () {
+        //     function Animal(name) {
+        //         this.age = name;
+        //     }
+        //     Animal.prototype.sayHi = function () {
+        //         console.log('Meow, My name is ' + this.name);
+        //     };
+        //     return Animal;
+        // })();
+
+        // var Cat = (function (_super) {
+        //     function Cat() {
+        //         _super.apply(this, arguments);
+        //     }
+        //     __extends(Cat, _super);
+        //     Cat.prototype.sayHi = function () {
+        //         console.log('Meow, My name is ' + this.name);
+        //     };
+        //     return Cat;
+        // })(Animal);
+        
+        // var cat = new Cat('Tom');
+        // console.log(cat.age)
+
+        function A() {
+            this.a = "a"
+        }
+         
+        function B() {
+            this.b = "b"
+        }
+         
+        // B.prototype = new A();
+        //  
+        // var a = new B();
+         
+        for(var k in A){
+            console.log("属性" + k + ": 值" + a[k])
+        }
+    </script>
+</body>
+</html>
