@@ -116,6 +116,8 @@
 					typeof (变量名);
 					typeof data;
 
+			Object.prototype.toString.call(); 判断对象的数据类型,值： '[object Array]'
+
 			property 属性
 
 			value 值
@@ -1065,6 +1067,7 @@
 
 	web api
 	<script>
+		Object.prototype.toString.call(); 判断对象的数据类型
 		document.documentElement：表示HTML
 		document.body ：表示body
 		屏幕的可视区域宽高
@@ -1491,6 +1494,7 @@
 
 	BOM
 	<script>
+		navigator.onLine; 这个属性值为true表示设备能上网，值为false表示设备离线；
 		window.dispatchEvent(new Event('resize'));窗口尺寸变化时->触发resize事件->重新设置动态高
 		JS中顶级对象： window
 				✔ 文档对象document也属于window对象中的一个
