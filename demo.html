@@ -146,7 +146,11 @@
                     }
                 },
                 mounted() {
-                    
+                    document.cookie = encodeURIComponent('name') + '=' + encodeURIComponent('Nicholas') + "; domain=.wrox.com; path=/"
+
+                    let cookieName = encodeURIComponent('name') + '=';
+                    let cookieStart = document.cookie.indexOf(cookieName)
+                    console.log(cookieStart)
                 },
                 methods: {
                     setCheckedKeys() {

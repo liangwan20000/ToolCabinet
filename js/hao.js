@@ -69,30 +69,30 @@ function parseTime(time, cFormat) {
 }
 // 获取当前月的最后一天
 function getLastDay () {
-    // 现在的时间
-    var date = new Date();
-    // 获取当前月份
-    var currentMonth = date.getMonth();
-    // 获取下一个月
-    var nextMonth = ++currentMonth;
-    // 获取下个月的1号
-    var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth , 1);
-    // 设置一天的时间
-    var oneDay = 1000 * 60 * 60 * 24;
-    // 上个月的第一天减去一天得到当前月的最后一天的时间
-    var lastTime = new Date(nextMonthFirstDay - oneDay);
-    // console.log(lastTime.getMonth())
-    // 得到当前月
-    var month = parseInt(lastTime.getMonth() + 1);
-    // 得到当前月最后一天
-    var day = lastTime.getDate();
-    if (month < 10) {
-        month = '0' + month
-    }
-    if (day < 10) {
-        day = '0' + day
-    }
-    return date.getFullYear() + '-' + month + '-' + day
+	// 现在的时间
+	var date = new Date();
+	// 获取当前月份
+	var currentMonth = date.getMonth();
+	// 获取下一个月
+	var nextMonth = ++currentMonth;
+	// 获取下个月的1号
+	var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth , 1);
+	// 设置一天的时间
+	var oneDay = 1000 * 60 * 60 * 24;
+	// 上个月的第一天减去一天得到当前月的最后一天的时间
+	var lastTime = new Date(nextMonthFirstDay - oneDay);
+	// console.log(lastTime.getMonth())
+	// 得到当前月
+	var month = parseInt(lastTime.getMonth() + 1);
+	// 得到当前月最后一天
+	var day = lastTime.getDate();
+	if (month < 10) {
+		month = '0' + month
+	}
+	if (day < 10) {
+		day = '0' + day
+	}
+	return date.getFullYear() + '-' + month + '-' + day
 }
 
 /**
@@ -103,7 +103,6 @@ function getLastDay () {
  * @param {string} surfaceName 表名字
  * @returns {string | null}
  */
-//  参数1：json数据
 function tableToExcel(jsonData, str, surfaceName) {
   //要导出的json数据
   // const jsonData = [
@@ -165,15 +164,15 @@ function chunk(array, size) {
 	let length = array == null ? 0 : array.length
 	// 如果为空返回空数组
 	if (!length || size < 1) {
-	  	return []
+		return []
 	}
 	// 初始化
 	let index = 0, resIndex = 0, result = Array(Math.ceil(length / size)) // 向上取整,得到一个已知 length 大小的数组
 
 	// while (index < length) {
-	// 	result[resIndex] = array.slice(index, index + size)
-	// 	index = index + size
-	// 	resIndex++
+	//  result[resIndex] = array.slice(index, index + size)
+	//  index = index + size
+	//  resIndex++
 	// }
 
 	// 循环
@@ -181,6 +180,48 @@ function chunk(array, size) {
 		result[resIndex++] = array.slice(index, (index += size))
 	}
 	return result
+}
+
+/**
+ * animate动画
+ * 
+ * @param {Object} element DOM元素
+ * @param {Number} up 起始位置
+ * @param {Number} down 目标位置
+ * @param {Number} juli 移动距离
+ * @param {Date} time 时间
+ * @returns {string | null}
+ */
+function animate (element, up, down, juli, time) {
+    var timeID = null;
+    // 设置只存在一个定时器,就是重置一下定时器的值
+    if (element.timeID) {
+        // 先清除一下定时器的值
+        clearInterval(element.timeID);
+        // 再创建一下
+        element.timeID = null;
+    }
+    
+    // 设置定时器
+    element.timeID = setInterval(function () {
+        // 往返运动判断元素起始位置是否大于目标位置
+        if (up > down) {
+            // 大于的话让每次移动的距离都是负数,如果不加绝对值,会出现负负得正,加绝对值相当于重置一下
+            juli = -(Math.abs(juli))
+        }
+        // 判断元素位置是否等于目标位置/极值法
+        if (Math.abs(up - down) <= Math.abs(juli)) {
+            // 到了之后就不走了,需要给元素赋值
+            up = down;
+            // 清楚定时器
+            clearInterval(element.timeID);
+        }else {
+            // 没到位置的时候让距离累加,并给元素赋值
+            up += juli;
+        }
+        // 给元素设置最后样式
+        element.style.left = up + 'px';
+    }, time);
 }
 
 // 获取单个元素
@@ -206,80 +247,80 @@ function removeE () {
 
 // 非堆叠可切换折线图
 function initialization (echartsData, newLegend, data) {
-    var myChart = echarts.init(document.getElementById(this.main))
-    // 清空数据
-    myChart.clear()
-    // 指定图表的配置项和数据
-    let option = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {    // 坐标轴指示器，坐标轴触发有效
-          type: 'line'  // 默认为直线，可选为：'line' | 'shadow'
-        }
-      },
-      toolbox: {
-        show: true,
-        feature: {
-          magicType: {show: true, type: ['line', 'bar']}
-        }
-      },
-      // 控制图标区域位置
-      grid: {
-        top: '26%',
-        left: '3%',
-        bottom: '10%',
-        containLabel: true
-      },
-      // 是否可缩放
-      dataZoom: [
-        {
-          type: 'slider',
-          show: true,
-          xAxisIndex: 0,
-          filterMode: 'empty' // empty 或 filter
-        },
-        {
-          type: 'slider',
-          show: true,
-          yAxisIndex: 0,
-          filterMode: 'empty' // empty 或 filter
-        },
-        {
-          type: 'inside',
-          show: true,
-          xAxisIndex: 0,
-          filterMode: 'empty' // empty 或 filter
-        },
-        {
-          type: 'inside',
-          show: true,
-          yAxisIndex: 0,
-          filterMode: 'empty' // empty 或 filter
-        }
-      ],
-      // 共多少种数据
-      legend: {
-        data: newLegend
-      },
-      // 横坐标显示的值
-      xAxis: {
-        type: 'category',
-        data: echartsData.xAxis
-      },
-      // 纵坐标显示的数据形式
-      yAxis: {
-        type: 'value'
-      },
-      // 配置每一种数据如何显示
-      series: data.map(item => {
-        return {
-          name: item.name,
-          data: item.data,
-          type: 'bar',
-          stack: '总量' // 值为总量是堆叠图
-        }
-      })
-    }
-    // 使用刚指定的配置项和数据显示图表
-    myChart.setOption(option)
-  }
+	var myChart = echarts.init(document.getElementById(this.main))
+	// 清空数据
+	myChart.clear()
+	// 指定图表的配置项和数据
+	let option = {
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {    // 坐标轴指示器，坐标轴触发有效
+				type: 'line'  // 默认为直线，可选为：'line' | 'shadow'
+			}
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				magicType: {show: true, type: ['line', 'bar']}
+			}
+		},
+		// 控制图标区域位置
+		grid: {
+			top: '26%',
+			left: '3%',
+			bottom: '10%',
+			containLabel: true
+		},
+		// 是否可缩放
+		dataZoom: [
+			{
+				type: 'slider',
+				show: true,
+				xAxisIndex: 0,
+				filterMode: 'empty' // empty 或 filter
+			},
+			{
+				type: 'slider',
+				show: true,
+				yAxisIndex: 0,
+				filterMode: 'empty' // empty 或 filter
+			},
+			{
+				type: 'inside',
+				show: true,
+				xAxisIndex: 0,
+				filterMode: 'empty' // empty 或 filter
+			},
+			{
+				type: 'inside',
+				show: true,
+				yAxisIndex: 0,
+				filterMode: 'empty' // empty 或 filter
+			}
+		],
+		// 共多少种数据
+		legend: {
+			data: newLegend
+		},
+		// 横坐标显示的值
+		xAxis: {
+			type: 'category',
+			data: echartsData.xAxis
+		},
+		// 纵坐标显示的数据形式
+		yAxis: {
+			type: 'value'
+		},
+		// 配置每一种数据如何显示
+		series: data.map(item => {
+			return {
+				name: item.name,
+				data: item.data,
+				type: 'bar',
+				stack: '总量' // 值为总量是堆叠图
+			}
+		})
+	}
+	// 使用刚指定的配置项和数据显示图表
+	myChart.setOption(option)
+}

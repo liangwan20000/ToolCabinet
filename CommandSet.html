@@ -14,7 +14,7 @@
 	<!-- 处理程序 Handle-->
     <!-- 应用程序 application -->
 	<!-- body和HTML有8px的内外边距,HTML和浏览器中的页面一样大,body要比(html)页面小这8px的边距 -->
-
+	<!-- map 标签 -->
 	<!-- js  假设法 假设一个最小值  定标假设法,设置一个返回值 一个开关 -->
 
 	<!-- css  双飞翼布局  遮罩效果(模态窗口) -->
@@ -116,6 +116,8 @@
 					typeof (变量名);
 					typeof data;
 
+			Object.prototype.toString.call(); 判断对象的数据类型,值： '[object Array]'
+
 			property 属性
 
 			value 值
@@ -125,6 +127,10 @@
 			target a连接中表示跳转方式 _self(当前页面打开)，_blank(新窗口打开)
 
 			delete  删除数组中的项
+
+			encodeURIComponent: URL编码
+
+			decodeURIComponent: URL解码
 		}
 	</script>
 
@@ -1061,6 +1067,7 @@
 
 	web api
 	<script>
+		Object.prototype.toString.call(); 判断对象的数据类型
 		document.documentElement：表示HTML
 		document.body ：表示body
 		屏幕的可视区域宽高
@@ -1487,6 +1494,7 @@
 
 	BOM
 	<script>
+		navigator.onLine; 这个属性值为true表示设备能上网，值为false表示设备离线；
 		window.dispatchEvent(new Event('resize'));窗口尺寸变化时->触发resize事件->重新设置动态高
 		JS中顶级对象： window
 				✔ 文档对象document也属于window对象中的一个

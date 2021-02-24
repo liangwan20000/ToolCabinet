@@ -36,7 +36,7 @@
 - 阻止渲染
   - 各种方式设置 return
 - ES2015模块化开发：import 引入；export default 导出
-- 函数由函数名和函数体两部分组成，他们是可以分离的，所以调用时只传参就可以了，这是实现回调函数的关键
+- 函数由函数名和函数体两部分组成，他们是可以分离的，所以调用时只传参就可以了
 - 箭头函数如果函数体没有花括号，自带返回值
 - 组件化开发：函数组件、类组件
 - map()：遍历数组，并返回一个经过函数处理的数组；
@@ -79,11 +79,11 @@ React：用于构建用户界面的 JavaScript 库（框架）UI框架
         * react-dom  提供了一些DOM操作相关的API，它依赖于上面的react库
 
     +   引入babel运行时（React代码浏览器不认识，需要通过babel把react代码转化为js代码）
-      
+
 * babel ：javascript编译器，他把最新版的javascript编译成当下可以执行的版本
-        
+  ​      
 +   基于React语法进行开发
-  
+
                         引入自己的代码，type类型必须是text/babel
 
 ```JavaScript
@@ -807,7 +807,6 @@ function ActionLink() {
     }
     ```
 
-    
 
 
 - 事件传参
@@ -1147,7 +1146,6 @@ let tagList = this.state.bookList.map(book => {
   }
   ```
 
-  
 
 ### 表单非空判断与书名排重
 
@@ -1194,7 +1192,6 @@ if (index2 != -1) {
   }
   ```
 
-  
 
 ### 删除图书
 
@@ -1328,9 +1325,8 @@ if (index2 != -1) {
   }
   ```
 
-  
 
-  - select
+- select
 
   ```
   下拉选项双向绑定，value需要设定为私有状态中的值，onChange绑定的事件中，要让私有状态中的值等于选中项的value，select的值自动等于选中项value的值
@@ -1351,7 +1347,7 @@ if (index2 != -1) {
   }
   ```
 
-  - textarea
+- textarea
 
   ```
   多行输入框完成双向绑定，value需要设定为私有状态中的值，onChange绑定的事件中，要让私有状态中的值等于输入框输入的值
@@ -1367,7 +1363,7 @@ if (index2 != -1) {
   }
   ```
 
-  - radio
+- radio
 
   ```
   1.单选框的name属性值必须设置，并且要设置成同一个，表示他们是同一类，这样才能实现单选效果
@@ -1387,7 +1383,7 @@ if (index2 != -1) {
   }
   ```
 
-  - checkbox
+- checkbox
 
   ```
   handleFavour = function (event) {
@@ -1844,7 +1840,6 @@ class TestChildren extends React.Component {
   }
   ```
 
-  
 
 ## 虚拟DOM
 
@@ -2154,7 +2149,6 @@ window.onhashchange = function () {
   导出提供渲染的组件
   ```
 
-  
 
 ### 嵌套路由
 
