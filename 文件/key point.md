@@ -1,19 +1,18 @@
 # 知识点
 
--   
+-   ​
 
-    
 
 - 箭头函数如果函数体没有花括号，自带返回值
 
   - 箭头函数不会被call, bind等方法改变this指向
   - 在闭包中返回函数, 缓存变量时, 使用function进行返回函数的定义.
 
--   export default导出模块是闭包，规则：模块之间定义相同的变量不冲突，运行时，不同的模块在不同的闭包环境中。
+- export default导出模块是闭包，规则：模块之间定义相同的变量不冲突，运行时，不同的模块在不同的闭包环境中。
 
--   权限管理
+- 权限管理
 
--   短路表达式，做判断用：|| 找真，全是假时取后面的；&& 找假，全是真取后面的；
+- 短路表达式，做判断用：|| 找真，全是假时取后面的；&& 找假，全是真取后面的；
 
 ## vue $set
 
@@ -21,228 +20,9 @@
 - 参数二：新添加的属性名称，子属性的子属性
 - 参数三：新添加的属性值
 
-## provide 和 inject 学习
+## provide 和 inject
 
-在 Vue.js 的 `2.2.0+` 版本中添加加了 provide 和 inject 选项。他们成对出现，用于父级组件向下传递数据。
-
-### 源码位置
-
-和之前一样，初始化的方法都是在 Vue 的 `_init` 方法中的。
-
-```
-  // src/core/instance/init.js
-  Vue.prototype._init = function (options?: Object) {
-    ……
-    vm._self = vm
-    initLifecycle(vm)
-    initEvents(vm)
-    initRender(vm)
-    callHook(vm, 'beforeCreate')
-    initInjections(vm) // resolve injections before data/props
-    initState(vm)
-    initProvide(vm) // resolve provide after data/props
-    callHook(vm, 'created')
-  }
-
-```
-
-这里找到 `initInjections` 和 `initProvide` 方法，这就是 `provide` 和 `inject` 的初始化方法了。这两个方法都是在 `src/core/instance/inject.js` 中。
-
-### provide
-
-> provide 选项应该是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性。在该对象中你可以使用 ES2015 Symbols 作为 key，但是只在原生支持 Symbol 和 Reflect.ownKeys 的环境下可工作。
-
-先看源码：
-
-```
-// src/core/instance/inject.js
-export function initProvide (vm: Component) {
-  const provide = vm.$options.provide
-  if (provide) {
-    vm._provided = typeof provide === 'function'
-      ? provide.call(vm)
-      : provide
-  }
-}
-
-```
-
-provide 是向下传递数据的选项。这里先拿到 provide 选项中的内容，如果有 provide 选项，将 provide 选项传递给 `vm._provided` 变为 Vue 实例全局数据。
-这里看一下例子更清楚，下例中传入数据 `foo`，数据内容为 `bar`。
-
-```
-var Provider = {
-  provide: {
-    foo: 'bar'
-  },
-  // ...
-}
-
-```
-
-### inject
-
-> inject 选项应该是一个字符串数组或一个对象，该对象的 key 代表了本地绑定的名称，value 为其 key (字符串或 Symbol) 以在可用的注入中搜索。
-
-源码
-
-```
-// src/core/instance/inject.js
-export function initInjections (vm: Component) {
-  const result = resolveInject(vm.$options.inject, vm)
-  if (result) {
-    observerState.shouldConvert = false
-    Object.keys(result).forEach(key => {
-      defineReactive(vm, key, result[key])
-    })
-    observerState.shouldConvert = true
-  }
-}
-
-```
-
-简化后的源码可以看到，首先通过 `resolveInject` 方法获取 inject 选项搜索结果，如果有搜索结果，遍历搜索结果并为其中的数据添加 setter 和 getter。
-接着来看下 `resolveInject` 方法：
-
-```
-export function resolveInject (inject: any, vm: Component): ?Object {
-  if (inject) {
-    // inject 是 :any 类型因为流没有智能到能够指出缓存
-    const result = Object.create(null)
-    // 获取 inject 选项的 key 数组
-    const keys = hasSymbol
-      ? Reflect.ownKeys(inject).filter(key => {
-        /* istanbul ignore next */
-        return Object.getOwnPropertyDescriptor(inject, key).enumerable
-      })
-      : Object.keys(inject)
-
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i]
-      const provideKey = inject[key].from
-      let source = vm
-      while (source) {
-        if (source._provided && provideKey in source._provided) {
-          result[key] = source._provided[provideKey]
-          break
-        }
-        source = source.$parent
-      }
-      if (!source) {
-        if ('default' in inject[key]) {
-          const provideDefault = inject[key].default
-          result[key] = typeof provideDefault === 'function'
-            ? provideDefault.call(vm)
-            : provideDefault
-        } else if (process.env.NODE_ENV !== 'production') {
-          warn(`Injection "${key}" not found`, vm)
-        }
-      }
-    }
-    return result
-  }
-}
-
-```
-
-获取 inject 选项的 key 数组，遍历 key 数组，通过向上冒泡来查找 provide 中是否有 key 与 inject 选项中 from 属性同名的，如果有，则将这个数据传递给 result；如果没有，检查 inject 是否有 default 选项设定默认值或者默认方法，如果有则将默认值返传给 result，最终返回 result 对象。
-所以，inject 的写法应该是有 default 默认值的：
-
-```
-const Child = {
-  inject: {
-    foo: { default: 'foo' }
-  }
-}
-
-```
-
-或者是有 from 查找键和 default 默认值的：
-
-```
-const Child = {
-  inject: {
-    foo: {
-      from: 'bar',
-      default: 'foo'
-    }
-  }
-}
-
-```
-
-或者为 default 默认值设定一个工厂方法：
-
-```
-const Child = {
-  inject: {
-    foo: {
-      from: 'bar',
-      default: () => [1, 2, 3]
-    }
-  }
-}
-
-```
-
-好吧，我承认这就是引用的官网的三个例子~ 不过意思到就好啦。
-这里我有个疑问，既然在源码中主动去识别了 from 和 default，官网上说是
-
-> 在 `2.5.0+` 的注入可以通过设置默认值使其变成可选项：
-
-那么如下写法还可用吗？
-
-```
-var Child = {
-  inject: ['foo'],
-  created () {
-    console.log(this.foo) // => "bar"
-  }
-  // ...
-}
-
-```
-
-为此，我们去查查 `2.2.0` 版本的Vue是怎么写的？
-
-```
-export function initInjections (vm: Component) {
-  const provide = vm.$options.provide
-  const inject: any = vm.$options.inject
-  if (provide) {
-    vm._provided = typeof provide === 'function'
-      ? provide.call(vm)
-      : provide
-  }
-  if (inject) {
-    // inject is :any because flow is not smart enough to figure out cached
-    // isArray here
-    const isArray = Array.isArray(inject)
-    const keys = isArray
-      ? inject
-      : hasSymbol
-        ? Reflect.ownKeys(inject)
-        : Object.keys(inject)
-
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i]
-      const provideKey = isArray ? key : inject[key]
-      let source = vm
-      while (source) {
-        if (source._provided && source._provided[provideKey]) {
-          vm[key] = source._provided[provideKey]
-          break
-        }
-        source = source.$parent
-      }
-    }
-  }
-}
-```
-
-从中可以看到，在这个版本 provide 和 inject 是一起初始化的。之后，将 provide 传给 vm._provide ，在获取 inject 选项的时候代码判断了 inject 是否为数组，如果是数组直接遍历数组，之后查找 provide 的代码差不多。
-所以我推测： **在 2.5.0+ 之后不能再使用数组形式的 inject 来搜索 provide 了。**
-PS：这里没有去代码验证，如有问题，欢迎指出，谢谢！
+provide 和 inject 选项。他们成对出现，用于父级组件向下传递数据。
 
 ## Reactivity in Depth（反应性的深度）
 
@@ -371,7 +151,7 @@ Vue.component('example', {
     - https
 
   - 域名：IP 名字（别名）
-  
+
     - 顶级域名（了解）
       - .com: 商业机构 
       - .cn: 中国国家、地区域名 .hk,
@@ -380,11 +160,11 @@ Vue.component('example', {
       - .edu: 教育网站。
       - .net: 网络服务商。 
       - .mil: 军事。
-  
+
     - 特殊的域名 : localhost 含义为本地主机，对应127.0.0.1 。这是一个保留域名，主要用于本地测试。
-  
+
   - 端口号：每台计算机只有 65536 个端口（0-65535）
-  
+
     - http 默认的端口 80
     - https 默认的端口是 443
     - mysql 默认端口是3306
@@ -1198,7 +978,7 @@ div.innerHTML = vnode.content
 - async和await是同步串行任务，执行过程是执行完一个再执行下一个，这不是最好的方式，我们需要他们是并发的
   - Promise.all([]) 使async，await变成异步并发任务,只有全部任务都响应，才有返回值
   - Promise.race([])使async，await变成异步并发任务，只要有一个任务完成，就有返回值
-  - 
+  - ​
 
 ## SVG和canvas怎么用
 
@@ -1210,7 +990,7 @@ div.innerHTML = vnode.content
 - 小游戏
 - 特效
 
-## asios
+## axios
 
 中文官网  http://www.axios-js.com/zh-cn/docs/
 
@@ -1254,7 +1034,7 @@ div.innerHTML = vnode.content
 
 - 路由规则
 
-  | 路由规则                      | 匹配路径            | $route.params                          |
+  | 路由规则                          | 匹配路径                | $route.params                          |
   | ----------------------------- | ------------------- | -------------------------------------- |
   | /user/:username               | /user/evan          | `{ username: 'evan' }`                 |
   | /user/:username/post/:post_id | /user/evan/post/123 | `{ username: 'evan', post_id: '123' }` |
@@ -1289,7 +1069,7 @@ div.innerHTML = vnode.content
   ```
   {
   	当访问/sport页面时，redirect强制跳转
-	path: "/sport",
+  path: "/sport",
   	redirect: "/news", // 强制跳转新闻页
   	component: {template: `<div>体育</div>`}
   }
@@ -1405,7 +1185,7 @@ div.innerHTML = vnode.content
 
 - beforeEach()  全部路由执行之前必须经历的关卡，称为前置路由守卫
 - afterEach()    全部路由执行之后必须经历的关卡，称为后置路由守卫
-- 路由前置守卫		以token为限制
+  - 路由前置守卫	以token为限制
 
 ```
 router.beforeEach((to, form, next) => {
@@ -1511,7 +1291,7 @@ beforeRouteLeave (to, from, next) {}
 
 
     - vue官网，自定义指令
-    
+
       ```
       在模板中任何元素上使用 v-focus
       <input v-focus>
