@@ -34,6 +34,7 @@
     </head>
     <body>
         <div id="app">
+
             <el-date-picker
                 type="datetimerange"
                 range-separator="至"
@@ -147,13 +148,19 @@
                 },
                 mounted() {
                     document.cookie = encodeURIComponent('name') + '=' + encodeURIComponent('Nicholas') + "; domain=.wrox.com; path=/"
-
+                    
                     let cookieName = encodeURIComponent('name') + '=';
                     let cookieStart = document.cookie.indexOf(cookieName)
                     console.log(cookieStart)
                 },
                 methods: {
-                    setCheckedKeys() {
+                    /**
+                     * [setCheckedKeys description]
+                     * @AuthorHTL 
+                     * @DateTime  2021-02-24T10:58:51+0800
+                     * @param     {[type]}                 value [description]
+                     */
+                    setCheckedKeys(value) {
                         this.$refs.tree.setCheckedKeys([3]);
                     },
                     treeChange(data, checked, indeterminate) {
