@@ -22,6 +22,14 @@ module.exports = {
 					}
 				]
 			},
+			// 引入bootstarp的样式文件,增加对不识别文件的处理
+			{
+				test: /.(ttf|woff2|woff|eot)$/,
+				loader: "file-loader",
+				options: {
+					name: "[name].[ext]?[hash]"
+				}
+			},
 			{
 				test: /\.less$/,
 				use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }]
