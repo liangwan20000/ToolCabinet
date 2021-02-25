@@ -15,24 +15,44 @@
 <body>
     <div id="app">
         <div ref="div">
-            <p>
-                代码越写越乱；写代码的步骤流程；修改Element Ui等封装好的组件的样式（比如添加了.is-active的样式）；
-            </p>
-            <p>
-                不能急，一步一步写，忘记一条逻辑就是一个BUG，之后还要花时间写完
-            </p>
-            <p>
-                按钮：v-logind，重置；删除功能不可以直接调用接口，需添加气泡确认框
-                <br>
-                搜索框：几个基本功能
-                <br>
-                下拉框：几个基本功能；联动
-                <br>
-                时间选择框：格式控制
-                <br>
-                报错处理；如果不存在；必填项；跳转页面初始化数据；
-            </p>
-            <p class="box div list">{{ value }}</p>
+            <form action="">
+                <fieldset>
+                    <legend></legend>
+                    <span>代码越写越乱；写代码的步骤流程；修改Element Ui等封装好的组件的样式（比如添加了.is-active的样式）；</span>
+                    <br>
+                    <span>不能急，一步一步写，忘记一条逻辑就是一个BUG，之后还要花时间写完</span>
+                    <br>
+                    <span>报错处理；不存情况的逻辑处理；必填项；跳转页面初始化数据；</span>
+                </fieldset>
+                <fieldset>
+                    <legend>输入框功能</legend>
+                    <span>输入框：清除</span>
+                    <br>
+                    <span>下拉框：清除/联动</span>
+                    <br>
+                    <span>时间选择框：清除/格式控制/默认值/不联动</span>
+                </fieldset>
+                <fieldset>
+                    <legend>v-loading</legend>
+                    <span>列表操作：v-loading</span>
+                    <br>
+                    <span>查询按钮：v-loading</span>
+                    <br>
+                    <span>重置按钮：v-loading</span>
+                    <br>
+                    <span>编辑按钮：v-loading</span>
+                    <br>
+                    <span>删除按钮：不可以直接调用接口，需添加气泡确认框</span>
+                    <br>
+                    <span>取消按钮：关闭弹窗并清除数据/返回的逻辑</span>
+                    <br>
+                    <span>保存按钮：v-loading</span>
+                    <br>
+                    <span>提交按钮：v-loading</span>
+                    <br>
+                    <span>确认按钮：v-loading</span>
+                </fieldset>
+            </form>
         </div>
     </div>
     <!-- import Vue before Element -->
