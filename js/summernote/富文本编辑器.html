@@ -35,7 +35,6 @@
 		<script src="./jquery.min.js"></script>
 		<script src="./bootstrap.min.js"></script>
 		<script src="./vue.min.js"></script>
-		<script src="./fn.js"></script>
 		<script src="./summernote.min.js"></script>
 		<script src="./summernote-zh-CN.js"></script>
 		<script>
@@ -92,7 +91,55 @@
 								win.alert('提示', messageToUser);
 							}
 						}
-						fn.fileupload("files", file, editorReturn);
+						this.fileupload("files", file, editorReturn);
+						
+					},
+					fileupload(file, imgFile, fn) {
+						var url = "https://proservice.powerlong.com/file/uploadMulti_tengxun";
+						var formData = new FormData();
+						formData.append(file, imgFile);
+						//数据加密
+						// let encryptedData = CryptoJS.AES.encrypt(formData, CryptoJS.enc.Base64.parse('XjjkaLnlzAFbR399IP4kdQ=='), {
+						//   mode: CryptoJS.mode.ECB,
+						//   padding: CryptoJS.pad.Pkcs7,
+						//   length: 128
+						// }).toString();
+						// let timestamp = new Date().getTime();
+						// let sign  = CryptoJS.SHA1(encryptedData + timestamp + "QGZUanpSaSy9DEPQFVULJQ==").toString();
+						// let params = {
+						//   "sign": sign,
+						//   "encryptedData": encryptedData,
+						//   "timestamp": timestamp
+						// };
+						$.ajax({
+						 	type: "post",
+						 	url: url,
+						 	data: formData,
+						 	cache: false,
+						 	processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+						 	contentType: false,
+						 	success: function(res) {
+						 		fn(res);
+						 	},
+						 	error: function() {
+						 		this.$confirm('提示', '操作失败，请重试！', '提示', {
+						          confirmButtonText: '确定',
+						          cancelButtonText: '取消',
+						          type: 'warning'
+						        }).then(() => {
+						        	location.reload();
+						        	this.$message({
+						        		type: 'success',
+						        		message: '删除成功!'
+						        	});
+						        }).catch(() => {
+						        	this.$message({
+						        		type: 'info',
+						        		message: '已取消删除'
+						        	});          
+						        });
+						 	}
+						})
 					}
 				}
 			})

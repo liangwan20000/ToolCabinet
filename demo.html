@@ -1,178 +1,91 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        
-        <!-- <link href="./js/summernote/summernote.css" rel="stylesheet">
-        <link href="./js/summernote/summernote-bs3.css" rel="stylesheet"> -->
-        <!-- 引入组件库 -->
-        <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
-        <!-- <script src="./js/EventUtil.js"></script> -->
-        <!-- <script src="./js/hao.js"></script> -->
-        <!-- <script src="./js/jquery.min.js"></script>
-        <script src="./js/fn.js"></script>
-        <script src="./js/summernote-zh-CN.js"></script>
-        <script src="./js/summernote.min.js"></script>
-        <script src="./js/jquery.min.js"></script>
-        <script src="./js/fn.js"></script> -->
-
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="renderer" content="webkit">
-        <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-
-        <!-- 引入样式 -->
-        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-        <!-- <script src="./js/vue.min.js"></script> -->
-        <!-- <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script> -->
-        <style>
-            .box{
-                width: 200px;
-                height: 100px;
-                background-color: lime;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <!-- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="box"></div>
+        <div id="chart" class="chart"></div>
+    </div>
+    <!-- 引入Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- echarts -->
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <!-- 自己的方法 -->
+    <script src="./js/hao.js"></script>
+    <script src="./demo.js"></script>
+    <script type="text/javascript">
+        let vm = new Vue({
+            el: '#app',
+            components: {},
+            data: {
+                value: null
+            },
+            mounted() {
+                
+            },
+            methods: {
+                
             }
-        </style>
-    </head>
-    <body>
-        <div id="app">
-
-            <el-date-picker
-                type="datetimerange"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                value-format="yyyy/MM/dd HH:mm:ss"
-                :default-time="['00:00:00', '23:59:59']"
-                unlink-panels>
-            </el-date-picker>
-
-            <el-tree
-              ref="tree"
-              :data="treeData"
-              show-checkbox
-              node-key="id"
-              :props="defaultProps"
-              @check-change="treeChange"
-            />
-
-
-            <!-- <el-button @click="setCheckedKeys">通过 key 设置</el-button> -->
-            <!-- <anchored-heading :level="2">
-                <span>你好</span><span>你好</span>
-                <p>hellow</p>
-            </anchored-heading>
-            <form action="">
-                <fieldset>
-                    <legend>注册信息</legend>
-
-                    <span>用户名:</span>
-                    <input type="text" class="form-control">
-
-                    <br>
-                    <br>
-                    <span>用户名:</span>
-                    <input type="text" class="form-control">
-
-                </fieldset>
-            </form> -->
-        </div>
-        <!-- import Vue before Element -->
-        <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <!-- import JavaScript -->
-        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-        <script>
-            let vm = new Vue({
-                el: '#app',
-                // components: {
-                //     'anchored-heading': {
-                //         props: {
-                //             level: {
-                //                 type: Number,
-                //                 required: true
-                //             }
-                //         },
-                //         render: function (createElement) {
-                //             return createElement(
-                //                 'h' + this.level,   // 标签名称
-                //                 this.$slots.default // 子节点数组
-                //             )
-                //         },
-                //         renderError (createElement, err) {
-                //             console.log(err.stack)
-                //             return createElement('pre', { style: { color: 'red' }}, err.stack)
-                //         }
-                //     }
-                // },
-                data: {
-                    value: null,
-                    treeData: [{
-                        id: 1,
-                        disabled: true,
-                        label: '一级 1',
-                        children: [{
-                            id: 4,
-                            disabled: true,
-                            label: '二级 1-1',
-                            children: [{
-                                id: 9,
-                                label: '三级 1-1-1'
-                            }, {
-                                id: 10,
-                                label: '三级 1-1-2'
-                            }]
-                        }]
-                    }, {
-                        id: 2,
-                        label: '一级 2',
-                        children: [{
-                            id: 5,
-                            label: '二级 2-1'
-                        }, {
-                            id: 6,
-                            label: '二级 2-2'
-                        }]
-                    }, {
-                        id: 3,
-                        label: '一级 3',
-                        children: [{
-                            id: 7,
-                            label: '二级 3-1'
-                        }, {
-                            id: 8,
-                            label: '二级 3-2'
-                        }]
-                    }],
-                    defaultProps: {
-                        children: 'children',
-                        label: 'label'
-                    }
-                },
-                mounted() {
-                    document.cookie = encodeURIComponent('name') + '=' + encodeURIComponent('Nicholas') + "; domain=.wrox.com; path=/"
-                    
-                    let cookieName = encodeURIComponent('name') + '=';
-                    let cookieStart = document.cookie.indexOf(cookieName)
-                    console.log(cookieStart)
-                },
-                methods: {
-                    /**
-                     * [setCheckedKeys description]
-                     * @AuthorHTL 
-                     * @DateTime  2021-02-24T10:58:51+0800
-                     * @param     {[type]}                 value [description]
-                     */
-                    setCheckedKeys(value) {
-                        this.$refs.tree.setCheckedKeys([3]);
-                    },
-                    treeChange(data, checked, indeterminate) {
-                        console.log(data, checked, indeterminate)
-                        if (checked) {
-                            this.$refs.tree.setCheckedKeys([data.id]);
-                            console.log(123)
-                        }
-                    }
+        })
+    </script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('chart'));
+        var option = {
+            tooltip: {
+                show: false,
+                trigger: 'axis',
+                // triggerOn: 'none'
+            },
+            legend: {
+                data:['销量']
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
                 }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    "name":"销量",
+                    "type":"bar",
+                    "data":[5, 20, 40, 10, 10, 20]
+                }
+            ]
+        };
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+        let num = 0
+        setInterval(() => {
+            myChart.dispatchAction({
+                type: 'showTip',
+                // 可选，系列 index，可以是一个数组指定多个系列
+                seriesIndex: 0,
+                // 可选，系列名称，可以是一个数组指定多个系列
+                // seriesName: '衬衫',
+                // 可选，数据的 index
+                dataIndex: num,
+                // 可选，数据的 名称
+                // name: '衬衫'
             })
-            
-        </script>
-    </body>
+            num++
+        }, 2000)
+    </script>
+</body>
 </html>

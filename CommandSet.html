@@ -1067,6 +1067,7 @@
 
 	web api
 	<script>
+		charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。
 		window.atob() 方法用于解码使用 base-64 编码的字符串。
 
 		base-64 编码使用方法是 window.btoa() 。
@@ -1938,7 +1939,7 @@
 					'取得2d上下文对象'
 					let context = drawing.getContext('2d');
 					'取得图像的数据URL;base64格式；来自不同的域会抛出错误'
-					let imgUrl = drawing.toDataURL('image/png')
+					let imgUrl = drawing.toDataURL('image/png') // 第一个参数是图片格式 第二个参数是图片质量
 				}
 			},
 			4: '2D上下文坐标开始于canvas元素的左上角，原点坐标是(0, 0),所有坐标值都基于这个原点计算'

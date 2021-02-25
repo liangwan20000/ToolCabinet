@@ -14,7 +14,6 @@
     var img = document.querySelector('#img')
 
     file.onchange = function () {
-      // console.dir(file)
       // 浏览器端不允许操作本地文件
       // 浏览器默认不允许img标签展示本地绝对路径的图片
 
@@ -25,10 +24,9 @@
       // fileReader.readAsDataURL(file.files[0])
       // fileReader.onload = function (e) {
       //   // base64的图片
-      //   // console.log(e.target.result)
+      //   console.log(e.target.result)
       //   img.src = e.target.result
       // }
-
 
       // HTML5, URL.createObjectURL() 在当前浏览器标签中生成的临时的内容中的图片的访问地址
       // 标签一旦关闭，地址就不可用了

@@ -253,7 +253,9 @@ function initialization (echartsData, newLegend, data) {
 	// 指定图表的配置项和数据
 	let option = {
 		tooltip: {
+            // show: true, // 控制坐标轴指示器显示隐藏
 			trigger: 'axis',
+            // triggerOn: 'none', // 控制坐标轴指示器显示隐藏
 			axisPointer: {    // 坐标轴指示器，坐标轴触发有效
 				type: 'line'  // 默认为直线，可选为：'line' | 'shadow'
 			}
@@ -323,4 +325,20 @@ function initialization (echartsData, newLegend, data) {
 	}
 	// 使用刚指定的配置项和数据显示图表
 	myChart.setOption(option)
+    let num = 0
+    setInterval(() => {
+        // 自动设置选中项  
+        myChart.dispatchAction({
+            type: 'showTip',
+            // 可选，系列 index，可以是一个数组指定多个系列
+            seriesIndex: 0,
+            // 可选，系列名称，可以是一个数组指定多个系列
+            // seriesName: '衬衫',
+            // 可选，数据的 index
+            dataIndex: num,
+            // 可选，数据的 名称
+            // name: '衬衫'
+        })
+        num++
+    }, 2000)
 }
