@@ -64,3 +64,10 @@ html,body {
 .clearfix {
 	*zoom:1;
 }
+
+/*===========loading===========*/
+.loadingboxer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;}
+.loadingmask{position:absolute;top:0;left:0;width:100%;height:100%;background:url(./loading.gif) center center no-repeat;z-index:9998;}
+.loadingbg{position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;filter:alpha(opacity=45);opacity:0.45;z-index:9997;}
+/*===========loading===========*/
+

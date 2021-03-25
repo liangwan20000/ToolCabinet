@@ -224,6 +224,38 @@ function animate (element, up, down, juli, time) {
     }, time);
 }
 
+//开始loading
+function openLoading(date) {
+    // <div class="loadingboxer">
+    //     <div class="loadingbg"></div>
+    //     <div class="loadingmask"></div>
+    // </div>
+    let div = creatE('div'), divTwo = creatE('div'), divThree = creatE('div'), fragment = document.createDocumentFragment(), loadingTime = null;
+    div.classList.add('loadingboxer');
+    divTwo.classList.add('loadingbg');
+    divThree.classList.add('loadingmask');
+    div.appendChild(divTwo);
+    div.appendChild(divThree);
+    fragment.appendChild(div);
+    document.body.appendChild(fragment);
+    if (typeof date === 'number') {
+        loadingTime = setTimeout(function() {
+            closeLoading(div, loadingTime);
+        }, date * 1000);
+    };
+}
+
+//关闭loading
+function closeLoading(element = false, loadingTime = false) {
+    if (!element) {
+        element = queryE('.loadingboxer');
+    };
+    element.remove();
+    if (loadingTime) {
+        clearTimeout(loadingTime);
+    };
+}
+
 // 获取单个元素
 function queryE (element) {
 	return document.querySelector(element);

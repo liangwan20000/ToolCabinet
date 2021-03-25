@@ -68,6 +68,7 @@
 					text   文本
 					move  移动
 					url(图片), 替换的样式
+			outline: none;		去掉select选中样式
 			duration			时间相关（动画、视频、axios）
 			opacity: ;			透明属性 元素内所有元素透明
 			required 			规定 input 必需在提交之前填写输入字段
@@ -125,6 +126,8 @@
 			index 索引
 
 			target a连接中表示跳转方式 _self(当前页面打开)，_blank(新窗口打开)
+
+			a链接下载图片需要在URL地址上添加 '?response-content-type=application/octet-stream'
 
 			delete  删除数组中的项
 
@@ -284,6 +287,7 @@
 				设置元素在侧轴对齐方式【要清楚侧轴的方向】：
 					align-items: stretch(拉伸占满整个容器的高度) ;
 					align-items: baseline;(项目的第一行文字的基线对齐)
+					align-items: flex-end;底部对齐
 					align-items: flex-start;
 				在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
 					flex-wrap: nowrap(不换行) ;
@@ -1654,7 +1658,7 @@
 					2. 第二个参数表示间隔多长时间执行一次（单位是毫秒）
 					3. 返回一个当前定时器的标识
 			✔ 关闭定时器
-				◆clearTimeOut(ID)
+				◆clearTimeout(ID)
 				◆clearInterval(ID)
 			function animate (element,up,down,juli,time) {
 				var timeID = null;
@@ -2446,7 +2450,7 @@
 			1、要引入JQuery
 			2、书写插件JS【js引入文件和js调用必须写到 DOM元素（图片）最后面】
 			3、将图片 src 替换为 data-lazy-src
-			4、调用lazyLoadInit();
+			4、调用 lazyLoadInit();
 		}
 		var BOOTSTRAP插件 {
 			1、引入CSS、引入JQ、引入JS

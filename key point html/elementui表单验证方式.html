@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>宝龙地产 新商业后台管理系统</title>
+    <meta name="keywords" content="后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <!-- icon图标 -->
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <!-- <link rel="stylesheet" href=""> -->
+    <link rel="stylesheet" type="text/css" href="js/plugins/element/index.2.12.0.bl.css">
+    <link rel="stylesheet" type="text/css" href="css/btntype.css?v=3.3.6">
+    <link rel="stylesheet" type="text/css" href="js/window/window.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="gray-bg" id="123">
+<div class="wrapper wrapper-content">
+    <div id="list" class="row" v-cloak>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="form-inline">
+                        <h5>商场补贴发票相关选项配置</h5>
+                    </div>
+                    <div class="ibox-tools">
+                        <a class="" @click="reset()">
+                            <i class="fa fa-refresh"></i> 刷新
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <el-form :model="ruleForm" ref="ruleForm" label-width="180px" class="demo-ruleForm">
+                        <el-form-item
+                            v-for="(item, index) in ruleForm.deduction"
+                            :label="index === 0 ? '补贴异常扣款原因:': ''"
+                            :prop="'deduction.' + index + '.name'"
+                            :key="index"
+                            :rules="[{ required: true, message: '补贴异常扣款原因不能为空', trigger: 'blur' }, { validator: (rule, value, callback) => { validateName(rule, value, callback) }, trigger: 'blur' }]"
+                        >
+                            <el-col :span="11">
+                                <el-input maxlength="20" v-model="ruleForm.deduction[index].name"></el-input>
+                            </el-col>
+                            <span class="m-r-md" style="display: inline-block;width: 20px;text-align: center"></span>
+                            <el-button size="small" type="danger" @click="delDeduction(index)" showtype="delete">删除</el-button>
+                            <el-button size="small" type="primary" @click="addDeduction" v-if="index === deductionLength - 1" showtype="add">添加</el-button>
+                        </el-form-item>
+                        <el-form-item
+                            v-for="(item, index) in ruleForm.invoice"
+                            :key="index"
+                            :label="index === 0 ? '发票税率:' : ''"
+                            :prop="'invoice.' + index + '.name'"
+                            :rules="[{ required: true, message: '发票税率不能为空', trigger: 'blur' }, { type: 'number', message: '发票税率必须为数字值'}, { validator: (rule, value, callback) => { validatePass(rule, value, callback) }, trigger: 'blur' }]"
+                        >
+                            <el-col :span="11">
+                                <el-input v-model.number="ruleForm.invoice[index].name" autocomplete="off"></el-input>
+                            </el-col>
+                            <span class="m-r-md" style="display: inline-block;width: 20px;text-align: center">%</span>
+                            <el-button size="small" type="danger" @click="delInvoice(index)" showtype="delete">删除</el-button>
+                            <el-button size="small" type="primary" @click="addInvoice" v-if="index === invoiceLength - 1" showtype="add">添加</el-button>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="submitForm"  showtype="submit" >提交</el-button>
+                            <!-- <el-button type="danger" @click='cancelForm'>取消</el-button> -->
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/window/window.js"></script>
+<!--全局api配置-->
+<script src="js/api.js?v=1.0.0"></script>
+
+<!--vue代码-->
+<script src="js/vue.min.js"></script>
+<script src="js/crypto-js.min.js"></script>
+<script src="js/fn.js"></script>
+
+<script src="js/plugins/element/index.2.12.0.js"></script>
+
+<script>
+    // 登录页取值
+    var miniAppKey = "ADMIN_SYSTEM";
+    var projectId = parent.getUserInfo().projectId;
+    var roleType = parent.getUserInfo().roleType;
+    // vue 设置
+    var vm = new Vue({
+        el: '#list',
+        mixins: [],
+        data () {
+            return {
+                // 表单
+                ruleForm: {
+                    // 异常扣款原因
+                    deduction: [
+                        {
+                            name: ''
+                        }
+                    ],
+                    // 发票税率
+                    invoice: [
+                        {
+                            name: null,
+                        }
+                    ]
+                },
+                // 保存时发送异常扣款原因
+                text1: [],
+                // 保存时发送发票税率
+                text2: [],
+                // 异常扣款原因数组长度
+                deductionLength: 1,
+                // 发票税率数组长度
+                invoiceLength: 1
+            }
+        },
+        mounted () {
+            this.getData();
+        },
+        methods: {
+            // 异常扣款原因验证规则
+            validateName (rule, value, callback) {
+                var deduction = this.ruleForm.deduction,flag = 0;
+                deduction.forEach(item => {
+                    if (item.name === value) {
+                        flag++
+                        
+                    }
+                })
+                if (flag > 1) {
+                    callback(new Error('异常扣款原因重复'));
+                } else {
+                    callback();
+                }
+            },
+            // 发票税率验证规则
+            validatePass (rule, value, callback) {
+                var invoice = this.ruleForm.invoice,flag = 0;
+                invoice.forEach(item => {
+                    if (item.name === value) {
+                        flag++
+                    }
+                })
+                if (value > 100 || value < 0) {
+                    callback(new Error('发票税率不能大于100或小于0'));
+                } else if (flag > 1) {
+                    callback(new Error('发票税率重复'));
+                } else {
+                    callback();
+                }
+            },
+            // 添加异常扣款原因事件处理程序
+            addDeduction () {
+                this.ruleForm.deduction.push({
+                    name: ''
+                })
+                this.deductionLength = this.ruleForm.deduction.length
+              vm.$nextTick(() => {
+                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
+              })
+            },
+            // 删除异常扣款原因事件处理程序
+            delDeduction (value) {
+                if (this.ruleForm.deduction.length === 1) {
+                    this.ruleForm.deduction[0].name = '';
+                    return
+                }
+                this.ruleForm.deduction.splice(value, 1)
+                this.deductionLength = this.ruleForm.deduction.length
+              vm.$nextTick(() => {
+                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
+              })
+            },
+            // 添加发票事件处理程序
+            addInvoice () {
+                this.ruleForm.invoice.push({
+                    name: ''
+                })
+                this.invoiceLength = this.ruleForm.invoice.length
+              vm.$nextTick(() => {
+                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
+              })
+            },
+            // 删除发票税率事件处理程序
+            delInvoice (value) {
+                if (this.ruleForm.invoice.length === 1) {
+                    this.ruleForm.invoice[0].name = '';
+                    return
+                }
+                this.ruleForm.invoice.splice(value, 1)
+                this.invoiceLength = this.ruleForm.invoice.length
+              vm.$nextTick(() => {
+                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
+              })
+            },
+            // 提交事件处理程序
+            submitForm() {
+              let _this = this
+                this.$refs.ruleForm.validate((valid) => {
+                    if (valid) {
+                        this.text1 = []
+                        this.text2 = []
+                        this.ruleForm.deduction.forEach((item) => {
+                            this.text1.push(item.name)
+                        })
+                        this.ruleForm.invoice.forEach((item) => {
+                            this.text2.push(item.name + '%')
+                        })
+                        fn.ajax('POST', '/subsidy/saveSubsidyConfigure', {
+                            projectId: projectId,
+                            text1: this.text1,
+                            text2: this.text2
+                        }, (value) => {
+                            if (value.code === 200) {
+                                win.confirm('提示', '提交成功！', function (r) {
+                                    if(r){
+                                        _this.getData()
+                                    }
+                                });
+
+                            } else {
+                                win.alert('提示', '提交失败！')
+                            }
+                        }, true)
+                    } else {
+                        // console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            // 刷新事件处理程序
+            reset () {
+                this.getData()
+            },
+            // 获取所有参数
+            getData () {
+                fn.ajax('GET', `/subsidy/details/${projectId}`, '', (value) => {
+                    if (value.code === 200) {
+                        let dataValue = value.data
+                        let ary = [],array = [];
+                        if (dataValue.text1.length !== 0) {
+                            dataValue.text1.forEach(item => {
+                                ary.push({
+                                    name: item
+                                })
+                            })
+                            this.ruleForm.deduction = ary
+                            this.deductionLength = this.ruleForm.deduction.length
+                        }
+                        if (dataValue.text2.length !== 0) {
+                            dataValue.text2.forEach(item => {
+                                array.push({
+                                    name: Number(item.slice(0, item.length-1))
+                                })
+                                
+                            })
+                            this.ruleForm.invoice = array
+                            this.invoiceLength = this.ruleForm.invoice.length
+                        }
+                      vm.$nextTick(() => {
+                        fn.buttonPermissionVerification('sub_ledger_subsidy_options')
+                      })
+                    }
+                })
+            }
+        }
+    });
+    fn.buttonPermissionVerification('sub_ledger_subsidy_options')
+</script>
+
+</body>
+
+</html>
