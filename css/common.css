@@ -65,3 +65,15 @@ body {
   /* 将盒子转为弹性盒子 */
   display: -webkit-box;
 }
+/**
+ * 悬停
+ */
+.divHover {
+  position: sticky;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  /*距离顶部1px悬停*/
+  top: 1px; 
+}

@@ -17,7 +17,15 @@
         <div ref="div">
             <form action="">
                 <fieldset>
-                    <legend></legend>
+                    <legend>项目开始前</legend>
+                    <span>架构：开发的整体高度；</span>
+                    <br>
+                    <span>最佳实践</span>
+                    <br>
+                    <span></span>
+                </fieldset>
+                <fieldset>
+                    <legend>项目维护</legend>
                     <span>代码越写越乱；写代码的步骤流程；修改Element Ui等封装好的组件的样式（比如添加了.is-active的样式）；</span>
                     <br>
                     <span>不能急，一步一步写，忘记一条逻辑就是一个BUG，之后还要花时间写完</span>
@@ -61,19 +69,7 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script type="text/javascript">
         let vm = new Vue({
-            el: '#app',
-            data: {
-                value: 1234,
-            },
-            mounted() {
-                this.$refs.div.addEventListener('click', (event) => {
-                    event.target.classList.add('active')
-                    console.log(event.target.className)
-                })
-            },
-            methods: {
-
-            }
+            el: '#app'
         })
     </script>
 </body>

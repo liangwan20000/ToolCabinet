@@ -8,11 +8,18 @@
     <link rel="stylesheet" href="css/demo.css">
     <!-- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <title>Document</title>
+    <style type="text/css">
+    </style>
 </head>
 <body>
     <div id="app">
-        <div class="box"></div>
-        <div id="chart" class="chart"></div>
+
+<a href="http://www.baidu.com" target="_blank">asdf</a>
+        <div class="box" @click="clickHandle">
+            <div>你好</div>
+        </div>
+        <button class="btn" @click="clickHandle">提交</button>
+        <!-- <div id="chart" class="chart"></div> -->
     </div>
     <!-- 引入Vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -23,22 +30,40 @@
     <!-- 自己的方法 -->
     <script src="./js/hao.js"></script>
     <script src="./demo.js"></script>
+    <script>
+        // getLastDay()
+    </script>
     <script type="text/javascript">
+        
+        // setTimeout(() => {
+        //     let dom = queryE('.loading');
+        //     dom.classList.remove('loading');
+        //     console.log(123)
+        // }, 5000);
         let vm = new Vue({
             el: '#app',
             components: {},
             data: {
-                value: null
+                value: true
             },
             mounted() {
-                
+                // openLoading(5);
+                // setTimeout(() => {
+                //     this.value = false;
+                // }, 5000);
             },
             methods: {
-                
+                clickHandle(event) {
+                    console.log(event)
+                    event.target.classList.add('loading');
+                    // setTimeout(() => {
+                    //     event.target.classList.remove('loading');
+                    // }, 10000);
+                }
             }
         })
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById('chart'));
         var option = {
@@ -86,6 +111,6 @@
             })
             num++
         }, 2000)
-    </script>
+    </script> -->
 </body>
 </html>
