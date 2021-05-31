@@ -1,0 +1,193 @@
+/* 浮动 */
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+/*设置隐藏*/
+.hide {
+  display: none !important;
+}
+/*设置显示*/
+.display {
+  display: block !important;
+}
+/*设置鼠标样式*/
+.cursorPointer {
+  cursor: pointer;
+}
+/* 清除浮动自己写的 */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  width: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  display: block;
+}
+/* 为了兼容IE6,7 */
+.clearfix {
+  *zoom:1;
+}
+
+/* 清除浮动摘抄的 */
+.clearfix:before,
+.clearfix:after { 
+  content:"";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+}
+
+/*单行超出以省略号显示*/
+.slh {
+  overflow: hidden; /*超出隐藏*/
+  white-space: nowrap; /*强制文字不换行*/
+  text-overflow: ellipsis; /*超出文字以省略号显示*/
+
+  /* 在容器的最末尾处换行 */
+  /*word-break: break-all;*/
+
+  /* 文本内容会在回车（空格处）立即换行 */
+  /* word-break: keep-all; */
+}
+/*多行超出以省略号显示*/
+.slh-all {
+  
+  /*设置高度和行高*/
+  height: ;
+  line-height: ;
+  /*超出隐藏*/
+  overflow: hidden;
+  /* 在容器的最末尾处换行 */
+  word-break: break-all;
+  /* 将超出的文字以省略号方式显示 */
+  text-overflow: ellipsis;
+  /* 用来控制显示行数 */
+  -webkit-line-clamp: 2;
+  /* 文字显示方式,默认水平 */
+  -webkit-box-orient: vertical;
+  /* 将盒子转为弹性盒子 */
+  display: -webkit-box;
+}
+/**
+ * 悬停
+ */
+.divHover {
+  position: sticky;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  /*距离顶部1px悬停*/
+  top: 1px; 
+}
+/*===========loading 加载gif===========*/
+.loadingboxer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;}
+.loadingmask{position:absolute;top:0;left:0;width:100%;height:100%;background:url(./loading.gif) center center no-repeat;z-index:9998;}
+.loadingbg{position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;filter:alpha(opacity=45);opacity:0.45;z-index:9997;}
+
+/*===========loading 自己写的===========*/
+.loading {
+  position: relative;
+}
+.loading::before {
+  content: "loading...";
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  /*clear: both;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*visibility: hidden;*/
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000000;
+}
+.loading::after {
+  content: "";
+  width: 20%;
+  height: 0;
+  padding-bottom: 20%;
+  clear: both;
+  display: block;
+  border-left: 5px dashed #ccc;
+  border-right: 5px dashed #ccc;
+  border-top: 5px dashed #999;
+  border-bottom: 5px dashed #999;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100000000;
+  transform: translate(-50%, -50%) rotateZ(0deg);
+  animation: rainbow 0.8s infinite;
+}
+@keyframes rainbow {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotateZ(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+/*===========loading 自己写的===========*/
+
+/*成功的弹出提示*/
+.alertSuccessMessage {
+  min-width: 400px;
+  max-width: 800px;
+  padding: 20px;
+  color: #67c23a;
+  z-index: 100000000;
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border: 1px solid #e1f3d8;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px #ccc;
+  background-color: #f0f9eb;
+}
+/*警告的弹出提示*/
+.alertWarningMessage {
+  min-width: 400px;
+  max-width: 800px;
+  padding: 20px;
+  color: #e6a23c;
+  z-index: 100000000;
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border: 1px solid #E6A23C;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px #faecd8;
+  background-color: #fdf6ec;
+}
+/*错误的弹出提示*/
+.alertErrorMessage {
+  min-width: 400px;
+  max-width: 800px;
+  padding: 20px;
+  color: #f56c6c;
+  z-index: 100000000;
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border: 1px solid #fde2e2;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px #ccc;
+  background-color: #fef0f0;
+}

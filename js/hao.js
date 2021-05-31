@@ -307,7 +307,7 @@ function deletMessage (element, id) {
     document.body.removeChild(element);
     clearTimeout(id);
 }
-// url参数变成对象
+// 根据url参数生成对象
 function getLoction (url) {
     if (!url) { return false };
     let index = 0, value = '', ary = [], i = 0, len = 0, obj = {}, list = [];
@@ -326,7 +326,7 @@ function getLoction (url) {
 
     return obj;
 }
-// 对象生成URL参数
+// 根据对象生成URL参数
 function mergeObj (data) {
     let ary = Object.keys(data), i = 0, str = '';
     for (i; i < ary.length; i++) {
@@ -337,6 +337,46 @@ function mergeObj (data) {
         }
     };
     return str;
+}
+/**
+ * [aLinkDownload 下载文件，并设置文件名称]
+ * @AuthorHTL 
+ * @DateTime  2021-05-31T14:20:15+0800
+ * @param     {[type]}                 value    [其他参数]
+ * @param     {[type]}                 fileName [设置下载文件的名称]
+ * @param     {[type]}                 hrefUrl  [下载地址，文件地址]
+ * @return    {[type]}                          [description]
+ */
+function aLinkDownload (value, fileName, hrefUrl) {
+    try {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", hrefUrl, true);
+        xhr.responseType = "blob";
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                if (window.navigator.msSaveOrOpenBlob) {
+                    navigator.msSaveBlob(blob, filename);
+                } else {
+                    let link = document.createElement("a");
+                    let body = document.querySelector("body");
+
+                    link.style.display = "none";
+                    link.href = window.URL.createObjectURL(xhr.response);
+                    link.download = fileName;
+
+                    body.appendChild(link);
+
+                    link.click();
+                    body.removeChild(link);
+
+                    window.URL.revokeObjectURL(link.href);
+                }
+            }
+        };
+        xhr.send();
+    } catch (error) {
+        console.lo(error);
+    }
 }
 
 //开始loading
