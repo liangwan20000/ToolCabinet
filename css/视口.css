@@ -1,5 +1,5 @@
 @import url("style2.css") screen and (max-device-width: 800px);
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1024px) (max-width: 1900px) {
   html {
     font-size: 51.2px;
   }

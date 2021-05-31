@@ -1,3 +1,23 @@
+function PageObj (value) {
+    this.obj = {
+        ...value
+    };
+}
+// 设置本页数据
+PageObj.prototype.storageSetHandle = function (data) {
+    let storage = this.obj,
+        thisArr = Object.keys(storage),
+        ary = Object.keys(data),
+        i = 0, j = 0, len = ary.length;
+
+    for (i; i < len; i++) {
+        // 检查this中是否有要更新的键
+        if (thisArr.includes(ary[i])) {
+            storage[ary[i]] = data[ary[i]];
+        };
+    };
+}
+
 /**
  * 处理时间
  * @param {(Object|string|number)} time 时间
@@ -222,6 +242,101 @@ function animate (element, up, down, juli, time) {
         // 给元素设置最后样式
         element.style.left = up + 'px';
     }, time);
+}
+// 验证TOKEN是否过期
+async function getLoginCheck(name) {
+    // 获取token
+    let data = null, tokenItem = JSON.parse(window.localStorage.getItem(name));
+    // 如果token存在
+    if (tokenItem) {
+        // 验证TOKEN是否过期
+        let response = await userRequest('loginCheck', { sessionId: tokenItem });
+        if (response.status === 'success') {
+            // 没有过期携带token
+            data = tokenItem;
+        } else {
+            // 过期token
+            // 删除token
+            removeStorage(name);
+            // 删除用户信息
+            removeStorage('userinfo');
+            // 设置返回值
+            data = false
+        }
+    } else {
+        // 如果token不存在
+        // 删除用户信息
+        removeStorage('userinfo');
+        // 设置返回值
+        data = false
+    }
+    return data
+}
+// 查询本地数据
+function getStorage(name) {
+    return JSON.parse(window.localStorage.getItem(name));
+}
+// 设置本地数据
+function setStorage(name, data) {
+    return window.localStorage.setItem(name, JSON.stringify(data));
+}
+// 删除本地数据
+function removeStorage(name) {
+    window.localStorage.removeItem(name);
+}
+// 提示框
+function message (content, time, status) {
+    let div = document.createElement('div');
+    if (status === 'success') {
+        div.classList.add('alertSuccessMessage');
+    } else if (status === 'error') {
+        div.classList.add('alertErrorMessage');
+    } else if (status === 'warning') {
+        div.classList.add('alertWarningMessage');
+    }
+    
+    div.innerText = content;
+    document.body.appendChild(div);
+    let timeId = null;
+    timeId = setTimeout(() => {
+        deletMessage(div, timeId);
+    }, time);
+}
+// 清除提示框
+function deletMessage (element, id) {
+    document.body.removeChild(element);
+    clearTimeout(id);
+}
+// url参数变成对象
+function getLoction (url) {
+    if (!url) { return false };
+    let index = 0, value = '', ary = [], i = 0, len = 0, obj = {}, list = [];
+    // 找到问号索引
+    index = url.indexOf('?');
+    // 截取所有参数
+    value = url.slice(index + 1);
+    // 分割不同参数
+    ary = value.split('&');
+    len = ary.length;
+
+    for (i = 0; i < len; i++) {
+        list = ary[i].split('=');
+        obj[list[0]] = decodeURIComponent(list[1]);
+    };
+
+    return obj;
+}
+// 对象生成URL参数
+function mergeObj (data) {
+    let ary = Object.keys(data), i = 0, str = '';
+    for (i; i < ary.length; i++) {
+        if (i === ary.length - 1) {
+            str += ary[i] + '=' + encodeURIComponent(data[ary[i]]);
+        } else {
+            str += ary[i] + '=' + encodeURIComponent(data[ary[i]]) + '&';
+        }
+    };
+    return str;
 }
 
 //开始loading

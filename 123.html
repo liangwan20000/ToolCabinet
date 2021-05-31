@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxTwo {
+            width: 200px;
+            height: 200px;
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#test").click(function (e){
+                var ev = window.event;
+                //获取event对象 
+                location.replace(this.href);
+                ev.returnValue = false;
+            });
+        });
+    </script> <a id="test" >test1</a>
+    <div class="boxTwo" align="center">asdfasdf</div>
+    <script>
+        let num = 2, blur = 4, anan = 0;
+        function aaa (value) {
+            anan =  value + 10
+        }
+        blur > num && aaa(10)
+        console.log(anan);
+    </script>
+    <script>
+        (function(global, factory) {
+            typeof exports === 'object' && typeof module !== 'undefined' ?
+            module.exports = factory() : typeof define === 'function' && define.amd ?
+            define(factory) : (global.Vue = factory());
+        }(this, (function() {
+            'use strict';
+
+            let Vue = { name: 'vue' }
+
+            return Vue;
+
+        })));
+        console.log(this.Vue)
+    </script>
+    <!-- <script>
+        var aaa = "{[()]}";
+        var str1 = "(abcd)eftgsf(s(d)f)()";
+        var str2 = "(sfd(sf)d )ff)(sdasdf)(";
+        var oneStr = [];
+        var lastStr = [];
+        var strList = [];
+
+        if ()
+        
+        function a (str) {
+            for (let i = 0; i < str.length; i++) {
+                // 有一个左边括号
+                if (str[i] === '(') {
+                    oneStr.push(i);
+                    // 去找一个右边括号
+                    for (let j = i + 1; j < str.length; j++) {
+                        // 记录右边括号的位置，不去比较这个位置
+                        if (str[j] === ')') {
+                            if (!(lastStr.includes(j))) {
+                                lastStr.push(j);
+                                break;
+                            }
+                        }
+                    }
+                } else if (str[i] === ')' && !(lastStr.includes(i))) {
+                    strList.push(i);
+                }
+            }
+            if (oneStr.length === lastStr.length && strList.length === 0) {
+                alert('通过');
+            } else {
+                console.log(oneStr.length)
+                console.log(lastStr.length)
+                console.log(strList.length)
+            }
+        }
+        a(str2);
+    </script>  -->
+</body>
+</html>
