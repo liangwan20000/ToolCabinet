@@ -41,13 +41,12 @@
       var transArrTree = function(rootValue) {
         var arr = [];
         for (var i = 0; i < list.length; i++) {
+          // 等于这个rootValue的一定是根
           if (list[i].pid == rootValue) {
-            // 等于这个rootValue的一定是根
             // 如果找到了根 就要继续找它的儿子和孙子
-            var o = list[i];
             var newarr = transArrTree(list[i].id);
             if (newarr.length) {
-              o.child = newarr;
+              list[i].child = newarr;
             }
             arr.push(list[i]);
           }

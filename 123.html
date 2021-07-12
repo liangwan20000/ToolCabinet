@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=icon href="favicon.ico">
     <title>Document</title>
     <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
         .boxTwo {
             width: 200px;
             height: 200px;
@@ -13,8 +18,64 @@
     </style>
 </head>
 <body>
-    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-    <script type="text/javascript">
+    <video src="1212.mp4" autobuffer autoloop loop controls>
+        <!-- <source src="/media/video.oga">
+        <source src="/media/video.m4v">
+        <object type="video/ogg" data="/media/video.oga" width="320" height="240">
+        <param name="src" value="/media/video.oga">
+        <param name="autoplay" value="false">
+        <param name="autoStart" value="0">
+        <p><a href="/media/video.oga">Download this video file.</a></p>
+        </object> -->
+    </video>
+    <!-- <div id="watermark" style="position: fixed; left: 17px; top: 470px; font-weight: 700; color: #919191; opacity: 0.6">asdfa</div>
+    <script>
+        var fl = document.getElementById('watermark');
+
+        var chroX = document.documentElement.clientWidth;//yemian整个的高宽
+        var chroY = document.documentElement.clientHeight;
+
+        var offsetLeft = fl.offsetLeft;//盒子的位置
+        var offsetTop = fl.offsetTop;
+
+        var timer = 0;
+
+        console.log(offsetTop)
+
+        var x = 1;
+        var y = 1;
+
+        window.onresize = function(){
+            chroX = document.documentElement.clientWidth;//yemian整个的高宽
+            chroY = document.documentElement.clientHeight;
+        }
+
+        function move(){
+            offsetLeft += x;
+            offsetTop += y;
+            fl.style.left = offsetLeft  + 'px';
+            fl.style.top = offsetTop  + 'px';
+            console.log(chroY)
+        }
+        window.onload = function(){
+           timer = setInterval(function(){
+                move();
+                if(offsetTop + 100 > chroY || offsetTop < 0){
+                    y = -y;
+                }
+                if(offsetLeft + 100 > chroX || offsetLeft < 0){
+                    x = -x;
+                }
+            }, 10)
+        }
+        fl.onmouseenter = function(){
+            clearInterval(timer)
+        }
+        fl.onmouseleave = function(){
+            window.onload();
+        }
+    </script> -->
+    <!-- <script type="text/javascript">
         $(document).ready(function(){
             $("#test").click(function (e){
                 var ev = window.event;
@@ -47,7 +108,7 @@
 
         })));
         console.log(this.Vue)
-    </script>
+    </script> -->
     <!-- <script>
         var aaa = "{[()]}";
         var str1 = "(abcd)eftgsf(s(d)f)()";

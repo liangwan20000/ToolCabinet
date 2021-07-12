@@ -14,8 +14,8 @@
 </head>
 <body>
     <div id="app">
-        <div class="boxDiv" @click="clickHandle">
-            <div>你好</div>
+        <div :id="'aa'" class="boxDiv" @click="clickHandle">
+            <div>{{ value }}</div>
         </div>
         <button class="btn" @click="clickHandle">提交</button>
         <!-- <div id="chart" class="chart"></div> -->
@@ -32,19 +32,28 @@
     <script>
         let time = '2021-03-26T11:20:40.000+0800'
         console.log(parseTime(time))
+        // let a = ('a' * 0);
+        // console.log(a)
     </script>
     <script type="text/javascript">
         let vm = new Vue({
             el: '#app',
             components: {},
             data: {
-                value: true
+                num: 123
+            },
+            computed: {
+                value: {
+                    get () {
+                        return this.num
+                    },
+                    set (newValue) {
+                        console.log(newValue)
+                    }
+                }
             },
             mounted() {
-                // openLoading(5);
-                // setTimeout(() => {
-                //     this.value = false;
-                // }, 5000);
+                this.num = 10
             },
             methods: {
                 clickHandle(event) {

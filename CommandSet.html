@@ -5690,6 +5690,7 @@
 			git checkout master	切换回master分支
 			git branch -a 查看远程分支
 			git branch -D 分支名称	删除分支
+			git push origin --delete 分支名称 删除远程分支
 			git merge 分支名称	合并分支
 			vi 文件名	创建并进入编辑文件模式
 			i 输入i才可以编辑  esc退出编辑	冒号wq退出编辑模式  cat查看文件内容
@@ -5735,6 +5736,17 @@
 			|     清除缓存     |  npm cache clean -force
 			|  全局安装或删除  |  npm install/uninstall 依赖包 -g
 			|   同时下载多个   |  npm install  axios vue-axios
+			
+			更新依赖包到最新版本
+			npm install 依赖包名称@latest -D
+
+			查看最新版本
+			npm info 依赖包名称（查看所有版本）
+			npm view 依赖包名称 version（查看当前最新版本）
+
+			更新依赖包到指定版本
+			npm i 依赖包名称@最新版本号
+
 			指定包的版本进行安装
 				npm install 包名@版本号
 			从缓存目录下载包	--cache-min 后面跟的是时间，单位是分钟，超过这个时间才去服务器下载
