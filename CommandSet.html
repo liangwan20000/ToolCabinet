@@ -1074,9 +1074,8 @@
 		charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。
 		window.atob() 方法用于解码使用 base-64 编码的字符串。
 
-		base-64 编码使用方法是 window.btoa() 。
+		window.btoa() 方法用于 base-64 编码。
 
-		Object.prototype.toString.call(); 判断对象的数据类型
 		document.documentElement：表示HTML
 		document.body ：表示body
 		屏幕的可视区域宽高
@@ -2243,7 +2242,7 @@
 		}
 		var 操作属性 {
 			$('div').css('width'); 获取属性值;
-			$('div').css('width','200px'); 两个参数叫修改;
+			$('div').css('width','200px'); 修改;
 			$('div').css({
 				'width' : '200px',
 				'width' : '200px',
@@ -2644,6 +2643,111 @@
 					原型继承弥补了借用继承无法继承方法的缺点。
 					借用继承弥补了原型继承无法完美继承属性的缺点。
 				缺点：在原型链中会有多余属性
+		}
+		var 安全的类型检测 {
+			Object.prototype.toString.call(value) == "[object Array]";
+		}
+		var 作用域安全的构造函数 {
+			锁定了可以调用构造函数的环境，避免了在全局对象上意外设置属性。
+
+			function Person(name, age, job){
+				if (this instanceof Person){
+					this.name = name;
+					this.age = age;
+					this.job = job;
+				} else {
+					return new Person(name, age, job);
+				}
+			}
+			var person1 = Person("Nicholas", 29, "Software Engineer");
+			alert(window.name); //""
+			alert(person1.name); //"Nicholas"
+
+			构造函数窃取结合使用原型链或者寄生组合
+			function Polygon(sides){
+				if (this instanceof Polygon) {
+					this.sides = sides;
+					this.getArea = function(){
+						return 0;
+					};
+				} else {
+					return new Polygon(sides);
+				}
+			}
+			function Rectangle(width, height){
+				Polygon.call(this, 2);
+				this.width = width;
+				this.height = height;
+				this.getArea = function(){
+					return this.width * this.height;
+				};
+			}
+			Rectangle.prototype = new Polygon();
+			var rect = new Rectangle(5, 10);
+			alert(rect.sides); //2
+		}
+		var 惰性载入 {
+			第一种方法
+			function createXHR(){
+				if (typeof XMLHttpRequest != "undefined"){
+					createXHR = function(){
+						return new XMLHttpRequest();
+					};
+				} else if (typeof ActiveXObject != "undefined"){
+					createXHR = function(){
+						if (typeof arguments.callee.activeXString != "string"){
+							var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0",
+								"MSXML2.XMLHttp"],
+								i, len;
+							for (i=0,len=versions.length; i < len; i++){
+								try {
+									new ActiveXObject(versions[i]);
+									arguments.callee.activeXString = versions[i];
+									break;
+								} catch (ex){
+									//skip
+								}
+							}
+						}
+						return new ActiveXObject(arguments.callee.activeXString);
+					};
+				} else {
+					createXHR = function(){
+						throw new Error("No XHR object available.");
+					};
+				}
+				return createXHR();
+			}
+			第二种方法
+			var createXHR = (function(){
+				if (typeof XMLHttpRequest != "undefined"){
+					return function(){
+						return new XMLHttpRequest();
+					};
+				} else if (typeof ActiveXObject != "undefined"){
+					return function(){
+						if (typeof arguments.callee.activeXString != "string"){
+							var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0",
+								"MSXML2.XMLHttp"],
+								i, len;
+							for (i=0,len=versions.length; i < len; i++){
+								try {
+									new ActiveXObject(versions[i]);
+									arguments.callee.activeXString = versions[i];
+									break;
+								} catch (ex){
+									//skip
+								}
+							}
+						}
+						return new ActiveXObject(arguments.callee.activeXString);
+					};
+				} else {
+					return function(){
+						throw new Error("No XHR object available.");
+					};
+				}
+			})();
 		}
 		var 函数 {
 			window > Object > document;
@@ -5586,6 +5690,7 @@
 			git checkout master	切换回master分支
 			git branch -a 查看远程分支
 			git branch -D 分支名称	删除分支
+			git push origin --delete 分支名称 删除远程分支
 			git merge 分支名称	合并分支
 			vi 文件名	创建并进入编辑文件模式
 			i 输入i才可以编辑  esc退出编辑	冒号wq退出编辑模式  cat查看文件内容
@@ -5631,6 +5736,17 @@
 			|     清除缓存     |  npm cache clean -force
 			|  全局安装或删除  |  npm install/uninstall 依赖包 -g
 			|   同时下载多个   |  npm install  axios vue-axios
+			
+			更新依赖包到最新版本
+			npm install 依赖包名称@latest -D
+
+			查看最新版本
+			npm info 依赖包名称（查看所有版本）
+			npm view 依赖包名称 version（查看当前最新版本）
+
+			更新依赖包到指定版本
+			npm i 依赖包名称@最新版本号
+
 			指定包的版本进行安装
 				npm install 包名@版本号
 			从缓存目录下载包	--cache-min 后面跟的是时间，单位是分钟，超过这个时间才去服务器下载
