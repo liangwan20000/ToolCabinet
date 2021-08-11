@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="watermark" style="position: fixed; left: 17px; top: 470px; font-weight: 700; color: #919191; opacity: 0.6">asdfa</div>
+    <script>
+        var fl = document.getElementById('watermark');
+
+        var chroX = document.documentElement.clientWidth;//yemian整个的高宽
+        var chroY = document.documentElement.clientHeight;
+
+        var offsetLeft = fl.offsetLeft;//盒子的位置
+        var offsetTop = fl.offsetTop;
+
+        var timer = 0;
+
+        var x = 1;
+        var y = 1;
+
+        window.onresize = function(){
+            chroX = document.documentElement.clientWidth;//yemian整个的高宽
+            chroY = document.documentElement.clientHeight;
+        }
+
+        function move(){
+            offsetLeft += x;
+            offsetTop += y;
+            fl.style.left = offsetLeft  + 'px';
+            fl.style.top = offsetTop  + 'px';
+        }
+        window.onload = function(){
+           timer = setInterval(function(){
+                move();
+                if(offsetTop + 20 > chroY || offsetTop < 0){
+                    y = -y;
+                }
+                if(offsetLeft + 40 > chroX || offsetLeft < 0){
+                    x = -x;
+                }
+            }, 10)
+        }
+        fl.onmouseenter = function(){
+            clearInterval(timer)
+        }
+        fl.onmouseleave = function(){
+            window.onload();
+        }
+    </script>
+</body>
+</html>

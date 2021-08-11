@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="css/视口.css">
     <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/common-公共样式.css">
     <!-- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <title>Document</title>
     <style type="text/css">
@@ -17,8 +18,15 @@
         <div :id="'aa'" class="boxDiv" @click="clickHandle">
             <div>{{ value }}</div>
         </div>
+        <div class="hideBox" ref="hideBox">
+            <div class="box" :style="{ transform: 'scale(' + num + ')', left: leftNum + 'px', top: topNum + 'px' }">
+                <div class="bgcColor"></div>
+                <img src="./key point html/123.jpg" alt="">
+            </div>
+        </div>
+        <label><input type="radio" name="sex" value="男生">男生</label>
+        <label><input type="radio" name="sex" value="女生">女生</label>
         <button class="btn" @click="clickHandle">提交</button>
-        <!-- <div id="chart" class="chart"></div> -->
     </div>
     <!-- 引入Vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -29,18 +37,14 @@
     <!-- 自己的方法 -->
     <script src="./js/hao.js"></script>
     <script src="./demo.js"></script>
-    <script>
-        let time = '2021-03-26T11:20:40.000+0800'
-        console.log(parseTime(time))
-        // let a = ('a' * 0);
-        // console.log(a)
-    </script>
     <script type="text/javascript">
         let vm = new Vue({
             el: '#app',
             components: {},
             data: {
-                num: 123
+                num: 1,
+                leftNum: 0,
+                topNum: 0
             },
             computed: {
                 value: {
@@ -53,67 +57,156 @@
                 }
             },
             mounted() {
-                this.num = 10
+                this.$refs.hideBox.addEventListener('mousewheel', (event) => {
+                    event.preventDefault();
+                    // 放大的倍数是宽高乘的倍数
+                    // 宽除以2得到的值就是一次移动的距离
+                    console.log(event.offsetY, event.offsetX, 'arfgadfasdfsd')
+                    if (event.wheelDelta > 0) {
+                        this.num++
+                        this.leftNum = ((this.num - 1) * 50) - (event.offsetX * (this.num - 1))
+                        this.topNum = ((this.num - 1) * 50) - (event.offsetY * (this.num - 1))
+                    } else {
+                        this.num--
+                        this.leftNum = ((this.num - 1) * 50) - (event.offsetX * (this.num - 1))
+                        this.topNum = ((this.num - 1) * 50) - (event.offsetY * (this.num - 1))
+                    }
+                    
+                    // var wheel = event.wheelDelta;
+                    // var delta = Math.max(-1, Math.min(1, wheel) );
+                    
+                }, false);
+
+                // this.$refs.box.addEventListener('mousewheel', (event) => {
+                //     event.preventDefault();
+                //     console.log(event, event.offsetX, 'arfgadfasdfsd')
+                //     if (event.wheelDelta > 0) {
+                //         this.num++
+                //     } else {
+                //         this.num--
+                //     }
+                    
+                //     // var wheel = event.wheelDelta;
+                //     // var delta = Math.max(-1, Math.min(1, wheel) );
+                    
+                // }, false);
+                // this.num = 10
+                // let time = '2021-03-26T11:20:40.000+0800'
+                // console.log(parseTime(time))
+
+                // var book = {
+                //     "title": "Professional JavaScript",
+                //     "authors": ["Nicholas C. Zakas", 'keyi'],
+                //     edition: 3,
+                //     year: 2011
+                // };
+                // let jsonText = this.getJson(book, (key, value) => {
+                //     switch(key){
+                //         case "authors":
+                //             return value.join(",");
+                //             break;
+                //         case "year":
+                //             return 5000;
+                //             break;
+                //         case "edition":
+                //             return 6;
+                //             break;
+                //         default:
+                //             return value;
+                //             break;
+                //     }
+                // }, function () {
+                //     this.title = '10'
+                //     return this
+                // });
+                // console.log(jsonText)
+
+                // let xiaohong = {
+                //     name: "小红",
+                //     age: 15
+                // };
+                // console.log(xiaohong.hasOwnProperty("name"))
+                // xiaohong = new Proxy(xiaohong, {
+                //     get(target, key) {
+                //         let result = target[key];
+                //         //如果是获取 年龄 属性，则添加 岁字
+                //         if (key === "age") result += "岁";
+                //         return result;
+                //     },
+                //     set(target, key, value) {
+                //         if (key === "age" && typeof value !== "number") {
+                //             throw Error("age字段必须为Number类型");
+                //         }
+                //         console.log(target, key, value)
+                //         return Reflect.set(target, key, value);
+                //     }
+                // });
+                // console.log(`我叫${xiaohong.name}  我今年${xiaohong.age}了`);
+                // xiaohong.age = 20;
+                // console.log(`我叫${xiaohong.name}  我今年${xiaohong.age}了`);
+
+                // function extend(sup, base) {
+                //     // 获取base的构造函数
+                //     var descriptor = Object.getOwnPropertyDescriptor(
+                //         base.prototype, "constructor"
+                //     );
+                //     console.log(descriptor)
+                //     base.prototype = Object.create(sup.prototype);
+                //     var handler = {
+                //         construct: function(target, args) {
+                //             var obj = Object.create(base.prototype);
+                //             this.apply(target, obj, args);
+                //             return obj;
+                //         },
+                //         apply: function(target, that, args) {
+                //             sup.apply(that, args);
+                //             base.apply(that, args);
+                //         }
+                //     };
+                //     var proxy = new Proxy(base, handler);
+                //     descriptor.value = proxy;
+                //     Object.defineProperty(base.prototype, "constructor", descriptor);
+                //     return proxy;
+                // }
+                // // 构造函数
+                // var Person = function (name) {
+                //   this.name = name
+                // };
+                // // 两个构造函数
+                // var Boy = extend(Person, function (name, age) {
+                //   this.age = age;
+                // });
+
+                // Boy.prototype.sex = "M";
+
+                // var Peter = new Boy("Peter", 13);
+                // console.log(Peter.sex);  // "M"
+                // console.log(Peter.name); // "Peter"
+                // console.log(Peter.age);  // 13
             },
             methods: {
                 clickHandle(event) {
-                    console.log(event)
-                    event.target.classList.add('loading');
+                    this.num++
+                    // event.target.classList.add('loading');
                     // setTimeout(() => {
                     //     event.target.classList.remove('loading');
                     // }, 10000);
+                },
+                // 提交接口数据时使用
+                getJson(data, fn, tostring = false) {
+                    if (tostring) {
+                        data.toJSON = tostring
+                    }
+                    return JSON.parse(JSON.stringify(data, fn), function (key, value) {
+                        if (key === 'edition') {
+                            return value * 2
+                        } else {
+                            return value
+                        }
+                    });
                 }
             }
         })
     </script>
-    <!-- <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts图表
-        var myChart = echarts.init(document.getElementById('chart'));
-        var option = {
-            tooltip: {
-                show: false,
-                trigger: 'axis',
-                // triggerOn: 'none'
-            },
-            legend: {
-                data:['销量']
-            },
-            xAxis : [
-                {
-                    type : 'category',
-                    data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-                }
-            ],
-            yAxis : [
-                {
-                    type : 'value'
-                }
-            ],
-            series : [
-                {
-                    "name":"销量",
-                    "type":"bar",
-                    "data":[5, 20, 40, 10, 10, 20]
-                }
-            ]
-        };
-        // 为echarts对象加载数据
-        myChart.setOption(option);
-        let num = 0
-        setInterval(() => {
-            myChart.dispatchAction({
-                type: 'showTip',
-                // 可选，系列 index，可以是一个数组指定多个系列
-                seriesIndex: 0,
-                // 可选，系列名称，可以是一个数组指定多个系列
-                // seriesName: '衬衫',
-                // 可选，数据的 index
-                dataIndex: num,
-                // 可选，数据的 名称
-                // name: '衬衫'
-            })
-            num++
-        }, 2000)
-    </script> -->
 </body>
 </html>

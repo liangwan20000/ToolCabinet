@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=icon href="favicon.ico">
+    <title>Document</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .boxTwo {
+            width: 200px;
+            height: 200px;
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <a id="test" >test1</a>
+    <script>
+        (function(global, factory) {
+            typeof exports === 'object' && typeof module !== 'undefined' ?
+            module.exports = factory() : typeof define === 'function' && define.amd ?
+            define(factory) : (global.Vue = factory());
+        }(this, (function() {
+            'use strict';
+
+            let Vue = { name: 'vue' }
+
+            return Vue;
+
+        })));
+        console.log(this.Vue)
+    </script>
+</body>
+</html>

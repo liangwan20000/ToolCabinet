@@ -7,17 +7,17 @@
 <body>
   <script type="text/javascript">
     // 基于构造函数 
-    // function Student (uname, age) {
-    //   this.uname = uname;
-    //   this.age = age;
-    // }
-    // Student.prototype.showInfo = function () {
-    //   console.log(this.uname + '的年龄是' + this.age)
-    // }
-    // let stu = new Student('lisi', 12);
-    // console.log(stu.uname)
-    // console.log(stu.age)
-    // stu.showInfo()
+    function Student (uname, age) {
+      this.uname = uname;
+      this.age = age;
+    }
+    Student.prototype.showInfo = function () {
+      console.log(this.uname + '的年龄是' + this.age)
+    }
+    let stu = new Student('lisi', 12);
+    console.log(stu.uname)
+    console.log(stu.age)
+    stu.showInfo()
 
     // 基于类的方式
     class Student {

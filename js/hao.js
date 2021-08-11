@@ -1,14 +1,16 @@
-function PageObj (value) {
+function PageObj(value) {
     this.obj = {
         ...value
     };
 }
 // 设置本页数据
-PageObj.prototype.storageSetHandle = function (data) {
+PageObj.prototype.storageSetHandle = function(data) {
     let storage = this.obj,
         thisArr = Object.keys(storage),
         ary = Object.keys(data),
-        i = 0, j = 0, len = ary.length;
+        i = 0,
+        j = 0,
+        len = ary.length;
 
     for (i; i < len; i++) {
         // 检查this中是否有要更新的键
@@ -25,94 +27,94 @@ PageObj.prototype.storageSetHandle = function (data) {
  * @returns {string | null}
  */
 function parseTime(time, cFormat) {
-	if (arguments.length === 0 || !time) {
-		return null;
-	}
-  
-	const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+    if (arguments.length === 0 || !time) {
+        return null;
+    }
 
-	let datetime;
+    const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
 
-	if (typeof time === 'object') {
-		datetime = time
-	} else {
-		if ((typeof time === 'string') && time.includes('GMT')) {
-			if ((/^[0-9]+$/.test(time))) {
-				// support "1548221490638"
-				time = parseInt(time)
-			} else if ((typeof time === 'string') && !time.includes('GMT')) {
-        // 转为正常的时间格式 年-月-日 时:分:秒
-        let T_pos = time.indexOf('T');
-        let Z_pos = time.indexOf('Z');
-        let year_month_day = time.substr(0, T_pos);
-        let hour_minute_second = time.substr(T_pos + 1, Z_pos-T_pos - 1);
-        let new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
-        // 处理成为时间戳
-        let timestamp = new Date(Date.parse(new_datetime));
-        let new_timestamp = timestamp.getTime();
-        timestamp = new_timestamp/1000;
-        /**计算当前偏离UTC的小时数 */
-        let disparityDate = new Date().getTimezoneOffset() / 60
-        // 增加时差
-        timestamp = timestamp - disparityDate * 60 * 60;
-        // 时间戳转为时间
-        time = parseInt(timestamp) * 1000;
-      } else {
-				// support safari
-				// https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-				time = time.replace(new RegExp(/-/gm), '/')
-			}
-		}
+    let datetime;
 
-		if ((typeof time === 'number') && (time.toString().length === 10)) {
-			time = time * 1000
-		}
-		datetime = new Date(time)
-	}
+    if (typeof time === 'object') {
+        datetime = time
+    } else {
+        if ((typeof time === 'string') && time.includes('GMT')) {
+            if ((/^[0-9]+$/.test(time))) {
+                // support "1548221490638"
+                time = parseInt(time)
+            } else if ((typeof time === 'string') && !time.includes('GMT')) {
+                // 转为正常的时间格式 年-月-日 时:分:秒
+                let T_pos = time.indexOf('T');
+                let Z_pos = time.indexOf('Z');
+                let year_month_day = time.substr(0, T_pos);
+                let hour_minute_second = time.substr(T_pos + 1, Z_pos - T_pos - 1);
+                let new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
+                // 处理成为时间戳
+                let timestamp = new Date(Date.parse(new_datetime));
+                let new_timestamp = timestamp.getTime();
+                timestamp = new_timestamp / 1000;
+                /**计算当前偏离UTC的小时数 */
+                let disparityDate = new Date().getTimezoneOffset() / 60
+                // 增加时差
+                timestamp = timestamp - disparityDate * 60 * 60;
+                // 时间戳转为时间
+                time = parseInt(timestamp) * 1000;
+            } else {
+                // support safari
+                // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+                time = time.replace(new RegExp(/-/gm), '/')
+            }
+        }
 
-	const formatObj = {
-		y: datetime.getFullYear(),
-		m: datetime.getMonth() + 1,
-		d: datetime.getDate(),
-		h: datetime.getHours(),
-		i: datetime.getMinutes(),
-		s: datetime.getSeconds(),
-		a: datetime.getDay()
-	}
-	const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
-		const value = formatObj[key]
-		// Note: getDay() returns 0 on Sunday
-		if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
-		return value.toString().padStart(2, '0')
-	})
-	return time_str
+        if ((typeof time === 'number') && (time.toString().length === 10)) {
+            time = time * 1000
+        }
+        datetime = new Date(time)
+    }
+
+    const formatObj = {
+        y: datetime.getFullYear(),
+        m: datetime.getMonth() + 1,
+        d: datetime.getDate(),
+        h: datetime.getHours(),
+        i: datetime.getMinutes(),
+        s: datetime.getSeconds(),
+        a: datetime.getDay()
+    }
+    const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
+        const value = formatObj[key]
+        // Note: getDay() returns 0 on Sunday
+        if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
+        return value.toString().padStart(2, '0')
+    })
+    return time_str
 }
 // 获取当前月的最后一天
-function getLastDay () {
-	// 现在的时间
-	var date = new Date();
-	// 获取当前月份
-	var currentMonth = date.getMonth();
-	// 获取下一个月
-	var nextMonth = ++currentMonth;
-	// 获取下个月的1号
-	var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth , 1);
-	// 设置一天的时间
-	var oneDay = 1000 * 60 * 60 * 24;
-	// 上个月的第一天减去一天得到当前月的最后一天的时间
-	var lastTime = new Date(nextMonthFirstDay - oneDay);
-	// console.log(lastTime.getMonth())
-	// 得到当前月
-	var month = parseInt(lastTime.getMonth() + 1);
-	// 得到当前月最后一天
-	var day = lastTime.getDate();
-	if (month < 10) {
-		month = '0' + month
-	}
-	if (day < 10) {
-		day = '0' + day
-	}
-	return date.getFullYear() + '-' + month + '-' + day
+function getLastDay() {
+    // 现在的时间
+    var date = new Date();
+    // 获取当前月份
+    var currentMonth = date.getMonth();
+    // 获取下一个月
+    var nextMonth = ++currentMonth;
+    // 获取下个月的1号
+    var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth, 1);
+    // 设置一天的时间
+    var oneDay = 1000 * 60 * 60 * 24;
+    // 上个月的第一天减去一天得到当前月的最后一天的时间
+    var lastTime = new Date(nextMonthFirstDay - oneDay);
+    // console.log(lastTime.getMonth())
+    // 得到当前月
+    var month = parseInt(lastTime.getMonth() + 1);
+    // 得到当前月最后一天
+    var day = lastTime.getDate();
+    if (month < 10) {
+        month = '0' + month
+    }
+    if (day < 10) {
+        day = '0' + day
+    }
+    return date.getFullYear() + '-' + month + '-' + day
 }
 
 /**
@@ -124,49 +126,49 @@ function getLastDay () {
  * @returns {string | null}
  */
 function tableToExcel(jsonData, str, surfaceName) {
-  //要导出的json数据
-  // const jsonData = [
-  //     {
-  //         name: '张先生',
-  //         phone: '123456789',
-  //         email: '000@123456.com'
-  //     },
-  //     {
-  //         name: '王先生',
-  //         phone: '123456789',
-  //         email: '000@123456.com'
-  //     },
-  //     {
-  //         name: '李先生',
-  //         phone: '123456789',
-  //         email: '000@123456.com'
-  //     },
-  //     {
-  //         name: '赵先生',
-  //         phone: '123456789',
-  //         email: '000@123456.com'
-  //     },
-  // ]
-  //列标题，逗号隔开，每一个逗号就是隔开一个单元格
-  // let str = `姓名,电话,邮箱\n`;
-  //增加\t为了不让表格显示科学计数法或者其他格式
-  for (let i = 0; i < jsonData.length; i++) {
-      for (let item in jsonData[i]) {
-          str += `${jsonData[i][item] + '\t'},`;
-      }
-      str += '\n';
-  }
-  //encodeURIComponent解决中文乱码
-  let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
-  //通过创建a标签实现
-  let link = document.createElement("a");
-  link.href = uri;
-  link.innerHTML = 'json数据表.csv下载';
-  //对下载的文件命名
-  link.download = surfaceName;
-  document.body.appendChild(link);
-  link.click()
-  document.body.removeChild(link)
+    //要导出的json数据
+    // const jsonData = [
+    //     {
+    //         name: '张先生',
+    //         phone: '123456789',
+    //         email: '000@123456.com'
+    //     },
+    //     {
+    //         name: '王先生',
+    //         phone: '123456789',
+    //         email: '000@123456.com'
+    //     },
+    //     {
+    //         name: '李先生',
+    //         phone: '123456789',
+    //         email: '000@123456.com'
+    //     },
+    //     {
+    //         name: '赵先生',
+    //         phone: '123456789',
+    //         email: '000@123456.com'
+    //     },
+    // ]
+    //列标题，逗号隔开，每一个逗号就是隔开一个单元格
+    // let str = `姓名,电话,邮箱\n`;
+    //增加\t为了不让表格显示科学计数法或者其他格式
+    for (let i = 0; i < jsonData.length; i++) {
+        for (let item in jsonData[i]) {
+            str += `${jsonData[i][item] + '\t'},`;
+        }
+        str += '\n';
+    }
+    //encodeURIComponent解决中文乱码
+    let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+    //通过创建a标签实现
+    let link = document.createElement("a");
+    link.href = uri;
+    link.innerHTML = 'json数据表.csv下载';
+    //对下载的文件命名
+    link.download = surfaceName;
+    document.body.appendChild(link);
+    link.click()
+    document.body.removeChild(link)
 }
 
 /**
@@ -180,26 +182,28 @@ function tableToExcel(jsonData, str, surfaceName) {
  * //=>[[1,2],[3,4],[5]]
  */
 function chunk(array, size) {
-	// 获取数组长度
-	let length = array == null ? 0 : array.length
-	// 如果为空返回空数组
-	if (!length || size < 1) {
-		return []
-	}
-	// 初始化
-	let index = 0, resIndex = 0, result = Array(Math.ceil(length / size)) // 向上取整,得到一个已知 length 大小的数组
+    // 获取数组长度
+    let length = array == null ? 0 : array.length
+    // 如果为空返回空数组
+    if (!length || size < 1) {
+        return []
+    }
+    // 初始化
+    let index = 0,
+        resIndex = 0,
+        result = Array(Math.ceil(length / size)) // 向上取整,得到一个已知 length 大小的数组
 
-	// while (index < length) {
-	//  result[resIndex] = array.slice(index, index + size)
-	//  index = index + size
-	//  resIndex++
-	// }
+    // while (index < length) {
+    //  result[resIndex] = array.slice(index, index + size)
+    //  index = index + size
+    //  resIndex++
+    // }
 
-	// 循环
-	while (index < length) {
-		result[resIndex++] = array.slice(index, (index += size))
-	}
-	return result
+    // 循环
+    while (index < length) {
+        result[resIndex++] = array.slice(index, (index += size))
+    }
+    return result
 }
 
 /**
@@ -212,7 +216,7 @@ function chunk(array, size) {
  * @param {Date} time 时间
  * @returns {string | null}
  */
-function animate (element, up, down, juli, time) {
+function animate(element, up, down, juli, time) {
     var timeID = null;
     // 设置只存在一个定时器,就是重置一下定时器的值
     if (element.timeID) {
@@ -221,9 +225,9 @@ function animate (element, up, down, juli, time) {
         // 再创建一下
         element.timeID = null;
     }
-    
+
     // 设置定时器
-    element.timeID = setInterval(function () {
+    element.timeID = setInterval(function() {
         // 往返运动判断元素起始位置是否大于目标位置
         if (up > down) {
             // 大于的话让每次移动的距离都是负数,如果不加绝对值,会出现负负得正,加绝对值相当于重置一下
@@ -235,7 +239,7 @@ function animate (element, up, down, juli, time) {
             up = down;
             // 清楚定时器
             clearInterval(element.timeID);
-        }else {
+        } else {
             // 没到位置的时候让距离累加,并给元素赋值
             up += juli;
         }
@@ -246,7 +250,8 @@ function animate (element, up, down, juli, time) {
 // 验证TOKEN是否过期
 async function getLoginCheck(name) {
     // 获取token
-    let data = null, tokenItem = JSON.parse(window.localStorage.getItem(name));
+    let data = null,
+        tokenItem = JSON.parse(window.localStorage.getItem(name));
     // 如果token存在
     if (tokenItem) {
         // 验证TOKEN是否过期
@@ -285,7 +290,7 @@ function removeStorage(name) {
     window.localStorage.removeItem(name);
 }
 // 提示框
-function message (content, time, status) {
+function message(content, time, status) {
     let div = document.createElement('div');
     if (status === 'success') {
         div.classList.add('alertSuccessMessage');
@@ -294,7 +299,7 @@ function message (content, time, status) {
     } else if (status === 'warning') {
         div.classList.add('alertWarningMessage');
     }
-    
+
     div.innerText = content;
     document.body.appendChild(div);
     let timeId = null;
@@ -303,14 +308,20 @@ function message (content, time, status) {
     }, time);
 }
 // 清除提示框
-function deletMessage (element, id) {
+function deletMessage(element, id) {
     document.body.removeChild(element);
     clearTimeout(id);
 }
 // 根据url参数生成对象
-function getLoction (url) {
+function getLoction(url) {
     if (!url) { return false };
-    let index = 0, value = '', ary = [], i = 0, len = 0, obj = {}, list = [];
+    let index = 0,
+        value = '',
+        ary = [],
+        i = 0,
+        len = 0,
+        obj = {},
+        list = [];
     // 找到问号索引
     index = url.indexOf('?');
     // 截取所有参数
@@ -327,8 +338,10 @@ function getLoction (url) {
     return obj;
 }
 // 根据对象生成URL参数
-function mergeObj (data) {
-    let ary = Object.keys(data), i = 0, str = '';
+function mergeObj(data) {
+    let ary = Object.keys(data),
+        i = 0,
+        str = '';
     for (i; i < ary.length; i++) {
         if (i === ary.length - 1) {
             str += ary[i] + '=' + encodeURIComponent(data[ary[i]]);
@@ -347,7 +360,7 @@ function mergeObj (data) {
  * @param     {[type]}                 hrefUrl  [下载地址，文件地址]
  * @return    {[type]}                          [description]
  */
-function aLinkDownload (value, fileName, hrefUrl) {
+function aLinkDownload(value, fileName, hrefUrl) {
     try {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", hrefUrl, true);
@@ -385,7 +398,11 @@ function openLoading(date) {
     //     <div class="loadingbg"></div>
     //     <div class="loadingmask"></div>
     // </div>
-    let div = creatE('div'), divTwo = creatE('div'), divThree = creatE('div'), fragment = document.createDocumentFragment(), loadingTime = null;
+    let div = creatE('div'),
+        divTwo = creatE('div'),
+        divThree = creatE('div'),
+        fragment = document.createDocumentFragment(),
+        loadingTime = null;
     div.classList.add('loadingboxer');
     divTwo.classList.add('loadingbg');
     divThree.classList.add('loadingmask');
@@ -412,8 +429,8 @@ function closeLoading(element = false, loadingTime = false) {
 }
 
 // 求两个值和的精确值
-function accAdd(arg1, arg2){
-    let r1, r2, m;
+function accAdd(arg1, arg2) {
+    let r1, r2, m;
     try {
         r1 = arg1.toString().split(".")[1].length
     } catch (e) {
@@ -425,110 +442,183 @@ function accAdd(arg1, arg2){
         r2 = 0
     }
     m = Math.pow(10, Math.max(r1, r2))
-    return (arg1 * m + arg2 * m ) / m
+    return (arg1 * m + arg2 * m) / m
+}
+
+// 获取前五名
+function filterRanking(res) {
+    let data = res.data.data;
+    let ary = [];
+    let maxList = [];
+
+    data.forEach(item => {
+        // 得到所有值
+        ary.push(item.rate);
+    })
+
+    for (let i = 4; i >= 0; i--) {
+        // 得到最大值
+        let max = Math.max.apply(null, ary);
+
+        for (let j = ary.length - 1; j >= 0; j--) {
+            // 从所有值中删除最大值，然后才能找下一个最大值
+            if (ary[j] === max && !maxList.includes(max) && max) {
+                maxList.push(ary[j]);
+                ary.splice(j, 1);
+            } else if (ary[j] === max && maxList.includes(max)) {
+                ary.splice(j, 1);
+            }
+        }
+    }
+
+    let threeAry = [];
+    let newData = [];
+    data.forEach(newItem => {
+        maxList.forEach((maxItem, maxIndex) => {
+            if (newItem.rate === maxItem) {
+                let obj = {
+                    ...newItem,
+                    type: maxIndex + 1
+                }
+                newItem = JSON.parse(JSON.stringify(obj));
+                threeAry.unshift(obj)
+                newData.push(obj)
+            } else {
+                let obj = {
+                    ...newItem,
+                    type: 6
+                }
+                newItem = JSON.parse(JSON.stringify(obj));
+            }
+        })
+    })
+
+    // 如果最大值没有五个
+    if (threeAry.length < 5) {
+        // 算出还要循环几次
+        for (let i = 0; i <= 5 - threeAry.length; i++) {
+            data.forEach(itemNew => {
+                if (!maxList.includes(itemNew.rate) && threeAry.length < 5) {
+                    let obj = {
+                        ...itemNew,
+                        type: 4
+                    }
+                    threeAry.unshift(obj)
+                    newData.push(obj)
+                } else {
+                    if (!maxList.includes(itemNew.rate)) {
+                        let obj = {
+                            ...itemNew,
+                            type: 6
+                        }
+                        newData.push(obj)
+                    }
+                }
+            })
+        }
+    }
 }
 
 // 获取单个元素
-function queryE (element) {
-	return document.querySelector(element);
+function queryE(element) {
+    return document.querySelector(element);
 }
 // 获取多个元素
-function queryA (element) {
-	return document.querySelectorAll(element);
+function queryA(element) {
+    return document.querySelectorAll(element);
 }
 // 创建元素
-function creatE (element) {
-	return document.createElement(element);
+function creatE(element) {
+    return document.createElement(element);
 }
 // 元素注册事件
-function addE () {
-	return a.addEventListenner(arguments[0],arguments[1],arguments[2]);
+function addE() {
+    return a.addEventListenner(arguments[0], arguments[1], arguments[2]);
 }
 // 解除元素注册事件
-function removeE () {
-	return arguments[0].removeEventListener(arguments[1],arguments[2]);
+function removeE() {
+    return arguments[0].removeEventListener(arguments[1], arguments[2]);
 }
 
 // 非堆叠可切换折线图
-function initialization (echartsData, newLegend, data) {
-	var myChart = echarts.init(document.getElementById(this.main))
-	// 清空数据
-	myChart.clear()
-	// 指定图表的配置项和数据
-	let option = {
-		tooltip: {
+function initialization(echartsData, newLegend, data) {
+    var myChart = echarts.init(document.getElementById(this.main))
+    // 清空数据
+    myChart.clear()
+    // 指定图表的配置项和数据
+    let option = {
+        tooltip: {
             // show: true, // 控制坐标轴指示器显示隐藏
-			trigger: 'axis',
+            trigger: 'axis',
             // triggerOn: 'none', // 控制坐标轴指示器显示隐藏
-			axisPointer: {    // 坐标轴指示器，坐标轴触发有效
-				type: 'line'  // 默认为直线，可选为：'line' | 'shadow'
-			}
-		},
-		toolbox: {
-			show: true,
-			feature: {
-				magicType: {show: true, type: ['line', 'bar']}
-			}
-		},
-		// 控制图标区域位置
-		grid: {
-			top: '26%',
-			left: '3%',
-			bottom: '10%',
-			containLabel: true
-		},
-		// 是否可缩放
-		dataZoom: [
-			{
-				type: 'slider',
-				show: true,
-				xAxisIndex: 0,
-				filterMode: 'empty' // empty 或 filter
-			},
-			{
-				type: 'slider',
-				show: true,
-				yAxisIndex: 0,
-				filterMode: 'empty' // empty 或 filter
-			},
-			{
-				type: 'inside',
-				show: true,
-				xAxisIndex: 0,
-				filterMode: 'empty' // empty 或 filter
-			},
-			{
-				type: 'inside',
-				show: true,
-				yAxisIndex: 0,
-				filterMode: 'empty' // empty 或 filter
-			}
-		],
-		// 共多少种数据
-		legend: {
-			data: newLegend
-		},
-		// 横坐标显示的值
-		xAxis: {
-			type: 'category',
-			data: echartsData.xAxis
-		},
-		// 纵坐标显示的数据形式
-		yAxis: {
-			type: 'value'
-		},
-		// 配置每一种数据如何显示
-		series: data.map(item => {
-			return {
-				name: item.name,
-				data: item.data,
-				type: 'bar',
-				stack: '总量' // 值为总量是堆叠图
-			}
-		})
-	}
-	// 使用刚指定的配置项和数据显示图表
-	myChart.setOption(option)
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'line' // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                magicType: { show: true, type: ['line', 'bar'] }
+            }
+        },
+        // 控制图标区域位置
+        grid: {
+            top: '26%',
+            left: '3%',
+            bottom: '10%',
+            containLabel: true
+        },
+        // 是否可缩放
+        dataZoom: [{
+                type: 'slider',
+                show: true,
+                xAxisIndex: 0,
+                filterMode: 'empty' // empty 或 filter
+            },
+            {
+                type: 'slider',
+                show: true,
+                yAxisIndex: 0,
+                filterMode: 'empty' // empty 或 filter
+            },
+            {
+                type: 'inside',
+                show: true,
+                xAxisIndex: 0,
+                filterMode: 'empty' // empty 或 filter
+            },
+            {
+                type: 'inside',
+                show: true,
+                yAxisIndex: 0,
+                filterMode: 'empty' // empty 或 filter
+            }
+        ],
+        // 共多少种数据
+        legend: {
+            data: newLegend
+        },
+        // 横坐标显示的值
+        xAxis: {
+            type: 'category',
+            data: echartsData.xAxis
+        },
+        // 纵坐标显示的数据形式
+        yAxis: {
+            type: 'value'
+        },
+        // 配置每一种数据如何显示
+        series: data.map(item => {
+            return {
+                name: item.name,
+                data: item.data,
+                type: 'bar',
+                stack: '总量' // 值为总量是堆叠图
+            }
+        })
+    }
+    // 使用刚指定的配置项和数据显示图表
+    myChart.setOption(option)
     let num = 0
     setInterval(() => {
         // 自动设置选中项  
