@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="css/视口.css">
+    <!-- <link rel="stylesheet" href="css/视口.css"> -->
     <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="css/common-公共样式.css">
     <!-- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <title>Document</title>
     <style type="text/css">
+        .aa {
+            background-color: lime;
+        }
+        .bb {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
+    <div id="ddd"></div>
+    <!-- <button id="btn">btn按钮</button> -->
+    <ul id="ul">
+        <li>red</li>
+        <li>lime</li>
+    </ul>
     <div id="app">
         <div :id="'aa'" class="boxDiv" @click="clickHandle">
             <div>{{ value }}</div>
@@ -36,7 +48,57 @@
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
     <!-- 自己的方法 -->
     <script src="./js/hao.js"></script>
+    <script src="./js/EventUtil.js"></script>
     <script src="./demo.js"></script>
+    <script>
+        let obj = new spa({
+            originDom: '#ddd',
+            data: {
+                name: '李四',
+                btn: '按钮'
+            },
+            template: {
+                div: {
+                    class: ['aa'],
+                    id: 'btn',
+                    'data-id': '22',
+                    innerText: '你好',
+                    template: {
+                        div: {
+                            class: ['bb'],
+                            innerText: '早上好'
+                        }
+                    }
+                }
+            },
+            // 标签绑定事件，初始化时执行
+            domBindingHandle: {
+                '#btn': {
+                    eventType: 'onclick',
+                    handle: function () {
+                        alert('i am ' + this.data.btn);
+                        this.template.div.class = ['bb']
+                    }
+                }
+            },
+            // 监听标签绑定事件，初始化时执行
+            monitorHandle: {
+                '#ul': {
+                    eventType: 'click',
+                    handle: function (event) {
+                        let tar = event.target;
+                        if (tar.nodeName === 'LI') {
+                            tar.style.backgroundColor = tar.innerText;
+                            tar.innerText = this.data.name;
+                            this.data.btn = '张三'
+                        }
+                    }
+                }
+            }
+        });
+        let a = queryE('#btn')
+        console.dir(a)
+    </script>   
     <script type="text/javascript">
         let vm = new Vue({
             el: '#app',
@@ -76,7 +138,6 @@
                     // var delta = Math.max(-1, Math.min(1, wheel) );
                     
                 }, false);
-
                 // this.$refs.box.addEventListener('mousewheel', (event) => {
                 //     event.preventDefault();
                 //     console.log(event, event.offsetX, 'arfgadfasdfsd')
@@ -204,6 +265,15 @@
                             return value
                         }
                     });
+                },
+                getQueryString(name) {
+                    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if(r != null) {
+                        return  unescape(r[2]);
+                    } else {
+                        return null
+                    }
                 }
             }
         })

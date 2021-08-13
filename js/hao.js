@@ -4,7 +4,7 @@ function PageObj(value) {
     };
 }
 // 设置本页数据
-PageObj.prototype.storageSetHandle = function(data) {
+PageObj.prototype.setDataHandle = function(data) {
     let storage = this.obj,
         thisArr = Object.keys(storage),
         ary = Object.keys(data),
@@ -127,7 +127,7 @@ function getLastDay() {
  */
 function tableToExcel(jsonData, str, surfaceName) {
     //要导出的json数据
-    // const jsonData = [
+    // jsonData = [
     //     {
     //         name: '张先生',
     //         phone: '123456789',
