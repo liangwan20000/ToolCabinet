@@ -20,12 +20,6 @@
     </style>
 </head>
 <body>
-    <div id="ddd"></div>
-    <!-- <button id="btn">btn按钮</button> -->
-    <ul id="ul">
-        <li>red</li>
-        <li>lime</li>
-    </ul>
     <div id="app">
         <div :id="'aa'" class="boxDiv" @click="clickHandle">
             <div>{{ value }}</div>
@@ -50,55 +44,6 @@
     <script src="./js/hao.js"></script>
     <script src="./js/EventUtil.js"></script>
     <script src="./demo.js"></script>
-    <script>
-        let obj = new spa({
-            originDom: '#ddd',
-            data: {
-                name: '李四',
-                btn: '按钮'
-            },
-            template: {
-                div: {
-                    class: ['aa'],
-                    id: 'btn',
-                    'data-id': '22',
-                    innerText: '你好',
-                    template: {
-                        div: {
-                            class: ['bb'],
-                            innerText: '早上好'
-                        }
-                    }
-                }
-            },
-            // 标签绑定事件，初始化时执行
-            domBindingHandle: {
-                '#btn': {
-                    eventType: 'onclick',
-                    handle: function () {
-                        alert('i am ' + this.data.btn);
-                        this.template.div.class = ['bb']
-                    }
-                }
-            },
-            // 监听标签绑定事件，初始化时执行
-            monitorHandle: {
-                '#ul': {
-                    eventType: 'click',
-                    handle: function (event) {
-                        let tar = event.target;
-                        if (tar.nodeName === 'LI') {
-                            tar.style.backgroundColor = tar.innerText;
-                            tar.innerText = this.data.name;
-                            this.data.btn = '张三'
-                        }
-                    }
-                }
-            }
-        });
-        let a = queryE('#btn')
-        console.dir(a)
-    </script>   
     <script type="text/javascript">
         let vm = new Vue({
             el: '#app',

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+        .aa {
+            background-color: lime;
+        }
+        .bb {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+	<div id="app"></div>
+	<!-- 自己的方法 -->
+    <script src="./js/hao.js"></script>
+    <script src="./js/EventUtil.js"></script>
+    <script src="./demo.js"></script>
+    <script>
+        let obj = new spa({
+            originDom: '#app',
+            template: {
+                btn: {
+                    nodeName: 'div',
+                    template: {
+                        btnOne: {
+                        	nodeName: 'div',
+                            class: ['bb'],
+                            innerText: '早上好'
+                        },
+                        btnTwo: {
+                        	nodeName: 'div',
+                            class: ['bb'],
+                            innerText: '中午好'
+                        },
+                    }
+                }
+            },
+            data: {
+                name: '李四',
+                btn: '按钮'
+            },
+            // 标签绑定事件，初始化时执行
+            domBindingHandle: {
+                '#btn': {
+                    eventType: 'onclick',
+                    handle: function () {
+                        // alert('i am ' + this.data.btn);
+                        this.replace('#btnTwo', {
+                        	nodeName: 'div',
+                            class: ['aa'],
+                            innerText: '晚上好'
+                        })
+                    }
+                }
+            },
+            // 监听标签绑定事件，初始化时执行
+            monitorHandle: {
+                // '#ul': {
+                //     eventType: 'click',
+                //     handle: function (event) {
+                //         let tar = event.target;
+                //         if (tar.nodeName === 'LI') {
+                //             tar.style.backgroundColor = tar.innerText;
+                //             tar.innerText = this.data.name;
+                //             this.data.btn = '张三'
+                //         }
+                //     }
+                // }
+            }
+        });
+        // let a = queryE('#btn')
+        // console.dir(a)
+    </script> 
+</body>
+</html>
