@@ -602,6 +602,24 @@ function setProperty (target, type, obj) {
     // console.log(value)
 }
 
+// 先初始化得到一个结果，然后在返回的函数中可以使用这个结果
+function generateHandle (value1, value2, ) {
+    let num = value1 + value2;
+    return function (vale3, value4, fn) {
+        let numTwo = vale3 + value4;
+        let obj = {
+            index: num, // 返回的对象中保存了初始化的值
+            age: value4 // 返回的对象中保存了第二次计算的值
+        }
+        fn(obj)
+    }
+    // 例子
+    // let generate = generateHandle(10, 20)
+    // generate(30, 40, (obj) => {
+    //     console.log(obj)
+    // })
+}
+
 // 获取单个元素
 function queryE(element) {
     return document.querySelector(element);
