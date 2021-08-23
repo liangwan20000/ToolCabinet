@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HTML5</title>
+</head>
+<body>
+	1、语义标签 http://know.webhek.com/html5/html5-progress.html
+
+	 		标签	 					描述
+	<hrader></header>	 	定义了文档的头部区域
+	<footer></footer>	 	定义了文档的尾部区域
+	<nav></nav>				定义文档的导航
+	<section></section>	 	定义文档中的某一模块（section、区段）
+	<article></article>	 	文章页；表示论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。
+	<aside></aside>			元素通常显示成侧边栏(sidebar)或一些插入补充内容
+	<detailes></detailes>	用于描述文档或文档某个部分的细节
+	<summary></summary>		标签包含 details 元素的标题
+	<dialog></dialog>		定义对话框，比如提示框
+	<figure></figure>		一个自我独立的内容元素，通常会包含一个标题说明(<figcaption>)
+	<address></address>		用来存放地址信息的，它可以和<article>元素配对来提供文章作者的联系信息。
+	<datalist></datalist>	一个数据容器，需要使用它的<input>元素使用list属性引用
+	<output></output>		用来输出计算结果或用户动作的结果。
+	<progress></progress>	就是显示进度条。
+
+	2、增强型表单 新增的type值
+		color    定义拾色器。
+		date	定义日期字段（带有 calendar 控件）
+		datetime	定义日期字段（带有 calendar 和 time 控件）
+		datetime-local 	定义日期字段（带有 calendar 和 time 控件）
+		month	定义日期字段的月（带有 calendar 控件）
+		week	定义日期字段的周（带有 calendar 控件）
+		time	定义日期字段的时、分、秒（带有 time 控件）
+		email	定义用于 e-mail 地址的文本字段
+		number	定义带有 spinner 控件的数字字段
+		range	定义带有 slider 控件的数字字段。
+		search	定义用于搜索的文本字段。
+		tel	定义用于电话号码的文本字段。
+		url	定义用于 URL 的文本字段。
+
+	<form action="#">
+		<input type="range">
+		<input type="datetime-local" id="myTime" /> 时间日期控件
+		<input type="date" value="2015-09-24" min="2015-09-16" max="2015-09-26"/> 日期控件
+		<input type="email" required="required" id="email"> 邮箱
+		<button type="submit">提交</button>
+	</form>
+	<script>
+		//获取日期控件对象
+	    var oTimer = document.getElementById("myTime");
+	    console.log(oTimer);
+
+	    //获取时间值字符串
+	    var value = oTimer.value;
+	    console.log(value);
+
+	    //获取时间戳
+	    var time = new Date(oTimer.value).getTime();
+	    console.log(time);
+
+	    //赋值操作
+	    oTimer.value = "2018-04-28T13:59:59";
+	</script>
+
+	HTML5 也新增以下表单元素
+
+	表单元素					描述
+	<datalist>		元素规定输入域的选项列表，使用 <input> 元素的 list 属性与 <datalist> 元素的 id 绑定
+	
+	<keygen>		提供一种验证用户的可靠方法，标签规定用于表单的密钥对生成器字段。
+
+	<output>		用于不同类型的输出，比如计算或脚本输出
+
+　　HTML5 新增的表单属性
+
+	placehoder 属性，简短的提示在用户输入值前会显示在输入域上。即我们常见的输入框默认提示，在用户输入后消失。
+	required  属性，是一个 boolean 属性。要求填写的输入域不能为空
+	pattern 属性，描述了一个正则表达式用于验证<input> 元素的值。
+	min 和 max 属性，设置元素最小值与最大值。
+	step 属性，为输入域规定合法的数字间隔。
+	height 和 width 属性，用于 image 类型的 <input> 标签的图像高度和宽度。
+	autofocus 属性，是一个 boolean 属性。规定在页面加载时，域自动地获得焦点。
+	multiple 属性 ，是一个 boolean 属性。规定<input> 元素中可选择多个值。
+
+	3、视频和音频
+	<video src="">视频</video>
+	<audio src="">音频</audio>
+
+	4、Canvas 	画布
+
+	5、svg		可伸缩矢量图形，使用xml定义图形
+
+	6、geolocation	地理定位
+
+	7、拖放API
+
+	8、webworker	独立js脚本
+
+	9、websockt	全双工协议，允许服务器主动向浏览器发送消息和数据
+
+	10、Web Storage 	本地存储
+		localStorage	本地存储，关闭浏览器数据不会丢失
+		sessionStorage	本地存储，关闭浏览器数据清除
+</body>
+</html>
