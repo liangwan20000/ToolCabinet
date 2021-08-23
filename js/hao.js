@@ -519,6 +519,107 @@ function filterRanking(res) {
     }
 }
 
+// 查询对象中的属性，返回一个对象；obj 是查询对象；type 是类型；list 是查询的属性
+function getProperty (obj, type, list) {
+    switch (type) {
+        case 'element':
+            // 这里obj是一个dom对象; type类型为 element ; list 是一个数组，里面是对象。如果查询属性，需要放到attribute数组，如果查询css需要放到css数组
+            if (Object.prototype.toString.call(obj) === '[object HTMLDivElement]') {
+                let data = {};
+                if (!obj) { return alert('元素不存在') }
+                list.forEach(item => {
+                    console.log(item)
+                    if (item['attribute']) {
+                        console.log(item['attribute'])
+                        data['attribute'] = {};
+                        item['attribute'].forEach(edit => {
+                            data['attribute'][edit] = obj[edit];
+                        })
+                    } else if (item['css']) {
+                        data['css'] = {};
+                        let domCss = obj.currentStyle ? obj.currentStyle : getComputedStyle(obj); // currentStyle 兼容IE; getComputedStyle 其他浏览器
+                        item['css'].forEach(edit => {
+                            data['css'][edit] = domCss[edit];
+                        })
+                    }
+                });
+                return data;
+            }
+            break;
+        case 'object':
+            // 这里obj是一个数据对象; list 可以是数组也可以是函数
+            if (Object.prototype.toString.call(obj) === '[object Object]') {
+                return JSON.parse(JSON.stringify(obj, list));
+            }
+            break;
+    }
+    // 例子
+    // let obj = {
+    //     name: '张三',
+    //     age: 20,
+    //     height: 170
+    // }
+    // let returnData = getProperty(obj, 'object', ['name', 'age']);
+    // let returnData = getProperty(obj, 'object', function (key, value) {
+    //     switch (key) {
+    //         处理哪些数据，case就指定哪些数据；如果不需要返回，就返回undefined
+    //         case 'name': return value;
+    //         case 'age': return value + 10;
+    //         case 'height': return undefined;
+    //         必须加上default 返回value
+    //         default:
+    //             return value;
+    //     }
+    // });
+    // console.log(returnData)
+
+    // let dom = document.querySelector('#ddd');
+    // let element = getProperty(dom, 'element', [{ attribute: ['id', 'offsetHeight'] }, { css: ['backgroundColor'] }]);
+    // console.log(element)
+}
+
+// 为target添加属性
+function setProperty (target, type, obj) {
+    switch (type) {
+        case 'element':
+            for (let item in obj) {
+                target.setAttribute(item, obj[item])
+            }
+            break;
+        case 'object':
+            return Object.assign(target, obj);
+            break;
+    }
+    // 例子
+    // let dom = document.querySelector('#ddd');
+    // let data = {
+    //     name: '张三',
+    //     age: 20
+    // };
+
+    // setProperty(dom, 'element', { title: '你好', 'data-id': 120 })
+    // let value = setProperty(data, 'object', { name: '李四', height: 170 })
+    // console.log(value)
+}
+
+// 先初始化得到一个结果，然后在返回的函数中可以使用这个结果
+function generateHandle (value1, value2, ) {
+    let num = value1 + value2;
+    return function (vale3, value4, fn) {
+        let numTwo = vale3 + value4;
+        let obj = {
+            index: num, // 返回的对象中保存了初始化的值
+            age: value4 // 返回的对象中保存了第二次计算的值
+        }
+        fn(obj)
+    }
+    // 例子
+    // let generate = generateHandle(10, 20)
+    // generate(30, 40, (obj) => {
+    //     console.log(obj)
+    // })
+}
+
 // 获取单个元素
 function queryE(element) {
     return document.querySelector(element);
@@ -538,101 +639,4 @@ function addE() {
 // 解除元素注册事件
 function removeE() {
     return arguments[0].removeEventListener(arguments[1], arguments[2]);
-}
-
-// 非堆叠可切换折线图
-function initialization(echartsData, newLegend, data) {
-    var myChart = echarts.init(document.getElementById(this.main))
-    // 清空数据
-    myChart.clear()
-    // 指定图表的配置项和数据
-    let option = {
-        tooltip: {
-            // show: true, // 控制坐标轴指示器显示隐藏
-            trigger: 'axis',
-            // triggerOn: 'none', // 控制坐标轴指示器显示隐藏
-            axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                type: 'line' // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
-        toolbox: {
-            show: true,
-            feature: {
-                magicType: { show: true, type: ['line', 'bar'] }
-            }
-        },
-        // 控制图标区域位置
-        grid: {
-            top: '26%',
-            left: '3%',
-            bottom: '10%',
-            containLabel: true
-        },
-        // 是否可缩放
-        dataZoom: [{
-                type: 'slider',
-                show: true,
-                xAxisIndex: 0,
-                filterMode: 'empty' // empty 或 filter
-            },
-            {
-                type: 'slider',
-                show: true,
-                yAxisIndex: 0,
-                filterMode: 'empty' // empty 或 filter
-            },
-            {
-                type: 'inside',
-                show: true,
-                xAxisIndex: 0,
-                filterMode: 'empty' // empty 或 filter
-            },
-            {
-                type: 'inside',
-                show: true,
-                yAxisIndex: 0,
-                filterMode: 'empty' // empty 或 filter
-            }
-        ],
-        // 共多少种数据
-        legend: {
-            data: newLegend
-        },
-        // 横坐标显示的值
-        xAxis: {
-            type: 'category',
-            data: echartsData.xAxis
-        },
-        // 纵坐标显示的数据形式
-        yAxis: {
-            type: 'value'
-        },
-        // 配置每一种数据如何显示
-        series: data.map(item => {
-            return {
-                name: item.name,
-                data: item.data,
-                type: 'bar',
-                stack: '总量' // 值为总量是堆叠图
-            }
-        })
-    }
-    // 使用刚指定的配置项和数据显示图表
-    myChart.setOption(option)
-    let num = 0
-    setInterval(() => {
-        // 自动设置选中项  
-        myChart.dispatchAction({
-            type: 'showTip',
-            // 可选，系列 index，可以是一个数组指定多个系列
-            seriesIndex: 0,
-            // 可选，系列名称，可以是一个数组指定多个系列
-            // seriesName: '衬衫',
-            // 可选，数据的 index
-            dataIndex: num,
-            // 可选，数据的 名称
-            // name: '衬衫'
-        })
-        num++
-    }, 2000)
 }

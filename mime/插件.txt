@@ -1,0 +1,123 @@
+#############################################################################################################################################
+
+极验-人机交互介绍
+
+传统网站用户登录系统，输入正确的用户名、密码、校验码 就可以了
+
+
+但是这样的网站容易被攻击，可以通过机器人输入 账号信息 也可以访问我们的系统
+
+
+爬虫技术，利用机器代码登录系统(模拟登录)，并偷取网站的信息
+
+
+网站：https://www.geetest.com/
+
+人机交互效果本质是js代码的执行，相关js代码存储在一个名称为gt.js的文件里边
+
+显示人机交互效果步骤：
+
+
+1. 通过axios走指定的服务器接口获得“校验密码”信息
+
+2. 通过gt.js文件提供的initGeeTest()函数显示交互窗口
+
+3. 隐士动作，1的校验码 和 2的人的行为 一并提交给 极验 服务器做认证，之后返回结果
+
+
+this.$refs.loginFormRef.validate(valid => {
+    if (valid) {  验证成功执行下面代码
+    // 1) 获得验证的秘钥信息
+    this.$http.get(`/captchas/${this.loginForm.mobile}`).then((result) => {
+	// 从result中把相关的信息解构出来
+        let { data } = result.data
+        // 显示人机窗口
+        // 请检测data的数据结构， 保证data.gt, data.challenge, data.success有值
+        window.initGeetest({
+        // 以下配置参数来自服务端 SDK
+           gt: data.gt,
+           challenge: data.challenge,
+           offline: !data.success,
+           new_captcha: true,
+           product: 'bind' // 隐藏"人机按钮"
+        }, captchaObj => {
+            // 这里可以调用验证实例 captchaObj 的实例方法
+            captchaObj.onReady(() => {
+            // 验证码ready之后才能调用verify方法“显示验证码”
+            captchaObj.verify() // 显示验证码
+        }).onSuccess(() => {
+            // 人机验证成功
+            // 验证账号登录系统
+            this.loginAct()
+        }).onError(() => {
+            // 人机验证失败
+        })})}).catch((err) => {
+              console.log(err)
+              return this.$message.error('获得人机验证码失败！')
+        })
+    }
+}
+
+#######################################################################################################################################
+
+极验-处理重复创建dom问题
+
+1. 创建data成员 catpchaObject
+
+2. 把第一次生成的catpchaObj窗口对象 赋予给 catpchaObject
+
+3. 每次显示人机窗口之前先判断是否存在，存储就直接使用即可
+
+
+########################################################################################################################################
+
+iconfont图标
+
+<i slot="prefix" class="iconfont icon-yanzhengma"></i>
+
+##########################################################
+
+在响应拦截器之前做数据转换  
+
+json-bigint 大数字处理组件
+
+1. 下载安装  yarn add json-bigint
+2. 在应用中引入var JSONBig from 'json-bigint'
+3. 具体使用
+   	JSONBig.parse(字符串对象)   // 可以把大型数字的字符串对象 变为 表达式对象
+   	JSONBig.stringify(表达式对象)  // 把大型数字的表达式对象 变为 字符串对象
+4.  axios从服务器端获取回来的信息本身是一个  字符串对象(有可能拥有大数字)
+    如果不通过JSONBig.parse()处理，系统默认通过 JSON.parse处理，就错误了
+5.  在响应拦截器之前有一个数据转换 在这里进行大数字转换
+	Axios.defaults.transformResponse = [function (data) {
+	    // 对服务器返回的最初数据做大数字处理  json-bigint
+	    if (data) {
+	        return JSONBig.parse(data);
+	    } else {
+	        return data;
+	    }
+	}];
+
+##################################################################################################################################
+
+幅文本编辑器	vue-quill-editor
+
+// 按需引入幅文本编辑器
+import { quillEditor } from 'vue-quill-editor';
+
+// 导入富文本编辑器相关
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+
+
+
+
+
+
+
+
+
+
+
+

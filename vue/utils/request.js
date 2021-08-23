@@ -55,7 +55,7 @@ request.interceptors.response.use((response) => {
             // 发送请求
             const data = await axios({
                 method: 'put',
-                url: 'http://ttapi.research.itcast.cn/app/v1_0/authorizations',
+                url: 'http://ttapi.research.itcast.cn/app/v1_0/authorizations', // 重新获取token
                 headers: {
                     Authorization: `Bearer ${refreshToken}`
                 }
@@ -78,4 +78,22 @@ request.interceptors.response.use((response) => {
     return Promise.reject(err);
 });
 
-export default request;
+async function service(obj, str) {
+  const res = await request(obj);
+
+  if (res.code >= 200 && res.code < 300) {
+    return res[str];
+  } else {
+    return undefined;
+  }
+}
+
+// export function publicAddress(data, str) {
+//   return requestTwo({
+//     url: '/public/address',
+//     method: 'get',
+//     params: data
+//   }, str)
+// }
+
+export default service;

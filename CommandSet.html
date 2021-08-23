@@ -5621,7 +5621,7 @@
 				git remote add origin https://github.com/liangwan20000/1000.git
 				git push -u origin master
 			6. 启动项目
-				npm run serve
+				npm run serve 或 npm run dev
 			7. 删除 vue cli 保存的模板  在用户文件夹下 administrator下  .vuerc 文件
 		}
 		let axios组件 {
@@ -5819,8 +5819,8 @@
 			下载：https://sourceforge.net/projects/wampserver/
 			安装
 				1.  检测计算机的端口是否被占用了
-					Apache会使用80端口
-					MySQL会使用3306端口
+					Apache默认使用80端口
+					MySQL默认使用3306端口
 					如果计算机中的这两个端口被占用了，就会影响到wampserver。
 				2. 	打开命令行工具  netstat -an
 				3. 	如果发现端口被占用了，则需要使用管理员打开命令行工具
@@ -5831,10 +5831,10 @@
 		let MIME类型 {
 			文件后缀					Mime类型										说明
 			.flv				flv/flv-flash 								在线播放
-			.html或.htm 			text/html 								超文本标记语言文本
+			.html或.htm 			text/html 									超文本标记语言文本
 			.rtf 				application/rtf								RTF文本
 			.gif 				image/gif									GIF图形
-			.jpeg或.jpg 			image/jpeg								JPEG图形
+			.jpeg或.jpg 			image/jpeg									JPEG图形
 			.au					audio/basic 								au声音文件
 			.mid或.midi			audio/midi或audio/x-midi 					MIDI音乐文件
 			.ra或.ram或.rm 		audio/x-pn-realaudio						RealAudio音乐文件
@@ -5909,11 +5909,11 @@
 				  任何事件处理程序都应该处理事件，然后将处理转交给应用逻辑。
 		4. 编程实践
 			1. 尊重对象所有权: 永远不修改不是由你创建的对象。
-				  不要为实例或原型添加属性；
-				  不要为实例或原型添加方法；
-				  不要重定义已存在的方法。
-				  创建包含所需功能的新对象，并用它与相关对象进行交互；
-				  创建自定义类型，继承需要进行修改的类型。然后可以为自定义类型添加额外功能。
+				不要为实例或原型添加属性；
+				不要为实例或原型添加方法；
+				不要重定义已存在的方法。
+				创建包含所需功能的新对象，并用它与相关对象进行交互；
+				创建自定义类型，继承需要进行修改的类型。然后可以为自定义类型添加额外功能。
 			2. 避免全局量
 
 	</script>
@@ -6247,5 +6247,8 @@
 				</script> -->
 		}
 	</script>
+
+	IE11: 支持ES6,ES7; CSS样式也都支持;
+	F2：线比较乱是因为距离太小，文字又太多；
 </body>
 </html>

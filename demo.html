@@ -17,22 +17,19 @@
         .bb {
             background-color: red;
         }
+        #ddd {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <div :id="'aa'" class="boxDiv" @click="clickHandle">
+        <div ref="div" id="ddd"></div>
+        <div :id="'aa'" class="boxDiv">
             <div>{{ value }}</div>
         </div>
-        <div class="hideBox" ref="hideBox">
-            <div class="box" :style="{ transform: 'scale(' + num + ')', left: leftNum + 'px', top: topNum + 'px' }">
-                <div class="bgcColor"></div>
-                <img src="./key point html/123.jpg" alt="">
-            </div>
-        </div>
-        <label><input type="radio" name="sex" value="男生">男生</label>
-        <label><input type="radio" name="sex" value="女生">女生</label>
-        <button class="btn" @click="clickHandle">提交</button>
     </div>
     <!-- 引入Vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -44,14 +41,14 @@
     <script src="./js/hao.js"></script>
     <script src="./js/EventUtil.js"></script>
     <script src="./demo.js"></script>
+    <script>
+        
+    </script>
     <script type="text/javascript">
         let vm = new Vue({
             el: '#app',
             components: {},
             data: {
-                num: 1,
-                leftNum: 0,
-                topNum: 0
             },
             computed: {
                 value: {
@@ -64,68 +61,7 @@
                 }
             },
             mounted() {
-                this.$refs.hideBox.addEventListener('mousewheel', (event) => {
-                    event.preventDefault();
-                    // 放大的倍数是宽高乘的倍数
-                    // 宽除以2得到的值就是一次移动的距离
-                    console.log(event.offsetY, event.offsetX, 'arfgadfasdfsd')
-                    if (event.wheelDelta > 0) {
-                        this.num++
-                        this.leftNum = ((this.num - 1) * 50) - (event.offsetX * (this.num - 1))
-                        this.topNum = ((this.num - 1) * 50) - (event.offsetY * (this.num - 1))
-                    } else {
-                        this.num--
-                        this.leftNum = ((this.num - 1) * 50) - (event.offsetX * (this.num - 1))
-                        this.topNum = ((this.num - 1) * 50) - (event.offsetY * (this.num - 1))
-                    }
-                    
-                    // var wheel = event.wheelDelta;
-                    // var delta = Math.max(-1, Math.min(1, wheel) );
-                    
-                }, false);
-                // this.$refs.box.addEventListener('mousewheel', (event) => {
-                //     event.preventDefault();
-                //     console.log(event, event.offsetX, 'arfgadfasdfsd')
-                //     if (event.wheelDelta > 0) {
-                //         this.num++
-                //     } else {
-                //         this.num--
-                //     }
-                    
-                //     // var wheel = event.wheelDelta;
-                //     // var delta = Math.max(-1, Math.min(1, wheel) );
-                    
-                // }, false);
-                // this.num = 10
-                // let time = '2021-03-26T11:20:40.000+0800'
-                // console.log(parseTime(time))
-
-                // var book = {
-                //     "title": "Professional JavaScript",
-                //     "authors": ["Nicholas C. Zakas", 'keyi'],
-                //     edition: 3,
-                //     year: 2011
-                // };
-                // let jsonText = this.getJson(book, (key, value) => {
-                //     switch(key){
-                //         case "authors":
-                //             return value.join(",");
-                //             break;
-                //         case "year":
-                //             return 5000;
-                //             break;
-                //         case "edition":
-                //             return 6;
-                //             break;
-                //         default:
-                //             return value;
-                //             break;
-                //     }
-                // }, function () {
-                //     this.title = '10'
-                //     return this
-                // });
-                // console.log(jsonText)
+                
 
                 // let xiaohong = {
                 //     name: "小红",
@@ -191,26 +127,6 @@
                 // console.log(Peter.age);  // 13
             },
             methods: {
-                clickHandle(event) {
-                    this.num++
-                    // event.target.classList.add('loading');
-                    // setTimeout(() => {
-                    //     event.target.classList.remove('loading');
-                    // }, 10000);
-                },
-                // 提交接口数据时使用
-                getJson(data, fn, tostring = false) {
-                    if (tostring) {
-                        data.toJSON = tostring
-                    }
-                    return JSON.parse(JSON.stringify(data, fn), function (key, value) {
-                        if (key === 'edition') {
-                            return value * 2
-                        } else {
-                            return value
-                        }
-                    });
-                },
                 getQueryString(name) {
                     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                     var r = window.location.search.substr(1).match(reg);

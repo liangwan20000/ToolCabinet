@@ -3,40 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="css/视口.css">
-    <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="css/common-公共样式.css">
-    <!-- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <title>Document</title>
     <style type="text/css">
+        .hideBox {
+          margin: 0 auto;
+          width: 600px;
+          height: 600px;
+          overflow: hidden;
+          position: relative;
+          background-color: lime;
+        }
+        .box {
+          margin: 0 auto;
+          width: 100px;
+          height: 100px;
+          overflow: hidden;
+          position: absolute;
+        }
+        .box .bgcColor {
+          width: 10px;
+          height: 10px;
+          background-color: red;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .box img {
+          width: 100%;
+          height: 100%;
+          float: left;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <div :id="'aa'" class="boxDiv" @click="clickHandle">
-            <div>{{ value }}</div>
-        </div>
         <div class="hideBox" ref="hideBox">
             <div class="box" :style="{ transform: 'scale(' + num + ')', left: leftNum + 'px', top: topNum + 'px' }">
                 <div class="bgcColor"></div>
-                <img src="./key point html/123.jpg" alt="">
+                <img src="./123.jpg" alt="">
             </div>
         </div>
-        <label><input type="radio" name="sex" value="男生">男生</label>
-        <label><input type="radio" name="sex" value="女生">女生</label>
-        <button class="btn" @click="clickHandle">提交</button>
     </div>
     <!-- 引入Vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <!-- echarts -->
-    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
-    <!-- 自己的方法 -->
-    <script src="./js/hao.js"></script>
-    <script src="./demo.js"></script>
     <script type="text/javascript">
         let vm = new Vue({
             el: '#app',

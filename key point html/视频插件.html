@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>视频插件</title>
+
+    <!-- Bootstrap -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  </head>
+  <body>
+    <object type="application/pdf"
+        data="../mime/JavaScript.pdf"
+        width="250"
+        height="200">
+    </object>
+
+    <object id="video" type="image/gif" width="400" height="200" border="0" data="../mime/lianmeng.gif">
+      
+    </object>
+
+    <img src="../mime/lianmeng.gif" width="200" height="200" alt="">
+
+    <video id="videoElement" class="centeredVideo" controls autoplay width="1024" height="576"></video>
+    <script src="../js/flv.min.js"></script>
+    <script>
+        if (flvjs.isSupported()) {
+            var videoElement = document.getElementById('videoElement');
+            var flvPlayer = flvjs.createPlayer({
+                type: 'flv',
+                "isLive": true,
+                url: '../mime/index.flv'
+            });
+            flvPlayer.attachMediaElement(videoElement);
+            flvPlayer.load();
+            flvPlayer.play();
+        }
+    </script>
+  </body>
+</html>

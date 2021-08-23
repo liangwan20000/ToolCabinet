@@ -1,0 +1,73 @@
+Sublime
+
+alt	控制顶部菜单显示隐藏
+
+ctrl+k 然后 ctrl+b	控制侧边栏显示隐藏
+
+ctrl+shift+p	调出搜索插件的界面 然后输入 package Control:Install Package 就可以输入想要安装的插件了
+
+Sublime自带代码整理功能.Ctrl+Shift+P调出命令面板,输入Reindent可以调节格式错乱的代码.可以试试.
+
+html/css/js prettify  解压缩
+
+我的设置
+{
+	"expand_tabs_on_save": true, // 保存时自动将tab转换成空格
+	"font_size": 13, // 字体大小
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"show_definitions": false, // 禁止弹窗
+	"tab_size": 4, // 缩进距离
+	"translate_tabs_to_spaces": true// 设置默认空格缩进 false时为Tab缩进
+}
+
+HTML-CSS-JS Prettify	格式化插件的关键配置
+
+1.打开配置文件Preferences > Package settings > HTML/CSS/JS prettify > Plugins Options-Default
+
+2.找到”global_file_rules” > “html” > “allowed_file_extensions”，添加”vue”
+
+3.滚动到底部，找到”use_editor_indentation”, 把false改为true；意思是使用编辑器的缩进
+
+4.配置自己想要的缩进就可以格式化成自己想要的格式了
+
+5."format_on_save"，把false改为true  保存时自动格式化，一般不开启
+
+#####################################################################################################
+
+vscode
+
+给vscode安装扩展，名称为eslint,这个扩展可以对程序文件的代码做自动eslint规范修改优化操作
+
+1. 给vscode编辑器安装扩展：VS Code ESLint extension
+
+
+2. 安装全局的eslint依赖包
+       npm install -g eslint
+   该依赖包安装完毕是对1步骤扩展做支撑的
+
+
+1. 打开vscode配置文件 settings.json  (by File-> Preferences->Settings)
+   
+
+在最末尾如下内容
+
+
+"eslint.enable": true,
+"eslint.autoFixOnSave": true,
+"eslint.run": "onType",
+"eslint.options": {
+    "extensions": [".js",".vue"]
+},
+"eslint.validate": [
+    { "language": "html", "autoFix": true },
+    { "language": "javascript", "autoFix": true },
+    { "language": "vue", "autoFix": true }
+]
+
+现在重启vscode编辑器,之后把项目服务开启 npm run serve
+
+Ctrl+s： 保存编辑的文件后，会对vue文件做自动代码格式化操作，并且是遵守eslint规范的
+
