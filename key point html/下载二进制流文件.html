@@ -9,6 +9,7 @@
 	<body>
 		<img id="123" src="./123.jpg" alt="">
 		<script>
+			console.log(typeof window.navigator.msSaveBlob)
 			// 获取标签
 			var body = document.querySelector('body');
 			var input = document.createElement('input');
@@ -62,7 +63,7 @@
 			const downLoadXls = (fileArrayBuffer, filename) => {
 				let data = new Blob([fileArrayBuffer], { type: 'application/vnd.ms-excel,charset=utf-8' });
 				if (typeof window.chrome !== 'undefined') {
-				// Chrome
+					// Chrome
 					var link = document.createElement('a');
 					link.href = window.URL.createObjectURL(data);
 					link.download = filename;
@@ -84,22 +85,17 @@
 	            xhr.setRequestHeader('content-type', 'application/octet-stream')
 	            xhr.responseType = 'blob' // 返回类型blob  blob 存储着大量的二进制数据
 	            xhr.onload = function (result) {
-	              if (xhr.status === 400) {
-	                // that.Listexport(data)
-	                this.num++
-	              } else {
 	                let blob = this.response
 	                let reader = new FileReader()
 	                reader.readAsDataURL(blob) // 转换为base64，可以直接放入a标签href
 	                reader.onload = function (e) {
-	                  var a = document.createElement('a') // 转换完成，创建一个a标签用于下载
-	                  a.download = data
-	                  a.href = e.target.result
-	                  document.body.appendChild(a) // 修复firefox中无法触发click
-	                  a.click()
-	                  document.body.removeChild(a)
+	                  	var a = document.createElement('a') // 转换完成，创建一个a标签用于下载
+	                  	a.download = data
+	                  	a.href = e.target.result
+	                  	document.body.appendChild(a) // 修复firefox中无法触发click
+	                  	a.click()
+	                  	document.body.removeChild(a)
 	                }
-	              }
 	            }
 	            xhr.send() // 发送ajax请求
 			}

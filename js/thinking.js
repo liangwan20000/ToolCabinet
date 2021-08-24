@@ -10,7 +10,7 @@ function spa (value) {
 
     this.mounted = value.mounted.bind(this); // dom创建后
 
-    this.domBindingHandle = value.domBindingHandle || {}; // dom挂载事件
+    this.domHandle = value.domHandle || {}; // dom挂载事件
 
     this.monitorHandle = value.monitorHandle || {}; // 事件委托
     
@@ -34,7 +34,7 @@ spa.prototype.proxy = function() {
         // 创建完dom后加载的方法
         this.mounted();
         // 给dom加载事件
-        this.setHandle(this.domBindingHandle, 'domBindingHandle');
+        this.setHandle(this.domHandle, 'domHandle');
         // 事件委托
         this.setHandle(this.monitorHandle, 'monitorHandle');
     });
@@ -114,7 +114,7 @@ spa.prototype.setHandle = function (list, type) {
     let handleList = Object.keys(list), i = handleList.length - 1;
     if (!handleList.length) { return };
     for (i; i >=0; i--) {
-        if (type === 'domBindingHandle') {
+        if (type === 'domHandle') {
             this.domBindingHandle(handleList[i], list[handleList[i]].eventType, list[handleList[i]].handle.bind(this));
         } else if (type === 'monitorHandle') {
             this.addHandler(handleList[i], list[handleList[i]].eventType, list[handleList[i]].handle.bind(this));

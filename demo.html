@@ -12,6 +12,8 @@
     <title>Document</title>
     <style type="text/css">
         .aa {
+            width: 200px;
+            height: 200px;
             background-color: lime;
         }
         .bb {
@@ -21,12 +23,16 @@
             width: 100px;
             height: 100px;
             background-color: red;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
+    <fieldset id="ddd">
+        <div class="aa"></div>
+    </fieldset>
     <div id="app">
-        <div ref="div" id="ddd"></div>
+        <div ref="div"></div>
         <div :id="'aa'" class="boxDiv">
             <div>{{ value }}</div>
         </div>

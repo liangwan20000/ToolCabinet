@@ -41,10 +41,10 @@ var EventUtil = {
 	removeHandler: function (element, type, handler) {
 		if (element.addEventListener) {
 			// 判断是否支持DOM二级
-			element.addEventListener(type, handler, false);
+			element.removeEventListener(type, handler);
 		} else if (element.attachEvent) {
 			// 判断是否是IE
-			element.attachEvent('on' + type, handler);
+			element.detachEvent('on' + type, handler);
 		} else {
 			// 这里使用DOM0级
 			element['on' + type] = null;
