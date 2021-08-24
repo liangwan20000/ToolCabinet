@@ -41,52 +41,21 @@
 	</style>
 
 
-	字体
-	<style>
-		* {
-			font-family: "microsoft yahei","sans-serif";
-		}
-	</style>
-	
-
-	
-	<script>
-		var 1. 块级作用域就是大括号内的区域，大括号外访问不到大括号内的变量；
-	</script>
-
-
 	关键属性  关键字
 	<script>
-		var 关键属性 {
-			a:link 		英文link就是链接的意思，代表当一段文本为链接时的属性。
-			a:visited 	英文visited就是访问过的意思，代表这段文本被点击之后的属性。
-			a:hover 	英文hover就是悬停的意思，代表鼠标指针放在这个链接上时的属性。
-			a:active 	英文active就是有效的、快速的意思，代表鼠标按下时一瞬间的属性。
-			border-collapse:collapse;	细线表格;
-			cursor: pointer;	鼠标小手状态
-					default  默认值  箭头
-					text   文本
-					move  移动
-					url(图片), 替换的样式
-			outline: none;		去掉select选中样式
-			duration			时间相关（动画、视频、axios）
-			opacity: ;			透明属性 元素内所有元素透明
-			required 			规定 input 必需在提交之前填写输入字段
-			maxlength = "200";	最大输入数 直接寫在標籤里 多行文本輸入框用 (內置屬性)
-			disabled=disabled	设置input禁用  (內置屬性)
-			readonly=readonly 	设置input为只读    (內置屬性)
-			checked 			单选框/复选框设置默认选中   (內置屬性)
-			resize: none;		禁止拉伸  多行文本輸入框用
-			selected="selected" 下拉框的默认选中项 selected  (內置屬性)
-			multiple="multiple" 表单可选择多个值
-		}
 		var 关键字 = {
 			NaN  		不是一个数字
+
 			isNaN(变量)  判断变量是不是一个数字  true证明NaN是对的,false证明NaN是错的
+
 			null		发生隐式类型转换时,会变成布尔类型的值.
+
         	break 		会立即结束break所在的循环的循环体代码
+
         	continue 	跳过本次循环进入下个循环
+
         	length		共有多少个索引(数组,函数,对象)
+
         	arguments	1. arguments对象中是用来保存用户传递实参的信息。【实参的个数，实参的具体值】
 	 					2. 如果函数中无法确定实参的个数，考虑使用arguments
 	 					3. 如果能够确定实参个数，推荐使用length。
@@ -179,323 +148,6 @@
 				6. enumerable:当且仅当指定对象的属性可以被枚举出时，为 true。
 		}
 	</script>
-
-
-	2D 3D转换  动画
-	<style>
-		.2D {
-			transition: all  1s  linear 2s;
-			transition-property: all(默认代表所有的属性都有动画效果) | 单独设置具体的属性名称;
-			transition-duration: 1s; 执行多长时间
-			transition-delay: 1s; 延迟时间,多长时间后执行
-			transition-timing-function:  linear; 执行速度
-			设置动画的速度类型 ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)
-			transition: transparent（透明色）;
-			transition : all  1s  linear 2s; 
-			transform: translate(length, length);位移x轴 y轴;
-			transform: rotate(angle); 旋转 单位deg;
-			transform-origin: center center;设置圆点的位置  transform-origin: 方位名称 | 值;
-			transform: scale(0, 0);缩放（scale）： 改变元素大小;
-			transform: skew(angle, angle);倾斜（skew）:  让元素发生倾斜（deg）;
-		}
-		.3D {
-			x轴： 水平方向默认从左向右
-			y轴:  垂直方向从上向下
-			z轴： 从里向外
-			transform： rotateX();旋转;
-			transform：scaleX();缩放;
-			transform: skewX(30deg) skewY(30deg);倾斜
-			transform-style: preserve-3d; 将平面图形转为立体图形;
-			perspective 透视 页面中出现近大远小的效果
-			transform-origin 在3d转化中 改变轴的位置;
-			通过3d方式实现元素居中
-	 	 	    position: absolute;
-				left: 50%;
-			    top: 50%;
-	 	 	    transform: translateX(-50%) translateY(-50%);
-		}
-		.动画 {
-			和写顺序
-			animation-name: 动画名称;
-			animation-duration: 动画时间;
-			animation-iteration-count： 动画执行次数  【infinite无限次】;
-			animation-delay： 动画延时;
-			animation-direction： 动画逆播（动画在返回的时候也有动画效果） 【alternate】;
-			animation-fill-mode： 动画在结束位置处停下【forwards】;
-			animation-play-state: paused(停止); 设置动画播放状态;
-			animation-timing-function： 设置动画速度类型;
-
-			✔ 可以给元素同时调用多个动画集，使用延时实现
-			✔ 可以使用百分比方式实现动画多状态效果
-			注意： 在百分比写法中，百分比是相对动画执行时间。
-			animation: move 1s  infinite  2s alternate; 动画合写;
-		}
-		@keyframes + 自定义动画名称 {
-			开始状态代码
-			from {}
-
-			结束状态
-			to {} 
-		}
-		@keyframes + 自定义动画名称 {
-			0% {}
-			20% {}
-			40% {}
-		}
-	</style>
-
-
-	移动web
-	<style>
-		.web {
-			目标： 页面适配[一个网页可以在任何设备下，都可以正常预览];
-
-			布局方式:;
-				1. 流式布局【百分比布局】;
-				2. 伸缩布局（大量的属性） 
-				3. rem适配（单位）[要实现页面精细化适配方案] 
-				4. 响应式布局： 根据设备不同（宽度），网页的布局方式存在差异 
-
-			正常预览： 页面不能出现缩放，页面水平方向不能出现滚动条,所以在最外层加一个盒子包裹;
-
-			alert(window.devicePixelRatio); 获取设备独立像素;
-		}
-		.流式布局【百分比布局】 {
-			二倍图： Ul会准备一个是原来图片2倍大小的图片，解决了图片在不同设备中能够正常预览（没有图片拉伸后的模糊效果）;
-			匹配视口 : <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-			/* 浏览器内核别名 */
-			-webkit-border-radius: 50%;
-			-moz-border-radius: 50%;
-			-ms-border-radius: 50%;
-			-o-border-radius: 50%;
-			border-radius: 50%;
-		}
-		.伸缩布局（大量的属性） {
-				在伸缩盒子中，默认有两条轴【主轴，侧轴】 主轴： 默认的显示方向是水平从左向右显示的 侧轴： 始终垂直于主轴
-				display： flex;先将直接父元素设置为伸缩盒子  将标准流的盒子转化为伸缩盒子;
-				通过属性调整主轴的方向：
-					flex-direction: row(水平);
-					flex-direction: column (垂直显示);
-					flex-direction: row-reverse(水平翻转);
-					flex-direction: column-reverse (垂直翻转);
-				设置在主轴方向的对齐方式
-					justify-content: flex-start; (左边开始往右排);
-					justify-content: flex-end; (右边开始往左排) ;
-					justify-content: center; (盒子居中排列) ;
-					justify-content: space-between; (空余区域被盒子等分);
-					justify-content: space-around; (平均分布在盒子两侧)
-				设置元素在侧轴对齐方式【要清楚侧轴的方向】：
-					align-items: stretch(拉伸占满整个容器的高度) ;
-					align-items: baseline;(项目的第一行文字的基线对齐)
-					align-items: flex-end;底部对齐
-					align-items: flex-start;
-				在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
-					flex-wrap: nowrap(不换行) ;
-					flex-wrap: wrap(换行，第一行在上方);
-					flex-wrap: wrap-reverse(换行，第一行在下方)
-					flex-wrap: flex-start;
-				多根轴线的对齐方式（换行后形成多行），如果项目只有一根轴线，该属性不起作用
-					align-content：flex-start：与交叉轴的起点对齐
-					align-content：flex-end：与交叉轴的终点对齐。
-					align-content：center：与交叉轴的中点对齐
-					align-content：space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
-					align-content：space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
-					align-content：stretch（默认值）：轴线占满整个交叉轴。
-					等等;
-				flex: 值；将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上;
-
-				对子元素进行排序显示效果
-					order： 值；    注意： 值越小，元素越靠前显示
-		}
-		.rem适配（单位）[要实现页面精细化适配方案]  {
-				1. em: 相对当前标签中的文字大小;
-				2. rem: 相对根标签中的文字大小 （HTML标签中的文字大小）;
-					假设将一张640图片分成20份,每份32px;
-					再把你要操作的图片除以32,就是得到的rem;
-				3. 通过媒体查询的方式可以获取到当前设备宽度或高度
-					1. 作用： 通过css代码监测当前设备的宽度
-					2. 媒体类型：
-						all
-			 			screen(屏幕设备，PC和移动)
-			 			print（打印设备）
-					3. 媒体特性：
-			  			width （max-width,min-width）
-			   			height (max-height,min-height)
-			   			横屏
-			   			竖屏
-					4. 关键字：
-			  			only 只
-			  			not 排除
-			  			and 并且
-					5. 语法：一般会把图片分成20份
-						图片如果是二倍图可以用rem,如果不是就要在外边加盒子,给盒子设置rem,把图片放盒子里宽百分之百
-						/* 适配320px */
-						@media only screen  and (width: 320px) {
-							html {
-								font-size: 16px;
-							}
-						};
-		}
-		.响应式布局 {
-			根据设备不同（宽度），重点是(网页的布局方式存在差异)
-			核心： 判断设备宽度（媒体查
-
-			某一部分在不同设备下,显示样式不同,此时可用响应式布局.
-			比如导航栏在320px的设备上时宽度要变小,并且去除一个模块
-			就需要把整体网页写一下,当屏幕大小为320px时写一下;{}
-		
-			@media only screen and (max-width: 1024px) {
-				在这个设备上导航模块是这样
-				.导航栏 {
-					width: 500px;
-				}
-			}
-			@media only screen and (max-width: 320px) {
-				换一个小设备导航模块变小了
-				.导航栏 {
-					width: 200px;
-				}
-			
-			案例：
-				1. 默认写的css代码认为是PC端
-				2. ipad 宽度 >= 768px;     min-width：768px;
-				3. 适配移动设备      宽度<=767px;    max-width: 767px;
-		}
-		.less 编辑css的工具 {
-				1. Less属于一种CSS的预处理器(用来维护css代码)
-				2. 页面中可以直接引用less文件，需要在服务器环境下
-    
-    				<!-- 必须在服务器环境下才可以 -->
-					<link rel="stylesheet/less" href="02test.less">
-					<!-- 必须引用一个js文件 -->
-					<script type="text/javascript" src="less.js"></script>
-				3.	/* 属性选择器 */
-					[class='o'] {
-						width: 200px;
-						height: 200px;
-						background-color: red;
-					}
-					属性^= '值'  以某个值开始
-					属性*= '值' 包含某个值
-					属性$= '值' 以值结束
-					属性= '值' 完全相同;
-		}
-	</style>
-
-
-	栅格系统与css框架
-	<style>
-		.css框架 {
-			CSS框架就是对CSS相同功能的整体封装.方便使用.
-			Bootstrap[Bootstrap 是移动设备优先的]:用来开发响应式布局的 HTML + CSS  +JS 的框架;
-
-			步骤：
-			1· 手动下载
-				生产环境： 代码经过压缩过
-			  	源码：  代码就是开发者自己写的原生代码
-	   		2. 通过网址链接的方式在线使用
-	   		3. 开始使用：
-	    		✔ 设置移动端视口
-	    	 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	    		✔ 设置兼容IE最高版本
-	         	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	        	✔ 兼容国产浏览器
-	        	<meta name="renderer" content="webkit">
-	       		✔ 引用框架对应的css文件
-	          	<link href="css/bootstrap.min.css" rel="stylesheet">
-	        	✔ 解决Ie低版本不支持H5新标签写法：
-	        	快捷写法 : cc:ie8 (IE8以下版本都匹配)
-	           		<!--[if lte IE 8]>
-			    	<script type="text/javascript">
-			     		//通过js动态创建nav
-			     		document.createElement('nav');
-			   		</script>
-		    		<![endif]-->
-		     	或者引用js文件解决H5新标签
-		    	 <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			4. 全局样式开始：
-				排版标签：
-			 		✔ 标题标签 ： 通过类名的方式可以设置对应的标题标签
-			 		✔ H5中的新标签：  <mark>标记</mark>  | <small></small> 或者类名.small
-			 						<address></address>
-			 		✔ 对齐方式：
-			 			 .text-left |  .text-center  |  .text-right
-			 		✔ 字母大小转化：( text-transform: lowercase | uppercase | capitalize )
-			 			 .text-uppercase(将所有的小写字母转化为大写)
-			 			 .text-lowercase(将大写转为小写)
-			 			 .text-capitalize(单词首字母大写)
-			  		✔ 列表
-			  	 	    1. 去掉列表默认样式    .list-unstyled
-			   		    2. 实现列表一行显示   .list-inline
-			   		    3. 实现自定义列表一行显示：  .dl-horizontal
-			 		✔ 表格
-			   			1. 表格中基本样式  .table
-			   			2. 设置带边框的表格  .table-bordered
-			   			3. 设置隔行变色表格  .table-striped
-			   			4. 设置鼠标悬停时候的样式  .table-hover
-			   			5. 设置表格中背景设置
-			   				.active	    鼠标悬停在行或单元格上时所设置的颜色
-							.success	标识成功或积极的动作
-							.info		标识普通的提示信息或动作
-							.warning	标识警告或需要用户注意
-							.danger
-			   		✔ 表单
-			   			1. 实现表单控件通栏显示类名  .form-control
-			   			2. 如果希望控件一行显示，给form设置  .form-inline
-			   			3. 如果希望控件水平一列显示：   .form-horizontal
-			   			4. 禁止控件使用 ： disabled属性  和 disabled类名
-			   			5. 如果希望单选控件一行显示; 
-			   				.radio-inline
-			   			6. 如果希望复选框一行显示
-			   				.checkbox-inline
-			   			7.  给表单控件设置一个外部的容器
-			   			    <fieldset></fieldset>
-			   			8.  给表单控件外部容器设置标题，使用  <legend>注册信息</legend>
-			   			例如：
-			   				<form action="">
-								<fieldset>
-									<legend>注册信息</legend>
-
-									<span>用户名:</span>
-									<input type="text" class="form-control">
-
-									<br>
-									<br>
-									<span>用户名:</span>
-									<input type="text" class="form-control">
-
-								</fieldset>
-							</form>
-		}
-		.栅格系统 {
-			快速实现响应式或者移动端页面开发  栅格原理: 将页面中的一个盒子分为12等分;
-			栅格参数：
-		   		.col-xs-值:    在超小屏幕(小于768px)下元素占几份(移动端)
-		   		.col-sm-值:    在小屏幕(大于等于768px)设备下元素占几份(平板)
-		   		.col-md-值:    在PC端(大于等于992px)元素占几份(电脑)
-		   		.col-lg-值：   在超大屏幕(大于等于1200px)下元素占几份
-		    栅格系统使用步骤：
-		   		1. 必须准备一个父元素，该父元素的类名必须叫 
-		   			.container(有固定宽度) 
-		   			.container-fluid（将视口沾满）
-		   	    2. 依据栅格盒子实现响应式布局
-		   	    	<div class="box  container-fluid clearfix">
-						<div class="one col-md-12  col-sm-4  col-xs-3"></div>
-			  			<div class="two col-md-12  col-sm-4  col-xs-6" ></div>
-			    		<div class="three col-md-12 col-sm-4 col-xs-3"></div>
-					</div>
-				3. 注意：
-					✔ 当给元素设置了栅格参数后，该元素就浮动脱标了
-					✔ 通过给父元素设置 clearfix 即可清除浮动
-				4. 在栅格系统中实现列偏移
-					col-md-offset-值:
-					col-xs-offset-值:
-					col-sm-offset-值：
-				5. 实现列排序
-					col-md-push-值:
-					col-sm-pull-值:
-		}
-	</style>
 
 
 	ECMAScript
@@ -1065,6 +717,971 @@
 					deleteCount: 删除多少个;
 					item1,item2...要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。
 					splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改。
+		}
+	</script>
+
+
+	js高级
+	<script>
+		var 面向过程和面向对象 {
+			1. 面向过程：过程中的每一步
+			2. 面向对象：1.找到对象，2.做事(调用方法)
+			3. 面向对象的特征 : 
+				封装：把面向过程封装放到对象中
+				继承：子承父业。减少代码冗余（减少代码量）
+				[多态]：一种事物（动物），具有多种形态（一条狗、一只猫.....）。 
+		}
+		var 面向对象编程的概念 {
+			1. Object Oriented Programming，简称 OOP ，是一种面向对象编程的开发思想 。它将真实世界各种复杂的关系
+				，抽象为一个个对象 ，然后由对象之间的分工与合作，完成对真实世界的模拟。	
+			2. 面向对象编程的步骤：（重点）
+				1. 明确需求
+				2. 划分对象
+				3. 对象分工
+				4. 对象合作
+				5. 完成目标
+			3. 面向对象的好处 : 适合大型项目的开发，提高开发效率,易于维护。
+		}
+		var 类和对象【重点】 {
+			1. 什么是类
+				1.1 生活中：一类、种类
+				1.2 编程中：
+					类指的是抽象的名称：狗
+					class ES6关键字，ES6之前没有类的概念。 
+					我们现在学的是ECMAScript3和ES5，通过构造函数 来创建对象
+				1.3 构造函数：内置的 Object、Date、Array 等 自定义：Dog
+				1.4 总结：现阶段我们通过==构造函数== 来创建对象 new关键字
+			2. 什么是对象
+				2. 编程中：对象由属性和方法组成（键值对）。 具体的实例，实例对象
+					 	属性：对象的静态特征，咱们班的班长，姓名、年龄、身高、性别
+					 	方法：对象的功能特征，咱们班的班长，点名、写代码
+					注意事项：
+					 	方法的值是函数(表达式定义函数)
+					 	对象方法中的this，指向调用者。
+			3. 类（构造函数）和对象的关系
+				3.1 类是对象的模板
+				3.2 对象是类的具体实例（通过关键字 instanceof 检测一个对象是否属于某一个类型）
+				3.3 语法：对象名 instanceof 构造函数名;  返回布尔值
+					创建对象得通过类（构造函数）创建
+					new 构造函数() → 具体的实例
+			4. 创建对象
+				语法：自定义构造函数
+				    function 构造函数名(参数...){
+				        this.key = value；
+				        ......
+				    }
+				语法：new关键字创建对象
+					var 对象名 = new 构造函数名(实参...);
+				注意规范：构造函数名首字母要大写
+					帕斯卡（每个单词首字母大写）
+					驼峰（从第二个单词开始首字母大写）
+		}
+		var new {
+			关键字的执行过程 :
+				1. 会向内存申请一块空间，存放对象。
+				2. this关键字会指向内存中存放对象的空间。（this代表了当前创建的对象）
+				3. 通过this关键字向内存中的对象中添加属性和方法
+				4. 会把this返回给外部接收的变量
+			总结：构造函数在执行时，内部的this指向当前创建的对象
+		    	function Student(name,age,gender) {
+		    		// 属性
+		    		this.name = name;
+		    		this.age = age;
+		    		this.gender = gender;
+		    		// 方法
+		    		this.sayHi = function() {
+		    			// 方法内部：this 代表的是调用方法的对象
+		    			console.log('我叫什么' + this.name)
+		    		};
+		    		this.writeCode = function() {
+		    	    	console.log('我会写code');
+		    		}；
+		    	}；
+		    	// 创建对象
+		    	var zs = new Student('张三',10,'男');
+		    	// 使用对象
+		    	zs.writeCode();
+		}
+		var 原型 prototype {
+			原型的作用 : 节省内存。 
+				因为原型中存放的成员（属性或方法），都可以让同一构造函数所创建的对象共享。
+			1. 	为什么要学习原型 
+					问题：若不用原型，则会产生内存浪费问题。
+					原因：方法放在构造函数中，每次new时，都会在堆中开辟新的空间。 
+					解决方案：把方法放到原型中，就可以让同类型的对象共享 。
+			2. 	什么是原型
+					1. 原型是一个对象
+					2. 每一个函数都有原型属性，原型一直都在。
+					获取原型语法：构造函数名.prototype;
+			3. 	构造函数和原型的关系
+					构造函数可以通过  prototype  获取到原型 
+					原型可以通过 constructor  找到构造函数 
+        				// 学生类→ 构造函数
+        				function Student(name,age,gender) {
+        				    // 属性
+        				    this.name = name;
+        				    this.age = age;
+        				    this.gender = gender;
+        				}
+        				// 获取原型  每一个函数都有一个对应的原型
+        				var yx = Student.prototype;
+        				console.log(yx);
+        				// 原型是一个对象
+        				// 自带了一个成员：constructor → 指向构造函数
+        				console.log(yx.constructor === Student);
+        	4. 	实例对象和原型的关系
+        		原型 = 实例对象里的__proto__
+        		构造函数 = 原型的 constructor
+        		实例对象里的__proto__ = 构造函数的prototype
+        				// 学生类→ 构造函数
+        				function Student(name, age, gender) {
+        				  // 属性
+        				  this.name = name;
+        				  this.age = age;
+        				  this.gender = gender;
+        				  // this.type = '学生'
+        				}
+        				// 获取原型  每一个函数都有一个对应的原型
+        				var yx = Student.prototype;
+        				// 对象.key = value
+        				// 方法
+        				yx.sayHi = function () {
+        				  // 方法内部：this 代表的是调用方法的对象
+        				  console.log('我叫什么' + this.name)
+        				};
+        				yx.writeCode = function () {
+        				  console.log('我会写code');
+        				}
+        				// 添加一个属性 与 this.type 对应
+        				yx.type = '学生';
+        				// 创建对象
+        				var zs = new Student('张三', 10, '男');
+        	5.  构造函数和普通函数
+					相同点 : 都是函数
+					不同点 : 构造函数通过new关键字调用,普通函数直接调用
+		}
+		var 原型链 {
+			1. 原型链：是对象之间的继承关系：在JavaScript中是通过prototype对象指向父类对象，直到指向Object
+				对象为止，这样就形成了一个原型指向的链条，专业术语称之为原型链。
+			2. object是初始对象(祖宗)，是原型链的顶端;
+			3. 原型链查找方式
+				1 查找一个属性，首先会从对象本身中去找
+				2 若对象中，找不到，则会通过__proto__所提供的原型地址，去自己的原型中查找
+				3 如果找到则直接使用。如果没有则去原型的原型中寻找,直到找到Object对象的原型
+				4 如果在Object原型中依然没有找到，则返回undefined。
+		}
+		var 继承及作用 {
+			继承：子类和父类的关系
+			作用：减少代码冗余
+			1. 	原型继承
+					更改子类构造函数的prototype指向父类的一个具体实例。子类构造函数.prorotype= new 父类()
+					在新的原型上添加constructor指向子类。 子类构造函数.prorotype.constructor=子类构造函数
+				优缺点： 
+					优点：完美的继承了方法
+					缺点：无法完美的继承属性
+			2. 	借用继承：call
+					实现方式: 父类.call(子对象的地址this，实参...)
+					// 【学生类-构造函数-子类】
+    				function Student(name,age,gender,stuId) {
+    				  	// 属性
+    				  	this.stuId = stuId;
+    				  	// 借用Person的属性
+    				  	Person.call(this,name,age,gender)
+    				}
+				优缺点：
+					优点：可以完美的继承属性
+					缺点：无法继承方法
+			3. 组合继承
+				实现方式：原型继承 + 借用继承
+				过程：
+					原型继承弥补了借用继承无法继承方法的缺点。
+					借用继承弥补了原型继承无法完美继承属性的缺点。
+				缺点：在原型链中会有多余属性
+		}
+		var 安全的类型检测 {
+			Object.prototype.toString.call(value) == "[object Array]";
+		}
+		var 作用域安全的构造函数 {
+			锁定了可以调用构造函数的环境，避免了在全局对象上意外设置属性。
+
+			function Person(name, age, job){
+				if (this instanceof Person){
+					this.name = name;
+					this.age = age;
+					this.job = job;
+				} else {
+					return new Person(name, age, job);
+				}
+			}
+			var person1 = Person("Nicholas", 29, "Software Engineer");
+			alert(window.name); //""
+			alert(person1.name); //"Nicholas"
+
+			构造函数窃取结合使用原型链或者寄生组合
+			function Polygon(sides){
+				if (this instanceof Polygon) {
+					this.sides = sides;
+					this.getArea = function(){
+						return 0;
+					};
+				} else {
+					return new Polygon(sides);
+				}
+			}
+			function Rectangle(width, height){
+				Polygon.call(this, 2);
+				this.width = width;
+				this.height = height;
+				this.getArea = function(){
+					return this.width * this.height;
+				};
+			}
+			Rectangle.prototype = new Polygon();
+			var rect = new Rectangle(5, 10);
+			alert(rect.sides); //2
+		}
+		var 惰性载入 {
+			第一种方法
+			function createXHR(){
+				if (typeof XMLHttpRequest != "undefined"){
+					createXHR = function(){
+						return new XMLHttpRequest();
+					};
+				} else if (typeof ActiveXObject != "undefined"){
+					createXHR = function(){
+						if (typeof arguments.callee.activeXString != "string"){
+							var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0",
+								"MSXML2.XMLHttp"],
+								i, len;
+							for (i=0,len=versions.length; i < len; i++){
+								try {
+									new ActiveXObject(versions[i]);
+									arguments.callee.activeXString = versions[i];
+									break;
+								} catch (ex){
+									//skip
+								}
+							}
+						}
+						return new ActiveXObject(arguments.callee.activeXString);
+					};
+				} else {
+					createXHR = function(){
+						throw new Error("No XHR object available.");
+					};
+				}
+				return createXHR();
+			}
+			第二种方法
+			var createXHR = (function(){
+				if (typeof XMLHttpRequest != "undefined"){
+					return function(){
+						return new XMLHttpRequest();
+					};
+				} else if (typeof ActiveXObject != "undefined"){
+					return function(){
+						if (typeof arguments.callee.activeXString != "string"){
+							var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0",
+								"MSXML2.XMLHttp"],
+								i, len;
+							for (i=0,len=versions.length; i < len; i++){
+								try {
+									new ActiveXObject(versions[i]);
+									arguments.callee.activeXString = versions[i];
+									break;
+								} catch (ex){
+									//skip
+								}
+							}
+						}
+						return new ActiveXObject(arguments.callee.activeXString);
+					};
+				} else {
+					return function(){
+						throw new Error("No XHR object available.");
+					};
+				}
+			})();
+		}
+		var 函数 {
+			window > Object > document;
+			你写的东西,只要不是函数他就在window中,函数在object里面
+			可以说window就是全局作用域,把函数里的内容公开,就是把内容添加到window中
+				function fn (a,b) {
+					var c = a + b;
+					window.c = c;	这样c就公开了;
+				}
+			Object是函数的顶级对象
+			1.  函数本身也是一个对象,所以可以点方法,都是对象后边点方法名;
+				原型里都有call方法;
+			2.  作用域为了更好地控制和使用变量;
+				普通函数大括号里面是封闭的,自调用函数包括名字全部都是封闭的
+			3.  匿名函数和自调用函数 : 
+				匿名函数：没有名字的函数
+				在js中匿名函数需要配合运算符使用，运算符的目的，不是运算，而是为了不报错！
+			    	(function () { });  // 常用
+			    	!function () { };
+			    	-function () { };
+			    	+function () { };
+			    	var fn = function() {}; 表达式创建函数
+				作用：常用来包裹对象
+					可以避免全局变量污染（命名冲突），实现模块化。重要可以模拟块级作用域
+			4. 	函数创建和调用
+				函数声明创建 函数声明是语句，语句结束要添加;号
+				    function 函数名(形参,形参...){
+				        // 函数体
+				    }
+				函数表达式 用运算符(+ - ! =)创建函数,就是表达式创建
+				    var 变量名 = function((形参,形参...){
+				        // 函数体
+				    };
+				调用：函数名(实参,实参....)
+			5.  函数的参数
+				应用场景：当函数内部需要函数外部数据时，此时可以选用参数
+					形参：函数创建时，小括号中的标识符
+					实参：函数调用时，小括号中的实际的数据（直接量-字面量、变量）；
+					    函数调用(1,200);
+					    var a = 100;
+					    var b = 200;
+					    函数调用(a,b);
+			6.  返回值：当函数外部需要函数内部的结果时，此时可以选用返回值
+				关键字：return
+				作用：返回数据； 终止函数的执行。
+				若没有return，则默认undefined
+			7.  作用域
+				目的：为了更好的控制和使用变量
+				全局作用域：函数之外的执行环境
+					全局变量：在全局作用域中使用var关键字创建的变量。
+					使用范围：任何地方
+				局部作用域：函数内部的执行环境
+					局部变量：在函数内部使用var关键字创建的变量 。函数的形参。
+					使用范围：函数内部
+				作用域链：变量的访问过程
+					在访问或使用一个变量时，查找的过程是这样的，先从本作用域中查找相关的变量，
+					若查找不到,则向上层作用域中查找,以此类推。
+			8.  预解析（提升）
+				提升变量名，提升到当前所在作用域的顶部
+				提升函数声明创建函数，提升到当前所在作用域的顶部
+				表达式创建函数，不会提升
+			9. 	函数的其他成员【了解】
+				函数名.arguments
+					获取传入的实参
+				函数名.length
+					获取函数形参的个数
+				函数名.name
+					函数的名字
+		}
+		var 函数内部this的指向 {
+			1. 普通函数，直接调用的函数 - this指向window
+        		// [代码1]
+        		function fn() {
+        		  console.log(this);  // this指向widnow
+        		}
+        		fn();
+        		// [代码2]
+        		(function () {
+        		  console.log(this);  // 指向window
+        		})();
+        		// [代码3]
+        		var name = '123';
+        		var obj = {
+        		  	name: '张三',
+        		  	fn: function () {
+        		    	console.log(this.name);  
+        		    	function fn2() {
+        		      		console.log(this.name);    // this指向window 
+        		    	} 
+        		    	fn2(); // 普通函数直接调用
+        		  	}
+        		};
+        		obj.fn();   // 张三
+        		// [代码4]
+        		var name = '123';
+        		var obj = {
+        			name: '张三',
+        		  	fn: function () {
+        		    	var that = this;   // that中存放了obj
+        		    	function fn2() {
+        		      		console.log(that.name);  // obj.name
+        		    	}
+        		    	fn2();
+        		  	}
+        		};
+        		obj.fn();
+        	2.  定时器
+				this指向window (定时器中的函数就是一个普通函数)
+				原理：当定时器时间满足时，浏览器会把定时器中的函数直接调用。
+				注意事项：在定时器中的函数，不要写调用，而是写函数定义。
+				    // [代码1]
+				    setTimeout(function(){
+				      	console.log(this);
+				    },10);
+				    // [代码2]
+				    var fn = function() {
+				      	console.log(this);
+				    }
+				    setTimeout(fn,10);
+				    // setTimeout(fn(),1000);  // 注意：不要直接调用
+			3.  构造函数
+				this指向当前创建的函数本身，（当前所开辟的空间）
+				原理：基于new关键字的执行过程
+				注意事项：构造函数一定要通过new关键字调用
+				    function Fn(name,age) {
+				      	this.name = name;
+				      	this.age = age;
+				      	// this 会指向当前所开辟的空间
+				    }
+				    var zs = new Fn('张三',10);
+			4. 方法
+				this指向调用者
+				注意事项：方法点前面的对象就是调用者。
+				代码：
+				    function Fn(name, age) {
+				      	this.name = name;
+				      	this.age = age;
+				    }
+				    Fn.prototype.sayHi = function () {
+				      	console.log(this.name, this.age);
+				    }
+				    // 创建对象zs
+				    var zs = new Fn('张三', 10);
+				    // 创建对象ls
+				    var ls = new Fn('李四', 20);
+				    zs.sayHi();  // 调用者是zs
+				    ls.sayHi();  // 调用者是ls
+			5. 事件处理程序
+				this指向事件源，那个绑定事件的元素
+				原理：事件处理程序的本质，其实就是事件源的一个方法
+					从本质来看，事件处理程序其实就是事件源的一个方法而已。 
+					当前触发事件时，相当于 事件源.onclick()调用，调用者就是事件源
+				注意事项：在触发事件时，相当于 事件源.事件名();
+				    事件三要素
+				    	事件源  document
+				    	事件类型 onclick
+				    	事件处理程序 function 函数
+				    document.onclick = function() {
+				      console.log(this);   // 事件源
+				    }
+		}
+		var 改变this指向 {
+			call apply bind 都可以更改函数内部的this指向,只是语法格式不同。
+			1. call方法的使用
+					目的：借用其他函数中的属性
+					实现方式：更改被借用函数内部this指向借用者
+					语法：被借用函数名.call(借用者,实参，实参...)
+				作用：会立刻执行，而且被借用函数内部的this会指向借用者
+					// 函数
+					function fn(a,b) {
+					  this.a = a;
+					  this.b = b;
+					}  
+					// 对象
+					var obj = {};
+					// 语法：函数名.call(借用者,实参,实参...)
+					// 被借用的函数会立刻执行，而且内部中this会指向借用者
+					fn.call(obj,10,20);
+					console.log(obj);
+			2.  apply的方法使用
+				语法：函数名.apply(借用者，[实参....])
+				作用：会立刻执行，而且内部的this会发生变化，指向借用者
+				代码：
+					// 函数
+					function fn(a,b) {
+					  this.a = a;
+					  this.b = b;
+					}  
+					// 对象
+					var obj = {};
+					// 语法：函数名.apply(借用者,[实参,实参...])
+					// 被借用的函数会立刻执行，而且内部中this会指向借用者
+					fn.apply(obj,[10,20]);
+					console.log(obj);
+			3.  bind方法的使用
+				语法：函数名.bind(借用者，实参....)
+				作用：不会立刻执行，返回一个新的函数，需要调用新的函数
+					// 函数
+					function fn(a,b) {
+					  this.a = a;
+					  this.b = b;
+					}
+					// 对象
+					var obj = {};
+					// 语法：函数名.bind(借用者,实参,实参...)
+					// 被借用的函数不会立刻执行，而是返回一个新的函数,需要调用新的函数执行达到目的
+					// var newFn = fn.bind(obj,10,20);
+					// newFn();
+					fn.bind(obj,10,20)();
+					console.log(obj);
+		}
+		var 高阶函数 {
+			1.  函数作为函数参数【重要】
+				1.1 回调函数
+					参数
+						形参：函数定义时，小括号中的标识符
+						实参：函数调用时，小括号中实际的数据
+						关系：实参代表的实际数据传递给函数内部的形参使用。
+						应用场景：当外部向函数内部传入数据时。
+					现象：把一个函数B当做实参，传递给另一个函数的A的形参，并在函数A内部调用
+					代码：
+						// 定义函数A
+						// v是形参
+						function A(v) {
+						  v(11,22);
+						}
+						// 调用
+						A(function (a,b) {
+							console.log(a + b);
+						});
+			2.  函数作为函数的返回值【理解】
+				关键字：return 数据;
+				应用：函数内部要把结果暴露给外部时使用返回值
+				代码：
+					// 【返回值是函数时】
+					function fn() {
+						// 返回的函数不要使用箭头函数
+					  	return 	function(){
+					  				console.log('我是内部的的函数');
+					         	};
+					}
+					// 调用函数
+					var r = fn();
+					// 再调用内部函数
+					r();
+		}
+		var 闭包【理解】 {
+			当函数调用完毕,会被销毁,此时函数内部的变量也随之销毁,要想让函数内部的变量不被销毁,需要用闭包;
+			1.  作用：
+					延长局部变量的生命周期
+					维护局部变量的安全
+				变量的生命周期：变量在内存中的创建和销毁 
+					全局变量：何时生→打开程序时， 何时销毁→关闭程序 
+					局部变量：何时生→调用函数时， 何时销毁→函数调用执行结束后 
+				GC：全称Garbage Collection  垃圾回收机制，回收和销毁没有用的数据。
+					有用的数据：被全局中操作的变量。
+					没有用的数据，不在使用的数据。
+				闭包：函数内部的子函数，桥梁(让外部可以操作函数内部)
+				如何检测一个程序是否存在闭包：
+					调试：在子函数内部设置断点，刷新检测，右侧是否存在closure (closure里就是外部变量里的变量)
+					规则：    
+						1. 外层函数  和  子函数
+						2. 外层函数必须有局部变量
+						3. 子函数要操作外层函数的局部变量
+						4. 让子函数和外部产生关联。 // 关联不一定是返回函数  // 可以是事件 
+				若函数内部要返回多个数据时，推荐使用返回对象格式。
+			2.  什么是闭包
+				MDN：闭包是函数和声明该函数的词法环境的组合。
+				百度百科：
+				  	闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“。在本质上，	闭包是将函数内部和函数外部连接起来的==桥梁==。 
+				自己总结：
+				闭包：桥梁（卧底）
+				// 生活：藏在别墅中的三儿，被外部的朝阳群众操作了。
+				function bieShu () {
+					var a = '三儿';  // 局部变量
+					var guanJia = function() {
+					  	console.log(a);  // 操作了外部的局部变量
+					};
+				  	return guanJia;   // 返回了子函数的地址
+				}
+				var cyqz = bieShu();  // 接收了子函数的地址
+				cyqz();
+		}
+		var 递归 {
+			递归：函数调用自身的编程技巧。
+			官方概念 : 程序调用自身的编程技巧称为递归（ recursion）。
+				递归做为一种算法在程序设计语言中广泛应用。一个过程或函数在其定义或说明中有直接或间接
+				调用自身的一种方法,它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的
+				问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，大大地减少
+				了程序的代码量 。递归的能力在于用有限的语句来定义对象的无限集合。一般来说，递归需要有
+				==边界条件== 、==递归前进段==和==递归返回段== 。当边界条件不满足时，递归前进；当边界
+				条件满足时，递归返回。
+			1. 递归的三个阶段
+				递归前进段
+				递归边界条件
+				递归返回段
+			2. 递归的作用 : 减少代码量
+		}
+	</script>
+
+
+	ES6
+	<script>
+		var 变量 {
+			ES6 的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言
+				2015 年 6 月发布
+				ES6 弥补了 JS 语言本身的缺陷，增加了新语法，扩展了内置对象
+			let 是ES6新增的关键字，用于声明变量
+				1. 变量在同一作用域不可以再次定义，但可以改变其值
+				2. 具有块级作用域，以大括号为单位，成为一个作用域
+				3. 没有变量提升，必须先定义再使用
+				4. let声明的变量不会压到window对象中，是独立的。和window是没有关系的
+			const 常量的意思是 值不能改变(创建对象,对象名在栈,内容在堆里,他的意思是栈不变,堆可以变)
+				1. 常量的值不能改变
+				2. 定义常量时，必须给初始值
+				3. 在不同的作用域中，常量名是可以重复的。
+				4. 常量也具有块级作用域,没有变量提升;
+			var ES5关键字,用于声明变量
+				1. var声明的变量是全局变量，都在window中，window就是全局作用域；
+				2. 不具有块级作用域
+				3. 有变量提升;
+		}
+		var	解构 {
+			数组解构:
+				1. 变量和数组的值一一对应
+					let arr = ['apple', 'pear', 'banana'];
+        			let [a, b, c] = arr;
+        		2. 变量多，值少
+        			let [a, b, c, d] = ['apple', 'pear', 'banana'];
+        		3. 变量少，值多
+        			let [a, b] = ['apple', 'pear', 'banana'];
+        		4. 按需取值
+        			let [, a, ,b] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
+        		5. ...c：剩余值，只能最后一个变量能当做剩余值 剩余值组成一个数组
+        			let [a, b, ...c] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
+        		6. 复杂的情况 按他的结构写
+        			let [, , a, [b]] = ['黄柯硕', '李勇', '路飞', ['陈云', '吕王大人']];
+        	对象解构:
+        		1. 默认要求 : 变量名和属性名一样
+        			let {id, nickname} = {id: 1, name: '宋江', nickname: '及时雨'};
+        		2. 如果变量名和前面定义变量有冲突，则可以使用别名
+        			let name = '张三疯';
+        			let {id, name: nameone} = {id: 1, name: '宋江', nickname: '及时雨'};
+        		3. 剩余值 : 剩余值组成一个对象 other最后是{ id: 1, age: 99, height: 175};
+        			let {name, ...other} = {id: 1, name: '张三疯', age: 99, height: 175};
+        		4. 复杂的情况
+        			let person = {
+        			    name: '张三疯',
+        			    age: 99,
+        			    dog: {
+        			        name: '大黄',
+        			        age: 3
+        			    },
+        			    cat: {
+        			        name: '小花'
+        			    }
+        			};
+        			let {name: pname, dog: {name}} = person;
+        			console.log(pname, name);
+        }
+        var	箭头函数 {
+        	1. 箭头函数内部没有arguments对象
+        	2. 箭头函数内部的 this 指向外部作用域中的 this ，或者可以认为箭头函数没有自己的 this;
+        	3. 箭头函数不能当做构造函数
+        	4. 函数到箭头函数演变
+        		之前定义函数
+        			function fn (a, b) {
+        		   		console.log(a + b);
+        			}
+        			var fn1 = function (x, y) {
+        			    return x + y;
+        			}
+        		1. 基本使用，使用箭头函数，var 变量名 = 小括号 => 大括号; var fn = () => {}
+        			let fn2 = (a, b) => {
+            			return a + b;
+        			};
+        		2. 如果箭头函数形参只有一个，则可以省略小括号
+        			let fn = x => {
+        			    return x * x;
+        			};
+        		3. 如果函数体只有一行代码，则可以省略大括号; 并且默认就是返回函数体的内容
+        			// let fn = (x) => x * x;
+        			let fn = x => x * x;
+        	5. 函数的默认值
+        		ES6之前,为参数设置默认值
+        			function fn (x, y) {
+        			    // 调用函数的时候，如果没有第二个参数，让y的值默认是5
+        			    if (y === undefined) {
+        			        y = 5;
+        			    }
+        			    console.log(x + y);
+        			}
+        		ES6中为函数参数设置默认值
+        			function fn (x, y = 5) {
+        			    console.log(x + y);
+        			}
+        		如果参数需要设置默认值，则需要将带有默认值的形参放到参数列表中的最后，否则没有意义
+        	6. 剩余参数 : ...rest;
+        		1. 箭头函数内部没有arguments对象,如果想获取实参可以用剩余参数
+        			除去第一个形参外，其他传入的参数都在ary对象中；
+        			当不确定后面会传入几个参数时使用
+        			let fn = (x, ...val) => {
+        			    console.log(val);
+        			}
+        			fn(10, 20, 30, 40, 50);
+        }
+        var	数组扩展 { 
+        	1. ... 扩展运算符 ...赋值给一个值
+        		合并两个数组
+        		let arr1 = [3, 6];
+        		let arr2 = [1, 9];
+        		// let arr1 = arr1.concat(arr2);
+        		let arr3 = [...arr1, ...arr2];
+        	2. 查找数组中的最大值
+        		let arr4 = [3, 7, 2, 5, 1];
+        		// console.log(Math.max.apply(null, arr4));
+        		console.log(Math.max(...arr4));
+        	3. 数组新增 :
+        		1. 将伪数组转换成数组
+        			必须给伪数组添加length属性
+        			// 真正的数组 = Array.from(伪数组);
+        			let arr = Array.from(obj);
+        		2. forEach 方法，用于遍历数组
+        			let arr = [1,2,3,4,5];
+        			arr.forEach(function (值, 下标, 当前的数组) {});
+        			arr.forEach(function (item, index, arr) {});
+        			下面的回调函数使用箭头函数。箭头函数参数只有一个，省略小括号；箭头函数函数
+        			体只有一行代码，省略大括号，形式如下
+        			[3, 2, 8, 7, 4].forEach(item => console.log(item * item));
+        		3. find() 和 findIndex() 
+       				find -- 根据条件来查找第一个满足条件的值
+       				findIndex -- 根据条件来查找第一个满足条件的索引
+       					var result = [3, 2, 8, 7, 4].find(function (v, i, a) {
+            				v 表示数组中的每个值
+            				i 表示索引
+            				a 表示当前正在使用的数组
+            				console.log(v);
+            				return 条件;
+            				查找第一个大于5的数
+            				return v > 5;
+            				查找下标大于3的值
+        				    return i > 3;
+        				});
+        		4. includes(value, start) -- 查找数组中是否含有某个值
+        			[3, 2, 8, 7, 4].includes(2, 2); false
+        			// 从索引为2的值开始向后查找，查找2，结果false
+        }
+        var	字符串新增 {
+        		startsWith('字符串', 索引的值开始向后查找); 以哪一个字符串开始
+        		endsWith('字符串', 字符长度);
+    			console.log('abcdef'.endsWith('d', 4)); 
+    			// 4表示从前面选取4个字符，然后看这4个字符的结尾是否是d。结果是true
+        }
+        var	Number的扩展 {
+				ES6 将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。
+				Number.parseInt()
+				Number.parseFloat()
+		}
+		var	Set {
+				Set本身是一个构造函数，用来生成 Set 数据结构。
+				Set的特点就是该对象里面的成员不会有重复。
+				1. 基本使用 : let set = new Set();
+				Set 的成员 :
+					size：属性，获取 set 中成员的个数，相当于数组中的 length
+					add(value)：往set里添加某个值，不生成新数组。
+					delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+					has(value)：返回一个布尔值，表示该值是否为Set的成员。
+					clear()：清除所有成员，没有返回值。
+				// 使用Set可以完成数组或字符串的去重
+        		let s = new Set([3, 2, 3, 5, 2, 3, 7]);
+        		console.log(s); // 得到对象 {3, 2, 5, 7}
+        		// 把对象转成数组
+        		let arr = Array.from(s);
+        		// 针对Set，还可以使用 ... 的方式，将对象转成数组
+        		let arr = [...s];
+        }
+        var	定义对象 {
+        	定义对象的简洁方式
+        		let id = 1, name = '张三疯', age = 99, sex = '男';
+        		// 之前，定义对象
+        		/* let obj = {
+        		    id: id,
+        		    name: name,
+        		    age: age,
+        		    fn: function () {
+        		        console.log(123);
+        		    }
+        		}; */
+        		// ES6中，定义对象
+        		let obj = {
+        		    id,  // id 表示  id: id
+        		    name,// 对象属性和变量名相同，可以省略后面的 “:name”，下面的age同理
+        		    age,
+        		    gender: sex,
+        		    fn () {
+        		        console.log(123);
+        		    }
+        		};
+        		console.log(obj.id);
+        		obj.fn();
+        }
+        var 模块的导入和导出 {
+			1. ES6提供import   别名   from  路径   语法 来引入 组件
+				export default vue //导出对象 vue
+				import vue from 'vue' //引入组件是一个方法文件
+				import '样式等'	// 引入样式等
+			2. 扩展---;
+				export const function  fn1() {} // 方法1
+				export const function  fn2() {} // 方法2
+				export const function  fn3() {} // 方法3
+				import { fn1,fn2, fn3 } from '文件'
+				import * as content from '文件' 
+        }
+        let Promise - ES6新对象 {
+			1. 回调地狱
+				JS中或node中，都大量的使用了回调函数进行异步操作，而异步操作什么时候返回结果是不可控的
+				，如果我们希望几个异步请求按照顺序来执行，那么就需要将这些异步操作嵌套起来，嵌套的层数
+				特别多，就叫做回调地狱。
+			2. Promise简介
+				Promise对象可以解决回调地狱的问题
+				Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理和更强大
+				Promise可以理解为一个容器，里面可以编写异步请求的代码
+				从语法上说，Promise 是一个对象，从它可以获取异步操作的消息
+			3. Promise简单使用
+				Promise是“承诺”的意思，实例中，它里面的异步操作就相当于一个承诺，而承诺就会有两种结果
+					，要么完成了承诺的内容，要么失败。所以，使用Promise，分为两大部分，首先是有一个承
+					诺（异步操作），然后再兑现结果。
+				1. 定义“承诺”
+					// 实例化Promise，表示定义一个容器，需要给它传递一个函数作为参数,该函数里面可以写异步请求的代码
+					// 而该函数又有两个形参，通常用resolve和reject来表示。这两个形参是回调函数,拿到返回的结果
+					// 换个角度，也可以理解为定下了一个承诺
+					let p = new Promise((resolve, reject) => {
+					    // 形参resolve，单词意思是 完成
+					    // 形参reject ，单词意思是 失败
+					    fs.readFile('./a.txt', 'utf-8', (err, data) => {
+					        if (err) {
+					            // 失败，就告诉别人，承诺失败了
+					            reject(err);
+					        } else {
+					            // 成功，就告诉别人，承诺实现了
+					            resolve(data);
+					        };
+					    });
+					});
+				2. 获取“承诺”的结果
+					// 通过调用 p 的then方法，可以获取到上述 “承诺” 的结果
+					// then有两个函数类型的参数，参数1表示承诺成功时调用的函数，参数2可选，表示承诺失败时执行的函数
+					p.then((data) => {},(err) => {});
+			4. then方法的链式调用
+				1. 前一个then里面返回的字符串，会被下一个then方法接收到
+				2. 前一个then里面返回的Promise对象，并且调用resolve的时候传递了数据，数据会被下一个then接收到
+				3. 前一个then里面如果没有调用resolve，则后续的then不会接收到任何值
+				4. catch 方法可以统一获取错误信息
+			5. Promise 应用 (封装db函数)
+				// 省去把函数放入 module.exports 的一步;ES6设置默认值
+				module.exports = (sql, params = null) => {
+					// Promise 后面可以点(.)then,如果放入一个函数就不能点then了,所以需要 return 返回Promise
+					// 两个形参是回调函数,与then配合使用
+        			return new Promise((resolve, reject) => {
+        			    const mysql = require('mysql');
+        			    const conn = mysql.createConnection({
+        			        host: 'localhost',
+        			        user: 'root',
+        			        password: '',
+        			        database: 'ali_admin'
+        			    });
+        			    conn.connect();
+        			    // 执行异步操作
+        			    conn.query(sql, params, (err, result) => {
+        			        if (err) {
+        			            reject(err);
+        			        } else {
+        			            resolve(result);
+        			        }
+        			        // 无论成功，还是失败，都要关闭连接
+        			        conn.end();
+        			    });
+        			});
+    			};
+		}
+		let try catch finally {
+			1. try/catch/finally 语句用于处理代码中可能出现的错误信息。
+			2. 错误可能是语法错误，通常是程序员造成的编码错误或错别字。也 可能是拼写错误或语言中缺少的功能（可能由于浏览器差异）。
+			3. try语句允许我们定义在执行时进行错误测试的代码块。
+			4. catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+			5. finally 语句在 try 和 catch 之后无论有无异常都会执行。
+			注意： catch 和 finally 语句都是可选的，但你在使用 try 语句时必须至少使用一个。
+			提示： 当错误发生时， JavaScript 会停止执行，并生成一个错误信息。使用 throw 语句 来创建自定义消息(抛出异常)。如果你将 throw 和 try 、 catch一起使用，就可以控制程序输出的错误信息。
+		}
+		let Harmony {
+			1. Generator: 生成器
+        		function* test (x) {
+		            var y = 2 * (yield (x + 1))
+		            var z = 2 * (yield (y / 3))
+		            var a = yield z + 1
+		            console.log("x=" + x + ",y=" + y + ",z=" + z + ",a=" + a)
+		            return (x + y + z + a)
+		        }
+		        let generator = test(5);
+		        try {
+		            console.log(generator.next())
+		            console.log(generator.next(12))
+		            console.log(generator.next(14))
+		        } catch (er) {
+
+		        } finally {
+		            // generator.close()
+		        }
+		    2. Iterator 迭代器
+		    	Iterator(object, [keyOnly])：1.要迭代的对象，2.布尔值，为假时抛出建和值，为真时只抛出键
+		    3. proxy 代理对象
+		    4. Map 简单映射: key 是可枚举的，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。因此，如果你想要这种类型对象的 key 值的列表，你应该使用 Map。
+		    	let map = new Map();
+		    	map.set('name', 'zs')
+		    	map.has('name') // true
+		    	map.get('name') // 'zs'
+		    	map.delete('name')
+		    5. WeakMap : WeakMap 的 key 是不可枚举的 (没有方法能给出所有的 key)。如果key 是可枚举的话，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。如果你要往对象上添加数据，又不想干扰垃圾回收机制，就可以使用 WeakMap。
+		    	set get has delete length
+			6. class 类
+				class Person {
+		            constructor (props) {
+		                this.name = name;
+		                this.age = age;
+		                this.innerTitle = "";
+		            }
+		            get title () {
+		                return this.innerTitle
+		            }
+		            set title (value) {
+		                this.innerTitle = value + '111'
+		            }
+		            sayName () {
+		                alert(this.name)
+		            }
+		            getOlder (years) {
+		                this.age += years
+		            }
+		        }
+				class One extends Person {
+					constructor (props) {
+						super(props)
+					}
+				}
+		}
+	</script>
+
+
+	ES7
+	<script type="text/javascript">
+		let 字符串新增 {
+			padStart(2, '0'); 第一个参数规定字符串长度，第二个参数不足时在头部用什么填充
+        	padEnd()；用于尾部补全，与 padStart() 一样。
+		}
+		let ES7 async await {
+			Promise的then方法和catch方法依然有点奇怪，实现过程也比较复杂。
+			ES7提供了async和await关键字。await和async关键词能够将异步请求的结果以返回值的方式返回给我们。
+			await和async 是es7扩展出的关键词，功能接收Promise中resolve或者reject的返回值
+			async和await需要配合使用，没有async修改的函数中使用await是没有意义的
+			async用来修饰一个包含有Promise调用的函数
+			await需要定义在async函数内部，用来修饰调用Promise返回值的函数
+			function read(path) {
+			    return new Promise((resolve, reject) => {
+			        fs.readFile(path, 'utf-8', (err, data) => {
+			            if (err) reject(err);
+			            resolve(data);
+			        })
+			    });
+			}
+			// 使用async修饰一个函数
+			async function abcd() {
+			    // 下面的三个调用，都使用await来修饰getData，这样就可以将resolve的异步结果以返回值的形式获取到
+			    let a = await read('./a.txt');
+			    let b = await read('./b.txt');
+			    let c = await read('./c.txt');
+			    console.log(a);
+			    console.log(b);
+			    console.log(c);
+			}
+			abcd();
 		}
 	</script>
 
@@ -1929,6 +2546,481 @@
 	</script>
 
 
+	ajax
+	<script>
+		var Ajax概述 {
+			简介 : 简单来说，Ajax是一种技术、是能够使浏览器和服务器进行交互（请求响应）的一种技术。
+					Ajax也是一套内置在浏览器端的API，核心对象是内置在浏览的中的 XMLHttpRequest ，
+					通过这些API的调用，可以实现发送Ajax类型的请求和收取服务器端响应的数据。
+			简化url：在发送Ajax请求的时候，比如AB两个网页文件或接口地址，都属于同一个服务器上的资源，则请求的URL可以省略前面的IP和端口	
+			通用的IP地址
+				127.0.0.1 永远指向自己的计算机
+				localhost 永远指向自己的计算机
+				注意：浏览器使用的那个IP，代码中也要使用相应的IP
+			GET : 字面意思获取，一般指用户从服务器获取数据;
+				请求参数 : 请求参数又叫做查询字符串,一般用于告诉服务器此次请求的详细目的
+					格式：http://www.baidu.com/s?q=word&sug=5017
+					查询字符串只适合传输少量数据,因为搜索框本身有限制输入个数;
+					问号后边的内容就是查询字符串 q=值&a=值;
+			缓存问题(了解)
+				1. 	只有IE浏览器会有缓存问题，所以作为了解内容
+				2. 	缓存问题指的是：两次或多次 AJAX GET 请求同一个 URL ，IE浏览器在第二次请求的
+					时候，并不会重新向服务器发请求，而是直接使用上次请求的结果。
+				3.	解决方案 : 让每次请求的URL都不同 (加一个时间戳);
+			POST : 把数据提交给服务器;
+				1. post 请求，必须调用setRequestHeader方法设置 Content-Type
+				2. 请求头中的 Content-Type，告诉服务器发送过去的数据的格式
+				3. send方法的参数就是post方式发送给服务器的数据。（和get不同）
+				4. xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					请求头必须写在open下
+			非Ajax请求：(也有两种方式)没有XMLHttpRequest对象
+				GET方式：
+					地址栏输入地址，按下回车
+					点击页面中的超链接跳转
+					表单提交（表单的method属性为GET或不指定）
+					'<form action="/time" method="GET"></form>'
+				POST方式：表单提交（表单的method属性为POST）
+					'<form action="/time" method="POST"></form>'
+		}
+		var Ajax {
+			Ajax的核心是内置在浏览器中的 XMLHttpRequest 对象。我们可以通过调用这套API，实现发送Ajax请求。
+				var xhr = new XMLHttpRequest();
+				xhr.open(); // 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.responseType = 'json'; // 自动处理服务器返回的结果
+				xhr.send(); // 发送请求，请求参数写在里面
+				xhr.onreadystatechange = function () {
+					console.log('状态值为：' + this.readyState);
+				};
+				xhr.onload = function (result) { // 当服务器的响应结束，然后再接收服务器响应的结果
+					var data = JSON.parse(result);
+					this.response：服务器返回的结果
+					this.result：返回值;
+				};
+			post请求需要设置请求头，请求头必须写在open下
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.responseType = 'json';会自动将 JSON 数据处理为 JS 数据;写在send之前
+				"":  -- 空，表示文本，和text一样。空为默认值
+				text -- 文本
+				json -- JSON格式数据
+				document -- 文档对象。当服务器返回的结果是XML类型的时候，需要指定为document
+			XHR 1 版 API （IE5和IE6也可以使用的API）
+				xhr.open -- 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
+				xhr.send -- 发送请求，请求参数写在里面
+				xhr.readyState -- ajax请求到哪个阶段了
+				xhr.onreadystatechange() -- 当Ajax发生变化的时候(状态和数据都算)
+				xhr.responseText -- 服务器返回的结果
+			XHR 2.0 新增API
+				xhr.onload() -- 当readyState等于4的时候触发
+				xhr.onprogress() -- 当readyState等于3的时候触发（数据正在返回途中的时候触发）
+				xhr.onloadstart() -- 当开始发送请求的时候触发
+				xhr.onloadend() -- 当请求响应过程结束的时候触发
+				xhr.response -- 服务器返回的结果
+				xhr.responseType -- 会自动将 JSON 数据处理为 JS 数据;写在send之前
+		}
+		let 报文 {
+  			请求报文
+  				请求行：包含请求方式、请求的url 
+  					xhr.open('POST', '/query-post')  体现了请求行的信息
+  				请求头
+					setRequestHeader(); 必须使用此方法设置请求头
+						Host : 请求的主机
+						Cache-Control : 控制缓存（例如：max-age=60 缓存 60 秒）
+  						Content-Type: 告诉服务器，浏览器发送过去的数据是什么编码的，是什么格式
+						Accept : 客户端接收的文档类型，逗号分隔
+						User-Agent : 可以通过它获取到发送请求的浏览器是什么浏览器，版本是哪个版本
+						Referer : 这次请求的来源
+						Accept-Encoding : 可以接受的压缩编码
+  					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 设置请求头
+  					xhr.setRequestHeader('Accept', 'text/html'); 设置请求头
+  				请求体
+  					GET请求没有请求体
+  					xhr.send() 方法体现了请求体的内容
+			响应报文
+			  	响应行
+			  		xhr.status 获取响应状态码，比如200
+			  		xhr.statusText 获取响应状态描述信息 ，比如OK
+			  	响应头
+			  		服务器返回响应的时候携带了附加信息
+		  				Date            响应时间
+		  				Server          服务器信息
+		  				Content-Type	响应体的内容类型，告诉浏览器，服务器返回的数据是什么类型的，编码格式是怎样的
+		  				Content-Length  响应的内容大小
+			  		Content-Type: 告诉浏览器，服务器返回的内容是什么类型的，编码格式是怎样的
+			  		xhr.getResponseHeader('content-type'); 获取一个响应头
+			  		xhr.getAllResponseHeaders(); 获取所有的响应头
+			  	响应体
+			  		服务器返回的数据
+			  		xhr.response 获取响应体的内容 
+			  		xhr.responseText 获取响应体的内容
+		}
+		var JSON {
+			响应数据格式：服务器返回数据只有两种数据表示格式，分别是JSON和XML;在服务器和浏览器之间传输数据的时候，需要先把数据转换成双方都能够识别的格式，即JSON或XML
+
+			JS = JSON.parse(JSON); JSON 格式转 JS 数据
+			JSON = JSON.stringify(JS); JS 数据转 JSON
+			JSON：JS对象表示法;用于表示有结构的数据。类似于编程语言中字面量的概念，语法上跟JavaScript的字面量非常类似。
+				注意 :
+					1. JSON 中属性名称==必须用双引号==包裹
+					2. JSON 中表述字符串==（"值"）必须使用双引号==
+					3. JSON 中不能有单行或多行注释
+					4. JSON 没有 undefined 这个值
+					5. 一个完整的JSON，不能有其他内容掺杂
+			XML: e==X==tension ==M==arkup ==L==anguage   可扩展标记语言
+				淘汰的原因：数据冗余太多
+				XML语法规范：
+					和html写法差不多
+					有且只有一个根标签
+					标签区分大小写
+					标签必须闭合
+					属性值必须加引号
+				如果服务器返回的是XML格式的数据，JS收到数据之后，把收到的数据当做document对象来处理即可。
+			注意：
+				1. 不管是 JSON 也好，还是 XML，只是在 AJAX 请求过程中用到，并不代表它们与AJAX之间有必然的联系，它们只是数据协议罢了。
+				2. 不管服务端是采用 XML 还是采用 JSON 本质上都是将数据返回给客户端。
+				3. 服务端应该根据响应内容的格式设置一个合理的 Content-Type。
+		}
+		var 同步异步 {
+			同步：在执行一些耗时的操作的时候，不做别的事，只是等待
+			异步：在执行一些耗时的操作的时候，同时去做别的事，不是等待
+			同步与异步 : 了解同步模式即可，切记不要使用同步模式。
+				synchronous -- 默认异步的
+				ynchronous -- 同步的
+				Deprecation -- 反对的，不赞成的
+		}
+		var progress -- 过程、进度 {
+			readyState : (状态值)请求响应阶段
+				状态描述说明
+				0 UNSENT 			代表（XHR）被创建，但尚未调用 open() 方法。
+				
+				1 OPENED 			open() 方法已经被调用，建立了连接。
+				
+				2 HEADERS_RECEIVED 	send() 方法已经被调用，并且已经可以获取状态行和响应头。
+				
+				3 LOADING 			响应体（服务器返回的数据）下载中， responseText 属性可能已经包含部分数据。
+				
+				4 DONE 				响应体（服务器返回的数据）下载完成，可以直接使用 responseText或
+																				response 获取完整的结果。
+			onreadystatechange : 当Ajax发生变化的时候就会触发这个事件；
+			xhr对象分块接收数据 : 如果服务器返回的数据量非常大，xhr对象是分块接收数据的，一次性接收一部分（大小
+				不确定），直到接收完毕为止。注意的是，当xhr对象接收的数据发生变化的时候，这里readyState的值不会发生变化,一直为3,但接收到的数据变化了，也表示ajax的状态变化了，此时也会触发onreadystatechange事件。
+		}
+		var IE5和6 {
+			XMLHttpRequest 在老版本浏览器（IE5/6）中有兼容问题，可以通过另外一种方式代替。
+				var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
+				xhr 的成员相同，即后续的open、send方法一样使用、onreadystatechange也可以使用
+				但是h5新增的 response、onprogress、onloadstart、onload、responseType不能使用的
+		}
+		var FormData {
+			FormData 是根据表单各项的name来获取值的,(必须用dom对象);
+			<form id="fm" name="myform">
+				<input type="text" name="sex"/>
+			<form>
+			1. document.myform:通过表单名字可以在document中选中表单对象，通过name属性可以选中对应的input
+				document.myform.sex.vlue
+			2. let fm = document.getElementById('fm');
+				let fd = new FormData(fm);
+				这种方式input必须要有name属性
+			3. 如果没有form标签只有input
+				let fd = new FormData();
+				fd.append('avatar', fileObj);
+				fd.append('avatar', fileObj);
+				等
+			3. 图片需要使用formdata上传
+				var fileObj = this.files[0]; // files[0]就是文件对象
+				var fd = new FormData();
+				fd.append('avatar', fileObj);
+		}
+	</script>
+
+
+	网络与跨域
+	<script>
+		let 网络基础 {
+			HTTP 协议
+				HTTP(HyperText Transfer Protocol) 超文本传输协议
+				HTTP 是一种能够获取如 HTML 这样的网络资源的 protocol (通讯协议)。
+				是一种 client客户端 - server服务器 同时都要遵守的协议
+				请求通常是由像浏览器这样的接受方发起的
+				HTTP 协议中规定了请求数据和响应数据的格式(报文)
+				HTTP 就是请求报文和响应报文，就是它们俩；
+			网络的基础概念
+				URL作用：表示网络上的资源
+					URL（Uniform Resource Locator），统一资源定位符，通俗点来说就是表示网络当中某一个网页的
+						完整访问地址，它具有一定的格式：协议://主机地址:端口/路径?查询字符串#锚点
+					http://127.0.0.1：8080/list.html
+					协议
+						http
+						https
+					主机地址：服务器的地址
+						IP地址
+						域名
+					端口
+						http请求，默认端口80
+						https请求，默认端口443
+						MySQL默认端口3306
+						访问一个网页的时候，默认端口可以省略
+					路径 : 服务器文件夹上的资源（html/css/images/js/接口）
+					参数（查询字符串）? 问号后面的部分，是键值对的形式
+						例如：http://itcast.cn:80/schools/students?id=18&name=zs#photo
+				IP 地址 : Internet Protocol Address
+					作用就是标识一个网络设备（计算机、手机、电视）在某一个具体的网络当中的地址。
+					设备在某一个网络中的地址，目前最常见的格式：[0-255].[0-255].[0-255].[0-255]
+						即为四个 0-255 的数字组成。
+					在同一个网络中，计算机的IP是不允许相同的，都是唯一的
+					127.0.0.1 是本地回环地址，该地址==永远==可以访问到自己的计算机
+				域名 : 	由于 IP 地址都是没有规律的一些数字组成的，很难被人记住，不利于广泛
+						传播，所以就有人想出来要给 IP 起名字（别名）。
+					顶级域名（了解）
+						.com: 商业机构 
+						.cn: 中国国家、地区域名 .hk,
+						.gov: 政府网站。
+						.org: 机构。
+						.edu: 教育网站。
+						.net: 网络服务商。 
+						.mil: 军事。
+					特殊的域名 : localhost 含义为本地主机，对应127.0.0.1 。这是一个保留域名，主要用于本地测试。
+				端口
+					一般我们把“占门”的过程叫做监听
+					端口号的作用，是标示计算机内的某个软件，即区分每个软件
+					可以通过在命令行中运行： netstat -an 命令监视本机端口使用情况
+					在请求网络资源时，默认端口可以省略
+					计算机本身是一个封闭的环境，就像是一个大楼，如果需要有数据通信往来，必须
+						有门，这个门在术语中就叫端口，每一个端口都有一个编号，每台计算机
+						只有 65536 个端口（0-65535）。
+					http 默认的端口 80
+					https 默认的端口是 443
+					mysql 默认端口是3306
+				DNS: Domain Name System  域名系统。在DNS服务器中保存了域名和IP的映射关系
+					。主要工作是将域名转换为IP地址，因为我们通过浏览器访问网站时，实际上是去找对应的IP地址。
+					通过宽带运营商提供的服务器解析一个域名背后对应的 IP，这个过程叫做 DNS 寻址，帮你完成 
+					DNS 寻址过程的服务器叫做 DNS 服务器。
+					通俗的讲，DNS服务器能够通过你输入的域名返回该域名对应的IP。然后我们通过IP去访问网络上的资源。
+				浏览器DNS缓存（了解）
+					当我们在浏览器输入域名后，浏览器首先并不是向DNS服务器发起请求，解析其对应的IP的
+					，而是先看浏览器缓存中是否有缓存，如果有，则使用缓存中保存的IP去请求网络资源的。
+					windows下查看dns缓存:
+						ipconfig  /displaydns
+						ipconfig  /displaydns > c:/dnscache.txt   将dns缓存导入到c:/dnscache.txt文件
+					windows下清除dns缓存
+						ipconfig  /flushdns
+					清除谷歌浏览器缓存
+						chrome://net-internals/#dns
+				hosts 文件（理解）
+					操作系统在发起对 DNS 服务器的查询请求之前，会优先检查本机的 hosts 文件
+					。如果这个文件中包含了对当前需要解析的域名的配置，则不再发起对 DNS 服务
+					器的请求，直接使用 hosts 文件中的配置。
+					文件所在路径：
+						Windows：C:\Windows\System32\drivers\etc\hosts
+						macOS：/etc/hosts
+					注意：
+						本机的 hosts 文件配置只能到影响本机的 DNS 寻址
+						只有以管理员权限运行的编辑器才有权利修改 hosts 文件
+				发起TCP请求
+					客户端在向服务器发请求之前，会先向服务器发送TCP请求，此过程又称之为客户端和服务器三次握手。
+				访问网站时请求响应流程
+					1. 用户打开浏览器
+					2. 地址栏输入我们需要访问的网站网址（URL）
+					3. 检测浏览器DNS缓存，看是否有域名和IP的对应关系
+					4. 检查本机的 hosts 文件，看是否有域名和IP的对应关系
+					5. 浏览器通过  DNS 服务器 获取即将访问的网站  IP 地址
+					6. 浏览器和网站服务器发送TCP请求，进行三次握手
+					7. 浏览器发起一个对这个 IP地址的 请求，即http请求
+					8. 服务端监听指定的 端口 接收到这个请求，进行相应的处理
+					9. 服务端将处理完的结果返回给客户端浏览器（响应）
+					10. 浏览器将服务端返回的结果呈现到界面上
+				C/S 结构与 B/S结构
+					应用软件架构一般分为两类：
+						B/S 架构：Browser（浏览器） ←→ Server（服务器），这种软件都是
+							通过浏览器访问一个网站使用，服务器提供数据存储等服务。
+						B/S结构：
+							优点：简单、不用安装软件、不会涉及到软件升级的问题
+							缺点：占用带宽，传输速度比较慢
+						C/S 架构：Client（客户端） ←→ Server（服务器），这种软件通过安
+							装一个软件到电脑，然后使用，服务器提供数据存储等服务。
+						C/S结构：
+							优点：占用带宽少，传输速度快，安全性比较高
+    						缺点：需要下载客户端安装，时不时的需要更新软件
+    			静态网站和动态网站
+    				静态网站
+						Apache 实现的功能，浏览器请求对应的文件 → Apache 负责读取文件 
+							→ 将文件内容响应给客户端浏览器
+						Apache 将网页文件(纯文本)原封不动的返回给浏览器
+						无法满足让网页内容动起来（随着数据动态变化）的需求
+					动态网站
+						不再将 HTML 固定写死，每次用户请求时，动态执行一段代码，临时生成
+							一个用户想要的 HTML 页面。
+						动态网站指的也就是每次请求时服务端动态生成 HTML 返回给用户的这种网站。
+						实现动态网站的技术有很多，例如：JSP、ASP.NET、PHP、Node.js 等等。
+						这里我们选择 Node.js 作为我们了解服务端动态网页开发的技术方案，注意：
+							我们学习的重心不在 Node.js，而是了解服务端开发，以及某些其他对前端开发有帮助的东西。
+		}
+		var 整个请求响应过程 {
+			1. 用户打开浏览器
+			2. 输入地址 http://127.0.0.1:3000/message.html 向服务器发送请求，请求message.html 页面
+			3. 检测浏览器DNS缓存，看是否有域名和IP的对应关系
+			4. 检查本机的 host 文件，看是否有域名和IP的对应关系
+			5. 浏览器通过  DNS 服务器 获取即将访问的网站  IP 地址
+			6. 浏览器发起TCP请求，和网站服务器进行三次握手
+			7. 浏览器发起一个对这个 IP地址的 请求，即http请求
+			8. 服务端监听指定的 端口 的服务器软件接收到这个请求，进行相应的处理
+			9. 服务端将处理完的结果返回给客户端浏览器（响应）;服务器返回给浏览器 message.html 中的代码
+			10. 浏览器将服务端返回的结果呈现到界面上 ; 浏览器接受到 message.html 中的代码，然后解析
+		   	11. 遇到加载css的link标签，再次去服务器请求css文件
+		   	12. 遇到图片的img标签，再次去服务器请求图片
+		   	13. 遇到js代码，发送Ajax请求，请求所有的留言数据
+		    	  1. 服务器响应的结果是JSON格式的留言数据
+		    	  2. 将JSON格式的数据转成JS数组
+		    	  3. 通过拼接li的方式，拼接所有的留言
+		    	  4. 把拼接好的所有的li，放到ul中
+		}
+		let 同源政策 {
+			1.	1995 年，同源政策由 Netscape（网景） 公司引入浏览器。目前，所有浏览器都实行这个政策。
+			2.	最初，它的含义是指，A 网站设置的 Cookie，B 网站不能打开，除非这两个网页同源
+				。所谓同源指的是三个相同。
+					协议相同（http https）域名相同 (www...) 端口相同（http默认80端口，https默认443端口）
+			3.	如果非同源，共有三种行为受到限制。
+				Cookie无法读取。
+				DOM 无法获得。
+				AJAX 请求无效（可以发送，但浏览器会拒绝接受响应）。
+		}
+		let 跨域请求 : 在发送Ajax请求的时候，请求的地址只要违反了同源政策，那么就属于跨域请求。
+		let 实现跨域请求的方案--JSONP {
+			1.	JSON with Padding，是一种借助于 script 标签发送跨域请求的技巧。
+			2.	其原理就是在客户端借助 script 标签请求其他服务端的一个地址
+				，服务端的这个地址返回自身的某个全局函数，这个函数将需要返回给客户端的数据放入形参传递给客户端，客户端的函数中就可以得到服务端想要返回的数据。
+				注意：返回的数据是 JavaScript 脚本（而非一段 HTML），返回的脚本可以被执行
+		}
+		let 实现跨域操作 {
+			1.	响应的结果会被请求的网站当做js代码来执行
+				<script>
+					// 因为4000网站，返回的结果是，调用一个叫做abcd的函数
+					// 所以要先准备好这个函数
+					// 形参x就是4000网站返回的数据
+					function abcd (x) {
+					    console.log(x);
+					}
+				<script>
+				<script src="http://127.0.0.1:4000/getStu"><script>
+			2.	获取url中传递的参数的值，这个值就是请求的函数的名字，将要返回的数据当做函数的参数
+				，传递给函数
+			3.	// 服务端把数据转成JSON格式
+     			data = JSON.stringify(data); // 这样请求的客户端得到的结果可以在客户端直接执行
+     		4.	// getStu函数就是获取到的url中传递的参数的值，并传递data数据
+     			res.send('getStu(' + data + ')');
+     		5.	jQuery封装的ajax方法跨域请求
+     			// 联网，加载百度的jquery文件，来学习jquery
+  				<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+  				<script>
+  				    // 向4000网站中的 getStu2 接口，发送请求，请求所有的学生信息
+  				    $.ajax({
+  				        type: 'GET',
+  				        // 为了兼容各个版本的jQuery，最好在url上加入如下所示的callback
+  				        // url: 'http://127.0.0.1:4000/getStu2?callback=?',
+  				        url: 'http://127.0.0.1:4000/getStu2',
+  				        success: function (res) {
+  				            console.log(res);
+  				        },
+  				        dataType: 'jsonp' // 必须指定预期服务器返回数据的类型为jsonp
+  				    });
+  				</script>
+		}
+	</script>
+
+
+	正则
+	<script>
+		测试地址：https://tool.oschina.net/regex/
+		var 正则表达式 {
+			1. 正则表达式Regular Expression：是对字符串操作的一种逻辑公式
+			正则表达式在其他语言中也广泛应用。
+			正则表达式，就是定义好一个字符串规则 ，然后根据规则实现对象字符串的匹配、提取、替换等
+			2. 正则表达式的作用【了解】 1. 匹配 2. 提取 3. 替换
+				1. 给定的字符串是否符合正则表达式的过滤逻辑(匹配)
+				2. 可以通过正则表达式，从字符串中获取我们想要的特定部分(提取)
+				3. 强大的字符串替换能力(替换)
+			3. 正则表达式的组成
+				普通字符abc  123  我爱你
+				特殊字符(元字符、限定符、中括号)：正则表达式中有特殊意义的字符
+			4. 元字符：在正则表达式中具有特殊含义的字符。
+				元字符 	说明                
+				\d  	匹配数字              
+				\D  	匹配非数字             
+				\w  	匹配字母或数字或下划线_      
+				\W  	匹配非字母、数字、下划线_     
+				\s  	匹配空白符（空格）         
+				\S  	匹配非空白符            
+				.   	匹配任意除了回车换行符之外的单个字符
+				\r		匹配回车
+				\n 		匹配换行
+  			5.	限定符：控制字符出现的个数。
+				限定符   	说明                                      
+				n*    	匹配任何包含零个或多个 n 的字符串。n{0,}。 若找到最后，后面没有也算符合。 	若有符合正则值，					按照最多的匹配
+				n+    	匹配任何包含至少一个 n 的字符串。{1,} 。                
+				n?    	匹配任何包含零个或一个 n 的字符串。{0,1}       若找到最后，后面没有也算符合。	若有符合正则值，					按照1个匹配
+				n{x}  	匹配包含 x 个 n 的序列的字符串                      
+				n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
+				n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
+				n$    	匹配任何结尾为 n 的字符串                          
+				^n    	匹配任何开头为 n 的字符串                          
+				注意：==^正则表达式$==   使用时，会对字符串整体校验，完全符合才能够匹配。否则，不匹配。
+				注意：在使用花括号限制字符个数时，将来在去匹配时，首先从前向后匹配，先按照至多的要求匹配，至多不满足时，再降低要求匹配，若将至最少时还不匹配→ 最终是不匹配。
+				注意：关于次数至少是0时，表示的有没有都符合。  没有符合，内容不是也符合
+			6.  中括号
+				一个中括号就代表一个字符，中括号的目的就是控制了一个字符的==范围==。 
+				对象字符种类限制
+					中括号            	说明                           
+					[abc]          	查找一个方括号之间的任何字符。              
+					[ ^abc]        	查找一个任何不在方括号之间的字符。^在中括号中有取反的意思
+					[0-9]          	查找一个任何从 0 至 9 的数字。           
+					[a-z]          	查找一个任何从小写 a 到小写 z 的字符。       
+					[A-Z]          	查找一个任何从大写 A 到大写 Z 的字符。       
+					[A-z]          	查找一个字母（包含大小写和下划线）            
+					[\u4e00-\u9fa5]	查找一个汉字                       
+					在匹配时，从前向后按照【规则】去找，若是全局匹配，前面若有满足项时，
+					后面再匹配时，从满足项下一个开始匹配。
+			7.  或模式
+				特殊符号：正则1|正则2, 或者。 符合或两边其中一个就可以匹配。
+					如：google，baidu，bing;  // 匹配三种其中一种字符串
+					正则：google|baidu|bing
+			8.  分组模式
+				特殊符号：(正则);
+					组指的是一个小集体，分组就是将一个大集体可以分成几个小集体。
+					如：控制你的名字连续出现的次数，最少1次，最多3次
+						正则：^(bruce){1,3}$
+			9.  修饰符
+				→ g ，全称global，有 全局 的意思，表示全局匹配。
+					如： var reg = /hello/g;
+				→ i ，全称ignore，有 忽视、忽略 的意思，表示匹配字母时，可以忽略字母的大小写。
+					如： var reg = /hello/i;
+				→ gi  ig ，全局匹配和忽略大小写一起使用。
+					如： var reg = /hello/gi; 
+					如： var reg = /hello/ig; 
+			10. 正则转义符 : .(点)在正则中表示特殊符号。去除.(点)的特殊意义，需要转义：  \.
+		}
+		var 正则对象 {
+			正则表达式对象
+				语法： 	var 变量 = new RegExp(“规则”,”修饰符”); 
+					 	var reg = new RegExp('\\d','g');
+			字面量或直接量
+				语法： 	var 变量 = /正则表达式/;
+						var reg = /\d/g;
+			检测匹配
+				正则对象.test(字符串); 用于检测字符串是否匹配 某个规则。返回true和false。 【重点 】  
+			字符串对象方法相关正则使用
+				字符串.length  字符串是基本类型→基本包装对象 indexOf、substr、concat...
+				字符串.match(正则对象);   提取所有匹配的内容;获取匹配正则的子字符串，返回一个数组。 
+				字符串.replace(正则对象,替换后的内容); 替换所匹配正则的子字符串。返回替换后的字符串。
+		}
+		let 常用表达式 {
+			1. 匹配标签结构
+				/<td(((?!form|table)[\s\S])*?)<\/el-button>/g：取反form或table
+			2. 匹配 <el-button><el-button>：/<el-button.+class="(.*?)".+/g;
+			3. 匹配 class="xxx"：/class="(.*?)"/
+		}
+	</script>
+
+
 	Canvas
 	<script>
 		let '使用前' {
@@ -2463,2285 +3555,6 @@
 			解决方案：
 				1. 把里面的 $ 符号 统一改为 jQuery。 比如 jQuery(''div'')
 				2. jQuery 变量规定新的名称：$.noConflict()        var xx = $.noConflict();
-		}
-	</script>
-
-
-	js高级
-	<script>
-		var 面向过程和面向对象 {
-			1. 面向过程：过程中的每一步
-			2. 面向对象：1.找到对象，2.做事(调用方法)
-			3. 面向对象的特征 : 
-				封装：把面向过程封装放到对象中
-				继承：子承父业。减少代码冗余（减少代码量）
-				[多态]：一种事物（动物），具有多种形态（一条狗、一只猫.....）。 
-		}
-		var 面向对象编程的概念 {
-			1. Object Oriented Programming，简称 OOP ，是一种面向对象编程的开发思想 。它将真实世界各种复杂的关系
-				，抽象为一个个对象 ，然后由对象之间的分工与合作，完成对真实世界的模拟。	
-			2. 面向对象编程的步骤：（重点）
-				1. 明确需求
-				2. 划分对象
-				3. 对象分工
-				4. 对象合作
-				5. 完成目标
-			3. 面向对象的好处 : 适合大型项目的开发，提高开发效率,易于维护。
-		}
-		var 类和对象【重点】 {
-			1. 什么是类
-				1.1 生活中：一类、种类
-				1.2 编程中：
-					类指的是抽象的名称：狗
-					class ES6关键字，ES6之前没有类的概念。 
-					我们现在学的是ECMAScript3和ES5，通过构造函数 来创建对象
-				1.3 构造函数：内置的 Object、Date、Array 等 自定义：Dog
-				1.4 总结：现阶段我们通过==构造函数== 来创建对象 new关键字
-			2. 什么是对象
-				2. 编程中：对象由属性和方法组成（键值对）。 具体的实例，实例对象
-					 	属性：对象的静态特征，咱们班的班长，姓名、年龄、身高、性别
-					 	方法：对象的功能特征，咱们班的班长，点名、写代码
-					注意事项：
-					 	方法的值是函数(表达式定义函数)
-					 	对象方法中的this，指向调用者。
-			3. 类（构造函数）和对象的关系
-				3.1 类是对象的模板
-				3.2 对象是类的具体实例（通过关键字 instanceof 检测一个对象是否属于某一个类型）
-				3.3 语法：对象名 instanceof 构造函数名;  返回布尔值
-					创建对象得通过类（构造函数）创建
-					new 构造函数() → 具体的实例
-			4. 创建对象
-				语法：自定义构造函数
-				    function 构造函数名(参数...){
-				        this.key = value；
-				        ......
-				    }
-				语法：new关键字创建对象
-					var 对象名 = new 构造函数名(实参...);
-				注意规范：构造函数名首字母要大写
-					帕斯卡（每个单词首字母大写）
-					驼峰（从第二个单词开始首字母大写）
-		}
-		var new {
-			关键字的执行过程 :
-				1. 会向内存申请一块空间，存放对象。
-				2. this关键字会指向内存中存放对象的空间。（this代表了当前创建的对象）
-				3. 通过this关键字向内存中的对象中添加属性和方法
-				4. 会把this返回给外部接收的变量
-			总结：构造函数在执行时，内部的this指向当前创建的对象
-		    	function Student(name,age,gender) {
-		    		// 属性
-		    		this.name = name;
-		    		this.age = age;
-		    		this.gender = gender;
-		    		// 方法
-		    		this.sayHi = function() {
-		    			// 方法内部：this 代表的是调用方法的对象
-		    			console.log('我叫什么' + this.name)
-		    		};
-		    		this.writeCode = function() {
-		    	    	console.log('我会写code');
-		    		}；
-		    	}；
-		    	// 创建对象
-		    	var zs = new Student('张三',10,'男');
-		    	// 使用对象
-		    	zs.writeCode();
-		}
-		var 原型 prototype {
-			原型的作用 : 节省内存。 
-				因为原型中存放的成员（属性或方法），都可以让同一构造函数所创建的对象共享。
-			1. 	为什么要学习原型 
-					问题：若不用原型，则会产生内存浪费问题。
-					原因：方法放在构造函数中，每次new时，都会在堆中开辟新的空间。 
-					解决方案：把方法放到原型中，就可以让同类型的对象共享 。
-			2. 	什么是原型
-					1. 原型是一个对象
-					2. 每一个函数都有原型属性，原型一直都在。
-					获取原型语法：构造函数名.prototype;
-			3. 	构造函数和原型的关系
-					构造函数可以通过  prototype  获取到原型 
-					原型可以通过 constructor  找到构造函数 
-        				// 学生类→ 构造函数
-        				function Student(name,age,gender) {
-        				    // 属性
-        				    this.name = name;
-        				    this.age = age;
-        				    this.gender = gender;
-        				}
-        				// 获取原型  每一个函数都有一个对应的原型
-        				var yx = Student.prototype;
-        				console.log(yx);
-        				// 原型是一个对象
-        				// 自带了一个成员：constructor → 指向构造函数
-        				console.log(yx.constructor === Student);
-        	4. 	实例对象和原型的关系
-        		原型 = 实例对象里的__proto__
-        		构造函数 = 原型的 constructor
-        		实例对象里的__proto__ = 构造函数的prototype
-        				// 学生类→ 构造函数
-        				function Student(name, age, gender) {
-        				  // 属性
-        				  this.name = name;
-        				  this.age = age;
-        				  this.gender = gender;
-        				  // this.type = '学生'
-        				}
-        				// 获取原型  每一个函数都有一个对应的原型
-        				var yx = Student.prototype;
-        				// 对象.key = value
-        				// 方法
-        				yx.sayHi = function () {
-        				  // 方法内部：this 代表的是调用方法的对象
-        				  console.log('我叫什么' + this.name)
-        				};
-        				yx.writeCode = function () {
-        				  console.log('我会写code');
-        				}
-        				// 添加一个属性 与 this.type 对应
-        				yx.type = '学生';
-        				// 创建对象
-        				var zs = new Student('张三', 10, '男');
-        	5.  构造函数和普通函数
-					相同点 : 都是函数
-					不同点 : 构造函数通过new关键字调用,普通函数直接调用
-		}
-		var 原型链 {
-			1. 原型链：是对象之间的继承关系：在JavaScript中是通过prototype对象指向父类对象，直到指向Object
-				对象为止，这样就形成了一个原型指向的链条，专业术语称之为原型链。
-			2. object是初始对象(祖宗)，是原型链的顶端;
-			3. 原型链查找方式
-				1 查找一个属性，首先会从对象本身中去找
-				2 若对象中，找不到，则会通过__proto__所提供的原型地址，去自己的原型中查找
-				3 如果找到则直接使用。如果没有则去原型的原型中寻找,直到找到Object对象的原型
-				4 如果在Object原型中依然没有找到，则返回undefined。
-		}
-		var 继承及作用 {
-			继承：子类和父类的关系
-			作用：减少代码冗余
-			1. 	原型继承
-					更改子类构造函数的prototype指向父类的一个具体实例。子类构造函数.prorotype= new 父类()
-					在新的原型上添加constructor指向子类。 子类构造函数.prorotype.constructor=子类构造函数
-				优缺点： 
-					优点：完美的继承了方法
-					缺点：无法完美的继承属性
-			2. 	借用继承：call
-					实现方式: 父类.call(子对象的地址this，实参...)
-					// 【学生类-构造函数-子类】
-    				function Student(name,age,gender,stuId) {
-    				  	// 属性
-    				  	this.stuId = stuId;
-    				  	// 借用Person的属性
-    				  	Person.call(this,name,age,gender)
-    				}
-				优缺点：
-					优点：可以完美的继承属性
-					缺点：无法继承方法
-			3. 组合继承
-				实现方式：原型继承 + 借用继承
-				过程：
-					原型继承弥补了借用继承无法继承方法的缺点。
-					借用继承弥补了原型继承无法完美继承属性的缺点。
-				缺点：在原型链中会有多余属性
-		}
-		var 安全的类型检测 {
-			Object.prototype.toString.call(value) == "[object Array]";
-		}
-		var 作用域安全的构造函数 {
-			锁定了可以调用构造函数的环境，避免了在全局对象上意外设置属性。
-
-			function Person(name, age, job){
-				if (this instanceof Person){
-					this.name = name;
-					this.age = age;
-					this.job = job;
-				} else {
-					return new Person(name, age, job);
-				}
-			}
-			var person1 = Person("Nicholas", 29, "Software Engineer");
-			alert(window.name); //""
-			alert(person1.name); //"Nicholas"
-
-			构造函数窃取结合使用原型链或者寄生组合
-			function Polygon(sides){
-				if (this instanceof Polygon) {
-					this.sides = sides;
-					this.getArea = function(){
-						return 0;
-					};
-				} else {
-					return new Polygon(sides);
-				}
-			}
-			function Rectangle(width, height){
-				Polygon.call(this, 2);
-				this.width = width;
-				this.height = height;
-				this.getArea = function(){
-					return this.width * this.height;
-				};
-			}
-			Rectangle.prototype = new Polygon();
-			var rect = new Rectangle(5, 10);
-			alert(rect.sides); //2
-		}
-		var 惰性载入 {
-			第一种方法
-			function createXHR(){
-				if (typeof XMLHttpRequest != "undefined"){
-					createXHR = function(){
-						return new XMLHttpRequest();
-					};
-				} else if (typeof ActiveXObject != "undefined"){
-					createXHR = function(){
-						if (typeof arguments.callee.activeXString != "string"){
-							var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0",
-								"MSXML2.XMLHttp"],
-								i, len;
-							for (i=0,len=versions.length; i < len; i++){
-								try {
-									new ActiveXObject(versions[i]);
-									arguments.callee.activeXString = versions[i];
-									break;
-								} catch (ex){
-									//skip
-								}
-							}
-						}
-						return new ActiveXObject(arguments.callee.activeXString);
-					};
-				} else {
-					createXHR = function(){
-						throw new Error("No XHR object available.");
-					};
-				}
-				return createXHR();
-			}
-			第二种方法
-			var createXHR = (function(){
-				if (typeof XMLHttpRequest != "undefined"){
-					return function(){
-						return new XMLHttpRequest();
-					};
-				} else if (typeof ActiveXObject != "undefined"){
-					return function(){
-						if (typeof arguments.callee.activeXString != "string"){
-							var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0",
-								"MSXML2.XMLHttp"],
-								i, len;
-							for (i=0,len=versions.length; i < len; i++){
-								try {
-									new ActiveXObject(versions[i]);
-									arguments.callee.activeXString = versions[i];
-									break;
-								} catch (ex){
-									//skip
-								}
-							}
-						}
-						return new ActiveXObject(arguments.callee.activeXString);
-					};
-				} else {
-					return function(){
-						throw new Error("No XHR object available.");
-					};
-				}
-			})();
-		}
-		var 函数 {
-			window > Object > document;
-			你写的东西,只要不是函数他就在window中,函数在object里面
-			可以说window就是全局作用域,把函数里的内容公开,就是把内容添加到window中
-				function fn (a,b) {
-					var c = a + b;
-					window.c = c;	这样c就公开了;
-				}
-			Object是函数的顶级对象
-			1.  函数本身也是一个对象,所以可以点方法,都是对象后边点方法名;
-				原型里都有call方法;
-			2.  作用域为了更好地控制和使用变量;
-				普通函数大括号里面是封闭的,自调用函数包括名字全部都是封闭的
-			3.  匿名函数和自调用函数 : 
-				匿名函数：没有名字的函数
-				在js中匿名函数需要配合运算符使用，运算符的目的，不是运算，而是为了不报错！
-			    	(function () { });  // 常用
-			    	!function () { };
-			    	-function () { };
-			    	+function () { };
-			    	var fn = function() {}; 表达式创建函数
-				作用：常用来包裹对象
-					可以避免全局变量污染（命名冲突），实现模块化。重要可以模拟块级作用域
-			4. 	函数创建和调用
-				函数声明创建 函数声明是语句，语句结束要添加;号
-				    function 函数名(形参,形参...){
-				        // 函数体
-				    }
-				函数表达式 用运算符(+ - ! =)创建函数,就是表达式创建
-				    var 变量名 = function((形参,形参...){
-				        // 函数体
-				    };
-				调用：函数名(实参,实参....)
-			5.  函数的参数
-				应用场景：当函数内部需要函数外部数据时，此时可以选用参数
-					形参：函数创建时，小括号中的标识符
-					实参：函数调用时，小括号中的实际的数据（直接量-字面量、变量）；
-					    函数调用(1,200);
-					    var a = 100;
-					    var b = 200;
-					    函数调用(a,b);
-			6.  返回值：当函数外部需要函数内部的结果时，此时可以选用返回值
-				关键字：return
-				作用：返回数据； 终止函数的执行。
-				若没有return，则默认undefined
-			7.  作用域
-				目的：为了更好的控制和使用变量
-				全局作用域：函数之外的执行环境
-					全局变量：在全局作用域中使用var关键字创建的变量。
-					使用范围：任何地方
-				局部作用域：函数内部的执行环境
-					局部变量：在函数内部使用var关键字创建的变量 。函数的形参。
-					使用范围：函数内部
-				作用域链：变量的访问过程
-					在访问或使用一个变量时，查找的过程是这样的，先从本作用域中查找相关的变量，
-					若查找不到,则向上层作用域中查找,以此类推。
-			8.  预解析（提升）
-				提升变量名，提升到当前所在作用域的顶部
-				提升函数声明创建函数，提升到当前所在作用域的顶部
-				表达式创建函数，不会提升
-			9. 	函数的其他成员【了解】
-				函数名.arguments
-					获取传入的实参
-				函数名.length
-					获取函数形参的个数
-				函数名.name
-					函数的名字
-		}
-		var 函数内部this的指向 {
-			1. 普通函数，直接调用的函数 - this指向window
-        		// [代码1]
-        		function fn() {
-        		  console.log(this);  // this指向widnow
-        		}
-        		fn();
-        		// [代码2]
-        		(function () {
-        		  console.log(this);  // 指向window
-        		})();
-        		// [代码3]
-        		var name = '123';
-        		var obj = {
-        		  	name: '张三',
-        		  	fn: function () {
-        		    	console.log(this.name);  
-        		    	function fn2() {
-        		      		console.log(this.name);    // this指向window 
-        		    	} 
-        		    	fn2(); // 普通函数直接调用
-        		  	}
-        		};
-        		obj.fn();   // 张三
-        		// [代码4]
-        		var name = '123';
-        		var obj = {
-        			name: '张三',
-        		  	fn: function () {
-        		    	var that = this;   // that中存放了obj
-        		    	function fn2() {
-        		      		console.log(that.name);  // obj.name
-        		    	}
-        		    	fn2();
-        		  	}
-        		};
-        		obj.fn();
-        	2.  定时器
-				this指向window (定时器中的函数就是一个普通函数)
-				原理：当定时器时间满足时，浏览器会把定时器中的函数直接调用。
-				注意事项：在定时器中的函数，不要写调用，而是写函数定义。
-				    // [代码1]
-				    setTimeout(function(){
-				      	console.log(this);
-				    },10);
-				    // [代码2]
-				    var fn = function() {
-				      	console.log(this);
-				    }
-				    setTimeout(fn,10);
-				    // setTimeout(fn(),1000);  // 注意：不要直接调用
-			3.  构造函数
-				this指向当前创建的函数本身，（当前所开辟的空间）
-				原理：基于new关键字的执行过程
-				注意事项：构造函数一定要通过new关键字调用
-				    function Fn(name,age) {
-				      	this.name = name;
-				      	this.age = age;
-				      	// this 会指向当前所开辟的空间
-				    }
-				    var zs = new Fn('张三',10);
-			4. 方法
-				this指向调用者
-				注意事项：方法点前面的对象就是调用者。
-				代码：
-				    function Fn(name, age) {
-				      	this.name = name;
-				      	this.age = age;
-				    }
-				    Fn.prototype.sayHi = function () {
-				      	console.log(this.name, this.age);
-				    }
-				    // 创建对象zs
-				    var zs = new Fn('张三', 10);
-				    // 创建对象ls
-				    var ls = new Fn('李四', 20);
-				    zs.sayHi();  // 调用者是zs
-				    ls.sayHi();  // 调用者是ls
-			5. 事件处理程序
-				this指向事件源，那个绑定事件的元素
-				原理：事件处理程序的本质，其实就是事件源的一个方法
-					从本质来看，事件处理程序其实就是事件源的一个方法而已。 
-					当前触发事件时，相当于 事件源.onclick()调用，调用者就是事件源
-				注意事项：在触发事件时，相当于 事件源.事件名();
-				    事件三要素
-				    	事件源  document
-				    	事件类型 onclick
-				    	事件处理程序 function 函数
-				    document.onclick = function() {
-				      console.log(this);   // 事件源
-				    }
-		}
-		var 改变this指向 {
-			call apply bind 都可以更改函数内部的this指向,只是语法格式不同。
-			1. call方法的使用
-					目的：借用其他函数中的属性
-					实现方式：更改被借用函数内部this指向借用者
-					语法：被借用函数名.call(借用者,实参，实参...)
-				作用：会立刻执行，而且被借用函数内部的this会指向借用者
-					// 函数
-					function fn(a,b) {
-					  this.a = a;
-					  this.b = b;
-					}  
-					// 对象
-					var obj = {};
-					// 语法：函数名.call(借用者,实参,实参...)
-					// 被借用的函数会立刻执行，而且内部中this会指向借用者
-					fn.call(obj,10,20);
-					console.log(obj);
-			2.  apply的方法使用
-				语法：函数名.apply(借用者，[实参....])
-				作用：会立刻执行，而且内部的this会发生变化，指向借用者
-				代码：
-					// 函数
-					function fn(a,b) {
-					  this.a = a;
-					  this.b = b;
-					}  
-					// 对象
-					var obj = {};
-					// 语法：函数名.apply(借用者,[实参,实参...])
-					// 被借用的函数会立刻执行，而且内部中this会指向借用者
-					fn.apply(obj,[10,20]);
-					console.log(obj);
-			3.  bind方法的使用
-				语法：函数名.bind(借用者，实参....)
-				作用：不会立刻执行，返回一个新的函数，需要调用新的函数
-					// 函数
-					function fn(a,b) {
-					  this.a = a;
-					  this.b = b;
-					}
-					// 对象
-					var obj = {};
-					// 语法：函数名.bind(借用者,实参,实参...)
-					// 被借用的函数不会立刻执行，而是返回一个新的函数,需要调用新的函数执行达到目的
-					// var newFn = fn.bind(obj,10,20);
-					// newFn();
-					fn.bind(obj,10,20)();
-					console.log(obj);
-		}
-		var 高阶函数 {
-			1.  函数作为函数参数【重要】
-				1.1 回调函数
-					参数
-						形参：函数定义时，小括号中的标识符
-						实参：函数调用时，小括号中实际的数据
-						关系：实参代表的实际数据传递给函数内部的形参使用。
-						应用场景：当外部向函数内部传入数据时。
-					现象：把一个函数B当做实参，传递给另一个函数的A的形参，并在函数A内部调用
-					代码：
-						// 定义函数A
-						// v是形参
-						function A(v) {
-						  v(11,22);
-						}
-						// 调用
-						A(function (a,b) {
-							console.log(a + b);
-						});
-			2.  函数作为函数的返回值【理解】
-				关键字：return 数据;
-				应用：函数内部要把结果暴露给外部时使用返回值
-				代码：
-					// 【返回值是函数时】
-					function fn() {
-						// 返回的函数不要使用箭头函数
-					  	return 	function(){
-					  				console.log('我是内部的的函数');
-					         	};
-					}
-					// 调用函数
-					var r = fn();
-					// 再调用内部函数
-					r();
-		}
-		var 闭包【理解】 {
-			当函数调用完毕,会被销毁,此时函数内部的变量也随之销毁,要想让函数内部的变量不被销毁,需要用闭包;
-			1.  作用：
-					延长局部变量的生命周期
-					维护局部变量的安全
-				变量的生命周期：变量在内存中的创建和销毁 
-					全局变量：何时生→打开程序时， 何时销毁→关闭程序 
-					局部变量：何时生→调用函数时， 何时销毁→函数调用执行结束后 
-				GC：全称Garbage Collection  垃圾回收机制，回收和销毁没有用的数据。
-					有用的数据：被全局中操作的变量。
-					没有用的数据，不在使用的数据。
-				闭包：函数内部的子函数，桥梁(让外部可以操作函数内部)
-				如何检测一个程序是否存在闭包：
-					调试：在子函数内部设置断点，刷新检测，右侧是否存在closure (closure里就是外部变量里的变量)
-					规则：    
-						1. 外层函数  和  子函数
-						2. 外层函数必须有局部变量
-						3. 子函数要操作外层函数的局部变量
-						4. 让子函数和外部产生关联。 // 关联不一定是返回函数  // 可以是事件 
-				若函数内部要返回多个数据时，推荐使用返回对象格式。
-			2.  什么是闭包
-				MDN：闭包是函数和声明该函数的词法环境的组合。
-				百度百科：
-				  	闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“。在本质上，	闭包是将函数内部和函数外部连接起来的==桥梁==。 
-				自己总结：
-				闭包：桥梁（卧底）
-				// 生活：藏在别墅中的三儿，被外部的朝阳群众操作了。
-				function bieShu () {
-					var a = '三儿';  // 局部变量
-					var guanJia = function() {
-					  	console.log(a);  // 操作了外部的局部变量
-					};
-				  	return guanJia;   // 返回了子函数的地址
-				}
-				var cyqz = bieShu();  // 接收了子函数的地址
-				cyqz();
-		}
-		var 递归 {
-			递归：函数调用自身的编程技巧。
-			官方概念 : 程序调用自身的编程技巧称为递归（ recursion）。
-				递归做为一种算法在程序设计语言中广泛应用。一个过程或函数在其定义或说明中有直接或间接
-				调用自身的一种方法,它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的
-				问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，大大地减少
-				了程序的代码量 。递归的能力在于用有限的语句来定义对象的无限集合。一般来说，递归需要有
-				==边界条件== 、==递归前进段==和==递归返回段== 。当边界条件不满足时，递归前进；当边界
-				条件满足时，递归返回。
-			1. 递归的三个阶段
-				递归前进段
-				递归边界条件
-				递归返回段
-			2. 递归的作用 : 减少代码量
-		}
-	</script>
-
-
-	正则
-	<script>
-		测试地址：https://tool.oschina.net/regex/
-		var 正则表达式 {
-			1. 正则表达式Regular Expression：是对字符串操作的一种逻辑公式
-			正则表达式在其他语言中也广泛应用。
-			正则表达式，就是定义好一个字符串规则 ，然后根据规则实现对象字符串的匹配、提取、替换等
-			2. 正则表达式的作用【了解】 1. 匹配 2. 提取 3. 替换
-				1. 给定的字符串是否符合正则表达式的过滤逻辑(匹配)
-				2. 可以通过正则表达式，从字符串中获取我们想要的特定部分(提取)
-				3. 强大的字符串替换能力(替换)
-			3. 正则表达式的组成
-				普通字符abc  123  我爱你
-				特殊字符(元字符、限定符、中括号)：正则表达式中有特殊意义的字符
-			4. 元字符：在正则表达式中具有特殊含义的字符。
-				元字符 	说明                
-				\d  	匹配数字              
-				\D  	匹配非数字             
-				\w  	匹配字母或数字或下划线_      
-				\W  	匹配非字母、数字、下划线_     
-				\s  	匹配空白符（空格）         
-				\S  	匹配非空白符            
-				.   	匹配任意除了回车换行符之外的单个字符
-				\r		匹配回车
-				\n 		匹配换行
-  			5.	限定符：控制字符出现的个数。
-				限定符   	说明                                      
-				n*    	匹配任何包含零个或多个 n 的字符串。n{0,}。 若找到最后，后面没有也算符合。 	若有符合正则值，					按照最多的匹配
-				n+    	匹配任何包含至少一个 n 的字符串。{1,} 。                
-				n?    	匹配任何包含零个或一个 n 的字符串。{0,1}       若找到最后，后面没有也算符合。	若有符合正则值，					按照1个匹配
-				n{x}  	匹配包含 x 个 n 的序列的字符串                      
-				n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
-				n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
-				n$    	匹配任何结尾为 n 的字符串                          
-				^n    	匹配任何开头为 n 的字符串                          
-				注意：==^正则表达式$==   使用时，会对字符串整体校验，完全符合才能够匹配。否则，不匹配。
-				注意：在使用花括号限制字符个数时，将来在去匹配时，首先从前向后匹配，先按照至多的要求匹配，至多不满足时，再降低要求匹配，若将至最少时还不匹配→ 最终是不匹配。
-				注意：关于次数至少是0时，表示的有没有都符合。  没有符合，内容不是也符合
-			6.  中括号
-				一个中括号就代表一个字符，中括号的目的就是控制了一个字符的==范围==。 
-				对象字符种类限制
-					中括号            	说明                           
-					[abc]          	查找一个方括号之间的任何字符。              
-					[ ^abc]        	查找一个任何不在方括号之间的字符。^在中括号中有取反的意思
-					[0-9]          	查找一个任何从 0 至 9 的数字。           
-					[a-z]          	查找一个任何从小写 a 到小写 z 的字符。       
-					[A-Z]          	查找一个任何从大写 A 到大写 Z 的字符。       
-					[A-z]          	查找一个字母（包含大小写和下划线）            
-					[\u4e00-\u9fa5]	查找一个汉字                       
-					在匹配时，从前向后按照【规则】去找，若是全局匹配，前面若有满足项时，
-					后面再匹配时，从满足项下一个开始匹配。
-			7.  或模式
-				特殊符号：正则1|正则2, 或者。 符合或两边其中一个就可以匹配。
-					如：google，baidu，bing;  // 匹配三种其中一种字符串
-					正则：google|baidu|bing
-			8.  分组模式
-				特殊符号：(正则);
-					组指的是一个小集体，分组就是将一个大集体可以分成几个小集体。
-					如：控制你的名字连续出现的次数，最少1次，最多3次
-						正则：^(bruce){1,3}$
-			9.  修饰符
-				→ g ，全称global，有 全局 的意思，表示全局匹配。
-					如： var reg = /hello/g;
-				→ i ，全称ignore，有 忽视、忽略 的意思，表示匹配字母时，可以忽略字母的大小写。
-					如： var reg = /hello/i;
-				→ gi  ig ，全局匹配和忽略大小写一起使用。
-					如： var reg = /hello/gi; 
-					如： var reg = /hello/ig; 
-			10. 正则转义符 : .(点)在正则中表示特殊符号。去除.(点)的特殊意义，需要转义：  \.
-		}
-		var 正则对象 {
-			正则表达式对象
-				语法： 	var 变量 = new RegExp(“规则”,”修饰符”); 
-					 	var reg = new RegExp('\\d','g');
-			字面量或直接量
-				语法： 	var 变量 = /正则表达式/;
-						var reg = /\d/g;
-			检测匹配
-				正则对象.test(字符串); 用于检测字符串是否匹配 某个规则。返回true和false。 【重点 】  
-			字符串对象方法相关正则使用
-				字符串.length  字符串是基本类型→基本包装对象 indexOf、substr、concat...
-				字符串.match(正则对象);   提取所有匹配的内容;获取匹配正则的子字符串，返回一个数组。 
-				字符串.replace(正则对象,替换后的内容); 替换所匹配正则的子字符串。返回替换后的字符串。
-		}
-		let 常用表达式 {
-			1. 匹配标签结构
-				/<td(((?!form|table)[\s\S])*?)<\/el-button>/g：取反form或table
-			2. 匹配 <el-button><el-button>：/<el-button.+class="(.*?)".+/g;
-			3. 匹配 class="xxx"：/class="(.*?)"/
-		}
-	</script>
-
-
-	ES6
-	<script>
-		var 变量 {
-			ES6 的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言
-				2015 年 6 月发布
-				ES6 弥补了 JS 语言本身的缺陷，增加了新语法，扩展了内置对象
-			let 是ES6新增的关键字，用于声明变量
-				1. 变量在同一作用域不可以再次定义，但可以改变其值
-				2. 具有块级作用域，以大括号为单位，成为一个作用域
-				3. 没有变量提升，必须先定义再使用
-				4. let声明的变量不会压到window对象中，是独立的。和window是没有关系的
-			const 常量的意思是 值不能改变(创建对象,对象名在栈,内容在堆里,他的意思是栈不变,堆可以变)
-				1. 常量的值不能改变
-				2. 定义常量时，必须给初始值
-				3. 在不同的作用域中，常量名是可以重复的。
-				4. 常量也具有块级作用域,没有变量提升;
-			var ES5关键字,用于声明变量
-				1. var声明的变量是全局变量，都在window中，window就是全局作用域；
-				2. 不具有块级作用域
-				3. 有变量提升;
-		}
-		var	解构 {
-			数组解构:
-				1. 变量和数组的值一一对应
-					let arr = ['apple', 'pear', 'banana'];
-        			let [a, b, c] = arr;
-        		2. 变量多，值少
-        			let [a, b, c, d] = ['apple', 'pear', 'banana'];
-        		3. 变量少，值多
-        			let [a, b] = ['apple', 'pear', 'banana'];
-        		4. 按需取值
-        			let [, a, ,b] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
-        		5. ...c：剩余值，只能最后一个变量能当做剩余值 剩余值组成一个数组
-        			let [a, b, ...c] = ['黄柯硕', '李勇', '路飞', '陈云', '吕王大人'];
-        		6. 复杂的情况 按他的结构写
-        			let [, , a, [b]] = ['黄柯硕', '李勇', '路飞', ['陈云', '吕王大人']];
-        	对象解构:
-        		1. 默认要求 : 变量名和属性名一样
-        			let {id, nickname} = {id: 1, name: '宋江', nickname: '及时雨'};
-        		2. 如果变量名和前面定义变量有冲突，则可以使用别名
-        			let name = '张三疯';
-        			let {id, name: nameone} = {id: 1, name: '宋江', nickname: '及时雨'};
-        		3. 剩余值 : 剩余值组成一个对象 other最后是{ id: 1, age: 99, height: 175};
-        			let {name, ...other} = {id: 1, name: '张三疯', age: 99, height: 175};
-        		4. 复杂的情况
-        			let person = {
-        			    name: '张三疯',
-        			    age: 99,
-        			    dog: {
-        			        name: '大黄',
-        			        age: 3
-        			    },
-        			    cat: {
-        			        name: '小花'
-        			    }
-        			};
-        			let {name: pname, dog: {name}} = person;
-        			console.log(pname, name);
-        }
-        var	箭头函数 {
-        	1. 箭头函数内部没有arguments对象
-        	2. 箭头函数内部的 this 指向外部作用域中的 this ，或者可以认为箭头函数没有自己的 this;
-        	3. 箭头函数不能当做构造函数
-        	4. 函数到箭头函数演变
-        		之前定义函数
-        			function fn (a, b) {
-        		   		console.log(a + b);
-        			}
-        			var fn1 = function (x, y) {
-        			    return x + y;
-        			}
-        		1. 基本使用，使用箭头函数，var 变量名 = 小括号 => 大括号; var fn = () => {}
-        			let fn2 = (a, b) => {
-            			return a + b;
-        			};
-        		2. 如果箭头函数形参只有一个，则可以省略小括号
-        			let fn = x => {
-        			    return x * x;
-        			};
-        		3. 如果函数体只有一行代码，则可以省略大括号; 并且默认就是返回函数体的内容
-        			// let fn = (x) => x * x;
-        			let fn = x => x * x;
-        	5. 函数的默认值
-        		ES6之前,为参数设置默认值
-        			function fn (x, y) {
-        			    // 调用函数的时候，如果没有第二个参数，让y的值默认是5
-        			    if (y === undefined) {
-        			        y = 5;
-        			    }
-        			    console.log(x + y);
-        			}
-        		ES6中为函数参数设置默认值
-        			function fn (x, y = 5) {
-        			    console.log(x + y);
-        			}
-        		如果参数需要设置默认值，则需要将带有默认值的形参放到参数列表中的最后，否则没有意义
-        	6. 剩余参数 : ...rest;
-        		1. 箭头函数内部没有arguments对象,如果想获取实参可以用剩余参数
-        			除去第一个形参外，其他传入的参数都在ary对象中；
-        			当不确定后面会传入几个参数时使用
-        			let fn = (x, ...val) => {
-        			    console.log(val);
-        			}
-        			fn(10, 20, 30, 40, 50);
-        }
-        var	数组扩展 { 
-        	1. ... 扩展运算符 ...赋值给一个值
-        		合并两个数组
-        		let arr1 = [3, 6];
-        		let arr2 = [1, 9];
-        		// let arr1 = arr1.concat(arr2);
-        		let arr3 = [...arr1, ...arr2];
-        	2. 查找数组中的最大值
-        		let arr4 = [3, 7, 2, 5, 1];
-        		// console.log(Math.max.apply(null, arr4));
-        		console.log(Math.max(...arr4));
-        	3. 数组新增 :
-        		1. 将伪数组转换成数组
-        			必须给伪数组添加length属性
-        			// 真正的数组 = Array.from(伪数组);
-        			let arr = Array.from(obj);
-        		2. forEach 方法，用于遍历数组
-        			let arr = [1,2,3,4,5];
-        			arr.forEach(function (值, 下标, 当前的数组) {});
-        			arr.forEach(function (item, index, arr) {});
-        			下面的回调函数使用箭头函数。箭头函数参数只有一个，省略小括号；箭头函数函数
-        			体只有一行代码，省略大括号，形式如下
-        			[3, 2, 8, 7, 4].forEach(item => console.log(item * item));
-        		3. find() 和 findIndex() 
-       				find -- 根据条件来查找第一个满足条件的值
-       				findIndex -- 根据条件来查找第一个满足条件的索引
-       					var result = [3, 2, 8, 7, 4].find(function (v, i, a) {
-            				v 表示数组中的每个值
-            				i 表示索引
-            				a 表示当前正在使用的数组
-            				console.log(v);
-            				return 条件;
-            				查找第一个大于5的数
-            				return v > 5;
-            				查找下标大于3的值
-        				    return i > 3;
-        				});
-        		4. includes(value, start) -- 查找数组中是否含有某个值
-        			[3, 2, 8, 7, 4].includes(2, 2); false
-        			// 从索引为2的值开始向后查找，查找2，结果false
-        }
-        var	字符串新增 {
-        		startsWith('字符串', 索引的值开始向后查找); 以哪一个字符串开始
-        		endsWith('字符串', 字符长度);
-    			console.log('abcdef'.endsWith('d', 4)); 
-    			// 4表示从前面选取4个字符，然后看这4个字符的结尾是否是d。结果是true
-        }
-        var	Number的扩展 {
-				ES6 将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。
-				Number.parseInt()
-				Number.parseFloat()
-		}
-		var	Set {
-				Set本身是一个构造函数，用来生成 Set 数据结构。
-				Set的特点就是该对象里面的成员不会有重复。
-				1. 基本使用 : let set = new Set();
-				Set 的成员 :
-					size：属性，获取 set 中成员的个数，相当于数组中的 length
-					add(value)：往set里添加某个值，不生成新数组。
-					delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
-					has(value)：返回一个布尔值，表示该值是否为Set的成员。
-					clear()：清除所有成员，没有返回值。
-				// 使用Set可以完成数组或字符串的去重
-        		let s = new Set([3, 2, 3, 5, 2, 3, 7]);
-        		console.log(s); // 得到对象 {3, 2, 5, 7}
-        		// 把对象转成数组
-        		let arr = Array.from(s);
-        		// 针对Set，还可以使用 ... 的方式，将对象转成数组
-        		let arr = [...s];
-        }
-        var	定义对象 {
-        	定义对象的简洁方式
-        		let id = 1, name = '张三疯', age = 99, sex = '男';
-        		// 之前，定义对象
-        		/* let obj = {
-        		    id: id,
-        		    name: name,
-        		    age: age,
-        		    fn: function () {
-        		        console.log(123);
-        		    }
-        		}; */
-        		// ES6中，定义对象
-        		let obj = {
-        		    id,  // id 表示  id: id
-        		    name,// 对象属性和变量名相同，可以省略后面的 “:name”，下面的age同理
-        		    age,
-        		    gender: sex,
-        		    fn () {
-        		        console.log(123);
-        		    }
-        		};
-        		console.log(obj.id);
-        		obj.fn();
-        }
-        var 模块的导入和导出 {
-			1. ES6提供import   别名   from  路径   语法 来引入 组件
-				export default vue //导出对象 vue
-				import vue from 'vue' //引入组件是一个方法文件
-				import '样式等'	// 引入样式等
-			2. 扩展---;
-				export const function  fn1() {} // 方法1
-				export const function  fn2() {} // 方法2
-				export const function  fn3() {} // 方法3
-				import { fn1,fn2, fn3 } from '文件'
-				import * as content from '文件' 
-        }
-        let Promise - ES6新对象 {
-			1. 回调地狱
-				JS中或node中，都大量的使用了回调函数进行异步操作，而异步操作什么时候返回结果是不可控的
-				，如果我们希望几个异步请求按照顺序来执行，那么就需要将这些异步操作嵌套起来，嵌套的层数
-				特别多，就叫做回调地狱。
-			2. Promise简介
-				Promise对象可以解决回调地狱的问题
-				Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理和更强大
-				Promise可以理解为一个容器，里面可以编写异步请求的代码
-				从语法上说，Promise 是一个对象，从它可以获取异步操作的消息
-			3. Promise简单使用
-				Promise是“承诺”的意思，实例中，它里面的异步操作就相当于一个承诺，而承诺就会有两种结果
-					，要么完成了承诺的内容，要么失败。所以，使用Promise，分为两大部分，首先是有一个承
-					诺（异步操作），然后再兑现结果。
-				1. 定义“承诺”
-					// 实例化Promise，表示定义一个容器，需要给它传递一个函数作为参数,该函数里面可以写异步请求的代码
-					// 而该函数又有两个形参，通常用resolve和reject来表示。这两个形参是回调函数,拿到返回的结果
-					// 换个角度，也可以理解为定下了一个承诺
-					let p = new Promise((resolve, reject) => {
-					    // 形参resolve，单词意思是 完成
-					    // 形参reject ，单词意思是 失败
-					    fs.readFile('./a.txt', 'utf-8', (err, data) => {
-					        if (err) {
-					            // 失败，就告诉别人，承诺失败了
-					            reject(err);
-					        } else {
-					            // 成功，就告诉别人，承诺实现了
-					            resolve(data);
-					        };
-					    });
-					});
-				2. 获取“承诺”的结果
-					// 通过调用 p 的then方法，可以获取到上述 “承诺” 的结果
-					// then有两个函数类型的参数，参数1表示承诺成功时调用的函数，参数2可选，表示承诺失败时执行的函数
-					p.then((data) => {},(err) => {});
-			4. then方法的链式调用
-				1. 前一个then里面返回的字符串，会被下一个then方法接收到
-				2. 前一个then里面返回的Promise对象，并且调用resolve的时候传递了数据，数据会被下一个then接收到
-				3. 前一个then里面如果没有调用resolve，则后续的then不会接收到任何值
-				4. catch 方法可以统一获取错误信息
-			5. Promise 应用 (封装db函数)
-				// 省去把函数放入 module.exports 的一步;ES6设置默认值
-				module.exports = (sql, params = null) => {
-					// Promise 后面可以点(.)then,如果放入一个函数就不能点then了,所以需要 return 返回Promise
-					// 两个形参是回调函数,与then配合使用
-        			return new Promise((resolve, reject) => {
-        			    const mysql = require('mysql');
-        			    const conn = mysql.createConnection({
-        			        host: 'localhost',
-        			        user: 'root',
-        			        password: '',
-        			        database: 'ali_admin'
-        			    });
-        			    conn.connect();
-        			    // 执行异步操作
-        			    conn.query(sql, params, (err, result) => {
-        			        if (err) {
-        			            reject(err);
-        			        } else {
-        			            resolve(result);
-        			        }
-        			        // 无论成功，还是失败，都要关闭连接
-        			        conn.end();
-        			    });
-        			});
-    			};
-		}
-		let try catch finally {
-			1. try/catch/finally 语句用于处理代码中可能出现的错误信息。
-			2. 错误可能是语法错误，通常是程序员造成的编码错误或错别字。也 可能是拼写错误或语言中缺少的功能（可能由于浏览器差异）。
-			3. try语句允许我们定义在执行时进行错误测试的代码块。
-			4. catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
-			5. finally 语句在 try 和 catch 之后无论有无异常都会执行。
-			注意： catch 和 finally 语句都是可选的，但你在使用 try 语句时必须至少使用一个。
-			提示： 当错误发生时， JavaScript 会停止执行，并生成一个错误信息。使用 throw 语句 来创建自定义消息(抛出异常)。如果你将 throw 和 try 、 catch一起使用，就可以控制程序输出的错误信息。
-		}
-		let Harmony {
-			1. Generator: 生成器
-        		function* test (x) {
-		            var y = 2 * (yield (x + 1))
-		            var z = 2 * (yield (y / 3))
-		            var a = yield z + 1
-		            console.log("x=" + x + ",y=" + y + ",z=" + z + ",a=" + a)
-		            return (x + y + z + a)
-		        }
-		        let generator = test(5);
-		        try {
-		            console.log(generator.next())
-		            console.log(generator.next(12))
-		            console.log(generator.next(14))
-		        } catch (er) {
-
-		        } finally {
-		            // generator.close()
-		        }
-		    2. Iterator 迭代器
-		    	Iterator(object, [keyOnly])：1.要迭代的对象，2.布尔值，为假时抛出建和值，为真时只抛出键
-		    3. proxy 代理对象
-		    4. Map 简单映射: key 是可枚举的，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。因此，如果你想要这种类型对象的 key 值的列表，你应该使用 Map。
-		    	let map = new Map();
-		    	map.set('name', 'zs')
-		    	map.has('name') // true
-		    	map.get('name') // 'zs'
-		    	map.delete('name')
-		    5. WeakMap : WeakMap 的 key 是不可枚举的 (没有方法能给出所有的 key)。如果key 是可枚举的话，其列表将会受垃圾回收机制的影响，从而得到不确定的结果。如果你要往对象上添加数据，又不想干扰垃圾回收机制，就可以使用 WeakMap。
-		    	set get has delete length
-			6. class 类
-				class Person {
-		            constructor (props) {
-		                this.name = name;
-		                this.age = age;
-		                this.innerTitle = "";
-		            }
-		            get title () {
-		                return this.innerTitle
-		            }
-		            set title (value) {
-		                this.innerTitle = value + '111'
-		            }
-		            sayName () {
-		                alert(this.name)
-		            }
-		            getOlder (years) {
-		                this.age += years
-		            }
-		        }
-				class One extends Person {
-					constructor (props) {
-						super(props)
-					}
-				}
-		}
-	</script>
-
-
-	ES7
-	<script type="text/javascript">
-		let 字符串新增 {
-			padStart(2, '0'); 第一个参数规定字符串长度，第二个参数不足时在头部用什么填充
-        	padEnd()；用于尾部补全，与 padStart() 一样。
-		}
-		let ES7 async await {
-			Promise的then方法和catch方法依然有点奇怪，实现过程也比较复杂。
-			ES7提供了async和await关键字。await和async关键词能够将异步请求的结果以返回值的方式返回给我们。
-			await和async 是es7扩展出的关键词，功能接收Promise中resolve或者reject的返回值
-			async和await需要配合使用，没有async修改的函数中使用await是没有意义的
-			async用来修饰一个包含有Promise调用的函数
-			await需要定义在async函数内部，用来修饰调用Promise返回值的函数
-			function read(path) {
-			    return new Promise((resolve, reject) => {
-			        fs.readFile(path, 'utf-8', (err, data) => {
-			            if (err) reject(err);
-			            resolve(data);
-			        })
-			    });
-			}
-			// 使用async修饰一个函数
-			async function abcd() {
-			    // 下面的三个调用，都使用await来修饰getData，这样就可以将resolve的异步结果以返回值的形式获取到
-			    let a = await read('./a.txt');
-			    let b = await read('./b.txt');
-			    let c = await read('./c.txt');
-			    console.log(a);
-			    console.log(b);
-			    console.log(c);
-			}
-			abcd();
-		}
-	</script>
-
-
-	ajax
-	<script>
-		var Ajax概述 {
-			简介 : 简单来说，Ajax是一种技术、是能够使浏览器和服务器进行交互（请求响应）的一种技术。
-					Ajax也是一套内置在浏览器端的API，核心对象是内置在浏览的中的 XMLHttpRequest ，
-					通过这些API的调用，可以实现发送Ajax类型的请求和收取服务器端响应的数据。
-			简化url：在发送Ajax请求的时候，比如AB两个网页文件或接口地址，都属于同一个服务器上的资源，则请求的URL可以省略前面的IP和端口	
-			通用的IP地址
-				127.0.0.1 永远指向自己的计算机
-				localhost 永远指向自己的计算机
-				注意：浏览器使用的那个IP，代码中也要使用相应的IP
-			GET : 字面意思获取，一般指用户从服务器获取数据;
-				请求参数 : 请求参数又叫做查询字符串,一般用于告诉服务器此次请求的详细目的
-					格式：http://www.baidu.com/s?q=word&sug=5017
-					查询字符串只适合传输少量数据,因为搜索框本身有限制输入个数;
-					问号后边的内容就是查询字符串 q=值&a=值;
-			缓存问题(了解)
-				1. 	只有IE浏览器会有缓存问题，所以作为了解内容
-				2. 	缓存问题指的是：两次或多次 AJAX GET 请求同一个 URL ，IE浏览器在第二次请求的
-					时候，并不会重新向服务器发请求，而是直接使用上次请求的结果。
-				3.	解决方案 : 让每次请求的URL都不同 (加一个时间戳);
-			POST : 把数据提交给服务器;
-				1. post 请求，必须调用setRequestHeader方法设置 Content-Type
-				2. 请求头中的 Content-Type，告诉服务器发送过去的数据的格式
-				3. send方法的参数就是post方式发送给服务器的数据。（和get不同）
-				4. xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-					请求头必须写在open下
-			非Ajax请求：(也有两种方式)没有XMLHttpRequest对象
-				GET方式：
-					地址栏输入地址，按下回车
-					点击页面中的超链接跳转
-					表单提交（表单的method属性为GET或不指定）
-					'<form action="/time" method="GET"></form>'
-				POST方式：表单提交（表单的method属性为POST）
-					'<form action="/time" method="POST"></form>'
-		}
-		var Ajax {
-			Ajax的核心是内置在浏览器中的 XMLHttpRequest 对象。我们可以通过调用这套API，实现发送Ajax请求。
-				var xhr = new XMLHttpRequest();
-				xhr.open(); // 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
-				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				xhr.responseType = 'json'; // 自动处理服务器返回的结果
-				xhr.send(); // 发送请求，请求参数写在里面
-				xhr.onreadystatechange = function () {
-					console.log('状态值为：' + this.readyState);
-				};
-				xhr.onload = function (result) { // 当服务器的响应结束，然后再接收服务器响应的结果
-					var data = JSON.parse(result);
-					this.response：服务器返回的结果
-					this.result：返回值;
-				};
-			post请求需要设置请求头，请求头必须写在open下
-				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.responseType = 'json';会自动将 JSON 数据处理为 JS 数据;写在send之前
-				"":  -- 空，表示文本，和text一样。空为默认值
-				text -- 文本
-				json -- JSON格式数据
-				document -- 文档对象。当服务器返回的结果是XML类型的时候，需要指定为document
-			XHR 1 版 API （IE5和IE6也可以使用的API）
-				xhr.open -- 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
-				xhr.send -- 发送请求，请求参数写在里面
-				xhr.readyState -- ajax请求到哪个阶段了
-				xhr.onreadystatechange() -- 当Ajax发生变化的时候(状态和数据都算)
-				xhr.responseText -- 服务器返回的结果
-			XHR 2.0 新增API
-				xhr.onload() -- 当readyState等于4的时候触发
-				xhr.onprogress() -- 当readyState等于3的时候触发（数据正在返回途中的时候触发）
-				xhr.onloadstart() -- 当开始发送请求的时候触发
-				xhr.onloadend() -- 当请求响应过程结束的时候触发
-				xhr.response -- 服务器返回的结果
-				xhr.responseType -- 会自动将 JSON 数据处理为 JS 数据;写在send之前
-		}
-		let 报文 {
-  			请求报文
-  				请求行：包含请求方式、请求的url 
-  					xhr.open('POST', '/query-post')  体现了请求行的信息
-  				请求头
-					setRequestHeader(); 必须使用此方法设置请求头
-						Host : 请求的主机
-						Cache-Control : 控制缓存（例如：max-age=60 缓存 60 秒）
-  						Content-Type: 告诉服务器，浏览器发送过去的数据是什么编码的，是什么格式
-						Accept : 客户端接收的文档类型，逗号分隔
-						User-Agent : 可以通过它获取到发送请求的浏览器是什么浏览器，版本是哪个版本
-						Referer : 这次请求的来源
-						Accept-Encoding : 可以接受的压缩编码
-  					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 设置请求头
-  					xhr.setRequestHeader('Accept', 'text/html'); 设置请求头
-  				请求体
-  					GET请求没有请求体
-  					xhr.send() 方法体现了请求体的内容
-			响应报文
-			  	响应行
-			  		xhr.status 获取响应状态码，比如200
-			  		xhr.statusText 获取响应状态描述信息 ，比如OK
-			  	响应头
-			  		服务器返回响应的时候携带了附加信息
-		  				Date            响应时间
-		  				Server          服务器信息
-		  				Content-Type	响应体的内容类型，告诉浏览器，服务器返回的数据是什么类型的，编码格式是怎样的
-		  				Content-Length  响应的内容大小
-			  		Content-Type: 告诉浏览器，服务器返回的内容是什么类型的，编码格式是怎样的
-			  		xhr.getResponseHeader('content-type'); 获取一个响应头
-			  		xhr.getAllResponseHeaders(); 获取所有的响应头
-			  	响应体
-			  		服务器返回的数据
-			  		xhr.response 获取响应体的内容 
-			  		xhr.responseText 获取响应体的内容
-		}
-		var JSON {
-			响应数据格式：服务器返回数据只有两种数据表示格式，分别是JSON和XML;在服务器和浏览器之间传输数据的时候，需要先把数据转换成双方都能够识别的格式，即JSON或XML
-
-			JS = JSON.parse(JSON); JSON 格式转 JS 数据
-			JSON = JSON.stringify(JS); JS 数据转 JSON
-			JSON：JS对象表示法;用于表示有结构的数据。类似于编程语言中字面量的概念，语法上跟JavaScript的字面量非常类似。
-				注意 :
-					1. JSON 中属性名称==必须用双引号==包裹
-					2. JSON 中表述字符串==（"值"）必须使用双引号==
-					3. JSON 中不能有单行或多行注释
-					4. JSON 没有 undefined 这个值
-					5. 一个完整的JSON，不能有其他内容掺杂
-			XML: e==X==tension ==M==arkup ==L==anguage   可扩展标记语言
-				淘汰的原因：数据冗余太多
-				XML语法规范：
-					和html写法差不多
-					有且只有一个根标签
-					标签区分大小写
-					标签必须闭合
-					属性值必须加引号
-				如果服务器返回的是XML格式的数据，JS收到数据之后，把收到的数据当做document对象来处理即可。
-			注意：
-				1. 不管是 JSON 也好，还是 XML，只是在 AJAX 请求过程中用到，并不代表它们与AJAX之间有必然的联系，它们只是数据协议罢了。
-				2. 不管服务端是采用 XML 还是采用 JSON 本质上都是将数据返回给客户端。
-				3. 服务端应该根据响应内容的格式设置一个合理的 Content-Type。
-		}
-		var 同步异步 {
-			同步：在执行一些耗时的操作的时候，不做别的事，只是等待
-			异步：在执行一些耗时的操作的时候，同时去做别的事，不是等待
-			同步与异步 : 了解同步模式即可，切记不要使用同步模式。
-				synchronous -- 默认异步的
-				ynchronous -- 同步的
-				Deprecation -- 反对的，不赞成的
-		}
-		var progress -- 过程、进度 {
-			readyState : (状态值)请求响应阶段
-				状态描述说明
-				0 UNSENT 			代表（XHR）被创建，但尚未调用 open() 方法。
-				
-				1 OPENED 			open() 方法已经被调用，建立了连接。
-				
-				2 HEADERS_RECEIVED 	send() 方法已经被调用，并且已经可以获取状态行和响应头。
-				
-				3 LOADING 			响应体（服务器返回的数据）下载中， responseText 属性可能已经包含部分数据。
-				
-				4 DONE 				响应体（服务器返回的数据）下载完成，可以直接使用 responseText或
-																				response 获取完整的结果。
-			onreadystatechange : 当Ajax发生变化的时候就会触发这个事件；
-			xhr对象分块接收数据 : 如果服务器返回的数据量非常大，xhr对象是分块接收数据的，一次性接收一部分（大小
-				不确定），直到接收完毕为止。注意的是，当xhr对象接收的数据发生变化的时候，这里readyState的值不会发生变化,一直为3,但接收到的数据变化了，也表示ajax的状态变化了，此时也会触发onreadystatechange事件。
-		}
-		var IE5和6 {
-			XMLHttpRequest 在老版本浏览器（IE5/6）中有兼容问题，可以通过另外一种方式代替。
-				var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
-				xhr 的成员相同，即后续的open、send方法一样使用、onreadystatechange也可以使用
-				但是h5新增的 response、onprogress、onloadstart、onload、responseType不能使用的
-		}
-		var FormData {
-			FormData 是根据表单各项的name来获取值的,(必须用dom对象);
-			<form id="fm" name="myform">
-				<input type="text" name="sex"/>
-			<form>
-			1. document.myform:通过表单名字可以在document中选中表单对象，通过name属性可以选中对应的input
-				document.myform.sex.vlue
-			2. let fm = document.getElementById('fm');
-				let fd = new FormData(fm);
-				这种方式input必须要有name属性
-			3. 如果没有form标签只有input
-				let fd = new FormData();
-				fd.append('avatar', fileObj);
-				fd.append('avatar', fileObj);
-				等
-			3. 图片需要使用formdata上传
-				var fileObj = this.files[0]; // files[0]就是文件对象
-				var fd = new FormData();
-				fd.append('avatar', fileObj);
-		}
-	</script>
-
-
-	网络与跨域
-	<script>
-		let 网络基础 {
-			HTTP 协议
-				HTTP(HyperText Transfer Protocol) 超文本传输协议
-				HTTP 是一种能够获取如 HTML 这样的网络资源的 protocol (通讯协议)。
-				是一种 client客户端 - server服务器 同时都要遵守的协议
-				请求通常是由像浏览器这样的接受方发起的
-				HTTP 协议中规定了请求数据和响应数据的格式(报文)
-				HTTP 就是请求报文和响应报文，就是它们俩；
-			网络的基础概念
-				URL作用：表示网络上的资源
-					URL（Uniform Resource Locator），统一资源定位符，通俗点来说就是表示网络当中某一个网页的
-						完整访问地址，它具有一定的格式：协议://主机地址:端口/路径?查询字符串#锚点
-					http://127.0.0.1：8080/list.html
-					协议
-						http
-						https
-					主机地址：服务器的地址
-						IP地址
-						域名
-					端口
-						http请求，默认端口80
-						https请求，默认端口443
-						MySQL默认端口3306
-						访问一个网页的时候，默认端口可以省略
-					路径 : 服务器文件夹上的资源（html/css/images/js/接口）
-					参数（查询字符串）? 问号后面的部分，是键值对的形式
-						例如：http://itcast.cn:80/schools/students?id=18&name=zs#photo
-				IP 地址 : Internet Protocol Address
-					作用就是标识一个网络设备（计算机、手机、电视）在某一个具体的网络当中的地址。
-					设备在某一个网络中的地址，目前最常见的格式：[0-255].[0-255].[0-255].[0-255]
-						即为四个 0-255 的数字组成。
-					在同一个网络中，计算机的IP是不允许相同的，都是唯一的
-					127.0.0.1 是本地回环地址，该地址==永远==可以访问到自己的计算机
-				域名 : 	由于 IP 地址都是没有规律的一些数字组成的，很难被人记住，不利于广泛
-						传播，所以就有人想出来要给 IP 起名字（别名）。
-					顶级域名（了解）
-						.com: 商业机构 
-						.cn: 中国国家、地区域名 .hk,
-						.gov: 政府网站。
-						.org: 机构。
-						.edu: 教育网站。
-						.net: 网络服务商。 
-						.mil: 军事。
-					特殊的域名 : localhost 含义为本地主机，对应127.0.0.1 。这是一个保留域名，主要用于本地测试。
-				端口
-					一般我们把“占门”的过程叫做监听
-					端口号的作用，是标示计算机内的某个软件，即区分每个软件
-					可以通过在命令行中运行： netstat -an 命令监视本机端口使用情况
-					在请求网络资源时，默认端口可以省略
-					计算机本身是一个封闭的环境，就像是一个大楼，如果需要有数据通信往来，必须
-						有门，这个门在术语中就叫端口，每一个端口都有一个编号，每台计算机
-						只有 65536 个端口（0-65535）。
-					http 默认的端口 80
-					https 默认的端口是 443
-					mysql 默认端口是3306
-				DNS: Domain Name System  域名系统。在DNS服务器中保存了域名和IP的映射关系
-					。主要工作是将域名转换为IP地址，因为我们通过浏览器访问网站时，实际上是去找对应的IP地址。
-					通过宽带运营商提供的服务器解析一个域名背后对应的 IP，这个过程叫做 DNS 寻址，帮你完成 
-					DNS 寻址过程的服务器叫做 DNS 服务器。
-					通俗的讲，DNS服务器能够通过你输入的域名返回该域名对应的IP。然后我们通过IP去访问网络上的资源。
-				浏览器DNS缓存（了解）
-					当我们在浏览器输入域名后，浏览器首先并不是向DNS服务器发起请求，解析其对应的IP的
-					，而是先看浏览器缓存中是否有缓存，如果有，则使用缓存中保存的IP去请求网络资源的。
-					windows下查看dns缓存:
-						ipconfig  /displaydns
-						ipconfig  /displaydns > c:/dnscache.txt   将dns缓存导入到c:/dnscache.txt文件
-					windows下清除dns缓存
-						ipconfig  /flushdns
-					清除谷歌浏览器缓存
-						chrome://net-internals/#dns
-				hosts 文件（理解）
-					操作系统在发起对 DNS 服务器的查询请求之前，会优先检查本机的 hosts 文件
-					。如果这个文件中包含了对当前需要解析的域名的配置，则不再发起对 DNS 服务
-					器的请求，直接使用 hosts 文件中的配置。
-					文件所在路径：
-						Windows：C:\Windows\System32\drivers\etc\hosts
-						macOS：/etc/hosts
-					注意：
-						本机的 hosts 文件配置只能到影响本机的 DNS 寻址
-						只有以管理员权限运行的编辑器才有权利修改 hosts 文件
-				发起TCP请求
-					客户端在向服务器发请求之前，会先向服务器发送TCP请求，此过程又称之为客户端和服务器三次握手。
-				访问网站时请求响应流程
-					1. 用户打开浏览器
-					2. 地址栏输入我们需要访问的网站网址（URL）
-					3. 检测浏览器DNS缓存，看是否有域名和IP的对应关系
-					4. 检查本机的 hosts 文件，看是否有域名和IP的对应关系
-					5. 浏览器通过  DNS 服务器 获取即将访问的网站  IP 地址
-					6. 浏览器和网站服务器发送TCP请求，进行三次握手
-					7. 浏览器发起一个对这个 IP地址的 请求，即http请求
-					8. 服务端监听指定的 端口 接收到这个请求，进行相应的处理
-					9. 服务端将处理完的结果返回给客户端浏览器（响应）
-					10. 浏览器将服务端返回的结果呈现到界面上
-				C/S 结构与 B/S结构
-					应用软件架构一般分为两类：
-						B/S 架构：Browser（浏览器） ←→ Server（服务器），这种软件都是
-							通过浏览器访问一个网站使用，服务器提供数据存储等服务。
-						B/S结构：
-							优点：简单、不用安装软件、不会涉及到软件升级的问题
-							缺点：占用带宽，传输速度比较慢
-						C/S 架构：Client（客户端） ←→ Server（服务器），这种软件通过安
-							装一个软件到电脑，然后使用，服务器提供数据存储等服务。
-						C/S结构：
-							优点：占用带宽少，传输速度快，安全性比较高
-    						缺点：需要下载客户端安装，时不时的需要更新软件
-    			静态网站和动态网站
-    				静态网站
-						Apache 实现的功能，浏览器请求对应的文件 → Apache 负责读取文件 
-							→ 将文件内容响应给客户端浏览器
-						Apache 将网页文件(纯文本)原封不动的返回给浏览器
-						无法满足让网页内容动起来（随着数据动态变化）的需求
-					动态网站
-						不再将 HTML 固定写死，每次用户请求时，动态执行一段代码，临时生成
-							一个用户想要的 HTML 页面。
-						动态网站指的也就是每次请求时服务端动态生成 HTML 返回给用户的这种网站。
-						实现动态网站的技术有很多，例如：JSP、ASP.NET、PHP、Node.js 等等。
-						这里我们选择 Node.js 作为我们了解服务端动态网页开发的技术方案，注意：
-							我们学习的重心不在 Node.js，而是了解服务端开发，以及某些其他对前端开发有帮助的东西。
-		}
-		var 整个请求响应过程 {
-			1. 用户打开浏览器
-			2. 输入地址 http://127.0.0.1:3000/message.html 向服务器发送请求，请求message.html 页面
-			3. 检测浏览器DNS缓存，看是否有域名和IP的对应关系
-			4. 检查本机的 host 文件，看是否有域名和IP的对应关系
-			5. 浏览器通过  DNS 服务器 获取即将访问的网站  IP 地址
-			6. 浏览器发起TCP请求，和网站服务器进行三次握手
-			7. 浏览器发起一个对这个 IP地址的 请求，即http请求
-			8. 服务端监听指定的 端口 的服务器软件接收到这个请求，进行相应的处理
-			9. 服务端将处理完的结果返回给客户端浏览器（响应）;服务器返回给浏览器 message.html 中的代码
-			10. 浏览器将服务端返回的结果呈现到界面上 ; 浏览器接受到 message.html 中的代码，然后解析
-		   	11. 遇到加载css的link标签，再次去服务器请求css文件
-		   	12. 遇到图片的img标签，再次去服务器请求图片
-		   	13. 遇到js代码，发送Ajax请求，请求所有的留言数据
-		    	  1. 服务器响应的结果是JSON格式的留言数据
-		    	  2. 将JSON格式的数据转成JS数组
-		    	  3. 通过拼接li的方式，拼接所有的留言
-		    	  4. 把拼接好的所有的li，放到ul中
-		}
-		let 同源政策 {
-			1.	1995 年，同源政策由 Netscape（网景） 公司引入浏览器。目前，所有浏览器都实行这个政策。
-			2.	最初，它的含义是指，A 网站设置的 Cookie，B 网站不能打开，除非这两个网页同源
-				。所谓同源指的是三个相同。
-					协议相同（http https）域名相同 (www...) 端口相同（http默认80端口，https默认443端口）
-			3.	如果非同源，共有三种行为受到限制。
-				Cookie无法读取。
-				DOM 无法获得。
-				AJAX 请求无效（可以发送，但浏览器会拒绝接受响应）。
-		}
-		let 跨域请求 : 在发送Ajax请求的时候，请求的地址只要违反了同源政策，那么就属于跨域请求。
-		let 实现跨域请求的方案--JSONP {
-			1.	JSON with Padding，是一种借助于 script 标签发送跨域请求的技巧。
-			2.	其原理就是在客户端借助 script 标签请求其他服务端的一个地址
-				，服务端的这个地址返回自身的某个全局函数，这个函数将需要返回给客户端的数据放入形参传递给客户端，客户端的函数中就可以得到服务端想要返回的数据。
-				注意：返回的数据是 JavaScript 脚本（而非一段 HTML），返回的脚本可以被执行
-		}
-		let 实现跨域操作 {
-			1.	响应的结果会被请求的网站当做js代码来执行
-				<script>
-					// 因为4000网站，返回的结果是，调用一个叫做abcd的函数
-					// 所以要先准备好这个函数
-					// 形参x就是4000网站返回的数据
-					function abcd (x) {
-					    console.log(x);
-					}
-				<script>
-				<script src="http://127.0.0.1:4000/getStu"><script>
-			2.	获取url中传递的参数的值，这个值就是请求的函数的名字，将要返回的数据当做函数的参数
-				，传递给函数
-			3.	// 服务端把数据转成JSON格式
-     			data = JSON.stringify(data); // 这样请求的客户端得到的结果可以在客户端直接执行
-     		4.	// getStu函数就是获取到的url中传递的参数的值，并传递data数据
-     			res.send('getStu(' + data + ')');
-     		5.	jQuery封装的ajax方法跨域请求
-     			// 联网，加载百度的jquery文件，来学习jquery
-  				<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-  				<script>
-  				    // 向4000网站中的 getStu2 接口，发送请求，请求所有的学生信息
-  				    $.ajax({
-  				        type: 'GET',
-  				        // 为了兼容各个版本的jQuery，最好在url上加入如下所示的callback
-  				        // url: 'http://127.0.0.1:4000/getStu2?callback=?',
-  				        url: 'http://127.0.0.1:4000/getStu2',
-  				        success: function (res) {
-  				            console.log(res);
-  				        },
-  				        dataType: 'jsonp' // 必须指定预期服务器返回数据的类型为jsonp
-  				    });
-  				</script>
-		}
-	</script>
-
-
-	Node
-	<script>
-		let Node概述 {
-			Node介绍
-				Node全名是Node.js，但它不是一个js文件，而是一个软件
-				Nodejs是一个基于Chrome V8引擎的ECMAScript的运行环境
-				Nodejs可以执行js文件
-				Nodejs提供了大量的工具（API），能够让我们完成文件读写、Web服务器创建等功能
-			Nodejs中的JS和浏览器中的JS的区别
-				安装了浏览器这个软件，它不但可以执行ECMAScript，浏览器这个软件内置了window对象，所以浏览器有处
-				理DOM和BOM的能力。
-				安装了NodeJs这个软件，它不但可以执行ECMAScript，NodeJS这个软件也内置了一些东西，包括全局成员和
-				模块系统。
-			为什么要学习Nodejs
-				1. 大前端必备技能
-				2. 使得JS能够和操作系统 “互动”（读写、创建文件等，还可以处理计算机中的进程）
-				3. 为JavaScript提供了服务端编程的能力
-					文件IO
-					网络IO
-				1. 了解服务器这个黑盒内部的实现原理
-				2. 了解接口开发
-				3. 进一步理解Web开发
-			node初体验
-				注意事项：
-					输入node回车后，要按两次Ctrl+C，才能回到目录中（Ctrl一直按着不放也可以，松开从新按也可以）
-					执行js文件时，如果当前命令行目录和js文件不在同一个盘符下，要先切换盘符
-					执行js文件时，如果当前命令行目录和js文件在同一个盘符中，则可以使用相对路径找到js文件并执行
-					体会，此时执行的js代码或文件和浏览器没有任何关系，他们是通过node执行的
-		}
-		let	global全局变量 {
-			1. node中有一个全局变量global，是node中最大的一个对象，相当于浏览器中的window对象。
-			2. global中的成员在使用时，可以省略global，这点也类似浏览器中的window
-			3. 下面介绍几个全局对象 global 中的成员：
-				console，我们在初体验时，使用了console，它可不是浏览器中的console对象，使用的是node中的console
-				process，和进程相关的对象 process.env 自带的一个全局变量
-				setInterval，同理，也是node中的，不是浏览器中的
-				require()，它是全局对象global中的一个方法，用于在js文件中引入另外的文件
-				__dirname，当前执行文件的绝对路径（在js文件中使用）
-				__filename，当前执行文件的绝对路径，包含文件名（在js文件中使用）
-		}
-		let	path模块 {
-			3.	path 是 Node 本身提供的 API，专门用来处理路径。node核心模块
-			4.	path 仅仅用来处理路径的字符串，不一定存在对应的物理文件。
-			5.	const path = require('path'); 加载模块
-			6.	方法　							作用
-					path.basename(path[, ext])	返回 path 的最后一部分(文件名);ext提取的意思
-					path.dirname(path)			返回目录名
-					path.extname(path)			返回路径中文件的扩展名(包含.)扩展名就是后缀名
-					path.format(pathObject)		将一个对象格式化为一个路径字符串
-					path.parse(path)			把路径字符串解析成对象的格式
-					path.join([...paths])		拼接路径
-					path.resolve([...paths])	基于当前工作目录拼接路径
-				工作目录：当前运行 Node 程序的目录
-		}
-		let	fs模块　{
-			1. 	文件操作模块　　　http://nodejs.cn/api/fs.html
-			2.	文件系统，对文件/文件夹的操作  file system
-			3.	const fs = require('fs'); 加载模块
-				// 引入模块的时候，建议使用const，因为我们不希望它改变
-			4.	API　							作用
-					fs.access(path, callback)	判断文件是否存在
-					fs.readFile(path, callback)	读取文件
-					fs.writeFile(file, data, callback) 向文件写入内容,覆盖原来的内容
-					fs.appendFile(file, data, callback)	向文件中追加内容
-					fs.copyFile(src, callback)	复制文件
-					fs.mkdir(path, callback)	创建目录
-					fs.readDir(path, callback)	读取目录列表
-					fs.rename(oldPath, newPath, callback)	重命名文件/目录
-					fs.rmdir(path, callback)	删除目录	：　只能删除空目录
-					fs.stat(path, callback)	获取文件/目录信息
-					fs.unlink(path, callback)	删除文件
-					fs.watch(filename[, options][, listener])	监视文件/目录
-					fs.watchFile(filename[, options], listener)	监视文件
-		}
-		let	querystring模块　{
-			1. 	查询字符串处理模块　：　处理查询字符串（请求参数）的模块
-			2. 	const querystring = require('querystring'); 加载模块
-			3. 	// parse -- 将查询字符串解析成JS对象
-  				querystring.parse('id=1&name=zs&age=20'); 
-  				// { id: '1', name: 'zs', age: '20' }
-  				// stringify -- 将JS对象转成查询字符串
-  				querystring.stringify({ id: '1', name: 'zs', age: '20' });
-  				// id=1&name=zs&age=20
-  		}
-  		let url模块 {
-  			1. 一个完整的url 协议://主机地址:[端口]/文件地址?参数
-			2. 共有两套处理url的API  得到一个对象;
-				遗留的API，提供url.parse();方法解析url
-				新的API，通过实例化URL，来解析url
-			3. const url = require('url'); 加载模块
-			4. 遗留API使用方法
-			    let myURL = url.parse('/test.html?id=11&age=22'); // 返回一个包含url各个部分的对象
-			5. 新的API使用方法，实例化的时候，必须传递一个完整的url
-				// 直接提供一个完整的url
-  				let myURL = new URL('http://www.xxx.com/test.html?id=11&age=22');
-  				// 或提供两个参数，一是文件路径及参数部分，二是域名，总之，二者组合必须是完整的url
-  				let myURL = new URL('/test.html?id=11&age=22', 'http://www.xxx.com');
-  				// 得到的myURL是一个对象，包含url中的各个部分
-  				// 需要解析参数部分，则使用querystring模块，或使用URL的一个子对象searchParams中的get方法
-  				let age = myURL.searchParams.get('age')； // 得到22
-  		}
-  		let	http模块 { err : error的缩写 错误信息
-			1. node不同于Apache，安装完node并没有一个能够提供Web服务环境
-				，需要使用http模块自己来搭建Web服务器
-			2. http服务器处理模块是一个系统模块，让我们能够通过简单的流程创建一个Web服务器
-			3. 搭建步骤
-				1. const http = require('http'); 导入 http 核心模块
-				3. const server = http.createServer(); server 对象负责建立连接，接收数据
-				4. server.listen(4000, () => console.log('Server is running at port 3000.'));监听端口
-				5. server.on('request', (req, res) => {});监听客户端的 request 请求事件，设置请求处理函数
-				6. 当服务器接收到浏览器的请求后，如果没有做出响应，浏览器会等待
-				7. 服务器的最终目的是要根据请求做出响应
-			4. 响应
-				1. 当收到浏览器的请求后，触发request接收事件（该函数有两个核心参数 request 和 response）
-				2. server.on('request', function (req, res) {}); 处理请求函数
-    				1. req : 请求对象，浏览器发送的请求报文中的数据已经被解析到该对象上
-    					涉及到和请求相关的信息，都是通过请求响应处理函数的第一个参数(request)完成的。
-						request.url    获取请求行中的路径
-						request.method   获取请求行中的请求方法
-						request.headers    获取请求头
-					2. res : 响应对象，服务器给浏览器返回的响应内容，可以通过该对象设置
-						response.setHeader()  设置响应头，比如设置响应体的编码
-						statusCode 设置状态码
-						res.write() 设置响应体（返回给浏览器的内容）的内容，可以多次调用
-									但是只调用write不会做出响应，发送响应要调用 end() 
-						res.end()    把响应报文（响应行、响应头、响应体）发送给浏览器
-				3. PS：浏览器在请求服务器的时候，默认会请求网站根目录下的 /favicon.ico 网站图标
-			5. 根据不同 url 地址处理不同请求
-				1. 涉及到和请求相关的信息，都是通过请求响应处理函数的第一个参数(request)完成的。
-				2. 形参req : 请求对象，浏览器发送的请求报文中的数据已经被解析到该对象上
-					request.url    获取请求行中的路径
-					request.method   获取请求行中的请求方法
-					request.headers    获取请求头
-			6. 处理浏览器POST方式提交的数据
-				1. POST请求一般会提交数据给服务器，服务器在接收数据的时候也是分块接收的。
-					为了演示POST表单数据如何接收，使用message.html即可。但是需要处理一下message.html中的表单
-					为form添加action属性，值为 /addMsg
-					为form添加method属性，值为POST
-					为input和textarea添加name属性，因为表单提交数据是根据name属性获取的
-					表单提交按钮要使用submit类型的
-					// <form action="/addMsg" method="POST">
-        		// 			<div class="form-group">
-        		// 			  <input name="name" class="form-control" id="txt_name" type="text">
-        		// 			</div>
-        		// 			<div class="form-group">
-        		// 			  <textarea name="content" id="txt_content" cols="80" rows="10"></textarea>
-        		// 			</div>
-        		// 			<button id="btn_send" class="btn btn-primary">提交</button>
-      				// </form>
-				2. 服务器端接收POST表单数据，分为3步：
-					1. 定义一个空字符串，用于存储表单提交的数据
-					2. 给req注册data事件，当服务器接收到一部分表单数据的时候，就会触发data事件
-					3. 给req注册end事件，当完全接收到了表单数据之后，end事件就会触发
-				3. POST请求一般会提交数据给服务器，服务器在接收数据的时候也是分块接收的
-					var http = require('http');
-					// 1. 创建服务器，得到 Server 实例
-					var server = http.createServer();
-					// 2. 监听客户端的 request 请求事件，设置请求处理函数
-					server.on('request', function (req, res) {
-					    // 假设 /add 是POST方式的请求
-					    if (req.url === '/addMsg' && req.method === 'POST') {
-					        // 注册req的data事件，分块接收数据
-					        let str = '';
-					        req.on('data', (chunk) => {
-					            str += chunk; // chunk 是块的意思，这里将分块接收到的数组拼接到str字符串中
-					        });
-					        // 注册req的end事件，当数据都接收到了，会触发end事件
-					        req.on('end', () => {
-					            // 这里处理用户提交的数据
-					            console.log(str);
-					        });
-					    }
-					})
-					// 3. 绑定端口号，启动服务器
-					server.listen(3000, function () {
-					  console.log('Server is running at port 3000.')
-					})
-			7. 处理静态资源
-				1. 静态资源指的是html文件中链接的外部资源，如css、js、image文件等等。
-				2. 如果请求的html 文件中链接了外部文件(静态资源)，浏览器会自动再次发送请求，向服务器请求这些文件
-				3. 服务器要判断浏览器请求的路径是否是静态资源，如果是静态资源把静态资源的内容返回给浏览器
-				4. 浏览器请求了静态资源文件，服务器就得做出响应，而且还要指定响应数据的类型
-					，否则浏览器会把字符串当做纯文本处理。
-				5. 建议每个响应都告诉客户端我给你发送的 Content-Type 内容类型是什么
-					为不同的文件类型设置不同的 Content-Type
-						.html：text/html
-						.css：text/css
-						.js：application/javascript
-						.json : application/json
-						.jpg：image/jpg
-						    response.setHeader('Content-Type', 'text/css');
-			8. 处理 404
-				1. 404 是一个响应状态码，表示请求的资源不存在
-				2. 如果请求未处理的路径，服务器不会做任何的响应，此时浏览器处于等待状态
-				3. 如果浏览器请求未处理的路径，统一设置响应码 404，并做友好提示
-        			// 设置状态码为404
-        			response.statusCode = 404;
-        			response.end('对不起，您请求的页面未找到');
-		}
-		let NPM第三方模块 {
-			全局安装
-				执行下面的命令，全局安装第一个第三方模块
-    			npm install -g nodemon
-				npm 表示使用npm工具
-				install 表示安装
-				g 表示全局安装
-				nodemon是第三方模块的名字
-		}
-		let express框架 {
-			require()  用于加载其他的js文件或json文件
-			response.sendFile(文件绝对路径); -- 功能是读取文件，并将读取到的结果响应给浏览器。参数必须是文件的绝对路径
-			response.json();
-			response.render();
-
-			说明
-				1. 在code中安装了express，在code及其子（后代）目录中都可以使用express
-				2. express框架把浏览器请求的每一个url地址都由一个独立方法接收并处理，没有了 if
-					 ... else if ... else这样的分支，程序结构更加清晰
-				3. express框架封装了一些额外的API（例如:send），可以让我们更方便的构造Web服务器
-					3.1 ）使用send方法响应数据的话，会自动设置content-type。
-					3.1 ）注意send不能直接响应数字，需要加引号。直接使用数字，会将数字当做状态码解释
- 			1. 使用express构造服务器也是4步流程： 
- 			   ① 加载express模块         const  express = require('express');
- 			   ② 创建express服务器       const  app = express();
- 			   ③ 开启express服务器       app.listen(3000, () => {})
- 			   ④ 注册服务器事件          	app.get(url, callback)   app.post(url, callback)
-			2. 使用中间件处理静态资源的三种方法 app.use([请求的url的开头], 回调函数(req, res, next));
-				1. 判断请求文件名  stsrtsWith是以什么开始
-					app.use((req, res, next) => {
-						if(req.url.startsWith('/assets/')){
-							// 是以这个文件开头的进入区间  读取并给浏览器返回这个文件
-							res.sendFile(__dirname + '/public' + req.url);
-						}else{
-							next();
-						}
-					};
-				2. 直接判断请求文件名
-					app.use('/assets/', (req, res, next) => {
-						// 如果请求的文件是以/assets/开头的,就进入
-						res.sendFile(__dirname + '/public/assets/' + req.url);
-					} 
-				3. 使用express的static方法
-					app.use('/assets/', express.static(__dirname + '/public/assets/'));
-			3. 注册服务器事件有两个方法： app.get() 和 app.post()
- 			   	1. get方法用来接收get请求，浏览器地址栏发起的请求都是get请求
- 			   		// 读取文件并返回有两个方法 1 2
- 			   		1. 	app.get('/message.html', (req, res) => {
- 			   				fs.readFile('./public' + req.url, (err, data) => {
- 			   					// 判断是否读取成功
-								if(err) return console.log(err);
-								// 成功就返回内容
-								res.write(data);
-								res.send();
-								// res.end();也可以,没有send好使
-								// send方式会导致请求头重复设置,而导致报错
- 			   				})
-						})
- 			   			fs.readFile(path, callback); 回调函数有两个参数req,res,
- 			   				用res.write();res.end()返回读取结果
- 			   			fs.write(path, data, callback); 写入内容
- 			   		2.  app.get('/message.html', (req, res) => {
-							// 读取并返回请求的文件
-							res.sendfile(__dirname + '/public/message.html');
-						})
- 			   		3.	处理接口
- 			   			app.get('/getMsg', (req, res) => {
-							// 读取json文件
-							let ary = require('./db.js');
-							// 将js数组响应给浏览器,有两种方法
-							// 1. 使用JSON.stringify,将js数组转成json格式,然后使用end响应
-							// 2. 使用res.json方法,直接响应JS数据,res.json()直接将数组处理成json格式
-							res.json(ary);
-						})
- 			   	2. post方法用来接收post请求，接收post表单提交的请求
- 			   		1. post请求可能会很多,所以要定义一个中间件用来存储数据
- 			   			// 定义中间件
-						app.use((req, res, next) => {
-							if(req.method === 'POST') {
-								// 定义一个空字符串存储数据
-								let str = '';
-								// 注册data数据接收事件
-								req.on('data', chunk => str += chunk);
-								// 注册end事件,当数据接收完成会自动触发 回调函数
-								req.on('end', () => {
-									// 把数据保存到请求对象中
-									req.body = querystring.parse(str);
-									// 保存完下一步
-									next();
-								})
-							}else {
-								next();
-							}
-						}
-					2. 第二种保存post数据的方式  定义一个中间件,来接收浏览器提交的post类型的数据
-						const bodyParser = require('body-parser');
-						app.use(bodyParser.urlencoded({extended: false}));
-					3. post请求方式   处理 : 文件
-						// 调用文件处理模块
-						const fs = require('fs');
-						// 定义post请求方式处理接口
-						app.post('/addMsg', (req, res) => {
-							// 读取db.json文件  得到一个数组
-							let js = require('./db.json');
-							// 将body里的数据添加到数组中
-							js.push(req.body);
-							// 调用writeFile方法,将新数组转成字符串,写入db.json文件
-							fs.writeFile('./db.json', JSON.stringify(js), err => {
-								// 判断是否写入成功,返回响应的值
-								if(err) res.json(false);else res.json(true);
-							});
-						})
-		}
-		let MySQL {
-			黑窗口的操作: 每一个命令结束,后边都要加;号
-				1. 左键单击WampServer软件,提示输入密码,无密码直接回车即可
-				2. show databases; 查看都有哪些数据库
-				3. use 加数据库名称；进入数据库
-				4. source 加路径；导入数据
-				4. 创建
-					CREATE TABLE `ali_admin` (
-					  `admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id 主键 自增长',
-					  `admin_email` varchar(50) NOT NULL COMMENT '管理员邮箱 唯一，非空',
-					  `admin_nickname` varchar(30) NOT NULL COMMENT '管理员昵称',
-					  `admin_pwd` char(32) NOT NULL COMMENT '密码',
-					  `admin_tel` char(11) DEFAULT NULL COMMENT '手机号',
-					  `admin_gender` enum('男','女','人妖') DEFAULT '人妖' COMMENT '性别',
-					  `admin_age` tinyint(3) unsigned DEFAULT NULL COMMENT '年龄',
-					  `admin_sign` text COMMENT '个人介绍',
-					  `admin_addtime` char(10) DEFAULT NULL COMMENT '添加时间2019-02-12',
-					  `admin_pic` varchar(255) DEFAULT NULL,
-					  `admin_state` enum('激活','禁用') DEFAULT '激活' COMMENT '用户状态',
-					  PRIMARY KEY (`admin_id`),
-					  UNIQUE KEY `admin_email` (`admin_email`),
-					  UNIQUE KEY `admin_nickname` (`admin_nickname`)
-					) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-					// PRIMARY KEY 主键
-					// UNIQUE kEY 唯一索引，表示该字段的值不能有重复
-					// 上面就是仅仅知道的一些命令
-			1. 必须先打开服务器才能连接成功
-				1. 点击“链接”按钮 ---  选择要链接的数据库种类
-				2. 配置链接信息
-   					用户名： root          该用户是MySQL服务器系统的最高用户，拥有该系统的所有权限
-   					密码：  root             phpstudy中MySQL系统root用户的默认密码
-   				3. 上面连接名称是localhost，所以界面上的链接是“localhost”
-   				4. 如果变绿了,就是可以用了
-   				5. 右击localhost新建数据库
-   					设置数据库名,字符集选  utf-8
-   				6. 双击 'study' --->  '表'（右键） --->  '新建表'
-   				7. 设置字段类型
-   					1. 最右侧钥匙表示这一列值都是唯一的
-   					2. tinyint : 整数,-128 ~ 127;不加正负值就是0到255
-   					3. int : 整数,-21 亿 ~ +21 亿;
-   					4. float : 小数;
-   					5. varchar : 字符串类型,变长字符串,长度可变;
-   					6. char : 字符串类型,定长字符串,适用于长度不变的列
-   					7. decimal : 浮点型,(就是可以设置小数点后多少位)
-   						长度 5 : 数字共 5 位; 小数点后有两位则小数点前有 3 位
-   						小数点 2 : 小数点后有 2 位
-   					8. 无符号 : 加不加正负号;
-   					9. 自动递增 : ID列每增加一个,自动加 1
-   					10. 保存后使用F5刷新，能够看到新建好的表
-   			2. SQL语句
-	   			数据查询
-					语法格式: SELECT  字段名1, 字段名2, .....  FROM 表名	
-				基本查询
-					语法格式:  	select  字段名1, 字段名2,....  from  表名 
-						// 案例1: 查询所有学生的 学号(id) 和 姓名(name)
-							select id,name  from stu
-						// 案例2: 查询学生的全部信息 (全部字段信息)
-						   	*是通配符，代表所有的字段 
-							select * from stu
-				带where子句的查询
-						and 条件叠加;相当于 &&;
-						or  两个条件都查询;相当于 ||;
-					语法格式: select *(查询什么,一个范围) from stu where 你的条件
-						// 查询年龄大于20岁的同学
-						select * from stu where age > 20
-						// 查询年龄大于20岁的男同学(判断相等用一个等号，字符串要加引号)
-						select * from stu where age > 20 and sex='男'
-						// 查询年龄小于20岁的同学或者所有的女同学
-						select * from stu where age < 20 or sex='女'
-						// 查询年龄在20到30岁之间的同学（包括20和30）
-						select * from stu where age >= 20 and age <= 30
-						select * from stu where age between 20 and 30
-						// 查询学号为2的学生的所有信息
-						select * from stu where id = 2
-						// 查询年龄大于等于25的学生的学号、姓名、年龄
-						select id,name,age from stu where age >= 25
-				模糊查询 :　like: 在执行模糊查询时，必须使用like来作为匹配条件
-					通配符:
-  						%: 代表任意长度(包括0)的任意字符
-  						_:  代表1位长度的任意字符
-						// 查询名字中第一个字是 “王” 的同学
-						select * from stu where name like '王%'
-						// 查询名字第一个字是 “王” ，但是名字只有两个字
-						select * from stu where name like '王_'
-						// 查询名字中包含有 “王” 的同学
-						select * from stu where name like '%王%';
-				查询结果排序：　order by 可以对查询结果按某个字段进行升序或者降序排列
-					注意：如果SQL语句中，有where和order by，where一定要放到order by之前
-  					升序 asc （默认值） ，  降序 desc 
-  						// 查询所有的学生，按添加先后顺序，降序排列
-						select * from stu order by id desc
-						// 查询所有的学生，按id升序排序
-						select * from stu order by id asc
-						select * from stu order by id
-						// 查询学生，按年龄降序排列
-						select * from stu order by age desc
-						// 查询学生，按年龄降序排序，如果年龄相同，则按身高升序排序
-						select * from stu order by age desc, height asc
-						// 查询年龄大于25的同学，并按年龄升序排序
-						select * from stu where age > 25 order by age
-				限制查询结果
-					limit 用来限制查询结果的起始点和长度
- 					格式:  limit  start, length
- 					start: 起始点。 查询结果的索引，从0开始。 0　代表第一条数据。如果省略start，则默认表示从0开始
- 					length: 长度
- 					// 查询前三名同学
-					select * from stu limit 0, 3
-					select * from stu limit 3
-					// 查询第4/5/6 三名同学
-					select * from stu limit 3, 3
-					// 查询年龄最大的三名同学
-					select * from stu order by age desc limit 3
-					// 查询 名字 以“王”开头，的年龄最大的1名同学
-					select * from stu where name like '王%' order by age desc limit 1
-					注意：where、order by、limit如果一起使用，是有顺序的，where在最前面、其次
-						是order by、limit要放到最后
-				添加数据 : 操作前保存一份表格
-					格式: insert into 表名(字段名1，字段名2,....)  values (值1，值2，....)
- 					注意: 字段的顺序要和值的顺序是完全匹配的
-          				自增长类型的主键，可以使用null来填充；MySQL会自动填充数据
-          				如果每个字段都有数据，那么表名后面可以不跟字段名，但是values里面的顺序必须正确
-          			案例: 向stu表中添加一条数据
-						// 方式一：指定字段和值，只要字段和值对应即可。和顺序无关
-						    insert into stu (sex, weight, name) values ('男', 60, '王晨')
-						// 方式二：和顺序有关，因为没指定字段，所以值必须是所有的值，而且顺序和表中字段的顺序要一致
-						    insert into stu values (null, '老汤', 23, '男', '打游戏,打球,打人', 176, 72)
-						// 方式三：使用set里设置新数据的值，没有顺序关系
-						    insert into stu set weight=80, name='左金城', age=31 
-				修改数据： 操作前保存一份表格
-					格式:  
-						update  表名   set   字段1=值1, 字段2=值2,...  where  ==修改条件==
-						修改表中的哪一条（几条）数据的 字段1=值1...
-						不指定修改条件会修改所有的数据
-					// 更新所有的体重为60（危险操作）
-					update stu set weight=60
-					// 更新id为1的同学的年龄为24岁
-					update stu set age = 24 where id = 1
-					// 更新id大于8的同学的年龄为30，体重为50
-   					update stu set age=30, weight=50 where id > 8
-   				删除数据：　操作前保存一份表格
-   					格式:  delete  from 表名  where 删除条件
-					注意：不指定条件将删除所有数据
-    				// 删除id大于10的同学
-    				delete from stu where id > 10
-    				// 不加条件，全部删除了
-    				delete from stu
-    				drop table stu; -- 删除stu表
-					删除库，加入反引号可以防止出现问题，否则MySQL可能会将70当做关键字或其他意思解释
-		}
-		let node中的MySQL {
-			affectedRows： 受影响行数
-			insertID： 查询数据的主键值
-			db执行SQL语句 
-				multipleStatements: true  // 加入这个选项，表示可以一次性执行多条SQL
-				timezone: 'M' // 该选项表示使用原始的时间
-				参数1: 要执行的SQL语句
-				参数2: 占位符所对应的数据，没有时用 null 代替
-				参数3: 当SQL执行完成后触发的回调函数，有三个参数
-				   err: 错误对象。如果SQL执行失败，err就是错误信息的对象；如果执行成功则为null
-				   results: SQL执行的结果
-				   fields: 本次SQL执行涉及到的字段信息
-			查询 --- read
-				let sql = 'select * from stu where age > ? or sex = ?';
-				db(sql, [20, '男'], (err, result) => {
-				    if (err) throw err;
-				    console.log(result);
-				}); 
-			添加 --- create
-				let sql = "insert into stu(name, age) values ('马大帅', 36)";
-				if (result.affectedRows > 0) {
-    			    console.log('添加成功，新数据的id为：' + result.insertId);
-    			} else {
-    			    console.log('添加失败');
-    			}
-			删除 --- delete
-				let sql = 'delete from stu where id=?';
-				result.affectedRows 表示受影响的行数，如果大于0，表示删除成功
-			修改 --- update
-				let sql = 'update stu set ? where id=?';
-				let values = {
-				    name: '张三疯',
-				    age: 99
-				};
-				db(sql, [values, 15], (err, result) => {
-					result.affectedRows 表示受影响的行数，如果大于0，表示更新成功
-				};
-		}
-		let MySQL+中间件 { 中间件是一个概念,就是针对不同的请求,把服务器作出的响应分成一各各不同的模块
-			什么请求方式都要对浏览器做出响应
-				res.end(data); //需要设置响应头
-				res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
-			1. 中间件的书写相对固定,就是一个函数;
-				1. 第一个形参通常是url
-					1. get  就是读取某个文件,或文件夹
-					2. post 就是找哪个接口
-					3. use  通常只有最后一个函数
-				2. 最后一个形参通常是一个函数, (req, res) => {};
-				3. 中间部分 针对不同的情况,会放一些参数,一般都是post请求
-					1. 数据 data
-					2. 图片的 pic
-			2. 浏览器的请求大概分成三种
-				1. 请求静态文件
-				2. GET请求html页面 可能会链接外部资源:
-					1. 数据库
-					2. 文件
-				3. POST提交数据 可能会链接外部资源:
-					1. 文本数据 : 文本
-					2. 表单数据 : 上传图片
-					3. 数据库
-		let get 静态资源 {	服务器针对请求,使用中间件作出响应;
-			1. 处理静态资源文件 : 直接判断文件夹
-				app.use('/abcd/', express.static(__dirname + '/public/abcd'));
-			2. get请求 :　都有什么
-				1. 不需要处理,直接响应页面
-					app.get('/message.html', (req, res) => {
-					    // 调用sendFile，会自动设置header、最后将数据响应给浏览器
-					    res.sendFile(__dirname + '/public/message.html');
-					});
-				2. get中的 fs模块
-					const fs = require('fs');
-					app.get('/message.html', (req, res) => {
-					    // 服务器端，读取任意文件，将读取的结果响应给浏览器
-					     fs.readFile('./public/message.html', (err, data) => {
-					        if (err) return console.log(err);
-					        res.end(data);
-					    }); 
-					});
-				3. get中的模板引擎
-					const tempalte = require('express-art-template');
-					// 还需要一个配置
-					app.engine('html', tempalte); // 表示后缀为html的模板使用template来处理
-					app.get('/message.html', (req, res) => {
-						let data = require('./db.json');
-					    res.render(__dirname + '/public/message.html', {
-					        arr: data
-					    });
-					});
-				4. SQL语句 链接数据库
-					const db = require('./db.js');
-					app.get('/index.html', (req, res) => {
-					    // res.sendFile(__dirname + '/public/index.html');
-					    // 使用db查询所有的学生
-					    db('select * from stu', null, (err, result) => {
-					        if (err) throw err;
-					        // console.log(result);
-					        res.render(__dirname + '/public/index.html', {
-					            arr: result
-					        });
-					    });
-					});	
-				3. req中的参数 : 
-					req.url 
-					req.body
-					req.method 查看请求方式 
-				4. querystring 字符串模块
-				5. 把数据响应给页面
-					// 读取db.json，并响应给浏览器
-    				let data = require('./db.json'); // 得到数组
-    				res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
-		}
-		let post { 请求中  都有什么
-			1. 接收数据 : 
-				1. //加载并使用body-parser来统一接收POST提交的数据
-					const bodyParser = require('body-parser');
-					// urlencoded 这个方法可以接收 x-www-form-urlencoded 类型的数据
-					app.use(bodyParser.urlencoded({extended: false}));
-				2. 使用multer第三方模块，让他来处理 form-data 类型的数据
-					// 配置，即配置上传文件的存放路径和上传后的文件名
-					const multer = require('multer');
-					const myupload = multer({
-						// multer也会将文本类型的信息放到req.body中
-						// multer会将上传的文件信息保存到req.file中
-					    dest: __dirname + '/public/uploads' // dest选项配置的就是文件上传的路径
-					});
-			2. 处理数据 :
-				1. SQL语句 把数据提交给数据库 : 第二个参数添加数据,有时需要转换数据类型
-					app.post('/addStu', myupload.single('pic'), (req, res) => {
-						let sql = 'insert into stu set ?';
-						// req.body 里面只有文本类型的信息，没有图片的名字，所以自己向req.body中添加一个pic
-						req.body.pic = req.file.filename;
-						// 可以直接传递req.body是因为表单的name值写的时候就对应好了
-						db(sql, req.body, (err, result) => {
-						    if (err) throw err;
-						    if (result.affectedRows > 0) {
-						        // res.json(true);
-						        res.json({code: 200, message: '添加成功'});
-						    } else {
-						        // res.json(false);
-						        res.json({code: 201, message: '添加失败'});
-						    }
-					    });
-					});
-				2. 把数据保存到文件中
-					const fs = require('fs');
-					app.post('/addMsg', (req, res) => {
-					    // 接收浏览器提交的数据
-					    // console.log('处理请求时：', req.body); // { name: 'aaa', content: 'bbb' }
-					    // 将req.body放到db.json中
-					    let data = require('./db.json');
-					    data.push(req.body);
-					    fs.writeFile('./db.json', JSON.stringify(data), (err) => {
-					        if (err) {
-					            res.json(false); // json方法会自动将js数组转成json格式
-					        } else {
-					            res.json(true); // json方法会自动将js数组转成json格式
-					        }
-					    });
-					});
-				3. 把数据响应给页面
-					// 读取db.json，并响应给浏览器
-    				let data = require('./db.json'); // 得到数组
-    				res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
-    	}
-    	let use 中间件 {通常是只有一个函数
-    		1. // 定义一个中间件，来接收浏览器提交的POST类型的数据
-				const bodyParser = require('body-parser');
-				app.use(bodyParser.urlencoded({extended: false}));
-			3. //处理静态资源文件 : 直接判断文件夹
-				app.use('/abcd/', express.static(__dirname + '/public/abcd'));
-			1. // 定义中间件，处理静态资源文件
-				// app.use([请求的url的开头],  函数);
-				app.use((req, res, next) => {
-				    // console.log(req.url);
-				    if (req.url.startsWith('/assets/')) {
-				        // 进入到这个区间，表示是静态资源文件。然后读取他们并做出响应
-				        res.sendFile(__dirname + '/public' + req.url);
-				    } else {
-				        next(); // 当前的中间件已经处理完毕了，让程序向后走
-				    }
-				});
-			2. // 定义中间件，处理静态资源文件
-				// app.use([请求的url的开头],  函数);
-				app.use('/assets/', (req, res, next) => {
-				    // console.log(req.url);  // /bootstrap.css   /avatar.png
-				    // 进入到这个中间件，说明请求的url满足开头是 /assets/ 这个条件
-				    // 所以直接响应结果
-				    res.sendFile(__dirname + '/public/assets' + req.url);
-				});
-			
-			4. // 定义一个中间件，来接收浏览器提交的POST类型的数据
-				const querystring = require('querystring');
-				app.use((req, res, next) => {
-				    // 判断请求是否是POST类型的
-				    if (req.method === 'POST') {
-				        // 接收浏览器提交的数据
-				        let str = '';
-				        req.on('data', (chunk) => {
-				            str += chunk;
-				        });
-				        req.on('end', () => {
-				            // 将接收到的数据，添加到db.json中
-				            req.body = querystring.parse(str);
-				            next();
-				        });
-				    } else {
-				        next();
-				    }
-				});
-				// 上面的中间件，做了一件事   req.body = 接收到数据；
-			5. 	// 注册中间件，判断是否登录
-				app.use((req, res, next) => {
-				    // console.log(req.session.isLogin); // 没有登录得到undefined、登录了得到true。
-				    // 判断是否登录了
-				    if (!req.session.isLogin) {
-				        // res.send('<p>请先</p>');
-				        // res.send('请先<a href="/login.html">登录</a>');
-				        res.send('<script>alert("请先登录"); location.href="/login.html";</'script'>');
-				        return;
-				    } else {
-				        next();
-				    }
-				});
-		}
-		let Node中的模块化 {
-			一个单独的文件，就是一个模块
-			js模块化规范有四种标准： AMD   CMD   CommonJS   ES6
-			Node属于CommonJS标准
-			使用模块化可以很好的解决变量、函数名冲突问题，也能灵活的解决文件依赖问题
-			没有模块化，不允许一个js文件引入另外的JS，有了模块化，就允许一个js文件引入其他的js文件
-			module.exports = 对象或函数;
-		}
-		let cookie {
-			// 假设登录成功了。用户名是 zhangsan, 密码是 123
-    		// 服务器告诉浏览器，你自己要记住你的用户名和密码，下次访问这个服务器任何页面的时候，都要带上这些信息
-    		// 通过http响应头里设置cookie
-    			res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    		// 1.使用setHeader方法设置cookie
-    			res.setHeader('set-cookie', ['username=zhangsan','pwd=123']);
-    		// 2.使用writeHead方法来设置cookie
-    			res.writeHead(200, {
-    			    // 响应头的内容
-    			    'content-type': 'text/html; charset=utf-8',
-    			    'set-cookie': ['username=lisi', 'pwd=456']
-    			});
-    		// 3.使用express提供的set方法，设置响应头
-    			res.set({
-    			    // 对象的属性，就是各个响应头的内容
-    			    'content-type': 'text/html; charset=utf-8',
-    			    'set-cookie': ['username=wangwu', 'pwd=789']
-    			});
-			// 设置cookie，并设置cookie的有效期
-				app.get('/login', (req, res) => {
-				    let time = new Date(Date.now() + 3600 * 1000).toUTCString();
-				    res.set({
-				        'content-type': 'text/html; charset=utf-8',
-				        'set-cookie': ['username=wangwu;expires=' + time, 'pwd=789']
-				    });
-				    res.end('恭喜，登录成功');
-				});
-			
-			const querystring = require('querystring');
-			// 显示index.html页面的接口
-			app.get('/index.html', (req, res) => {
-			    // 检测一下，浏览器来请求的时候，是不是带着cookie来的？
-			    // 获取cookie
-			    // req.headers -- 获取到所有的请求头
-			    // console.log(req.headers.cookie); // username=zhangsan; pwd=123
-			    // 获取cookie中的用户名
-			    let cookie = req.headers.cookie.replace(';', '&'); // username=zhangsan& pwd=123
-			    cookie = cookie.replace(' ', '');
-			    cookie = querystring.parse(cookie);
-			    console.log(cookie); // { username: 'zhangsan', pwd: '123' }
-			    res.send('我是index.html，我知道你是谁，你是：' + cookie.username);
-			});
-		}
-		let session {
-			1. // 加载配置session
-				const express = require('express');
-				const app = express();
-				app.listen(4000, () => console.log('ok~~~~~~~~'));
-				// 1. 加载express-session
-				const session = require('express-session');
-				// 2. 配置session
-				let conf = {
-				    secret: 'asdfasdf232sdf',   //加密字符串。 使用该字符串来加密session数据，自定义
-				    resave: false,               //强制保存session即使它并没有变化
-				    saveUninitialized: false,     //强制将未初始化的session存储。当新建了一个session且未
-				                                 //设定属性或值时，它就处于未初始化状态。
-				    // stroe: 用于设置session的存储位置，默认是内存中；也可以保持到其他服务器
-				    // 因为session默认存储到内存中，当服务器重启之后，session就会失效
-				    cookie: {
-				        maxAge: 3600000 // 设置session的有效期
-				    }
-				};
-				//3. 注册为express-session中间件
-				app.use(session(conf));
-				// 登录接口
-				app.get('/login', (req, res) => {
-				    // 假设用户登录成功，使用session记录用户名和密码
-				    req.session.username = 'zhangsan';
-				    req.session.pwd = 123;
-				    req.session.userInfo = {height: 170, weight: 70};
-				    res.send('你好，我已经知道你是谁了');
-				});
-			2. // 加载配置session
-				const session = require('express-session');
-				app.use(session({
-				    secret: 'asdfadfa',
-				    resave: false,
-				    saveUninitialized: false,
-				    cookie: {
-				        maxAge: 3600000
-				    }
-				}));
-		}
-		let 路由 {
-			1. 路由（router）: 就是请求的接口地址
-			2. 越大的文件越难于维护，所以我们需要将 js文件进行拆分，让每个文件变的更小，功能更单一
-				，这样就有利于项目的后期维护了。
-			3. 原则： 让每个文件都更小，功能更单一
-			4. 拆分路由一般规则
-				1. 比如学生管理案例中，将所有和学生操作相关的接口放到一个路由文件中；
-				2. 将登陆、退出登录、注册等接口放到一个路由文件中。
-			5. 使用步骤
-				// 1. 加载express
-				const express = require('express');
-				// 2. 创建路由对象
-				const router = express.Router();
-				// 3. 将接口挂载到路由对象上
-				router.post('/checkLogin', (req, res) => {
-				    ....
-				});
-				router.get('/login.html', (req, res) => {
-				    ....
-				});
-				// 4. 导出路由模块
-				module.exports = router;
-				// 5. 加载路由模块，并注册成中间件
-				const router = require(__dirname + '/login.js');
-				app.use(router);
-				// 6. 把当前js文件中使用的模块加载过来，要不然报错
-				db文件 
-				multer FromData的上传控件
-		}
-		let 异步与单线程 {
-			1. 同步和异步
-				sync 同步，async 异步
-				I/O 操作都是耗时(阻塞)操作，例如：文件操作、网络操作
-				fs 模块对文件的几乎所有操作都有同步和异步两种形式
-					例如：readFile() 和 readFileSync()。
-				同步与异步文件系统调用的区别
-				同步调用立即执行，会阻塞后续代码继续执行
-				异步调用不阻塞后续代码继续执行，需要回调函数作为额外的参数，通常包含一个错误作为回调函数的第一个参数
-				异步调用通过判断第一个 err 对象来处理异常
-				异步调用结果往往通过回调函数来进行获取
-				Node 只在文件IO操作中，提供了同步调用和异步调用两种形式，两者可以结合使用，
-				但是推荐能使用异步调用解决问题的情况下，少用同步调用。
-			2. 进程和线程(了解)
-					进程
-						正在执行的应用程序
-						一个进程至少有一个线程
-					线程
-						用来执行应用程序中的代码 
-						在一个进程内部，可以有很多的线程，至少有一个线程
-						在一个线程内部，同时只可以干一件事 
-						而且传统的开发方式大部分都是 I/O 阻塞的 
-						所以需要多线程来更好的利用硬件资源 
-						给人带来一种错觉：线程越多越好(线程的创建需要耗时，线程本身需要占用内存)
-					Node.js 是单线程的
-						Node.js 用来执行 js 的线程只有一个
-						Node.js (libuv)内部维护了一个线程池
-						Node 中将所有的阻塞操作交给了内部实现的线程池 
-						Node 本身主线程主要就是不断的往返调度
 		}
 	</script>
 
@@ -5859,394 +4672,7 @@
 	</script>
 
 
-	最佳实践
-	<script>
-		1. 可维护性需要遵循以下特点：
-			  可理解性——其他人可以接手代码并理解它的意图和一般途径，而无需原开发人员的完整解释。
-			  直观性——代码中的东西一看就能明白，不管其操作过程多么复杂。
-			  可适应性——代码以一种数据上的变化不要求完全重写的方法撰写。
-			  可扩展性——在代码架构上已考虑到在未来允许对核心功能进行扩展。
-			  可调试性——当有地方出错时，代码可以给予你足够的信息来尽可能直接地确定问题所在。
-		2. 代码约定
-			1. 可读性 如下一些地方需要进行注释。
-					  函数和方法——每个函数或方法都应该包含一个注释，描述其目的和用于完成任务所可能使用
-				的算法。陈述事先的假设也非常重要，如参数代表什么，函数是否有返回值（因为这不能从函
-				数定义中推断出来）。
-					  大段代码——用于完成单个任务的多行代码应该在前面放一个描述任务的注释。
-					  复杂的算法——如果使用了一种独特的方式解决某个问题，则要在注释中解释你是如何做的。
-				这不仅仅可以帮助其他浏览你代码的人，也能在下次你自己查阅代码的时候帮助理解。
-					  Hack——因为存在浏览器差异，JavaScript 代码一般会包含一些 hack。不要假设其他人在看代
-				码的时候能够理解 hack 所要应付的浏览器问题。如果因为某种浏览器无法使用普通的方法，
-				所以你需要用一些不同的方法，那么请将这些信息放在注释中。这样可以减少出现这种情况的
-				可能性：有人偶然看到你的 hack，然后“修正”了它，最后重新引入了你本来修正了的错误。
-				缩进和注释可以带来更可读的代码，在未来则更容易维护
-			2. 变量和函数命名
-				  变量名应为名词如 car 或 person 。
-				  函数名应该以动词开始，如 getName()。返回布尔类型值的函数一般以 is 开头，如 isEnable() 。
-				  变量和函数都应使用合乎逻辑的名字，不要担心长度。长度问题可以通过后处理和压缩来缓解
-			3. 变量类型透明
-				// 通过初始化指定变量类型
-				var found = false; //布尔型
-				var count = -1; //数字
-				var name = ""; //字符串
-				var person = null; //对象
-				// 匈牙利标记法指定变量类型 "o" 代表对象, "s" 代表字符串, "i" 代表整数, "f" 代表浮点数, "b" 代表布尔型
-				var bFound; //布尔型
-				var iCount; //整数
-				var sName; //字符串
-				var oPerson; //对象
-				//用于指定类型的类型注释
-				var found /*:Boolean*/ = false;
-				var count /*:int*/ = 10;
-				var name /*:String*/ = "Nicholas";
-				var person /*:Object*/ = null;
-		3. 松散耦合; 只要应用的某个部分过分依赖于另一部分，代码就是耦合过紧，难于维护
-			1. 解耦 HTML/JavaScript
-			2. 解耦 CSS/JavaScript: 动态更改样式类而非特定样式来实现: element.className = "edit";
-			3. 解耦应用逻辑／事件处理程序
-				  勿将 event 对象传给其他方法；只传来自 event 对象中所需的数据；
-				  任何可以在应用层面的动作都应该可以在不执行任何事件处理程序的情况下进行；
-				  任何事件处理程序都应该处理事件，然后将处理转交给应用逻辑。
-		4. 编程实践
-			1. 尊重对象所有权: 永远不修改不是由你创建的对象。
-				不要为实例或原型添加属性；
-				不要为实例或原型添加方法；
-				不要重定义已存在的方法。
-				创建包含所需功能的新对象，并用它与相关对象进行交互；
-				创建自定义类型，继承需要进行修改的类型。然后可以为自定义类型添加额外功能。
-			2. 避免全局量
-
-	</script>
-
-
-	项目
-	<script>
-		let alishow {
-			1. 项目目标和需求分析
-				1.1 项目目标
-					1. 该项目是站在后端程序员角度进行开发的，==理解后端程序的开发流程==是项目中的重要环节
-   					2. 重点掌握后端程序和前端程序是如何交互的 （Ajax）
-   			1. 一般项目的开发流程
-   				第一阶段: 需求分析
-   					研究客户到底想做一个什么东西
-					产出:  
-					    需求分析文档:  规划软件模块及每个模块中的功能 
-					    项目原型:  用户最终使用到的软件界面，以静态页面形式提交
-				第二阶段: 设计概要
-    				在需求分析的基础上进一步细致化项目整体结构。 包括：系统的组织结构、模块划分、功能流程设计、
-    				接口设计、数据表设计、容错模块等。
-    				产出:  
-    					设计概要文档
-    			第三阶段: 详细设计
-    				在设计概要基础上进一步细化。包括:算法、数据结构、类的[继承结构]及调用关系，并发量等。
-    				产出:  详细设计文档
-    			第四阶段: 编码==
-    				完成代码开发工作。
-    			第五阶段: 测试
-    				α测试、β测试、白盒测试、黑盒测试（case测试/用例测试）、单例测试、集成测试等等。 
-    			第六阶段: 交付/验收 
-    				交付给客户上线运行。
-    			第七阶段: 维护
-    				项目上线之后可能会暴露一些开发环境下未发现的问题，仍需要有人的项目进行debug操作。
-    			很多项目都只有一四五六七几个阶段，因为有了这几个阶段就可以完成项目开发了。 但是，如果希望项目有
-    				高扩展性、高维护性，那么第二三阶段非常重要。因为二三阶段是规划一个项目基础架构的重要组成。
-    		2. 前台和后台
-    			一般网站类项目都有前台和后台之分。
-					前台: 给网友（游客）使用页面叫做前台。
-					后台: 系统管理员使用页面
-				在开发任何一个功能的时候，都需要前端程序员和后端程序员共同来完成。
-					前端程序员: 写 css、html、js的程序员，主要任务是页面显示结构、样式，页面特效，==Ajax==
-					后端程序员: 写php、jsp、asp、nodejs的程序员，主要任务是对数据表进行增删改查操作
-				前台：
-					首页:   信息聚合页面，各种方式显示文章列表
-					列表页: 显示某个栏目下的所有文章列表
-					详情页: 显示文章的详细内容 
-				后台：
-					管理员登录功能
-					文章管理：文章的增删改查
-					栏目管理：栏目的增删改查
-					用户管理：用户的增删改
-					评论管理：批准/驳回评论
-					设置：图片轮播、网站设置等。
-			3. 项目结构搭建
-				1. 在实现上述描述的各项功能之前，必须先定好在哪里开发这个项目，项目所需的包有
-					哪些，项目的目录结构是怎样的才够清晰，等等一系列问题，这是做项目之前都要解决的。
-					在自己的计算机上找一个位置，创建一个文件夹，比如 alishow。然后我们将项目代码全部放到这里面。
-				2. 安装项目所需的包
-					express：搭建服务器必须的包
-					art-template：模板引擎
-					express-art-template：专门配合express使用的模板引擎
-					express-session：session管理（用户登录后，需要使用session记录用户的状态）
-					mysql：对MySQL数据库操作，必须用到的包
-					moment：时间处理包（比如登录时间、文章发布时间等地方可能会需要到）
-					body-parser：处理编码格式为 x-www-form-urlencoded 的表单数据
-					multer：处理编码格式为 form-data 的表单数据文件。上传需要用的包（会员头像上传、文章或栏目配图都需要）
-				3. 文件目录结构,和项目概览
-					1. alishow
-						node_modules
-						package-lock.json
-						pageage.json
-						view （文件夹存放项目的模板，静态页面）
-						app.js （开启服务的文件，项目入口文件）
-						router （存放所有的路由文件）
-						db.js （连接数据库）
-					2. 创建 View 目录
-						View 目录，顾名思义，是存放视图文件的目录，视图即模板，通俗的说，就是前端HTML页面。
-						所以在网站根目录中创建View文件夹，将alishow的HTML文件及静态资源文件全部放到View文件夹中。
-					3. 创建 app.js
-						下面一步创建服务器。因为页面已经拿到项目中了，下面首要任务是实现访问这些
-						页面，所以要创建服务器 app.js。另外模板引擎的配置、静态资源的托管、加载路由
-						、配置 session等一系列的工作都要放到app.js中，所以这一步我们创建 app.js
-						目标： 创建并开启服务器，托管静态资源，配置模板引擎，加载路由模块
-					4. 路由文件命名规则
-						1. 阿里百秀项目会涉及到非常非常多的接口（接口地址），所以不能把接口全部定义到 app.js 
-							中。应该按功能将接口定义到不同的文件中，我们把这些路由文件全部放到router文件夹中
-							，显得文件比较整齐。
-						2. 当前项目，可以按文件夹（功能）来定义路由，也就是==路由文件的名字和模板所在的文件夹
-							同名==，这样做的好处是，看到路由文件的名字就知道它里面存放了哪些路由。
-					5. 定义接口
-						1. 将接口的名字 定义成和文件所在路径一样
-						2. 处理模板路径的问题。解决方案是在 app.js 中，向全局对象 global 中添加一个属性 rootPath，
-							值是 __dirname。那么 rootPath 就始终表示网站的根目录(alishow文件夹)
-							，另外rootPath在其他的路由文件中也可以随意使用。
-					6. 让项目看起来像真实的项目
-						1. 修改前台首页的接口为/，这样的话，浏览器直接输入 127.0.0.1:4000 就可以访问到了home.js 代码
-						2. 修改app.js中的端口为默认的80端口，这样的话，浏览器直接输入127.0.0.1 就可以访问了
-							需要将其他的占用80端口的程序关闭掉才可以，比如wampserver中的Apache服务要停止。
-						3. 在hosts文件中，加入一条记录。自己设置一个域名，让他指向127.0.0.1 
-					7. 处理静态资源
-						1. 静态资源的处理，通过浏览器工具，来查看使用的静态资源的url是以什么开头的
-						2. 所以在app.js 中可以设置静态资源目录：就是这个开头文件名
-					8. 创建 db.js 模块
-						案例中的数据全部要放到数据库中，所以会有很多的增删改查操作，为了方便，定义db.js，
-						封装连接、配置数据库的代码，当然，最后要导出对象或函数，方便其他位置使用db。
-					9. 抽取页面公共部分
-						将页面相同的部分抽离出来当做父模板，并将不同的地方“挖坑”。
-						子模板继承父模板，“填坑”
-						父模板（抽离出来的html，假如名字为layout.html）：
-						    '<html>'
-						     	.....
-						    	{{block '坑名1'}} {{/block}}
-						    	..... 
-						        {{block '坑名2'}} {{/block}}
-						    '</html>'
-						子模板：
-						    // 使用下面的extend标签继承父模板
-						    {{extend './layout.html'}}
-						    
-						    // 填坑
-						    {{block '坑名1'}}
-						    	// 这里是你填坑的代码
-						    {{'/block'}}
-						    
-						    {{block '坑名2'}}
-						    	// 这里是你填坑的代码
-						    {{'/block'}}
-					10 解决静态资源错误加载问题
-						当使用了模板继承之后，后台首页还是正常的，后台其他页面出现了静态资源不能正确加载的问题。
-						解决办法是，根据浏览器的报错信息，查看此时的静态资源的url是以什么开头的，查看的信息如下：
-						可以使用 * 表示任意的字符串，所以后台静态资源处理代码如下
-						// express中，app.use 方法的第一个参数，可以写成类似于正则表达式的形式，其中 * 表示任意的字符串
-						app.use('/admin/*assets/', express.static(__dirname + '/view/admin/assets/'));
-			4. 设计数据表
-				1. CREATE TABLE `ali_admin` (
-					  	`admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id 主键 自增长',
-					  	`admin_email` varchar(50) NOT NULL COMMENT '管理员邮箱 唯一，非空',
-					  	`admin_nickname` varchar(30) NOT NULL COMMENT '管理员昵称',
-					  	`admin_pwd` char(32) NOT NULL COMMENT '密码',
-					  	`admin_tel` char(11) DEFAULT NULL COMMENT '手机号',
-					  	`admin_gender` enum('男','女','人妖') DEFAULT '人妖' COMMENT '性别',
-					  	`admin_age` tinyint(3) unsigned DEFAULT NULL COMMENT '年龄',
-					  	`admin_sign` text COMMENT '个人介绍',
-					  	`admin_addtime` char(10) DEFAULT NULL COMMENT '添加时间2019-02-12',
-					  	`admin_pic` varchar(255) DEFAULT NULL,
-					  	`admin_state` enum('激活','禁用') DEFAULT '激活' COMMENT '用户状态',
-					  	PRIMARY KEY (`admin_id`),
-					  	UNIQUE KEY `admin_email` (`admin_email`),
-					  	UNIQUE KEY `admin_nickname` (`admin_nickname`)
-					) 	ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-					PRIMARY KEY 主键
-					UNIQUE kEY 唯一索引，表示该字段的值不能有重复
-			5. 接口文档
-				在实际工作中，各个公司的文档结构可能不太相同，但是主要的几个说明都有。
-				功能描述 : 描述该接口的实际功能
-				请求URL地址 :  ajax请求的url地址
-				请求方式： post、get
-				请求参数： 随Ajax请求一起发送到后端页面的数据
-				返回参数： 后端一般返回的是json，此处就是说明返回json结构 
-			6. 实现各个功能
-				1. 设计数据表
-				2. 开发功能前的准备工作
-					1. 确定路由文件是否为要编辑的文件
-					2. 编写路由接口，展示页面
-					3. 在app.js 中，加载路由文件，并注册成中间件
-					4. html页面模板中使用模板继承,展示需要的数据
-				3. 完成功能
-					1. 处理表单
-						查看表单各项name属性是否和接口要求一致（字段个数及name属性是否对应）
-						表单中多的字段删除
-						表单中缺少的字段自行添加
-						设置添加按钮为button类型，
-					2. 前端给a标签设置超链接值为 javascript:;
-					3. 前端给a标签，添加一个自定义属性data-id，值就是当前分类的id {{$value.cate_id}}
-					4. 前端表单中加入隐藏域,保存需要的数据,以便提交表单或其他用途使用
-					5. 前端写js，获取表单数据，发送给对应的接口
-					6. 前端，写js代码，给点击的的a标签，添加单击事件。将id提交给对应的接口
-					7. 后端编写接口，接收传过来的id，然后查询数据，分配到模板(完成数据与数据库的交互工作)
-					8. 模板循环数据
-				4. 异步上传图片 : 展示告知用户选择的图片,便于用户选择想要的图片;这也是一次ajax请求
-					// 图片需要使用formdata上传
-    				var fd = new FormData();
-    				// fd.append('avatar', 文件对象);
-    				var fileObj = this.files[0];
-    				fd.append('avatar', fileObj);
-    				// 发送ajax请求
-    				提交后,会在服务器生成一个专门存放图片的文件夹,得到的响应结果就是包括了这个文件夹的一个路径,
-    				我们需要用隐藏域保存这个包含路径的结果,以便提交表单时使用
-    		5. 自行定义 模板解析规则 语法，避免和后端的模板方法冲突
-    			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/;
-    			模板代码：'{#each arr#}' '<td>{#$value.pic_text#}</td>' '{#/each#}'
-    			解决图片不显示的问题。查看浏览器的 Network面板，查看图片的url是开头是什么，然后去app.js中配置静态资源。
-    		6. 登录功能
-    			1. 查看 login.html 中的表单的name属性是否符合接口要求
-					2. 设置登录超链接的href="javascript:"
-					3. 当点击登录的时候，发送ajax请求到接口（看接口文档）
-					   	这里需要查看一下接口文档，会看到登录后，将用户信息记录到了session==
-							// /api/login/checkLogin 接口
-							//登录成功后，注册session
-							req.session.isLogin = true;
-							req.session.userInfo = result[0];
-					4. 登录完成，给出提示
-					5. 登录成功，控制后台所有页面都需要登录才能访问
-						1. 可以在app.js中，使用中间件来判断是否登录了，然后做出后续决定
-						2. 前台页面不需要登录，所以放到中间件前面
-						3. 登录页面也要放到中间件前面
-				7. 统一处理后台侧边栏 : 就是挂好超链接，方便跳转。
-				8. 前台首页开发
-					1. session验证登录不应该限制前台页面
-					2. 分析页面中需要的数据有
-					3. 在接口中，应该分别写SQL来查询他们，然后将查询到的所有数据分配到模板
-			7. ueditor副文本编辑器
-				副文本编辑器，也叫做HTML编辑器。
-				下载ueditor，将压缩包里面的文件夹解压出来，重命名为ueditor，然后复制到项目后台第三方资源文件夹里
-				然后在添加文章的时候，使用它
-					<div class="form-group">
-						<label for="content">内容<label>
-						// 加入script标签
-						<script id="content" type="text/plain" name="content"><script>
-					<div>
-				html文件中添加如下代码即可实现效果
-    			// <script src="assets/vendors/ueditor/ueditor.config.js"><script>
-    			// <script src="assets/vendors/ueditor/ueditor.all.min.js"><script>
-    			// <script src="assets/vendors/ueditor/lang/zh-cn/zh-cn.js"><script>
-    			// <script>
-    				// 创建编辑器，getEditor方法括号里放容器的id
-    				var ue = UE.getEditor('content');
-    			// <script>
-		}
-		let MVC开发模式 {
-			1. MVC开发模式，可以人员分配更加合理，有效的提供开发效率，使得代码的结构更加清晰。
-				M：model （模型） --  模式是用于处理数据的
-				V：view（视图）-- 视图，即模板，即HTML页面
-				C：controller（控制器） -- 起到调度的作用，调用模型和模板，完成用户的请求
-			2. 前台首页使用MVC模式：
-				view文件夹就是V层
-				router文件夹就是C层
-				alishow中创建model文件夹，它里面的文件就是M层
-			3. 在前台首页体验使用MVC：
-				1. alishow中创建model文件夹，它里面的文件就是M层
-				2. 在model文件夹创建home.js模型文件，负责查询前台所需的数据
-				3. model/home.js中创建三个方法，分别获取前台首页、列表页、详情页的数据
-				4. 将model/home.js中的方法导出，目的是在控制器层使用它们
-				5. router里面的home.js在需要数据到时候，加载model/home.js模型文件，调用里面的
-					db 方法获取数据，并通过模板展示数据
-		}
-		let 异步与单线程 {
-			1. 同步和异步
-				sync 同步，async 异步
-				I/O 操作都是耗时(阻塞)操作，例如：文件操作、网络操作
-				fs 模块对文件的几乎所有操作都有同步和异步两种形式
-					例如：readFile() 和 readFileSync()。
-				同步与异步文件系统调用的区别
-				同步调用立即执行，会阻塞后续代码继续执行
-				异步调用不阻塞后续代码继续执行，需要回调函数作为额外的参数，通常包含一个错误作为回调函数的第一个参数
-				异步调用通过判断第一个 err 对象来处理异常
-				异步调用结果往往通过回调函数来进行获取
-				Node 只在文件IO操作中，提供了同步调用和异步调用两种形式，两者可以结合使用，
-				但是推荐能使用异步调用解决问题的情况下，少用同步调用。
-			2. 进程和线程(了解)
-					进程
-						正在执行的应用程序
-						一个进程至少有一个线程
-					线程
-						用来执行应用程序中的代码 
-						在一个进程内部，可以有很多的线程，至少有一个线程
-						在一个线程内部，同时只可以干一件事 
-						而且传统的开发方式大部分都是 I/O 阻塞的 
-						所以需要多线程来更好的利用硬件资源 
-						给人带来一种错觉：线程越多越好(线程的创建需要耗时，线程本身需要占用内存)
-					Node.js 是单线程的
-						Node.js 用来执行 js 的线程只有一个
-						Node.js (libuv)内部维护了一个线程池
-						Node 中将所有的阻塞操作交给了内部实现的线程池 
-						Node 本身主线程主要就是不断的往返调度
-		}
-		var 模板引擎 {
-			template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/; 修改界定符
-			https://aui.github.io/art-template/
-			客户端(浏览器)拿到请求的数据过后最常见的就是把这些数据呈现到界面上。
-				如果数据结构简单，可以直接通过字符串操作（拼接）的方式处理，但是如果数据过于复杂，
-				字符串拼接维护成本太大。
-			模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易更高效的将数据渲染到HTML字符串中。==通俗的说，模板引擎的目的就是将服务器返回的数据显示到HTML页面中==。
-			使用模板引擎-1.加载js文件
-				'<script src="./assets/template-web.js">''<script>'
-				//  使用模板引擎-2.设置模板
-				<script id="xxx" type="text/html">
-				    <h2>{{title}}<h2>
-				    <p>{{age}}<p>
-				<script>
-				<script>
-				    // 使用模板引擎-3.调用template函数
-				    // var 模板和数据组合好的结果 = template(模板id, 模板中使用的数据必须是js对象类型);
-				    var str = template('xxx', {
-				        title: '哈哈哈哈，这是模板引擎',
-				        age: 20,
-				    });
-				    // 将替换好的结果，放到页面上
-				    document.body.innerHTML = str;
-				<script>
-			定义模板时的script标签一定好指定id和type,tempalte函数语法：var html = template(模板id,  Object);
-			使用模板引擎处理响应数据
-				引入template-web.js
-				//<script src="/template-web.js"></script>
-				<!-- 定义模板 -->
-				<!-- <script id="abcd" type="text/html">
-				    {{each arr}}
-				    <li class="media">
-				      <img class="mr-3" src="avatar.png" alt="">
-				      <div class="media-body">
-				        <h4>{{$value.name}}</h4>
-				        <p>{{$value.content}}</p>
-				    </div>
-				    </li>
-				    {{/each}}
-				</script>
-				<script> -->
-					<!-- xhr.onload = function () {
-						// 完全接收到服务器返回的数据
-					    var result = this.responseText;
-					    // 将JSON格式的数据，转换成JS数据
-					    data = JSON.parse(result);
-					    // 使用模板引擎，不用拼接字符串了
-					    var str = template('abcd', {
-					    	arr: data
-					    });
-					    // 把处理好的html放到ul中
-					    document.getElementById('messages').innerHTML = str;
-					};
-				</script> -->
-		}
-	</script>
+	
 
 	IE11: 支持ES6,ES7; CSS样式也都支持;
 	F2：线比较乱是因为距离太小，文字又太多；

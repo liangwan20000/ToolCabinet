@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Node
+    <script>
+        let Node概述 {
+            Node介绍
+                Node全名是Node.js，但它不是一个js文件，而是一个软件
+                Nodejs是一个基于Chrome V8引擎的ECMAScript的运行环境
+                Nodejs可以执行js文件
+                Nodejs提供了大量的工具（API），能够让我们完成文件读写、Web服务器创建等功能
+            Nodejs中的JS和浏览器中的JS的区别
+                安装了浏览器这个软件，它不但可以执行ECMAScript，浏览器这个软件内置了window对象，所以浏览器有处
+                理DOM和BOM的能力。
+                安装了NodeJs这个软件，它不但可以执行ECMAScript，NodeJS这个软件也内置了一些东西，包括全局成员和
+                模块系统。
+            为什么要学习Nodejs
+                1. 大前端必备技能
+                2. 使得JS能够和操作系统 “互动”（读写、创建文件等，还可以处理计算机中的进程）
+                3. 为JavaScript提供了服务端编程的能力
+                    文件IO
+                    网络IO
+                1. 了解服务器这个黑盒内部的实现原理
+                2. 了解接口开发
+                3. 进一步理解Web开发
+            node初体验
+                注意事项：
+                    输入node回车后，要按两次Ctrl+C，才能回到目录中（Ctrl一直按着不放也可以，松开从新按也可以）
+                    执行js文件时，如果当前命令行目录和js文件不在同一个盘符下，要先切换盘符
+                    执行js文件时，如果当前命令行目录和js文件在同一个盘符中，则可以使用相对路径找到js文件并执行
+                    体会，此时执行的js代码或文件和浏览器没有任何关系，他们是通过node执行的
+        }
+        let global全局变量 {
+            1. node中有一个全局变量global，是node中最大的一个对象，相当于浏览器中的window对象。
+            2. global中的成员在使用时，可以省略global，这点也类似浏览器中的window
+            3. 下面介绍几个全局对象 global 中的成员：
+                console，我们在初体验时，使用了console，它可不是浏览器中的console对象，使用的是node中的console
+                process，和进程相关的对象 process.env 自带的一个全局变量
+                setInterval，同理，也是node中的，不是浏览器中的
+                require()，它是全局对象global中的一个方法，用于在js文件中引入另外的文件
+                __dirname，当前执行文件的绝对路径（在js文件中使用）
+                __filename，当前执行文件的绝对路径，包含文件名（在js文件中使用）
+        }
+        let path模块 {
+            3.  path 是 Node 本身提供的 API，专门用来处理路径。node核心模块
+            4.  path 仅仅用来处理路径的字符串，不一定存在对应的物理文件。
+            5.  const path = require('path'); 加载模块
+            6.  方法　                         作用
+                    path.basename(path[, ext])  返回 path 的最后一部分(文件名);ext提取的意思
+                    path.dirname(path)          返回目录名
+                    path.extname(path)          返回路径中文件的扩展名(包含.)扩展名就是后缀名
+                    path.format(pathObject)     将一个对象格式化为一个路径字符串
+                    path.parse(path)            把路径字符串解析成对象的格式
+                    path.join([...paths])       拼接路径
+                    path.resolve([...paths])    基于当前工作目录拼接路径
+                工作目录：当前运行 Node 程序的目录
+        }
+        let fs模块　{
+            1.  文件操作模块　　　http://nodejs.cn/api/fs.html
+            2.  文件系统，对文件/文件夹的操作  file system
+            3.  const fs = require('fs'); 加载模块
+                // 引入模块的时候，建议使用const，因为我们不希望它改变
+            4.  API　                            作用
+                    fs.access(path, callback)   判断文件是否存在
+                    fs.readFile(path, callback) 读取文件
+                    fs.writeFile(file, data, callback) 向文件写入内容,覆盖原来的内容
+                    fs.appendFile(file, data, callback) 向文件中追加内容
+                    fs.copyFile(src, callback)  复制文件
+                    fs.mkdir(path, callback)    创建目录
+                    fs.readDir(path, callback)  读取目录列表
+                    fs.rename(oldPath, newPath, callback)   重命名文件/目录
+                    fs.rmdir(path, callback)    删除目录    ：　只能删除空目录
+                    fs.stat(path, callback) 获取文件/目录信息
+                    fs.unlink(path, callback)   删除文件
+                    fs.watch(filename[, options][, listener])   监视文件/目录
+                    fs.watchFile(filename[, options], listener) 监视文件
+        }
+        let querystring模块　{
+            1.  查询字符串处理模块　：　处理查询字符串（请求参数）的模块
+            2.  const querystring = require('querystring'); 加载模块
+            3.  // parse -- 将查询字符串解析成JS对象
+                querystring.parse('id=1&name=zs&age=20'); 
+                // { id: '1', name: 'zs', age: '20' }
+                // stringify -- 将JS对象转成查询字符串
+                querystring.stringify({ id: '1', name: 'zs', age: '20' });
+                // id=1&name=zs&age=20
+        }
+        let url模块 {
+            1. 一个完整的url 协议://主机地址:[端口]/文件地址?参数
+            2. 共有两套处理url的API  得到一个对象;
+                遗留的API，提供url.parse();方法解析url
+                新的API，通过实例化URL，来解析url
+            3. const url = require('url'); 加载模块
+            4. 遗留API使用方法
+                let myURL = url.parse('/test.html?id=11&age=22'); // 返回一个包含url各个部分的对象
+            5. 新的API使用方法，实例化的时候，必须传递一个完整的url
+                // 直接提供一个完整的url
+                let myURL = new URL('http://www.xxx.com/test.html?id=11&age=22');
+                // 或提供两个参数，一是文件路径及参数部分，二是域名，总之，二者组合必须是完整的url
+                let myURL = new URL('/test.html?id=11&age=22', 'http://www.xxx.com');
+                // 得到的myURL是一个对象，包含url中的各个部分
+                // 需要解析参数部分，则使用querystring模块，或使用URL的一个子对象searchParams中的get方法
+                let age = myURL.searchParams.get('age')； // 得到22
+        }
+        let http模块 { err : error的缩写 错误信息
+            1. node不同于Apache，安装完node并没有一个能够提供Web服务环境
+                ，需要使用http模块自己来搭建Web服务器
+            2. http服务器处理模块是一个系统模块，让我们能够通过简单的流程创建一个Web服务器
+            3. 搭建步骤
+                1. const http = require('http'); 导入 http 核心模块
+                3. const server = http.createServer(); server 对象负责建立连接，接收数据
+                4. server.listen(4000, () => console.log('Server is running at port 3000.'));监听端口
+                5. server.on('request', (req, res) => {});监听客户端的 request 请求事件，设置请求处理函数
+                6. 当服务器接收到浏览器的请求后，如果没有做出响应，浏览器会等待
+                7. 服务器的最终目的是要根据请求做出响应
+            4. 响应
+                1. 当收到浏览器的请求后，触发request接收事件（该函数有两个核心参数 request 和 response）
+                2. server.on('request', function (req, res) {}); 处理请求函数
+                    1. req : 请求对象，浏览器发送的请求报文中的数据已经被解析到该对象上
+                        涉及到和请求相关的信息，都是通过请求响应处理函数的第一个参数(request)完成的。
+                        request.url    获取请求行中的路径
+                        request.method   获取请求行中的请求方法
+                        request.headers    获取请求头
+                    2. res : 响应对象，服务器给浏览器返回的响应内容，可以通过该对象设置
+                        response.setHeader()  设置响应头，比如设置响应体的编码
+                        statusCode 设置状态码
+                        res.write() 设置响应体（返回给浏览器的内容）的内容，可以多次调用
+                                    但是只调用write不会做出响应，发送响应要调用 end() 
+                        res.end()    把响应报文（响应行、响应头、响应体）发送给浏览器
+                3. PS：浏览器在请求服务器的时候，默认会请求网站根目录下的 /favicon.ico 网站图标
+            5. 根据不同 url 地址处理不同请求
+                1. 涉及到和请求相关的信息，都是通过请求响应处理函数的第一个参数(request)完成的。
+                2. 形参req : 请求对象，浏览器发送的请求报文中的数据已经被解析到该对象上
+                    request.url    获取请求行中的路径
+                    request.method   获取请求行中的请求方法
+                    request.headers    获取请求头
+            6. 处理浏览器POST方式提交的数据
+                1. POST请求一般会提交数据给服务器，服务器在接收数据的时候也是分块接收的。
+                    为了演示POST表单数据如何接收，使用message.html即可。但是需要处理一下message.html中的表单
+                    为form添加action属性，值为 /addMsg
+                    为form添加method属性，值为POST
+                    为input和textarea添加name属性，因为表单提交数据是根据name属性获取的
+                    表单提交按钮要使用submit类型的
+                    // <form action="/addMsg" method="POST">
+                //          <div class="form-group">
+                //            <input name="name" class="form-control" id="txt_name" type="text">
+                //          </div>
+                //          <div class="form-group">
+                //            <textarea name="content" id="txt_content" cols="80" rows="10"></textarea>
+                //          </div>
+                //          <button id="btn_send" class="btn btn-primary">提交</button>
+                    // </form>
+                2. 服务器端接收POST表单数据，分为3步：
+                    1. 定义一个空字符串，用于存储表单提交的数据
+                    2. 给req注册data事件，当服务器接收到一部分表单数据的时候，就会触发data事件
+                    3. 给req注册end事件，当完全接收到了表单数据之后，end事件就会触发
+                3. POST请求一般会提交数据给服务器，服务器在接收数据的时候也是分块接收的
+                    var http = require('http');
+                    // 1. 创建服务器，得到 Server 实例
+                    var server = http.createServer();
+                    // 2. 监听客户端的 request 请求事件，设置请求处理函数
+                    server.on('request', function (req, res) {
+                        // 假设 /add 是POST方式的请求
+                        if (req.url === '/addMsg' && req.method === 'POST') {
+                            // 注册req的data事件，分块接收数据
+                            let str = '';
+                            req.on('data', (chunk) => {
+                                str += chunk; // chunk 是块的意思，这里将分块接收到的数组拼接到str字符串中
+                            });
+                            // 注册req的end事件，当数据都接收到了，会触发end事件
+                            req.on('end', () => {
+                                // 这里处理用户提交的数据
+                                console.log(str);
+                            });
+                        }
+                    })
+                    // 3. 绑定端口号，启动服务器
+                    server.listen(3000, function () {
+                      console.log('Server is running at port 3000.')
+                    })
+            7. 处理静态资源
+                1. 静态资源指的是html文件中链接的外部资源，如css、js、image文件等等。
+                2. 如果请求的html 文件中链接了外部文件(静态资源)，浏览器会自动再次发送请求，向服务器请求这些文件
+                3. 服务器要判断浏览器请求的路径是否是静态资源，如果是静态资源把静态资源的内容返回给浏览器
+                4. 浏览器请求了静态资源文件，服务器就得做出响应，而且还要指定响应数据的类型
+                    ，否则浏览器会把字符串当做纯文本处理。
+                5. 建议每个响应都告诉客户端我给你发送的 Content-Type 内容类型是什么
+                    为不同的文件类型设置不同的 Content-Type
+                        .html：text/html
+                        .css：text/css
+                        .js：application/javascript
+                        .json : application/json
+                        .jpg：image/jpg
+                            response.setHeader('Content-Type', 'text/css');
+            8. 处理 404
+                1. 404 是一个响应状态码，表示请求的资源不存在
+                2. 如果请求未处理的路径，服务器不会做任何的响应，此时浏览器处于等待状态
+                3. 如果浏览器请求未处理的路径，统一设置响应码 404，并做友好提示
+                    // 设置状态码为404
+                    response.statusCode = 404;
+                    response.end('对不起，您请求的页面未找到');
+        }
+        let NPM第三方模块 {
+            全局安装
+                执行下面的命令，全局安装第一个第三方模块
+                npm install -g nodemon
+                npm 表示使用npm工具
+                install 表示安装
+                g 表示全局安装
+                nodemon是第三方模块的名字
+        }
+        let express框架 {
+            require()  用于加载其他的js文件或json文件
+            response.sendFile(文件绝对路径); -- 功能是读取文件，并将读取到的结果响应给浏览器。参数必须是文件的绝对路径
+            response.json();
+            response.render();
+
+            说明
+                1. 在code中安装了express，在code及其子（后代）目录中都可以使用express
+                2. express框架把浏览器请求的每一个url地址都由一个独立方法接收并处理，没有了 if
+                     ... else if ... else这样的分支，程序结构更加清晰
+                3. express框架封装了一些额外的API（例如:send），可以让我们更方便的构造Web服务器
+                    3.1 ）使用send方法响应数据的话，会自动设置content-type。
+                    3.1 ）注意send不能直接响应数字，需要加引号。直接使用数字，会将数字当做状态码解释
+            1. 使用express构造服务器也是4步流程： 
+               ① 加载express模块         const  express = require('express');
+               ② 创建express服务器       const  app = express();
+               ③ 开启express服务器       app.listen(3000, () => {})
+               ④ 注册服务器事件            app.get(url, callback)   app.post(url, callback)
+            2. 使用中间件处理静态资源的三种方法 app.use([请求的url的开头], 回调函数(req, res, next));
+                1. 判断请求文件名  stsrtsWith是以什么开始
+                    app.use((req, res, next) => {
+                        if(req.url.startsWith('/assets/')){
+                            // 是以这个文件开头的进入区间  读取并给浏览器返回这个文件
+                            res.sendFile(__dirname + '/public' + req.url);
+                        }else{
+                            next();
+                        }
+                    };
+                2. 直接判断请求文件名
+                    app.use('/assets/', (req, res, next) => {
+                        // 如果请求的文件是以/assets/开头的,就进入
+                        res.sendFile(__dirname + '/public/assets/' + req.url);
+                    } 
+                3. 使用express的static方法
+                    app.use('/assets/', express.static(__dirname + '/public/assets/'));
+            3. 注册服务器事件有两个方法： app.get() 和 app.post()
+                1. get方法用来接收get请求，浏览器地址栏发起的请求都是get请求
+                    // 读取文件并返回有两个方法 1 2
+                    1.  app.get('/message.html', (req, res) => {
+                            fs.readFile('./public' + req.url, (err, data) => {
+                                // 判断是否读取成功
+                                if(err) return console.log(err);
+                                // 成功就返回内容
+                                res.write(data);
+                                res.send();
+                                // res.end();也可以,没有send好使
+                                // send方式会导致请求头重复设置,而导致报错
+                            })
+                        })
+                        fs.readFile(path, callback); 回调函数有两个参数req,res,
+                            用res.write();res.end()返回读取结果
+                        fs.write(path, data, callback); 写入内容
+                    2.  app.get('/message.html', (req, res) => {
+                            // 读取并返回请求的文件
+                            res.sendfile(__dirname + '/public/message.html');
+                        })
+                    3.  处理接口
+                        app.get('/getMsg', (req, res) => {
+                            // 读取json文件
+                            let ary = require('./db.js');
+                            // 将js数组响应给浏览器,有两种方法
+                            // 1. 使用JSON.stringify,将js数组转成json格式,然后使用end响应
+                            // 2. 使用res.json方法,直接响应JS数据,res.json()直接将数组处理成json格式
+                            res.json(ary);
+                        })
+                2. post方法用来接收post请求，接收post表单提交的请求
+                    1. post请求可能会很多,所以要定义一个中间件用来存储数据
+                        // 定义中间件
+                        app.use((req, res, next) => {
+                            if(req.method === 'POST') {
+                                // 定义一个空字符串存储数据
+                                let str = '';
+                                // 注册data数据接收事件
+                                req.on('data', chunk => str += chunk);
+                                // 注册end事件,当数据接收完成会自动触发 回调函数
+                                req.on('end', () => {
+                                    // 把数据保存到请求对象中
+                                    req.body = querystring.parse(str);
+                                    // 保存完下一步
+                                    next();
+                                })
+                            }else {
+                                next();
+                            }
+                        }
+                    2. 第二种保存post数据的方式  定义一个中间件,来接收浏览器提交的post类型的数据
+                        const bodyParser = require('body-parser');
+                        app.use(bodyParser.urlencoded({extended: false}));
+                    3. post请求方式   处理 : 文件
+                        // 调用文件处理模块
+                        const fs = require('fs');
+                        // 定义post请求方式处理接口
+                        app.post('/addMsg', (req, res) => {
+                            // 读取db.json文件  得到一个数组
+                            let js = require('./db.json');
+                            // 将body里的数据添加到数组中
+                            js.push(req.body);
+                            // 调用writeFile方法,将新数组转成字符串,写入db.json文件
+                            fs.writeFile('./db.json', JSON.stringify(js), err => {
+                                // 判断是否写入成功,返回响应的值
+                                if(err) res.json(false);else res.json(true);
+                            });
+                        })
+        }
+        let MySQL {
+            黑窗口的操作: 每一个命令结束,后边都要加;号
+                1. 左键单击WampServer软件,提示输入密码,无密码直接回车即可
+                2. show databases; 查看都有哪些数据库
+                3. use 加数据库名称；进入数据库
+                4. source 加路径；导入数据
+                4. 创建
+                    CREATE TABLE `ali_admin` (
+                      `admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id 主键 自增长',
+                      `admin_email` varchar(50) NOT NULL COMMENT '管理员邮箱 唯一，非空',
+                      `admin_nickname` varchar(30) NOT NULL COMMENT '管理员昵称',
+                      `admin_pwd` char(32) NOT NULL COMMENT '密码',
+                      `admin_tel` char(11) DEFAULT NULL COMMENT '手机号',
+                      `admin_gender` enum('男','女','人妖') DEFAULT '人妖' COMMENT '性别',
+                      `admin_age` tinyint(3) unsigned DEFAULT NULL COMMENT '年龄',
+                      `admin_sign` text COMMENT '个人介绍',
+                      `admin_addtime` char(10) DEFAULT NULL COMMENT '添加时间2019-02-12',
+                      `admin_pic` varchar(255) DEFAULT NULL,
+                      `admin_state` enum('激活','禁用') DEFAULT '激活' COMMENT '用户状态',
+                      PRIMARY KEY (`admin_id`),
+                      UNIQUE KEY `admin_email` (`admin_email`),
+                      UNIQUE KEY `admin_nickname` (`admin_nickname`)
+                    ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+                    // PRIMARY KEY 主键
+                    // UNIQUE kEY 唯一索引，表示该字段的值不能有重复
+                    // 上面就是仅仅知道的一些命令
+            1. 必须先打开服务器才能连接成功
+                1. 点击“链接”按钮 ---  选择要链接的数据库种类
+                2. 配置链接信息
+                    用户名： root          该用户是MySQL服务器系统的最高用户，拥有该系统的所有权限
+                    密码：  root             phpstudy中MySQL系统root用户的默认密码
+                3. 上面连接名称是localhost，所以界面上的链接是“localhost”
+                4. 如果变绿了,就是可以用了
+                5. 右击localhost新建数据库
+                    设置数据库名,字符集选  utf-8
+                6. 双击 'study' --->  '表'（右键） --->  '新建表'
+                7. 设置字段类型
+                    1. 最右侧钥匙表示这一列值都是唯一的
+                    2. tinyint : 整数,-128 ~ 127;不加正负值就是0到255
+                    3. int : 整数,-21 亿 ~ +21 亿;
+                    4. float : 小数;
+                    5. varchar : 字符串类型,变长字符串,长度可变;
+                    6. char : 字符串类型,定长字符串,适用于长度不变的列
+                    7. decimal : 浮点型,(就是可以设置小数点后多少位)
+                        长度 5 : 数字共 5 位; 小数点后有两位则小数点前有 3 位
+                        小数点 2 : 小数点后有 2 位
+                    8. 无符号 : 加不加正负号;
+                    9. 自动递增 : ID列每增加一个,自动加 1
+                    10. 保存后使用F5刷新，能够看到新建好的表
+            2. SQL语句
+                数据查询
+                    语法格式: SELECT  字段名1, 字段名2, .....  FROM 表名    
+                基本查询
+                    语法格式:   select  字段名1, 字段名2,....  from  表名 
+                        // 案例1: 查询所有学生的 学号(id) 和 姓名(name)
+                            select id,name  from stu
+                        // 案例2: 查询学生的全部信息 (全部字段信息)
+                            *是通配符，代表所有的字段 
+                            select * from stu
+                带where子句的查询
+                        and 条件叠加;相当于 &&;
+                        or  两个条件都查询;相当于 ||;
+                    语法格式: select *(查询什么,一个范围) from stu where 你的条件
+                        // 查询年龄大于20岁的同学
+                        select * from stu where age > 20
+                        // 查询年龄大于20岁的男同学(判断相等用一个等号，字符串要加引号)
+                        select * from stu where age > 20 and sex='男'
+                        // 查询年龄小于20岁的同学或者所有的女同学
+                        select * from stu where age < 20 or sex='女'
+                        // 查询年龄在20到30岁之间的同学（包括20和30）
+                        select * from stu where age >= 20 and age <= 30
+                        select * from stu where age between 20 and 30
+                        // 查询学号为2的学生的所有信息
+                        select * from stu where id = 2
+                        // 查询年龄大于等于25的学生的学号、姓名、年龄
+                        select id,name,age from stu where age >= 25
+                模糊查询 :　like: 在执行模糊查询时，必须使用like来作为匹配条件
+                    通配符:
+                        %: 代表任意长度(包括0)的任意字符
+                        _:  代表1位长度的任意字符
+                        // 查询名字中第一个字是 “王” 的同学
+                        select * from stu where name like '王%'
+                        // 查询名字第一个字是 “王” ，但是名字只有两个字
+                        select * from stu where name like '王_'
+                        // 查询名字中包含有 “王” 的同学
+                        select * from stu where name like '%王%';
+                查询结果排序：　order by 可以对查询结果按某个字段进行升序或者降序排列
+                    注意：如果SQL语句中，有where和order by，where一定要放到order by之前
+                    升序 asc （默认值） ，  降序 desc 
+                        // 查询所有的学生，按添加先后顺序，降序排列
+                        select * from stu order by id desc
+                        // 查询所有的学生，按id升序排序
+                        select * from stu order by id asc
+                        select * from stu order by id
+                        // 查询学生，按年龄降序排列
+                        select * from stu order by age desc
+                        // 查询学生，按年龄降序排序，如果年龄相同，则按身高升序排序
+                        select * from stu order by age desc, height asc
+                        // 查询年龄大于25的同学，并按年龄升序排序
+                        select * from stu where age > 25 order by age
+                限制查询结果
+                    limit 用来限制查询结果的起始点和长度
+                    格式:  limit  start, length
+                    start: 起始点。 查询结果的索引，从0开始。 0　代表第一条数据。如果省略start，则默认表示从0开始
+                    length: 长度
+                    // 查询前三名同学
+                    select * from stu limit 0, 3
+                    select * from stu limit 3
+                    // 查询第4/5/6 三名同学
+                    select * from stu limit 3, 3
+                    // 查询年龄最大的三名同学
+                    select * from stu order by age desc limit 3
+                    // 查询 名字 以“王”开头，的年龄最大的1名同学
+                    select * from stu where name like '王%' order by age desc limit 1
+                    注意：where、order by、limit如果一起使用，是有顺序的，where在最前面、其次
+                        是order by、limit要放到最后
+                添加数据 : 操作前保存一份表格
+                    格式: insert into 表名(字段名1，字段名2,....)  values (值1，值2，....)
+                    注意: 字段的顺序要和值的顺序是完全匹配的
+                        自增长类型的主键，可以使用null来填充；MySQL会自动填充数据
+                        如果每个字段都有数据，那么表名后面可以不跟字段名，但是values里面的顺序必须正确
+                    案例: 向stu表中添加一条数据
+                        // 方式一：指定字段和值，只要字段和值对应即可。和顺序无关
+                            insert into stu (sex, weight, name) values ('男', 60, '王晨')
+                        // 方式二：和顺序有关，因为没指定字段，所以值必须是所有的值，而且顺序和表中字段的顺序要一致
+                            insert into stu values (null, '老汤', 23, '男', '打游戏,打球,打人', 176, 72)
+                        // 方式三：使用set里设置新数据的值，没有顺序关系
+                            insert into stu set weight=80, name='左金城', age=31 
+                修改数据： 操作前保存一份表格
+                    格式:  
+                        update  表名   set   字段1=值1, 字段2=值2,...  where  ==修改条件==
+                        修改表中的哪一条（几条）数据的 字段1=值1...
+                        不指定修改条件会修改所有的数据
+                    // 更新所有的体重为60（危险操作）
+                    update stu set weight=60
+                    // 更新id为1的同学的年龄为24岁
+                    update stu set age = 24 where id = 1
+                    // 更新id大于8的同学的年龄为30，体重为50
+                    update stu set age=30, weight=50 where id > 8
+                删除数据：　操作前保存一份表格
+                    格式:  delete  from 表名  where 删除条件
+                    注意：不指定条件将删除所有数据
+                    // 删除id大于10的同学
+                    delete from stu where id > 10
+                    // 不加条件，全部删除了
+                    delete from stu
+                    drop table stu; -- 删除stu表
+                    删除库，加入反引号可以防止出现问题，否则MySQL可能会将70当做关键字或其他意思解释
+        }
+        let node中的MySQL {
+            affectedRows： 受影响行数
+            insertID： 查询数据的主键值
+            db执行SQL语句 
+                multipleStatements: true  // 加入这个选项，表示可以一次性执行多条SQL
+                timezone: 'M' // 该选项表示使用原始的时间
+                参数1: 要执行的SQL语句
+                参数2: 占位符所对应的数据，没有时用 null 代替
+                参数3: 当SQL执行完成后触发的回调函数，有三个参数
+                   err: 错误对象。如果SQL执行失败，err就是错误信息的对象；如果执行成功则为null
+                   results: SQL执行的结果
+                   fields: 本次SQL执行涉及到的字段信息
+            查询 --- read
+                let sql = 'select * from stu where age > ? or sex = ?';
+                db(sql, [20, '男'], (err, result) => {
+                    if (err) throw err;
+                    console.log(result);
+                }); 
+            添加 --- create
+                let sql = "insert into stu(name, age) values ('马大帅', 36)";
+                if (result.affectedRows > 0) {
+                    console.log('添加成功，新数据的id为：' + result.insertId);
+                } else {
+                    console.log('添加失败');
+                }
+            删除 --- delete
+                let sql = 'delete from stu where id=?';
+                result.affectedRows 表示受影响的行数，如果大于0，表示删除成功
+            修改 --- update
+                let sql = 'update stu set ? where id=?';
+                let values = {
+                    name: '张三疯',
+                    age: 99
+                };
+                db(sql, [values, 15], (err, result) => {
+                    result.affectedRows 表示受影响的行数，如果大于0，表示更新成功
+                };
+        }
+        let MySQL+中间件 { 中间件是一个概念,就是针对不同的请求,把服务器作出的响应分成一各各不同的模块
+            什么请求方式都要对浏览器做出响应
+                res.end(data); //需要设置响应头
+                res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
+            1. 中间件的书写相对固定,就是一个函数;
+                1. 第一个形参通常是url
+                    1. get  就是读取某个文件,或文件夹
+                    2. post 就是找哪个接口
+                    3. use  通常只有最后一个函数
+                2. 最后一个形参通常是一个函数, (req, res) => {};
+                3. 中间部分 针对不同的情况,会放一些参数,一般都是post请求
+                    1. 数据 data
+                    2. 图片的 pic
+            2. 浏览器的请求大概分成三种
+                1. 请求静态文件
+                2. GET请求html页面 可能会链接外部资源:
+                    1. 数据库
+                    2. 文件
+                3. POST提交数据 可能会链接外部资源:
+                    1. 文本数据 : 文本
+                    2. 表单数据 : 上传图片
+                    3. 数据库
+        let get 静态资源 {  服务器针对请求,使用中间件作出响应;
+            1. 处理静态资源文件 : 直接判断文件夹
+                app.use('/abcd/', express.static(__dirname + '/public/abcd'));
+            2. get请求 :　都有什么
+                1. 不需要处理,直接响应页面
+                    app.get('/message.html', (req, res) => {
+                        // 调用sendFile，会自动设置header、最后将数据响应给浏览器
+                        res.sendFile(__dirname + '/public/message.html');
+                    });
+                2. get中的 fs模块
+                    const fs = require('fs');
+                    app.get('/message.html', (req, res) => {
+                        // 服务器端，读取任意文件，将读取的结果响应给浏览器
+                         fs.readFile('./public/message.html', (err, data) => {
+                            if (err) return console.log(err);
+                            res.end(data);
+                        }); 
+                    });
+                3. get中的模板引擎
+                    const tempalte = require('express-art-template');
+                    // 还需要一个配置
+                    app.engine('html', tempalte); // 表示后缀为html的模板使用template来处理
+                    app.get('/message.html', (req, res) => {
+                        let data = require('./db.json');
+                        res.render(__dirname + '/public/message.html', {
+                            arr: data
+                        });
+                    });
+                4. SQL语句 链接数据库
+                    const db = require('./db.js');
+                    app.get('/index.html', (req, res) => {
+                        // res.sendFile(__dirname + '/public/index.html');
+                        // 使用db查询所有的学生
+                        db('select * from stu', null, (err, result) => {
+                            if (err) throw err;
+                            // console.log(result);
+                            res.render(__dirname + '/public/index.html', {
+                                arr: result
+                            });
+                        });
+                    }); 
+                3. req中的参数 : 
+                    req.url 
+                    req.body
+                    req.method 查看请求方式 
+                4. querystring 字符串模块
+                5. 把数据响应给页面
+                    // 读取db.json，并响应给浏览器
+                    let data = require('./db.json'); // 得到数组
+                    res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
+        }
+        let post { 请求中  都有什么
+            1. 接收数据 : 
+                1. //加载并使用body-parser来统一接收POST提交的数据
+                    const bodyParser = require('body-parser');
+                    // urlencoded 这个方法可以接收 x-www-form-urlencoded 类型的数据
+                    app.use(bodyParser.urlencoded({extended: false}));
+                2. 使用multer第三方模块，让他来处理 form-data 类型的数据
+                    // 配置，即配置上传文件的存放路径和上传后的文件名
+                    const multer = require('multer');
+                    const myupload = multer({
+                        // multer也会将文本类型的信息放到req.body中
+                        // multer会将上传的文件信息保存到req.file中
+                        dest: __dirname + '/public/uploads' // dest选项配置的就是文件上传的路径
+                    });
+            2. 处理数据 :
+                1. SQL语句 把数据提交给数据库 : 第二个参数添加数据,有时需要转换数据类型
+                    app.post('/addStu', myupload.single('pic'), (req, res) => {
+                        let sql = 'insert into stu set ?';
+                        // req.body 里面只有文本类型的信息，没有图片的名字，所以自己向req.body中添加一个pic
+                        req.body.pic = req.file.filename;
+                        // 可以直接传递req.body是因为表单的name值写的时候就对应好了
+                        db(sql, req.body, (err, result) => {
+                            if (err) throw err;
+                            if (result.affectedRows > 0) {
+                                // res.json(true);
+                                res.json({code: 200, message: '添加成功'});
+                            } else {
+                                // res.json(false);
+                                res.json({code: 201, message: '添加失败'});
+                            }
+                        });
+                    });
+                2. 把数据保存到文件中
+                    const fs = require('fs');
+                    app.post('/addMsg', (req, res) => {
+                        // 接收浏览器提交的数据
+                        // console.log('处理请求时：', req.body); // { name: 'aaa', content: 'bbb' }
+                        // 将req.body放到db.json中
+                        let data = require('./db.json');
+                        data.push(req.body);
+                        fs.writeFile('./db.json', JSON.stringify(data), (err) => {
+                            if (err) {
+                                res.json(false); // json方法会自动将js数组转成json格式
+                            } else {
+                                res.json(true); // json方法会自动将js数组转成json格式
+                            }
+                        });
+                    });
+                3. 把数据响应给页面
+                    // 读取db.json，并响应给浏览器
+                    let data = require('./db.json'); // 得到数组
+                    res.json(data); // 将js数组传递给新方法json方法即可。json方法会自动将js数组转成json格式
+        }
+        let use 中间件 {通常是只有一个函数
+            1. // 定义一个中间件，来接收浏览器提交的POST类型的数据
+                const bodyParser = require('body-parser');
+                app.use(bodyParser.urlencoded({extended: false}));
+            3. //处理静态资源文件 : 直接判断文件夹
+                app.use('/abcd/', express.static(__dirname + '/public/abcd'));
+            1. // 定义中间件，处理静态资源文件
+                // app.use([请求的url的开头],  函数);
+                app.use((req, res, next) => {
+                    // console.log(req.url);
+                    if (req.url.startsWith('/assets/')) {
+                        // 进入到这个区间，表示是静态资源文件。然后读取他们并做出响应
+                        res.sendFile(__dirname + '/public' + req.url);
+                    } else {
+                        next(); // 当前的中间件已经处理完毕了，让程序向后走
+                    }
+                });
+            2. // 定义中间件，处理静态资源文件
+                // app.use([请求的url的开头],  函数);
+                app.use('/assets/', (req, res, next) => {
+                    // console.log(req.url);  // /bootstrap.css   /avatar.png
+                    // 进入到这个中间件，说明请求的url满足开头是 /assets/ 这个条件
+                    // 所以直接响应结果
+                    res.sendFile(__dirname + '/public/assets' + req.url);
+                });
+            
+            4. // 定义一个中间件，来接收浏览器提交的POST类型的数据
+                const querystring = require('querystring');
+                app.use((req, res, next) => {
+                    // 判断请求是否是POST类型的
+                    if (req.method === 'POST') {
+                        // 接收浏览器提交的数据
+                        let str = '';
+                        req.on('data', (chunk) => {
+                            str += chunk;
+                        });
+                        req.on('end', () => {
+                            // 将接收到的数据，添加到db.json中
+                            req.body = querystring.parse(str);
+                            next();
+                        });
+                    } else {
+                        next();
+                    }
+                });
+                // 上面的中间件，做了一件事   req.body = 接收到数据；
+            5.  // 注册中间件，判断是否登录
+                app.use((req, res, next) => {
+                    // console.log(req.session.isLogin); // 没有登录得到undefined、登录了得到true。
+                    // 判断是否登录了
+                    if (!req.session.isLogin) {
+                        // res.send('<p>请先</p>');
+                        // res.send('请先<a href="/login.html">登录</a>');
+                        res.send('<script>alert("请先登录"); location.href="/login.html";</'script'>');
+                        return;
+                    } else {
+                        next();
+                    }
+                });
+        }
+        let Node中的模块化 {
+            一个单独的文件，就是一个模块
+            js模块化规范有四种标准： AMD   CMD   CommonJS   ES6
+            Node属于CommonJS标准
+            使用模块化可以很好的解决变量、函数名冲突问题，也能灵活的解决文件依赖问题
+            没有模块化，不允许一个js文件引入另外的JS，有了模块化，就允许一个js文件引入其他的js文件
+            module.exports = 对象或函数;
+        }
+        let cookie {
+            // 假设登录成功了。用户名是 zhangsan, 密码是 123
+            // 服务器告诉浏览器，你自己要记住你的用户名和密码，下次访问这个服务器任何页面的时候，都要带上这些信息
+            // 通过http响应头里设置cookie
+                res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            // 1.使用setHeader方法设置cookie
+                res.setHeader('set-cookie', ['username=zhangsan','pwd=123']);
+            // 2.使用writeHead方法来设置cookie
+                res.writeHead(200, {
+                    // 响应头的内容
+                    'content-type': 'text/html; charset=utf-8',
+                    'set-cookie': ['username=lisi', 'pwd=456']
+                });
+            // 3.使用express提供的set方法，设置响应头
+                res.set({
+                    // 对象的属性，就是各个响应头的内容
+                    'content-type': 'text/html; charset=utf-8',
+                    'set-cookie': ['username=wangwu', 'pwd=789']
+                });
+            // 设置cookie，并设置cookie的有效期
+                app.get('/login', (req, res) => {
+                    let time = new Date(Date.now() + 3600 * 1000).toUTCString();
+                    res.set({
+                        'content-type': 'text/html; charset=utf-8',
+                        'set-cookie': ['username=wangwu;expires=' + time, 'pwd=789']
+                    });
+                    res.end('恭喜，登录成功');
+                });
+            
+            const querystring = require('querystring');
+            // 显示index.html页面的接口
+            app.get('/index.html', (req, res) => {
+                // 检测一下，浏览器来请求的时候，是不是带着cookie来的？
+                // 获取cookie
+                // req.headers -- 获取到所有的请求头
+                // console.log(req.headers.cookie); // username=zhangsan; pwd=123
+                // 获取cookie中的用户名
+                let cookie = req.headers.cookie.replace(';', '&'); // username=zhangsan& pwd=123
+                cookie = cookie.replace(' ', '');
+                cookie = querystring.parse(cookie);
+                console.log(cookie); // { username: 'zhangsan', pwd: '123' }
+                res.send('我是index.html，我知道你是谁，你是：' + cookie.username);
+            });
+        }
+        let session {
+            1. // 加载配置session
+                const express = require('express');
+                const app = express();
+                app.listen(4000, () => console.log('ok~~~~~~~~'));
+                // 1. 加载express-session
+                const session = require('express-session');
+                // 2. 配置session
+                let conf = {
+                    secret: 'asdfasdf232sdf',   //加密字符串。 使用该字符串来加密session数据，自定义
+                    resave: false,               //强制保存session即使它并没有变化
+                    saveUninitialized: false,     //强制将未初始化的session存储。当新建了一个session且未
+                                                 //设定属性或值时，它就处于未初始化状态。
+                    // stroe: 用于设置session的存储位置，默认是内存中；也可以保持到其他服务器
+                    // 因为session默认存储到内存中，当服务器重启之后，session就会失效
+                    cookie: {
+                        maxAge: 3600000 // 设置session的有效期
+                    }
+                };
+                //3. 注册为express-session中间件
+                app.use(session(conf));
+                // 登录接口
+                app.get('/login', (req, res) => {
+                    // 假设用户登录成功，使用session记录用户名和密码
+                    req.session.username = 'zhangsan';
+                    req.session.pwd = 123;
+                    req.session.userInfo = {height: 170, weight: 70};
+                    res.send('你好，我已经知道你是谁了');
+                });
+            2. // 加载配置session
+                const session = require('express-session');
+                app.use(session({
+                    secret: 'asdfadfa',
+                    resave: false,
+                    saveUninitialized: false,
+                    cookie: {
+                        maxAge: 3600000
+                    }
+                }));
+        }
+        let 路由 {
+            1. 路由（router）: 就是请求的接口地址
+            2. 越大的文件越难于维护，所以我们需要将 js文件进行拆分，让每个文件变的更小，功能更单一
+                ，这样就有利于项目的后期维护了。
+            3. 原则： 让每个文件都更小，功能更单一
+            4. 拆分路由一般规则
+                1. 比如学生管理案例中，将所有和学生操作相关的接口放到一个路由文件中；
+                2. 将登陆、退出登录、注册等接口放到一个路由文件中。
+            5. 使用步骤
+                // 1. 加载express
+                const express = require('express');
+                // 2. 创建路由对象
+                const router = express.Router();
+                // 3. 将接口挂载到路由对象上
+                router.post('/checkLogin', (req, res) => {
+                    ....
+                });
+                router.get('/login.html', (req, res) => {
+                    ....
+                });
+                // 4. 导出路由模块
+                module.exports = router;
+                // 5. 加载路由模块，并注册成中间件
+                const router = require(__dirname + '/login.js');
+                app.use(router);
+                // 6. 把当前js文件中使用的模块加载过来，要不然报错
+                db文件 
+                multer FromData的上传控件
+        }
+        let 异步与单线程 {
+            1. 同步和异步
+                sync 同步，async 异步
+                I/O 操作都是耗时(阻塞)操作，例如：文件操作、网络操作
+                fs 模块对文件的几乎所有操作都有同步和异步两种形式
+                    例如：readFile() 和 readFileSync()。
+                同步与异步文件系统调用的区别
+                同步调用立即执行，会阻塞后续代码继续执行
+                异步调用不阻塞后续代码继续执行，需要回调函数作为额外的参数，通常包含一个错误作为回调函数的第一个参数
+                异步调用通过判断第一个 err 对象来处理异常
+                异步调用结果往往通过回调函数来进行获取
+                Node 只在文件IO操作中，提供了同步调用和异步调用两种形式，两者可以结合使用，
+                但是推荐能使用异步调用解决问题的情况下，少用同步调用。
+            2. 进程和线程(了解)
+                    进程
+                        正在执行的应用程序
+                        一个进程至少有一个线程
+                    线程
+                        用来执行应用程序中的代码 
+                        在一个进程内部，可以有很多的线程，至少有一个线程
+                        在一个线程内部，同时只可以干一件事 
+                        而且传统的开发方式大部分都是 I/O 阻塞的 
+                        所以需要多线程来更好的利用硬件资源 
+                        给人带来一种错觉：线程越多越好(线程的创建需要耗时，线程本身需要占用内存)
+                    Node.js 是单线程的
+                        Node.js 用来执行 js 的线程只有一个
+                        Node.js (libuv)内部维护了一个线程池
+                        Node 中将所有的阻塞操作交给了内部实现的线程池 
+                        Node 本身主线程主要就是不断的往返调度
+        }
+    </script>
+
+
+    项目
+    <script>
+        let alishow {
+            1. 项目目标和需求分析
+                1.1 项目目标
+                    1. 该项目是站在后端程序员角度进行开发的，==理解后端程序的开发流程==是项目中的重要环节
+                    2. 重点掌握后端程序和前端程序是如何交互的 （Ajax）
+            1. 一般项目的开发流程
+                第一阶段: 需求分析
+                    研究客户到底想做一个什么东西
+                    产出:  
+                        需求分析文档:  规划软件模块及每个模块中的功能 
+                        项目原型:  用户最终使用到的软件界面，以静态页面形式提交
+                第二阶段: 设计概要
+                    在需求分析的基础上进一步细致化项目整体结构。 包括：系统的组织结构、模块划分、功能流程设计、
+                    接口设计、数据表设计、容错模块等。
+                    产出:  
+                        设计概要文档
+                第三阶段: 详细设计
+                    在设计概要基础上进一步细化。包括:算法、数据结构、类的[继承结构]及调用关系，并发量等。
+                    产出:  详细设计文档
+                第四阶段: 编码==
+                    完成代码开发工作。
+                第五阶段: 测试
+                    α测试、β测试、白盒测试、黑盒测试（case测试/用例测试）、单例测试、集成测试等等。 
+                第六阶段: 交付/验收 
+                    交付给客户上线运行。
+                第七阶段: 维护
+                    项目上线之后可能会暴露一些开发环境下未发现的问题，仍需要有人的项目进行debug操作。
+                很多项目都只有一四五六七几个阶段，因为有了这几个阶段就可以完成项目开发了。 但是，如果希望项目有
+                    高扩展性、高维护性，那么第二三阶段非常重要。因为二三阶段是规划一个项目基础架构的重要组成。
+            2. 前台和后台
+                一般网站类项目都有前台和后台之分。
+                    前台: 给网友（游客）使用页面叫做前台。
+                    后台: 系统管理员使用页面
+                在开发任何一个功能的时候，都需要前端程序员和后端程序员共同来完成。
+                    前端程序员: 写 css、html、js的程序员，主要任务是页面显示结构、样式，页面特效，==Ajax==
+                    后端程序员: 写php、jsp、asp、nodejs的程序员，主要任务是对数据表进行增删改查操作
+                前台：
+                    首页:   信息聚合页面，各种方式显示文章列表
+                    列表页: 显示某个栏目下的所有文章列表
+                    详情页: 显示文章的详细内容 
+                后台：
+                    管理员登录功能
+                    文章管理：文章的增删改查
+                    栏目管理：栏目的增删改查
+                    用户管理：用户的增删改
+                    评论管理：批准/驳回评论
+                    设置：图片轮播、网站设置等。
+            3. 项目结构搭建
+                1. 在实现上述描述的各项功能之前，必须先定好在哪里开发这个项目，项目所需的包有
+                    哪些，项目的目录结构是怎样的才够清晰，等等一系列问题，这是做项目之前都要解决的。
+                    在自己的计算机上找一个位置，创建一个文件夹，比如 alishow。然后我们将项目代码全部放到这里面。
+                2. 安装项目所需的包
+                    express：搭建服务器必须的包
+                    art-template：模板引擎
+                    express-art-template：专门配合express使用的模板引擎
+                    express-session：session管理（用户登录后，需要使用session记录用户的状态）
+                    mysql：对MySQL数据库操作，必须用到的包
+                    moment：时间处理包（比如登录时间、文章发布时间等地方可能会需要到）
+                    body-parser：处理编码格式为 x-www-form-urlencoded 的表单数据
+                    multer：处理编码格式为 form-data 的表单数据文件。上传需要用的包（会员头像上传、文章或栏目配图都需要）
+                3. 文件目录结构,和项目概览
+                    1. alishow
+                        node_modules
+                        package-lock.json
+                        pageage.json
+                        view （文件夹存放项目的模板，静态页面）
+                        app.js （开启服务的文件，项目入口文件）
+                        router （存放所有的路由文件）
+                        db.js （连接数据库）
+                    2. 创建 View 目录
+                        View 目录，顾名思义，是存放视图文件的目录，视图即模板，通俗的说，就是前端HTML页面。
+                        所以在网站根目录中创建View文件夹，将alishow的HTML文件及静态资源文件全部放到View文件夹中。
+                    3. 创建 app.js
+                        下面一步创建服务器。因为页面已经拿到项目中了，下面首要任务是实现访问这些
+                        页面，所以要创建服务器 app.js。另外模板引擎的配置、静态资源的托管、加载路由
+                        、配置 session等一系列的工作都要放到app.js中，所以这一步我们创建 app.js
+                        目标： 创建并开启服务器，托管静态资源，配置模板引擎，加载路由模块
+                    4. 路由文件命名规则
+                        1. 阿里百秀项目会涉及到非常非常多的接口（接口地址），所以不能把接口全部定义到 app.js 
+                            中。应该按功能将接口定义到不同的文件中，我们把这些路由文件全部放到router文件夹中
+                            ，显得文件比较整齐。
+                        2. 当前项目，可以按文件夹（功能）来定义路由，也就是==路由文件的名字和模板所在的文件夹
+                            同名==，这样做的好处是，看到路由文件的名字就知道它里面存放了哪些路由。
+                    5. 定义接口
+                        1. 将接口的名字 定义成和文件所在路径一样
+                        2. 处理模板路径的问题。解决方案是在 app.js 中，向全局对象 global 中添加一个属性 rootPath，
+                            值是 __dirname。那么 rootPath 就始终表示网站的根目录(alishow文件夹)
+                            ，另外rootPath在其他的路由文件中也可以随意使用。
+                    6. 让项目看起来像真实的项目
+                        1. 修改前台首页的接口为/，这样的话，浏览器直接输入 127.0.0.1:4000 就可以访问到了home.js 代码
+                        2. 修改app.js中的端口为默认的80端口，这样的话，浏览器直接输入127.0.0.1 就可以访问了
+                            需要将其他的占用80端口的程序关闭掉才可以，比如wampserver中的Apache服务要停止。
+                        3. 在hosts文件中，加入一条记录。自己设置一个域名，让他指向127.0.0.1 
+                    7. 处理静态资源
+                        1. 静态资源的处理，通过浏览器工具，来查看使用的静态资源的url是以什么开头的
+                        2. 所以在app.js 中可以设置静态资源目录：就是这个开头文件名
+                    8. 创建 db.js 模块
+                        案例中的数据全部要放到数据库中，所以会有很多的增删改查操作，为了方便，定义db.js，
+                        封装连接、配置数据库的代码，当然，最后要导出对象或函数，方便其他位置使用db。
+                    9. 抽取页面公共部分
+                        将页面相同的部分抽离出来当做父模板，并将不同的地方“挖坑”。
+                        子模板继承父模板，“填坑”
+                        父模板（抽离出来的html，假如名字为layout.html）：
+                            '<html>'
+                                .....
+                                {{block '坑名1'}} {{/block}}
+                                ..... 
+                                {{block '坑名2'}} {{/block}}
+                            '</html>'
+                        子模板：
+                            // 使用下面的extend标签继承父模板
+                            {{extend './layout.html'}}
+                            
+                            // 填坑
+                            {{block '坑名1'}}
+                                // 这里是你填坑的代码
+                            {{'/block'}}
+                            
+                            {{block '坑名2'}}
+                                // 这里是你填坑的代码
+                            {{'/block'}}
+                    10 解决静态资源错误加载问题
+                        当使用了模板继承之后，后台首页还是正常的，后台其他页面出现了静态资源不能正确加载的问题。
+                        解决办法是，根据浏览器的报错信息，查看此时的静态资源的url是以什么开头的，查看的信息如下：
+                        可以使用 * 表示任意的字符串，所以后台静态资源处理代码如下
+                        // express中，app.use 方法的第一个参数，可以写成类似于正则表达式的形式，其中 * 表示任意的字符串
+                        app.use('/admin/*assets/', express.static(__dirname + '/view/admin/assets/'));
+            4. 设计数据表
+                1. CREATE TABLE `ali_admin` (
+                        `admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员id 主键 自增长',
+                        `admin_email` varchar(50) NOT NULL COMMENT '管理员邮箱 唯一，非空',
+                        `admin_nickname` varchar(30) NOT NULL COMMENT '管理员昵称',
+                        `admin_pwd` char(32) NOT NULL COMMENT '密码',
+                        `admin_tel` char(11) DEFAULT NULL COMMENT '手机号',
+                        `admin_gender` enum('男','女','人妖') DEFAULT '人妖' COMMENT '性别',
+                        `admin_age` tinyint(3) unsigned DEFAULT NULL COMMENT '年龄',
+                        `admin_sign` text COMMENT '个人介绍',
+                        `admin_addtime` char(10) DEFAULT NULL COMMENT '添加时间2019-02-12',
+                        `admin_pic` varchar(255) DEFAULT NULL,
+                        `admin_state` enum('激活','禁用') DEFAULT '激活' COMMENT '用户状态',
+                        PRIMARY KEY (`admin_id`),
+                        UNIQUE KEY `admin_email` (`admin_email`),
+                        UNIQUE KEY `admin_nickname` (`admin_nickname`)
+                    )   ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+                    PRIMARY KEY 主键
+                    UNIQUE kEY 唯一索引，表示该字段的值不能有重复
+            5. 接口文档
+                在实际工作中，各个公司的文档结构可能不太相同，但是主要的几个说明都有。
+                功能描述 : 描述该接口的实际功能
+                请求URL地址 :  ajax请求的url地址
+                请求方式： post、get
+                请求参数： 随Ajax请求一起发送到后端页面的数据
+                返回参数： 后端一般返回的是json，此处就是说明返回json结构 
+            6. 实现各个功能
+                1. 设计数据表
+                2. 开发功能前的准备工作
+                    1. 确定路由文件是否为要编辑的文件
+                    2. 编写路由接口，展示页面
+                    3. 在app.js 中，加载路由文件，并注册成中间件
+                    4. html页面模板中使用模板继承,展示需要的数据
+                3. 完成功能
+                    1. 处理表单
+                        查看表单各项name属性是否和接口要求一致（字段个数及name属性是否对应）
+                        表单中多的字段删除
+                        表单中缺少的字段自行添加
+                        设置添加按钮为button类型，
+                    2. 前端给a标签设置超链接值为 javascript:;
+                    3. 前端给a标签，添加一个自定义属性data-id，值就是当前分类的id {{$value.cate_id}}
+                    4. 前端表单中加入隐藏域,保存需要的数据,以便提交表单或其他用途使用
+                    5. 前端写js，获取表单数据，发送给对应的接口
+                    6. 前端，写js代码，给点击的的a标签，添加单击事件。将id提交给对应的接口
+                    7. 后端编写接口，接收传过来的id，然后查询数据，分配到模板(完成数据与数据库的交互工作)
+                    8. 模板循环数据
+                4. 异步上传图片 : 展示告知用户选择的图片,便于用户选择想要的图片;这也是一次ajax请求
+                    // 图片需要使用formdata上传
+                    var fd = new FormData();
+                    // fd.append('avatar', 文件对象);
+                    var fileObj = this.files[0];
+                    fd.append('avatar', fileObj);
+                    // 发送ajax请求
+                    提交后,会在服务器生成一个专门存放图片的文件夹,得到的响应结果就是包括了这个文件夹的一个路径,
+                    我们需要用隐藏域保存这个包含路径的结果,以便提交表单时使用
+            5. 自行定义 模板解析规则 语法，避免和后端的模板方法冲突
+                template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/;
+                模板代码：'{#each arr#}' '<td>{#$value.pic_text#}</td>' '{#/each#}'
+                解决图片不显示的问题。查看浏览器的 Network面板，查看图片的url是开头是什么，然后去app.js中配置静态资源。
+            6. 登录功能
+                1. 查看 login.html 中的表单的name属性是否符合接口要求
+                    2. 设置登录超链接的href="javascript:"
+                    3. 当点击登录的时候，发送ajax请求到接口（看接口文档）
+                        这里需要查看一下接口文档，会看到登录后，将用户信息记录到了session==
+                            // /api/login/checkLogin 接口
+                            //登录成功后，注册session
+                            req.session.isLogin = true;
+                            req.session.userInfo = result[0];
+                    4. 登录完成，给出提示
+                    5. 登录成功，控制后台所有页面都需要登录才能访问
+                        1. 可以在app.js中，使用中间件来判断是否登录了，然后做出后续决定
+                        2. 前台页面不需要登录，所以放到中间件前面
+                        3. 登录页面也要放到中间件前面
+                7. 统一处理后台侧边栏 : 就是挂好超链接，方便跳转。
+                8. 前台首页开发
+                    1. session验证登录不应该限制前台页面
+                    2. 分析页面中需要的数据有
+                    3. 在接口中，应该分别写SQL来查询他们，然后将查询到的所有数据分配到模板
+            7. ueditor副文本编辑器
+                副文本编辑器，也叫做HTML编辑器。
+                下载ueditor，将压缩包里面的文件夹解压出来，重命名为ueditor，然后复制到项目后台第三方资源文件夹里
+                然后在添加文章的时候，使用它
+                    <div class="form-group">
+                        <label for="content">内容<label>
+                        // 加入script标签
+                        <script id="content" type="text/plain" name="content"><script>
+                    <div>
+                html文件中添加如下代码即可实现效果
+                // <script src="assets/vendors/ueditor/ueditor.config.js"><script>
+                // <script src="assets/vendors/ueditor/ueditor.all.min.js"><script>
+                // <script src="assets/vendors/ueditor/lang/zh-cn/zh-cn.js"><script>
+                // <script>
+                    // 创建编辑器，getEditor方法括号里放容器的id
+                    var ue = UE.getEditor('content');
+                // <script>
+        }
+        let MVC开发模式 {
+            1. MVC开发模式，可以人员分配更加合理，有效的提供开发效率，使得代码的结构更加清晰。
+                M：model （模型） --  模式是用于处理数据的
+                V：view（视图）-- 视图，即模板，即HTML页面
+                C：controller（控制器） -- 起到调度的作用，调用模型和模板，完成用户的请求
+            2. 前台首页使用MVC模式：
+                view文件夹就是V层
+                router文件夹就是C层
+                alishow中创建model文件夹，它里面的文件就是M层
+            3. 在前台首页体验使用MVC：
+                1. alishow中创建model文件夹，它里面的文件就是M层
+                2. 在model文件夹创建home.js模型文件，负责查询前台所需的数据
+                3. model/home.js中创建三个方法，分别获取前台首页、列表页、详情页的数据
+                4. 将model/home.js中的方法导出，目的是在控制器层使用它们
+                5. router里面的home.js在需要数据到时候，加载model/home.js模型文件，调用里面的
+                    db 方法获取数据，并通过模板展示数据
+        }
+        let 异步与单线程 {
+            1. 同步和异步
+                sync 同步，async 异步
+                I/O 操作都是耗时(阻塞)操作，例如：文件操作、网络操作
+                fs 模块对文件的几乎所有操作都有同步和异步两种形式
+                    例如：readFile() 和 readFileSync()。
+                同步与异步文件系统调用的区别
+                同步调用立即执行，会阻塞后续代码继续执行
+                异步调用不阻塞后续代码继续执行，需要回调函数作为额外的参数，通常包含一个错误作为回调函数的第一个参数
+                异步调用通过判断第一个 err 对象来处理异常
+                异步调用结果往往通过回调函数来进行获取
+                Node 只在文件IO操作中，提供了同步调用和异步调用两种形式，两者可以结合使用，
+                但是推荐能使用异步调用解决问题的情况下，少用同步调用。
+            2. 进程和线程(了解)
+                    进程
+                        正在执行的应用程序
+                        一个进程至少有一个线程
+                    线程
+                        用来执行应用程序中的代码 
+                        在一个进程内部，可以有很多的线程，至少有一个线程
+                        在一个线程内部，同时只可以干一件事 
+                        而且传统的开发方式大部分都是 I/O 阻塞的 
+                        所以需要多线程来更好的利用硬件资源 
+                        给人带来一种错觉：线程越多越好(线程的创建需要耗时，线程本身需要占用内存)
+                    Node.js 是单线程的
+                        Node.js 用来执行 js 的线程只有一个
+                        Node.js (libuv)内部维护了一个线程池
+                        Node 中将所有的阻塞操作交给了内部实现的线程池 
+                        Node 本身主线程主要就是不断的往返调度
+        }
+        var 模板引擎 {
+            template.defaults.rules[1].test = /{#([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*#}/; 修改界定符
+            https://aui.github.io/art-template/
+            客户端(浏览器)拿到请求的数据过后最常见的就是把这些数据呈现到界面上。
+                如果数据结构简单，可以直接通过字符串操作（拼接）的方式处理，但是如果数据过于复杂，
+                字符串拼接维护成本太大。
+            模板引擎实际上就是一个 API，模板引擎有很多种，使用方式大同小异，目的为了可以更容易更高效的将数据渲染到HTML字符串中。==通俗的说，模板引擎的目的就是将服务器返回的数据显示到HTML页面中==。
+            使用模板引擎-1.加载js文件
+                '<script src="./assets/template-web.js">''<script>'
+                //  使用模板引擎-2.设置模板
+                <script id="xxx" type="text/html">
+                    <h2>{{title}}<h2>
+                    <p>{{age}}<p>
+                <script>
+                <script>
+                    // 使用模板引擎-3.调用template函数
+                    // var 模板和数据组合好的结果 = template(模板id, 模板中使用的数据必须是js对象类型);
+                    var str = template('xxx', {
+                        title: '哈哈哈哈，这是模板引擎',
+                        age: 20,
+                    });
+                    // 将替换好的结果，放到页面上
+                    document.body.innerHTML = str;
+                <script>
+            定义模板时的script标签一定好指定id和type,tempalte函数语法：var html = template(模板id,  Object);
+            使用模板引擎处理响应数据
+                引入template-web.js
+                //<script src="/template-web.js"></script>
+                <!-- 定义模板 -->
+                <!-- <script id="abcd" type="text/html">
+                    {{each arr}}
+                    <li class="media">
+                      <img class="mr-3" src="avatar.png" alt="">
+                      <div class="media-body">
+                        <h4>{{$value.name}}</h4>
+                        <p>{{$value.content}}</p>
+                    </div>
+                    </li>
+                    {{/each}}
+                </script>
+                <script> -->
+                    <!-- xhr.onload = function () {
+                        // 完全接收到服务器返回的数据
+                        var result = this.responseText;
+                        // 将JSON格式的数据，转换成JS数据
+                        data = JSON.parse(result);
+                        // 使用模板引擎，不用拼接字符串了
+                        var str = template('abcd', {
+                            arr: data
+                        });
+                        // 把处理好的html放到ul中
+                        document.getElementById('messages').innerHTML = str;
+                    };
+                </script> -->
+        }
+    </script>
+</body>
+</html>
