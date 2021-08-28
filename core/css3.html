@@ -40,6 +40,16 @@
         2.（background-clip: padding-box;）从padding开始绘制（显示），不算border,，相当于把border那里的背景给裁剪掉！
         3.（background-clip: content-box;）只在内容区绘制（显示），不算padding和border，相当于把padding和border那里的背景给裁剪掉！
 
+        background:
+            color: 颜色
+            image：url(地址)
+            position: 坐标 （方位或px）
+            size: 大小
+            repeat: 平铺 no-repeat\repeat-x\repeat-y
+            attachment: fixed (不动)、scroll(动)
+            
+        
+
     8.反射
         -webkit-box-reflect:方向[ above-上 | below-下 | right-右 | left-左 ]，偏移量，遮罩图片
 
@@ -83,10 +93,22 @@
         就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式！在做响应式的网站里面，是必不可少的一环！
 
 
-    字体
+    
     <style>
         * {
             font-family: "microsoft yahei","sans-serif";
+            /*图片与文字中线对齐*/
+            vertical-align: middle;
+            /*盒子阴影*/
+            box-shadow: '水平' '垂直' '模糊大小' '阴影大小' '颜色' '从外层的阴影（开始时）改变阴影内侧阴影';
+            /*文字阴影*/
+            text-emphasis: '水平' '垂直' '模糊大小' '颜色';
+            /*首行缩进*/
+            text-indent: 2em;
+            /*字间距*/
+            letter-spacing: 2em;
+            /*精灵图背景书写顺序: 颜色 地址 位置 大小(只写一个值表示宽，高自适应) 是否平铺 是否可动*/
+            background: red url('../mime/123.jpg') 10px 10px / 50px no-repeat fixed;
         }
     </style>
 
