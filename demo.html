@@ -28,6 +28,7 @@
     </style>
 </head>
 <body>
+
     <div id="app">
         <div ref="div"></div>
         <div :id="'aa'" class="boxDiv">
@@ -35,19 +36,25 @@
         </div>
     </div>
     <!-- 引入Vue -->
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
     <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
     <!-- echarts -->
-    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script> -->
     <!-- 自己的方法 -->
     <script src="./js/hao.js"></script>
     <script src="./js/EventUtil.js"></script>
     <script src="./demo.js"></script>
     <script>
-        
+        let target = {
+            name: '张三'
+        };
+        let propKey = target.name;
+        if (propKey in target) {
+            console.log(111)
+        }
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         let vm = new Vue({
             el: '#app',
             components: {},
@@ -141,6 +148,6 @@
                 }
             }
         })
-    </script>
+    </script> -->
 </body>
 </html>

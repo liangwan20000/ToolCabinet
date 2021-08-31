@@ -16,14 +16,77 @@
 
     1.过渡
         transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)复制代码
+        .2D {
+            transition: all  1s  linear 2s;
+            transition-property: all(默认代表所有的属性都有动画效果) | 单独设置具体的属性名称;
+            transition-duration: 1s; 执行多长时间
+            transition-delay: 1s; 延迟时间,多长时间后执行
+            transition-timing-function:  linear; 执行速度
+            设置动画的速度类型 ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)
+            transition: transparent（透明色）;
+            transition : all  1s  linear 2s; 
+        }
 
     2.动画
-        animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）复制代码
+        animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），
+            是否反向播放动画（默认normal），是否暂停动画（默认running）复制代码
+
+        .动画 {
+            和写顺序
+            animation-name: 动画名称;
+            animation-duration: 动画时间;
+            animation-iteration-count： 动画执行次数  【infinite无限次】;
+            animation-delay： 动画延时;
+            animation-direction： 动画逆播（动画在返回的时候也有动画效果） 【alternate】;
+            animation-fill-mode： 动画在结束位置处停下【forwards】;
+            animation-play-state: paused(停止); 设置动画播放状态;
+            animation-timing-function： 设置动画速度类型;
+
+            ✔ 可以给元素同时调用多个动画集，使用延时实现
+            ✔ 可以使用百分比方式实现动画多状态效果
+            注意： 在百分比写法中，百分比是相对动画执行时间。
+            animation: move 1s  infinite  2s alternate; 动画合写;
+        }
+        @keyframes + 自定义动画名称 {
+            开始状态代码
+            from {}
+
+            结束状态
+            to {} 
+        }
+        @keyframes + 自定义动画名称 {
+            0% {}
+            20% {}
+            40% {}
+        }
 
     3.形状转换
         transform:适用于2D或3D转换的元素
 
         rotate(30deg);   translate(30px,30px);   scale(.8);        skew(10deg,10deg);        rotateX(180deg);     rotateY(180deg);        rotate3d(10,10,10,90deg);
+
+        transform: translate(length, length);位移x轴 y轴;
+        transform: rotate(angle); 旋转 单位deg;
+        transform-origin: center center;设置圆点的位置  transform-origin: 方位名称 | 值;
+        transform: scale(0, 0);缩放（scale）： 改变元素大小;
+        transform: skew(angle, angle);倾斜（skew）:  让元素发生倾斜（deg）;
+
+        .3D {
+            x轴： 水平方向默认从左向右
+            y轴:  垂直方向从上向下
+            z轴： 从里向外
+            transform： rotateX();旋转;
+            transform：scaleX();缩放;
+            transform: skewX(30deg) skewY(30deg);倾斜
+            transform-style: preserve-3d; 将平面图形转为立体图形;
+            perspective 透视 页面中出现近大远小的效果
+            transform-origin 在3d转化中 改变轴的位置;
+            通过3d方式实现元素居中
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+        }
 
     4.选择器
 
@@ -61,6 +124,41 @@
         黑白色filter: grayscale(100%)、褐色filter:sepia(1)、饱和度saturate(2)、色相旋转hue-rotate(90deg)、反色filter:invert(1)、透明度opacity(.5)、亮度brightness(.5)、对比度contrast(2)、模糊blur(3px)
 
     13.弹性布局  Flex
+        在伸缩盒子中，默认有两条轴【主轴，侧轴】 主轴： 默认的显示方向是水平从左向右显示的 侧轴： 始终垂直于主轴
+        display： flex;先将直接父元素设置为伸缩盒子  将标准流的盒子转化为伸缩盒子;
+        通过属性调整主轴的方向：
+            flex-direction: row(水平);
+            flex-direction: column (垂直显示);
+            flex-direction: row-reverse(水平翻转);
+            flex-direction: column-reverse (垂直翻转);
+        设置在主轴方向的对齐方式
+            justify-content: flex-start; (左边开始往右排);
+            justify-content: flex-end; (右边开始往左排) ;
+            justify-content: center; (盒子居中排列) ;
+            justify-content: space-between; (空余区域被盒子等分);
+            justify-content: space-around; (平均分布在盒子两侧)
+        设置元素在侧轴对齐方式【要清楚侧轴的方向】：
+            align-items: stretch(拉伸占满整个容器的高度) ;
+            align-items: baseline;(项目的第一行文字的基线对齐)
+            align-items: flex-end;底部对齐
+            align-items: flex-start;
+        在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
+            flex-wrap: nowrap(不换行) ;
+            flex-wrap: wrap(换行，第一行在上方);
+            flex-wrap: wrap-reverse(换行，第一行在下方)
+            flex-wrap: flex-start;
+        多根轴线的对齐方式（换行后形成多行），如果项目只有一根轴线，该属性不起作用
+            align-content：flex-start：与交叉轴的起点对齐
+            align-content：flex-end：与交叉轴的终点对齐。
+            align-content：center：与交叉轴的中点对齐
+            align-content：space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+            align-content：space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+            align-content：stretch（默认值）：轴线占满整个交叉轴。
+            等等;
+        flex: 值；将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上;
+
+        对子元素进行排序显示效果
+            order： 值；    注意： 值越小，元素越靠前显示
 
     14.栅格布局
         grid-rows：没有浏览器支持
@@ -116,65 +214,7 @@
             selected="selected" 下拉框的默认选中项 selected  (內置屬性)
             multiple="multiple" 表单可选择多个值
         }
-        .2D {
-            transition: all  1s  linear 2s;
-            transition-property: all(默认代表所有的属性都有动画效果) | 单独设置具体的属性名称;
-            transition-duration: 1s; 执行多长时间
-            transition-delay: 1s; 延迟时间,多长时间后执行
-            transition-timing-function:  linear; 执行速度
-            设置动画的速度类型 ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)
-            transition: transparent（透明色）;
-            transition : all  1s  linear 2s; 
-            transform: translate(length, length);位移x轴 y轴;
-            transform: rotate(angle); 旋转 单位deg;
-            transform-origin: center center;设置圆点的位置  transform-origin: 方位名称 | 值;
-            transform: scale(0, 0);缩放（scale）： 改变元素大小;
-            transform: skew(angle, angle);倾斜（skew）:  让元素发生倾斜（deg）;
-        }
-        .3D {
-            x轴： 水平方向默认从左向右
-            y轴:  垂直方向从上向下
-            z轴： 从里向外
-            transform： rotateX();旋转;
-            transform：scaleX();缩放;
-            transform: skewX(30deg) skewY(30deg);倾斜
-            transform-style: preserve-3d; 将平面图形转为立体图形;
-            perspective 透视 页面中出现近大远小的效果
-            transform-origin 在3d转化中 改变轴的位置;
-            通过3d方式实现元素居中
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translateX(-50%) translateY(-50%);
-        }
-        .动画 {
-            和写顺序
-            animation-name: 动画名称;
-            animation-duration: 动画时间;
-            animation-iteration-count： 动画执行次数  【infinite无限次】;
-            animation-delay： 动画延时;
-            animation-direction： 动画逆播（动画在返回的时候也有动画效果） 【alternate】;
-            animation-fill-mode： 动画在结束位置处停下【forwards】;
-            animation-play-state: paused(停止); 设置动画播放状态;
-            animation-timing-function： 设置动画速度类型;
-
-            ✔ 可以给元素同时调用多个动画集，使用延时实现
-            ✔ 可以使用百分比方式实现动画多状态效果
-            注意： 在百分比写法中，百分比是相对动画执行时间。
-            animation: move 1s  infinite  2s alternate; 动画合写;
-        }
-        @keyframes + 自定义动画名称 {
-            开始状态代码
-            from {}
-
-            结束状态
-            to {} 
-        }
-        @keyframes + 自定义动画名称 {
-            0% {}
-            20% {}
-            40% {}
-        }
+        
     </style>
 
 
@@ -203,43 +243,7 @@
             -o-border-radius: 50%;
             border-radius: 50%;
         }
-        .伸缩布局（大量的属性） {
-                在伸缩盒子中，默认有两条轴【主轴，侧轴】 主轴： 默认的显示方向是水平从左向右显示的 侧轴： 始终垂直于主轴
-                display： flex;先将直接父元素设置为伸缩盒子  将标准流的盒子转化为伸缩盒子;
-                通过属性调整主轴的方向：
-                    flex-direction: row(水平);
-                    flex-direction: column (垂直显示);
-                    flex-direction: row-reverse(水平翻转);
-                    flex-direction: column-reverse (垂直翻转);
-                设置在主轴方向的对齐方式
-                    justify-content: flex-start; (左边开始往右排);
-                    justify-content: flex-end; (右边开始往左排) ;
-                    justify-content: center; (盒子居中排列) ;
-                    justify-content: space-between; (空余区域被盒子等分);
-                    justify-content: space-around; (平均分布在盒子两侧)
-                设置元素在侧轴对齐方式【要清楚侧轴的方向】：
-                    align-items: stretch(拉伸占满整个容器的高度) ;
-                    align-items: baseline;(项目的第一行文字的基线对齐)
-                    align-items: flex-end;底部对齐
-                    align-items: flex-start;
-                在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
-                    flex-wrap: nowrap(不换行) ;
-                    flex-wrap: wrap(换行，第一行在上方);
-                    flex-wrap: wrap-reverse(换行，第一行在下方)
-                    flex-wrap: flex-start;
-                多根轴线的对齐方式（换行后形成多行），如果项目只有一根轴线，该属性不起作用
-                    align-content：flex-start：与交叉轴的起点对齐
-                    align-content：flex-end：与交叉轴的终点对齐。
-                    align-content：center：与交叉轴的中点对齐
-                    align-content：space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
-                    align-content：space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
-                    align-content：stretch（默认值）：轴线占满整个交叉轴。
-                    等等;
-                flex: 值；将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上;
-
-                对子元素进行排序显示效果
-                    order： 值；    注意： 值越小，元素越靠前显示
-        }
+        .伸缩布局（大量的属性） {}
         .rem适配（单位）[要实现页面精细化适配方案]  {
                 1. em: 相对当前标签中的文字大小;
                 2. rem: 相对根标签中的文字大小 （HTML标签中的文字大小）;

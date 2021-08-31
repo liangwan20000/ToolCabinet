@@ -13,7 +13,7 @@
       age: 18
     }
     // ES6 Proxy
-    var p = new  Proxy(data, {
+    data = new Proxy(data, {
       // 第一个参数，是被代理的对象
       // 第二个参数，是当前访问的属性名称
       get (target, prop) {
@@ -34,6 +34,8 @@
         target[prop] = value
       }
     })
+    console.log(data)
+    data.age = 201
   </script>
 </body>
 </html>
