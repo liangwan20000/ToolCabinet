@@ -106,8 +106,9 @@
 
     4.选择器
 
-    5.阴影    
-        box-shadow: 水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;复制代码
+    5.阴影：可以写多组，用逗号隔开；
+        box-shadow: 水平偏移 垂直偏移 模糊大小 阴影大小 阴影颜色 内/外阴影（默认是从里往外，设置inset就是从外往里）
+        text-shadow: 水平偏移 垂直偏移 模糊大小 阴影颜色。
 
     6.边框    
         border-image: 图片url 图像边界向内偏移 图像边界的宽度(默认为边框的宽度) 用于指定在边框外部绘制偏移的量（默认0） 铺满方式--重复（repeat）、拉伸（stretch）或铺满（round）（默认：拉伸（stretch））;
@@ -123,7 +124,7 @@
             color: 颜色
             image：url(地址)
             position: 坐标 （方位或px）
-            size: 大小
+            size: 大小 
             repeat: 平铺 no-repeat\repeat-x\repeat-y
             attachment: fixed (不动)、scroll(动)
             
@@ -231,8 +232,12 @@
             background-size: contain;
             /*轮廓线 默认样式*/
             outline: none;
+            /*禁止用户自动缩放*/
+            resize: none;
             /*边框合并：针对表格*/
             border-collapse: collapse;
+            /*透明 取值0-1 0代表完全透明 包括内容*/
+            opacity: 0;
         }
         /*选择器 n从0开始，even所有偶数，odd所有奇数*/
         .box:first-child {}
