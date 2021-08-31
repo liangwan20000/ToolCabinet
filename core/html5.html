@@ -9,21 +9,21 @@
 	1、语义标签 http://know.webhek.com/html5/html5-progress.html
 
 	 		标签	 					描述
-		<hrader></header>	 	定义了文档的头部区域
-		<footer></footer>	 	定义了文档的尾部区域
-		<nav></nav>				定义文档的导航
-		<section></section>	 	定义文档中的某一模块（section、区段）
-		<article></article>	 	文章页；表示论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。
-		<aside></aside>			元素通常显示成侧边栏(sidebar)或一些插入补充内容
-		<detailes></detailes>	用于描述文档或文档某个部分的细节
-		<summary></summary>		标签包含 details 元素的标题
-		<dialog></dialog>		定义对话框，比如提示框
-		<figure></figure>		一个自我独立的内容元素，通常会包含一个标题说明(<figcaption>)
-		<address></address>		用来存放地址信息的，它可以和<article>元素配对来提供文章作者的联系信息。
-		<datalist></datalist>	一个数据容器，需要使用它的<input>元素使用list属性引用
-		<output></output>		用来输出计算结果或用户动作的结果。
-		<progress></progress>	就是显示进度条。
-		<keygen>		表单元素;提供一种验证用户的可靠方法，标签规定用于表单的密钥对生成器字段。
+		<!-- <hrader></header>	 	定义了文档的头部区域 -->
+		<!-- <footer></footer>	 	定义了文档的尾部区域 -->
+		<!-- <nav></nav>				定义文档的导航 -->
+		<!-- <section></section>	 	定义文档中的某一模块（section、区段） -->
+		<!-- <article></article>	 	文章页；表示论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。 -->
+		<!-- <aside></aside>			元素通常显示成侧边栏(sidebar)或一些插入补充内容 -->
+		<!-- <detailes></detailes>	用于描述文档或文档某个部分的细节 -->
+		<!-- <summary></summary>		标签包含 details 元素的标题 -->
+		<!-- <dialog></dialog>		定义对话框，比如提示框 -->
+		<!-- <figure></figure>		一个自我独立的内容元素，通常会包含一个标题说明(<figcaption>) -->
+		<!-- <address></address>		用来存放地址信息的，它可以和<article>元素配对来提供文章作者的联系信息。 -->
+		<!-- <datalist></datalist>	一个数据容器，需要使用它的<input>元素使用list属性引用 -->
+		<!-- <output></output>		用来输出计算结果或用户动作的结果。 -->
+		<!-- <progress></progress>	就是显示进度条。 -->
+		<!-- <keygen>		表单元素;提供一种验证用户的可靠方法，标签规定用于表单的密钥对生成器字段。 -->
 
 	2、增强型表单 新增的type值
 		color    定义拾色器。
@@ -94,5 +94,20 @@
 	10、Web Storage 	本地存储
 		localStorage	本地存储，关闭浏览器数据不会丢失
 		sessionStorage	本地存储，关闭浏览器数据清除
+
+	<div
+		id="div"
+		style="width: 100px; height: 100px;"
+		title="你好"
+		class="box"
+		dir="ltr"
+		lang="fr"
+	>张三你好</div>
+	<img name="张三" src="../mime/123.jpg" alt="山羊" width="100" height="100">
+	<script>
+		let div = document.querySelector('#div'), img = document.querySelector('img');
+		div.nodeType = "2"
+		console.log(div.attributes, div.nodeType)
+	</script>
 </body>
 </html>
