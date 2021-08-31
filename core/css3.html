@@ -16,14 +16,75 @@
 
     1.过渡
         transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)复制代码
+        .2D {
+            transition: all  1s  linear 2s;
+            transition-property: all(默认代表所有的属性都有动画效果) | 单独设置具体的属性名称;
+            transition-duration: 1s; 执行多长时间
+            transition-delay: 1s; 延迟时间,多长时间后执行
+            transition-timing-function:  linear; 执行速度
+            设置动画的速度类型 ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)
+            transition: transparent（透明色）;
+            transition : all  1s  linear 2s; 
+            
+        }
+        .3D {
+            x轴： 水平方向默认从左向右
+            y轴:  垂直方向从上向下
+            z轴： 从里向外
+            transform： rotateX();旋转;
+            transform：scaleX();缩放;
+            transform: skewX(30deg) skewY(30deg);倾斜
+            transform-style: preserve-3d; 将平面图形转为立体图形;
+            perspective 透视 页面中出现近大远小的效果
+            transform-origin 在3d转化中 改变轴的位置;
+            通过3d方式实现元素居中
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+        }
 
     2.动画
         animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）复制代码
+        .动画 {
+            和写顺序
+            animation-name: 动画名称;
+            animation-duration: 动画时间;
+            animation-iteration-count： 动画执行次数  【infinite无限次】;
+            animation-delay： 动画延时;
+            animation-direction： 动画逆播（动画在返回的时候也有动画效果） 【alternate】;
+            animation-fill-mode： 动画在结束位置处停下【forwards】;
+            animation-play-state: paused(停止); 设置动画播放状态;
+            animation-timing-function： 设置动画速度类型;
+
+            ✔ 可以给元素同时调用多个动画集，使用延时实现
+            ✔ 可以使用百分比方式实现动画多状态效果
+            注意： 在百分比写法中，百分比是相对动画执行时间。
+            animation: move 1s  infinite  2s alternate; 动画合写;
+        }
+        @keyframes + 自定义动画名称 {
+            开始状态代码
+            from {}
+
+            结束状态
+            to {} 
+        }
+        @keyframes + 自定义动画名称 {
+            0% {}
+            20% {}
+            40% {}
+        }
 
     3.形状转换
         transform:适用于2D或3D转换的元素
 
         rotate(30deg);   translate(30px,30px);   scale(.8);        skew(10deg,10deg);        rotateX(180deg);     rotateY(180deg);        rotate3d(10,10,10,90deg);
+
+        transform: translate(length, length);位移x轴 y轴;
+        transform: rotate(angle); 旋转 单位deg;
+        transform-origin: center center;设置圆点的位置  transform-origin: 方位名称 | 值;
+        transform: scale(0, 0);缩放（scale）： 改变元素大小;
+        transform: skew(angle, angle);倾斜（skew）:  让元素发生倾斜（deg）;
 
     4.选择器
 
@@ -77,7 +138,7 @@
 
     16.盒模型定义   
         box-sizing:border-box的时候，边框和padding包含在元素的宽高之内！
-        box-sizing:content-box的时候，边框和padding不包含在元素的宽高之内！如下图
+        box-sizing:content-box的时候，边框和padding不包含在元素的宽高之内！
 
     17.媒体查询
         就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式！在做响应式的网站里面，是必不可少的一环！
@@ -115,65 +176,6 @@
             resize: none;       禁止拉伸  多行文本輸入框用
             selected="selected" 下拉框的默认选中项 selected  (內置屬性)
             multiple="multiple" 表单可选择多个值
-        }
-        .2D {
-            transition: all  1s  linear 2s;
-            transition-property: all(默认代表所有的属性都有动画效果) | 单独设置具体的属性名称;
-            transition-duration: 1s; 执行多长时间
-            transition-delay: 1s; 延迟时间,多长时间后执行
-            transition-timing-function:  linear; 执行速度
-            设置动画的速度类型 ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)
-            transition: transparent（透明色）;
-            transition : all  1s  linear 2s; 
-            transform: translate(length, length);位移x轴 y轴;
-            transform: rotate(angle); 旋转 单位deg;
-            transform-origin: center center;设置圆点的位置  transform-origin: 方位名称 | 值;
-            transform: scale(0, 0);缩放（scale）： 改变元素大小;
-            transform: skew(angle, angle);倾斜（skew）:  让元素发生倾斜（deg）;
-        }
-        .3D {
-            x轴： 水平方向默认从左向右
-            y轴:  垂直方向从上向下
-            z轴： 从里向外
-            transform： rotateX();旋转;
-            transform：scaleX();缩放;
-            transform: skewX(30deg) skewY(30deg);倾斜
-            transform-style: preserve-3d; 将平面图形转为立体图形;
-            perspective 透视 页面中出现近大远小的效果
-            transform-origin 在3d转化中 改变轴的位置;
-            通过3d方式实现元素居中
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translateX(-50%) translateY(-50%);
-        }
-        .动画 {
-            和写顺序
-            animation-name: 动画名称;
-            animation-duration: 动画时间;
-            animation-iteration-count： 动画执行次数  【infinite无限次】;
-            animation-delay： 动画延时;
-            animation-direction： 动画逆播（动画在返回的时候也有动画效果） 【alternate】;
-            animation-fill-mode： 动画在结束位置处停下【forwards】;
-            animation-play-state: paused(停止); 设置动画播放状态;
-            animation-timing-function： 设置动画速度类型;
-
-            ✔ 可以给元素同时调用多个动画集，使用延时实现
-            ✔ 可以使用百分比方式实现动画多状态效果
-            注意： 在百分比写法中，百分比是相对动画执行时间。
-            animation: move 1s  infinite  2s alternate; 动画合写;
-        }
-        @keyframes + 自定义动画名称 {
-            开始状态代码
-            from {}
-
-            结束状态
-            to {} 
-        }
-        @keyframes + 自定义动画名称 {
-            0% {}
-            20% {}
-            40% {}
         }
     </style>
 
