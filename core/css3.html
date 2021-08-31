@@ -25,7 +25,6 @@
             设置动画的速度类型 ease(加速)   linear(匀速的)  ease-in(加速)  ease-out（减速）  ease-in-out(先快后慢)
             transition: transparent（透明色）;
             transition : all  1s  linear 2s; 
-            
         }
         .3D {
             x轴： 水平方向默认从左向右
@@ -45,7 +44,9 @@
         }
 
     2.动画
-        animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）复制代码
+        animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），
+            是否反向播放动画（默认normal），是否暂停动画（默认running）复制代码
+
         .动画 {
             和写顺序
             animation-name: 动画名称;
@@ -86,6 +87,23 @@
         transform: scale(0, 0);缩放（scale）： 改变元素大小;
         transform: skew(angle, angle);倾斜（skew）:  让元素发生倾斜（deg）;
 
+        .3D {
+            x轴： 水平方向默认从左向右
+            y轴:  垂直方向从上向下
+            z轴： 从里向外
+            transform： rotateX();旋转;
+            transform：scaleX();缩放;
+            transform: skewX(30deg) skewY(30deg);倾斜
+            transform-style: preserve-3d; 将平面图形转为立体图形;
+            perspective 透视 页面中出现近大远小的效果
+            transform-origin 在3d转化中 改变轴的位置;
+            通过3d方式实现元素居中
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+        }
+
     4.选择器
 
     5.阴影    
@@ -100,6 +118,16 @@
         1.（background-clip: border-box;）默认情况（从边框开始绘制）
         2.（background-clip: padding-box;）从padding开始绘制（显示），不算border,，相当于把border那里的背景给裁剪掉！
         3.（background-clip: content-box;）只在内容区绘制（显示），不算padding和border，相当于把padding和border那里的背景给裁剪掉！
+
+        background:
+            color: 颜色
+            image：url(地址)
+            position: 坐标 （方位或px）
+            size: 大小
+            repeat: 平铺 no-repeat\repeat-x\repeat-y
+            attachment: fixed (不动)、scroll(动)
+            
+        
 
     8.反射
         -webkit-box-reflect:方向[ above-上 | below-下 | right-右 | left-左 ]，偏移量，遮罩图片
@@ -122,6 +150,41 @@
         黑白色filter: grayscale(100%)、褐色filter:sepia(1)、饱和度saturate(2)、色相旋转hue-rotate(90deg)、反色filter:invert(1)、透明度opacity(.5)、亮度brightness(.5)、对比度contrast(2)、模糊blur(3px)
 
     13.弹性布局  Flex
+        在伸缩盒子中，默认有两条轴【主轴，侧轴】 主轴： 默认的显示方向是水平从左向右显示的 侧轴： 始终垂直于主轴
+        display： flex;先将直接父元素设置为伸缩盒子  将标准流的盒子转化为伸缩盒子;
+        通过属性调整主轴的方向：
+            flex-direction: row(水平);
+            flex-direction: column (垂直显示);
+            flex-direction: row-reverse(水平翻转);
+            flex-direction: column-reverse (垂直翻转);
+        设置在主轴方向的对齐方式
+            justify-content: flex-start; (左边开始往右排);
+            justify-content: flex-end; (右边开始往左排) ;
+            justify-content: center; (盒子居中排列) ;
+            justify-content: space-between; (空余区域被盒子等分);
+            justify-content: space-around; (平均分布在盒子两侧)
+        设置元素在侧轴对齐方式【要清楚侧轴的方向】：
+            align-items: stretch(拉伸占满整个容器的高度) ;
+            align-items: baseline;(项目的第一行文字的基线对齐)
+            align-items: flex-end;底部对齐
+            align-items: flex-start;
+        在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
+            flex-wrap: nowrap(不换行) ;
+            flex-wrap: wrap(换行，第一行在上方);
+            flex-wrap: wrap-reverse(换行，第一行在下方)
+            flex-wrap: flex-start;
+        多根轴线的对齐方式（换行后形成多行），如果项目只有一根轴线，该属性不起作用
+            align-content：flex-start：与交叉轴的起点对齐
+            align-content：flex-end：与交叉轴的终点对齐。
+            align-content：center：与交叉轴的中点对齐
+            align-content：space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+            align-content：space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+            align-content：stretch（默认值）：轴线占满整个交叉轴。
+            等等;
+        flex: 值；将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上;
+
+        对子元素进行排序显示效果
+            order： 值；    注意： 值越小，元素越靠前显示
 
     14.栅格布局
         grid-rows：没有浏览器支持
@@ -144,11 +207,40 @@
         就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式！在做响应式的网站里面，是必不可少的一环！
 
 
-    字体
     <style>
         * {
             font-family: "microsoft yahei","sans-serif";
+            /*图片与文字中线对齐：top(顶线)bottom(底线)baseline(基线)middle(中线)*/
+            vertical-align: middle;
+            /*超出隐藏*/
+            overflow: hidden;
+            /*X轴滚动条,Y轴就把X变成Y*/
+            overflow-x: scroll;
+            /*盒子阴影*/
+            box-shadow: '水平' '垂直' '模糊大小' '阴影大小' '颜色' '从外层的阴影（开始时）改变阴影内侧阴影';
+            /*文字阴影*/
+            text-emphasis: '水平' '垂直' '模糊大小' '颜色';
+            /*首行缩进*/
+            text-indent: 2em;
+            /*字间距*/
+            letter-spacing: 2em;
+            /*精灵图背景书写顺序: 颜色 地址 位置 大小(只写一个值表示宽，高自适应) 是否平铺 是否可动*/
+            background: red url('../mime/123.jpg') 10px 10px / 50px no-repeat fixed;
+            /*背景还有两个值：contain: 等比例拉伸图片，到边框停止，不允许超出盒子可能产生留白;*/
+            /*背景还有两个值：cover: 等比例拉伸图片，不允许留白，可能超出盒子;*/
+            background-size: contain;
+            /*轮廓线 默认样式*/
+            outline: none;
+            /*边框合并：针对表格*/
+            border-collapse: collapse;
         }
+        /*选择器 n从0开始，even所有偶数，odd所有奇数*/
+        .box:first-child {}
+        /*第N个元素，并且是box*/
+        .box:nth-child(n) {}
+        .box:last-child {}
+        /*选择box的第五个元素*/
+        .box:nth-of-type(5) {}
     </style>
 
 
@@ -205,43 +297,7 @@
             -o-border-radius: 50%;
             border-radius: 50%;
         }
-        .伸缩布局（大量的属性） {
-                在伸缩盒子中，默认有两条轴【主轴，侧轴】 主轴： 默认的显示方向是水平从左向右显示的 侧轴： 始终垂直于主轴
-                display： flex;先将直接父元素设置为伸缩盒子  将标准流的盒子转化为伸缩盒子;
-                通过属性调整主轴的方向：
-                    flex-direction: row(水平);
-                    flex-direction: column (垂直显示);
-                    flex-direction: row-reverse(水平翻转);
-                    flex-direction: column-reverse (垂直翻转);
-                设置在主轴方向的对齐方式
-                    justify-content: flex-start; (左边开始往右排);
-                    justify-content: flex-end; (右边开始往左排) ;
-                    justify-content: center; (盒子居中排列) ;
-                    justify-content: space-between; (空余区域被盒子等分);
-                    justify-content: space-around; (平均分布在盒子两侧)
-                设置元素在侧轴对齐方式【要清楚侧轴的方向】：
-                    align-items: stretch(拉伸占满整个容器的高度) ;
-                    align-items: baseline;(项目的第一行文字的基线对齐)
-                    align-items: flex-end;底部对齐
-                    align-items: flex-start;
-                在伸缩盒子中，元素默认不会换行显示（会对元素进行缩小效果）
-                    flex-wrap: nowrap(不换行) ;
-                    flex-wrap: wrap(换行，第一行在上方);
-                    flex-wrap: wrap-reverse(换行，第一行在下方)
-                    flex-wrap: flex-start;
-                多根轴线的对齐方式（换行后形成多行），如果项目只有一根轴线，该属性不起作用
-                    align-content：flex-start：与交叉轴的起点对齐
-                    align-content：flex-end：与交叉轴的终点对齐。
-                    align-content：center：与交叉轴的中点对齐
-                    align-content：space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
-                    align-content：space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
-                    align-content：stretch（默认值）：轴线占满整个交叉轴。
-                    等等;
-                flex: 值；将父元素中除去具体宽度后，剩余的宽度值分为若干份  这个命令 (flex: 值;)设置在子盒子上;
-
-                对子元素进行排序显示效果
-                    order： 值；    注意： 值越小，元素越靠前显示
-        }
+        .伸缩布局（大量的属性） {}
         .rem适配（单位）[要实现页面精细化适配方案]  {
                 1. em: 相对当前标签中的文字大小;
                 2. rem: 相对根标签中的文字大小 （HTML标签中的文字大小）;

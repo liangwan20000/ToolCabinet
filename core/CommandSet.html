@@ -121,13 +121,16 @@
 			window 
 			Date
 			RegExp 	.match()
-			XMLHttpRequest 	
+			XMLHttpRequest
 			console.dir(); 查看这些对象都有啥
 		}
 		var Object {
+			Object.create(); 方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。
 			Object.keys(); 获取对象所有的键，返回一个数组;
 			Object.values(); 一个包含对象自身的所有可枚举属性值的数组;
 			Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+			Object.getPrototypeOf(); 方法返回[[Prototype]]指定对象的原型（即内部属性的值）。
+			Object.getOwnPropertyNames(); 方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。
 			limingObj.hasOwnProperty(prop); 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）。
 			Object.defineProperty(obj, prop, descriptor); 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
 				1. configurable:当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。
@@ -315,6 +318,7 @@
 		 			1. 先判断条件表达式是否成立（true | false）
 		 			2. 如果条件表达式的结果是true，那么程序只会执行 if 后面的逻辑代码，else中的代码不会执行
 		 			3. 如果条件表达式结果是false,那么程序只会执行else中的代码
+		 		if (cur in pre) {} //pre 中是否有 cur 属性
 			1.1 多条件判断：
 				语法：
 					if(条件表达式) {
