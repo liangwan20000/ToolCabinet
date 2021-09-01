@@ -45,14 +45,12 @@
     <script src="./js/hao.js"></script>
     <script src="./js/EventUtil.js"></script>
     <script src="./demo.js"></script>
+    <script src="./js/jquery.min.js"></script>
     <script>
-        let target = {
-            name: '张三'
-        };
-        let propKey = target.name;
-        if (propKey in target) {
-            console.log(111)
-        }
+        let di = $('#app').get(0)
+        console.log($('#app'))
+        let diTwo = document.querySelector('#app');
+        console.log(diTwo)
     </script>
     <!-- <script type="text/javascript">
         let vm = new Vue({
