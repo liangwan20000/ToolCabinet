@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>提交</button>
+    <script>
+        function formSubmit(url,type,jsonData,targetType) {
+            var dlform = document.createElement('form');
+            dlform.style = "display:none;";
+            dlform.method = type;
+            dlform.action = url;
+            dlform.target = targetType
+            var json = jsonData;
+            for(var i=0,l=json.length;i<l;i++){
+                for(var key in json[i]){
+                    var hdnFilePath = document.createElement('input');
+                    hdnFilePath.type = 'hidden';
+                    hdnFilePath.name = key;
+                    hdnFilePath.value = json[i][key];
+                }
+            }
+            dlform.appendChild(hdnFilePath);
+            document.body.appendChild(dlform);
+            dlform.submit();
+            document.body.removeChild(dlform);
+        }
+        var btn = document.querySelector('button');
+        btn.onclick = function () {
+            var url = "123.html";   //请求路径
+            var type = "POST";  //请求类型
+            var jsonData = [];  //构建json
+            jsonData.push({"commodityid":"36"});    //将传参放入json中
+            var targetType = "_self";   //在当前页面打开
+            formSubmit(url,type,jsonData,targetType)
+        };
+    </script>
+</body>
+</html>

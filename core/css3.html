@@ -26,6 +26,22 @@
             transition: transparent（透明色）;
             transition : all  1s  linear 2s; 
         }
+        .3D {
+            x轴： 水平方向默认从左向右
+            y轴:  垂直方向从上向下
+            z轴： 从里向外
+            transform： rotateX();旋转;
+            transform：scaleX();缩放;
+            transform: skewX(30deg) skewY(30deg);倾斜
+            transform-style: preserve-3d; 将平面图形转为立体图形;
+            perspective 透视 页面中出现近大远小的效果
+            transform-origin 在3d转化中 改变轴的位置;
+            通过3d方式实现元素居中
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+        }
 
     2.动画
         animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），
@@ -90,8 +106,9 @@
 
     4.选择器
 
-    5.阴影    
-        box-shadow: 水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;复制代码
+    5.阴影：可以写多组，用逗号隔开；
+        box-shadow: 水平偏移 垂直偏移 模糊大小 阴影大小 阴影颜色 内/外阴影（默认是从里往外，设置inset就是从外往里）
+        text-shadow: 水平偏移 垂直偏移 模糊大小 阴影颜色。
 
     6.边框    
         border-image: 图片url 图像边界向内偏移 图像边界的宽度(默认为边框的宽度) 用于指定在边框外部绘制偏移的量（默认0） 铺满方式--重复（repeat）、拉伸（stretch）或铺满（round）（默认：拉伸（stretch））;
@@ -102,6 +119,16 @@
         1.（background-clip: border-box;）默认情况（从边框开始绘制）
         2.（background-clip: padding-box;）从padding开始绘制（显示），不算border,，相当于把border那里的背景给裁剪掉！
         3.（background-clip: content-box;）只在内容区绘制（显示），不算padding和border，相当于把padding和border那里的背景给裁剪掉！
+
+        background:
+            color: 颜色
+            image：url(地址)
+            position: 坐标 （方位或px）
+            size: 大小 
+            repeat: 平铺 no-repeat\repeat-x\repeat-y
+            attachment: fixed (不动)、scroll(动)
+            
+        
 
     8.反射
         -webkit-box-reflect:方向[ above-上 | below-下 | right-右 | left-左 ]，偏移量，遮罩图片
@@ -175,17 +202,50 @@
 
     16.盒模型定义   
         box-sizing:border-box的时候，边框和padding包含在元素的宽高之内！
-        box-sizing:content-box的时候，边框和padding不包含在元素的宽高之内！如下图
+        box-sizing:content-box的时候，边框和padding不包含在元素的宽高之内！
 
     17.媒体查询
         就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式！在做响应式的网站里面，是必不可少的一环！
 
 
-    字体
     <style>
         * {
             font-family: "microsoft yahei","sans-serif";
+            /*图片与文字中线对齐：top(顶线)bottom(底线)baseline(基线)middle(中线)*/
+            vertical-align: middle;
+            /*超出隐藏*/
+            overflow: hidden;
+            /*X轴滚动条,Y轴就把X变成Y*/
+            overflow-x: scroll;
+            /*盒子阴影*/
+            box-shadow: '水平' '垂直' '模糊大小' '阴影大小' '颜色' '从外层的阴影（开始时）改变阴影内侧阴影';
+            /*文字阴影*/
+            text-emphasis: '水平' '垂直' '模糊大小' '颜色';
+            /*首行缩进*/
+            text-indent: 2em;
+            /*字间距*/
+            letter-spacing: 2em;
+            /*精灵图背景书写顺序: 颜色 地址 位置 大小(只写一个值表示宽，高自适应) 是否平铺 是否可动*/
+            background: red url('../mime/123.jpg') 10px 10px / 50px no-repeat fixed;
+            /*背景还有两个值：contain: 等比例拉伸图片，到边框停止，不允许超出盒子可能产生留白;*/
+            /*背景还有两个值：cover: 等比例拉伸图片，不允许留白，可能超出盒子;*/
+            background-size: contain;
+            /*轮廓线 默认样式*/
+            outline: none;
+            /*禁止用户自动缩放*/
+            resize: none;
+            /*边框合并：针对表格*/
+            border-collapse: collapse;
+            /*透明 取值0-1 0代表完全透明 包括内容*/
+            opacity: 0;
         }
+        /*选择器 n从0开始，even所有偶数，odd所有奇数*/
+        .box:first-child {}
+        /*第N个元素，并且是box*/
+        .box:nth-child(n) {}
+        .box:last-child {}
+        /*选择box的第五个元素*/
+        .box:nth-of-type(5) {}
     </style>
 
 
@@ -214,7 +274,6 @@
             selected="selected" 下拉框的默认选中项 selected  (內置屬性)
             multiple="multiple" 表单可选择多个值
         }
-        
     </style>
 
 
