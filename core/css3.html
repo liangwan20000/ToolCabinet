@@ -6,6 +6,8 @@
     <title>CSS3</title>
 </head>
 <body>
+    css  双飞翼布局  遮罩效果(模态窗口)
+    
     优雅降级
         把不带前缀的样式写在前面，把带前缀的样式写在后面；
         以最高标准显示
@@ -142,6 +144,91 @@
         background-color: hsla( 49, 65%, 60%, 0.68);复制代码
 
     11.渐变
+        线性渐变
+        .box {
+            width: 600px;
+            height: 100px;
+            margin: 50px auto;
+            border: 1px solid #000;
+        }
+        .box:nth-child(1) {
+            /* 最简单的渐变 */
+            background-image: linear-gradient(red, green);
+            background-image: linear-gradient(red, green)
+        }
+        .box:nth-child(2) {
+            /* 最简单的渐变 */
+            background-image: linear-gradient(red, green, blue);
+        }
+        .box:nth-child(3) {
+            /* 控制渐变的方向 to 方位名词*/
+            background-image: linear-gradient( to left top,red, green, blue);
+        }
+        .box:nth-child(4) {
+            /* 控制渐变的方向 角度deg*/
+            background-image: linear-gradient( 45deg,red, green, blue);
+        }
+        .box:nth-child(5) {
+            /* 控制渐变颜色的位置  */
+            background-image: linear-gradient( to right,yellow, red 30%, green 50%, blue 80%);
+        }
+        .box:nth-child(6) {
+            width: 400px;
+            /* 控制渐变颜色的位置  */
+            background-image: linear-gradient( 45deg, pink 20%, skyblue 20%, skyblue 40%, pink  40%, pink 60%, skyblue 60%, skyblue 80%, pink 80%);
+        }   
+        发廊灯
+        .box:nth-child(7) {
+            width: 400px;
+            /* 控制渐变颜色的位置 */
+            background-image: linear-gradient( 45deg, #000 20%, #fff 20%, #fff 40%, #000  40%, #000 60%, #fff 60%, #fff 80%, #000 80%);
+            background-repeat: repeat-x;
+            animation: test 1s linear infinite;
+        }
+        @keyframes test {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -400px 0;
+            }
+        }
+        径向渐变
+        .box:nth-child(1) {
+            /* 最简单的径向渐变 */
+            background-image: radial-gradient(red, green);
+        }
+        .box:nth-child(2) {
+            /* 最简单的径向渐变 */
+            background-image: radial-gradient(red, green, blue);
+        }
+        .box:nth-child(3) {
+            /* 控制中心点 at 方位名词 */
+            background-image: radial-gradient( at right top,red, green, blue);
+        }
+        .box:nth-child(4) {
+            /* 控制中心点 at 像素 */
+            background-image: radial-gradient( at 100px 100px,red, green, blue);
+        }
+        .box:nth-child(5) {
+            /* 控制半径长度 */
+            background-image: radial-gradient( 100px at 100px 100px,red, green, blue);
+        }
+        .box:nth-child(6) {
+            /* 控制颜色的位置 */
+            background-image: radial-gradient( at center,red 0%, green 80%, blue 100%);
+        }
+        立体球
+        .ball {
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            background-color: pink;
+            border-radius: 50%;
+            background-image: radial-gradient( 400px at 140px 140px ,rgba(0,0,0,0), rgba(0,0,0,.8));
+            box-shadow: 20px 20px 20px rgba(0,0,0,.6)
+        }
+
 
     12.Filter（滤镜）：
         黑白色 filter: grayscale(100%);
