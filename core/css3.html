@@ -330,6 +330,11 @@
             border-collapse: collapse;
             /*透明 取值0-1 0代表完全透明 包括内容*/
             opacity: 0;
+            cursor: pointer;    /*鼠标小手状态*/
+                    /*default  默认值  箭头*/
+                    /*text   文本*/
+                    /*move  移动*/
+                    /*url(图片), 替换的样式*/
         }
         /*选择器 n从0开始，even所有偶数，odd所有奇数*/
         .box:first-child {}
@@ -338,31 +343,14 @@
         .box:last-child {}
         /*选择.box的第五个元素,不受其他元素的影响*/
         .box:nth-of-type(5) {}
-    </style>
-
-
-    <style>
-        关键属性 {
-            a:link      英文link就是链接的意思，代表当一段文本为链接时的属性。
-            a:visited   英文visited就是访问过的意思，代表这段文本被点击之后的属性。
-            a:hover     英文hover就是悬停的意思，代表鼠标指针放在这个链接上时的属性。
-            a:active    英文active就是有效的、快速的意思，代表鼠标按下时一瞬间的属性。
-
-            cursor: pointer;    鼠标小手状态
-                    default  默认值  箭头
-                    text   文本
-                    move  移动
-                    url(图片), 替换的样式
-
-            duration            时间相关（动画、视频、axios）
-            required            规定 input 必需在提交之前填写输入字段
-            maxlength = "200";  最大输入数 直接寫在標籤里 多行文本輸入框用 (內置屬性)
-            disabled=disabled   设置input禁用  (內置屬性)
-            readonly=readonly   设置input为只读    (內置屬性)
-            checked             单选框/复选框设置默认选中   (內置屬性)
-            selected="selected" 下拉框的默认选中项 selected  (內置屬性)
-            multiple="multiple" 表单可选择多个值
-        }
+        /*英文link就是链接的意思，代表当一段文本为链接时的属性。*/
+        a:link {}
+        /*英文visited就是访问过的意思，代表这段文本被点击之后的属性。*/
+        a:visited {}
+        /*英文hover就是悬停的意思，代表鼠标指针放在这个链接上时的属性。*/
+        a:hover {}
+        /*英文active就是有效的、快速的意思，代表鼠标按下时一瞬间的属性。*/
+        a:active {}
     </style>
 
 
@@ -371,13 +359,13 @@
         .web {
             目标： 页面适配[一个网页在任何设备下，都可以正常预览];
 
+            正常预览： 页面不能出现缩放，页面水平方向不能出现滚动条,所以在最外层加一个盒子包裹;
+
             布局方式:;
                 1. 流式布局【百分比布局】;
                 2. 伸缩布局（大量的属性） 
                 3. rem适配（单位）[要实现页面精细化适配方案] 
                 4. 响应式布局： 根据设备不同（宽度），网页的布局方式存在差异 
-
-            正常预览： 页面不能出现缩放，页面水平方向不能出现滚动条,所以在最外层加一个盒子包裹;
 
             window.devicePixelRatio; js获取设备独立像素;
 
