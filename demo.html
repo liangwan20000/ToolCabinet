@@ -29,6 +29,8 @@
     </style>
 </head>
 <body>
+    <a href="" download>下载</a>
+
     <dl class="dl-horizontal">
         <dt>Description 1</dt>
         <dd>Item 1</dd>
@@ -65,10 +67,32 @@
     <script src="./demo.js"></script>
     <script src="./js/jquery.min.js"></script>
     <script>
-        let di = $('#app').get(0)
-        console.log($('#app'))
-        let diTwo = document.querySelector('#app');
-        console.log(diTwo)
+        function getData (url) {
+            let that = this
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', url, true)
+            xhr.setRequestHeader('content-type', 'application/octet-stream')
+            xhr.responseType = 'blob' // 返回类型blob  blob 存储着大量的二进制数据
+            xhr.onload = function (result) {
+                let blob = this.response
+                let reader = new FileReader()
+                reader.readAsDataURL(blob) // 转换为base64，可以直接放入a标签href
+                reader.onload = function (e) {
+                    var a = document.createElement('a') // 转换完成，创建一个a标签用于下载
+                    a.download = data
+                    a.href = e.target.result
+                    document.body.appendChild(a) // 修复firefox中无法触发click
+                    a.click()
+                    document.body.removeChild(a)
+                }
+            }
+            xhr.send() // 发送ajax请求
+        }
+        getData('https://apd-89ede91ed8e164e26ee9c07550c194a9.v.smtcdns.com/mv.music.tc.qq.com/Af2GdK9nQefZL2SSqqybZYFYjBf1ZGp-f_roRf5toJyM/5BA89FDD1D296B38BBC9367A26761F02EC4A74DC1739B97BA58E2CF6C482B3E00BB800A2A45A74E8385EC6F1498EF415ZZqqmusic_default/qmmv_0b6bryaduaaaaeao6ea6r5qvjdqahkhaaosa.f9844.mp4?fname=qmmv_0b6bryaduaaaaeao6ea6r5qvjdqahkhaaosa.f9844.mp4')
+        // let di = $('#app').get(0)
+        // console.log($('#app'))
+        // let diTwo = document.querySelector('#app');
+        // console.log(diTwo)
     </script>
     <!-- <script type="text/javascript">
         let vm = new Vue({
