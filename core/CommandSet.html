@@ -16,7 +16,7 @@
 	以对象的形式展开查看所有属性,console.dir();学习方法
 	<style>
 		js操作标签与操作数据类型;js把标签/数据,看成一个个对象,用方法
-			(函数)操作他们,操作他们需要给他们起个名字,这个名字就是变量;  
+			(函数)操作他们,操作他们需要给他们起个名字,这个名字就是变量; 
 			用方法把他们组合起来这种思想就是面向对象编程思想;
 			当开始写的时候,你需要把对象划分出来,划分对象;
 			看到这些标签/数据就是一个个对象,给他们添加方法就是面向对象编程;
@@ -92,11 +92,17 @@
 
 			a链接下载图片需要在URL地址上添加 '?response-content-type=application/octet-stream'
 
+			网页在线预览地址    https://view.officeapps.live.com/op/view.aspx?src= 加文件地址
+
 			delete  删除数组中的项
 
 			encodeURIComponent: URL编码
 
 			decodeURIComponent: URL解码
+
+			// base64编码解吗字符串
+			widnow.btoa() // 编码
+			widnow.atob() // 解吗
 		}
 	</script>
 
@@ -4434,36 +4440,6 @@
 			6. 启动项目
 				npm run serve 或 npm run dev
 			7. 删除 vue cli 保存的模板  在用户文件夹下 administrator下  .vuerc 文件
-		}
-		let axios组件 {
-			1. 设置默认地址
-				Axios.defaults.baseURL = '';
-			2. 共享axios
-				Vue.prototype.$axios = Axios;
-			3. 请求拦截器;
-				Axios.interceptors.request.use(function (config) {
-				    // 获取token,和所有请求一起发送
-				    let token = window.sessionStorage.getItem('token');
-				    // 判断
-				    if (token) {
-				        config.headers.Authorization = 'Bearer ' + token;
-				    };
-				    return config;
-				}, function (error) {
-				    return Promise.reject(error);
-				});
-			4. 响应拦截器
-				Axios.interceptors.response.use(function (response) {
-				    // 请求前的逻辑处理
-				    return response;
-				}, function (error) {
-				    // 判断token过期
-				    if (error.response.status === 401) {
-				        this.$router.push({ name: 'login' });
-				    };
-				    // return Promise.reject(error);
-				    console.log(error);
-				});
 		}
 		let json-bigint 大数字处理组件 {
 			1. 下载安装  yarn add json-bigint

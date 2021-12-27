@@ -90,7 +90,7 @@
 	                reader.readAsDataURL(blob) // 转换为base64，可以直接放入a标签href
 	                reader.onload = function (e) {
 	                  	var a = document.createElement('a') // 转换完成，创建一个a标签用于下载
-	                  	a.download = data
+	                  	a.download = '文件名'
 	                  	a.href = e.target.result
 	                  	document.body.appendChild(a) // 修复firefox中无法触发click
 	                  	a.click()

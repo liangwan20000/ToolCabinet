@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/element-ui-custom.css?20191112">
+    <style type="text/css">
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body class="gray-bg">
+    <div id="list" class="wrapper wrapper-content animated fadeInRight" v-cloak>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="tabs-container">
+            <ul class="nav nav-tabs">
+              <li v-if="false">
+                <a data-toggle="tab" href="#tab-1" @click="clickTabHandle(1)" aria-expanded="true">服务器（{{ logListOneId || '无' }}）</a>
+              </li>
+              <li v-if="false">
+                <a data-toggle="tab" href="#tab-2" @click="clickTabHandle(2)" aria-expanded="false">服务器2（{{ logListTwoId || '无'}}）</a>
+              </li>
+              <li v-if="false">
+                <a data-toggle="tab" href="#tab-3" @click="clickTabHandle(3)" aria-expanded="false">服务器3（{{ logListThreeId || '无' }}）</a>
+              </li>
+              <li v-if="false">
+                <a data-toggle="tab" href="#tab-4" @click="clickTabHandle(4)" aria-expanded="false">服务器4（{{ logListFourId || '无' }}）</a>
+              </li>
+              <li class="active">
+                <a data-toggle="tab" href="#tab-5" @click="clickTabHandle(5)" aria-expanded="false">服务器（{{ logListFiveId || '无' }}）</a>
+              </li>
+              <div class="ibox-tools">
+                <a @click="getList(tab)">
+                  <i class="fa fa-refresh"></i> 刷新
+                </a>
+              </div>
+            </ul>
+            <div class="tab-content">
+              <div id="tab-1" class="tab-pane active">
+                <div class="panel-body" style="height: auto;">
+                  <div class="row">
+                    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                      <el-form-item label="关键字">
+                        <el-input v-model="formInline.keyFont" placeholder="请输入关键字"></el-input>
+                      </el-form-item>
+                      <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="onReset">重置</el-button>
+                      </el-form-item>
+                    </el-form>
+                  </div>
+                  <!--消费人数统计-->
+                  <div class="row">
+                    <el-table
+                      border
+                      :data="tableData"
+                      style="width: 100%">
+                      <el-table-column
+                        align="center"
+                        label="文件">
+                        <template slot-scope="scope">
+                          <el-button type="text" @click="Listexport(scope.row)">{{ scope.row }}</el-button>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                    <el-pagination
+                      style="margin-top: 20px; text-align: center;"
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :current-page="page.num"
+                      :page-sizes="[10, 20, 30, 40]"
+                      :page-size="page.size"
+                      layout="total, sizes, prev, pager, next, jumper"
+                      :total="page.total">
+                    </el-pagination>
+                    <!-- <bl-module-pagination :num.sync="page.num" :pager.sync="page.pager" :size.sync="page.size" :total="page.total" :last-page="page.lastPage" :has-prev-page="page.hasPrevPage" :has-next-page="page.hasNextPage" :req="getListRelated" /> -->
+                  </div>
+                </div>
+              </div>
+              <div id="tab-2" class="tab-pane">
+                <div class="panel-body" style="height: auto;">
+                  <div class="row">
+                    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                      <el-form-item label="关键字">
+                        <el-input v-model="formInline.keyFont" placeholder="请输入关键字"></el-input>
+                      </el-form-item>
+                      <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="onReset">重置</el-button>
+                      </el-form-item>
+                    </el-form>
+                  </div>
+                  <!--消费金额业态占比-->
+                  <div class="row">
+                    <el-table
+                        border
+                        :data="tableData"
+                        style="width: 100%">
+                        <el-table-column
+                          
+                          align="center"
+                          label="文件">
+                          <template slot-scope="scope">
+                            <el-button type="text" @click="Listexport(scope.row)">{{ scope.row }}</el-button>
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                      <el-pagination
+                        style="margin-top: 20px; text-align: center;"
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="page.num"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="page.size"
+                        layout="total, sizes, prev, pager, next, jumper"
+                        :total="page.total">
+                      </el-pagination>
+                  </div>
+                </div>
+              </div>
+              <div id="tab-4" class="tab-pane">
+                <div class="panel-body" style="height: auto;">
+                  <div class="row">
+                    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                      <el-form-item label="关键字">
+                        <el-input v-model="formInline.keyFont" placeholder="请输入关键字"></el-input>
+                      </el-form-item>
+                      <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="onReset">重置</el-button>
+                      </el-form-item>
+                    </el-form>
+                  </div>
+                  <div class="row">
+                    <el-table
+                      border
+                      :data="tableData"
+                      style="width: 100%">
+                      <el-table-column
+                        align="center"
+                        label="文件">
+                        <template slot-scope="scope">
+                          <el-button type="text" @click="Listexport(scope.row)">{{ scope.row }}</el-button>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                    <el-pagination
+                      style="margin-top: 20px; text-align: center;"
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :current-page="page.num"
+                      :page-sizes="[10, 20, 30, 40]"
+                      :page-size="page.size"
+                      layout="total, sizes, prev, pager, next, jumper"
+                      :total="page.total">
+                    </el-pagination>
+                  </div>
+                </div>
+              </div>
+              <div id="tab-3" class="tab-pane">
+                <div class="panel-body" style="height: auto;">
+                  <div class="row">
+                    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                      <el-form-item label="关键字">
+                        <el-input v-model="formInline.keyFont" placeholder="请输入关键字"></el-input>
+                      </el-form-item>
+                      <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="onReset">重置</el-button>
+                      </el-form-item>
+                    </el-form>
+                  </div>
+                  <div class="row">
+                    <el-table
+                      border
+                      :data="tableData"
+                      style="width: 100%">
+                      <el-table-column
+                        
+                        align="center"
+                        label="文件">
+                        <template slot-scope="scope">
+                          <el-button type="text" @click="Listexport(scope.row)">{{ scope.row }}</el-button>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                    <el-pagination
+                      style="margin-top: 20px; text-align: center;"
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :current-page="page.num"
+                      :page-sizes="[10, 20, 30, 40]"
+                      :page-size="page.size"
+                      layout="total, sizes, prev, pager, next, jumper"
+                      :total="page.total">
+                    </el-pagination>
+                  </div>
+                </div>
+              </div>
+              <div id="tab-5" class="tab-pane">
+                <div class="panel-body" style="height: auto;">
+                  <div class="row">
+                    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                      <el-form-item label="关键字">
+                        <el-input v-model="formInline.keyFont" placeholder="请输入关键字"></el-input>
+                      </el-form-item>
+                      <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="onReset">重置</el-button>
+                      </el-form-item>
+                    </el-form>
+                  </div>
+                  <div class="row">
+                    <el-table
+                      border
+                      :data="tableData"
+                      style="width: 100%">
+                      <el-table-column
+                        
+                        align="center"
+                        label="文件">
+                        <template slot-scope="scope">
+                          <el-button type="text" @click="Listexport(scope.row)">{{ scope.row }}</el-button>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                    <el-pagination
+                      style="margin-top: 20px; text-align: center;"
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :current-page="page.num"
+                      :page-sizes="[10, 20, 30, 40]"
+                      :page-size="page.size"
+                      layout="total, sizes, prev, pager, next, jumper"
+                      :total="page.total">
+                    </el-pagination>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--vue代码-->
+    <script src="js/vue.min.js"></script>
+    <script src="js/plugins/element/index.2.12.0.js"></script>
+    <script>
+      var vm = new Vue({
+        el: '#list',
+        data() {
+					return {
+            tab: 5,
+            formInline: {
+              keyFont: '',
+            },
+            loading: false,
+            tableData: [], // 查询到的列表数据
+            valueData: [], // 保存列表数据
+            serchData: [], // 查询到的列表数据
+            num: 0,
+            getListNum: 0,
+            // 分页
+            page: {
+              num: 0, // 第几页
+              size: 10, // 每页多少条
+              total: 0, // 总共多少条数据
+            },
+					}
+        },
+        mounted() {
+          this.getList(5)
+        },
+        methods: {
+          // 重置
+          onReset () {
+            this.serchData = this.valueData
+            this.formInline.keyFont = ''
+            this.page = {
+              total: this.serchData.length,
+              num: 1,
+              size: 10
+            }
+            this.tableData = this.serchData.slice(((this.page.num - 1) * this.page.size), (this.page.num * this.page.size))
+          },
+          // 查询
+          onSubmit () {
+            let ary = this.valueData.filter((item) => {
+              return item.includes(this.formInline.keyFont)
+            })
+            this.serchData = ary
+            this.page = {
+              total: this.serchData.length,
+              num: 1,
+              size: 10
+            }
+            this.tableData = this.serchData.slice(((this.page.num - 1) * this.page.size), (this.page.num * this.page.size))
+          },
+          // 每页多少条变化
+          handleSizeChange (value) {
+            console.log(value)
+            this.page.size = value
+            this.tableData = this.serchData.slice(((this.page.num - 1) * this.page.size), (this.page.num * this.page.size))
+          },
+          // 页数变化
+          handleCurrentChange (value) {
+            this.page.num = value
+            this.tableData = this.serchData.slice(((this.page.num - 1) * this.page.size), (this.page.num * this.page.size))
+          },
+          //导出
+          Listexport(data) {
+            if (this.num === 20) { this.num = 0; return }
+            let url = ''
+            if (this.tab === 1) {
+              url = onlineApi + `/log/getfistForIp?ip=${ logListOneId }&filename=${ data }`
+            } else if (this.tab === 2) {
+              url = onlineApi + `/log/getfistForIp?ip=${ logListTwoId }&filename=${ data }`
+            } else if (this.tab === 3) {
+              url = onlineApi + `/log/getfistForIp?ip=${ logListThreeId }&filename=${ data }`
+            } else if (this.tab === 4) {
+              url = onlineApi + `/log/getfistForIp?ip=${ logListFourId }&filename=${ data }`
+            } else if (this.tab === 5) {
+              url = onlineApi + `/log/getfistForIp?ip=${ logListFiveId }&filename=${ data }`
+            }
+
+            let that = this
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', url, true)
+            xhr.setRequestHeader('content-type', 'application/octet-stream')
+            // xhr.setRequestHeader('content-type', 'application/octet-stream')
+            xhr.responseType = 'blob' // 返回类型blob  blob 存储着大量的二进制数据
+            xhr.onload = function (result) {
+              if (xhr.status === 400) {
+                that.Listexport(data)
+                this.num++
+              } else {
+                let blob = this.response
+                let reader = new FileReader()
+                reader.readAsDataURL(blob) // 转换为base64，可以直接放入a标签href
+                reader.onload = function (e) {
+                  var a = document.createElement('a') // 转换完成，创建一个a标签用于下载
+                  a.download = data
+                  a.href = e.target.result
+                  document.body.appendChild(a) // 修复firefox中无法触发click
+                  a.click()
+                  document.body.removeChild(a)
+                }
+              }
+            }
+            xhr.send() // 发送ajax请求
+          },
+          // 搜索列表
+          getList(idx) {
+            if (this.getListNum === 20) {
+              this.getListNum = 0
+              return
+            }
+            this.tab = idx
+            this.tableData = []
+            let url = ''
+            let method = ''
+            if (idx === 1) {
+              this.loading = true
+              method = 'GET'
+              url = "/log/getfistForIp?ip=" + logListOneId
+            } else if (idx === 2) {
+              this.loading = true
+              method = 'GET'
+              url = "/log/getfistForIp?ip=" + logListTwoId
+            } else if (idx === 3) {
+              this.loading = true
+              method = 'GET'
+              url = "/log/getfistForIp?ip=" + logListThreeId
+            } else if (idx === 4) {
+              this.loading = true
+              method = 'GET'
+              url = "/log/getfistForIp?ip=" + logListFourId
+            } else if (idx === 5) {
+              this.loading = true
+              method = 'GET'
+              url = "/log/getfistForIp?ip=" + logListFiveId
+            }
+            fn.ajax(method, url, '', this.listHandle);
+          }, 
+          // 处理数据
+          listHandle(response) {
+            this.loading = false
+            if (response.code === 200) {
+              // this.tableData = response.data
+              this.valueData = JSON.parse(JSON.stringify(response.data))
+              this.serchData = this.valueData
+              this.page = {
+                total: this.valueData.length,
+                num: 1,
+                size: 10
+              }
+
+              this.tableData = this.serchData.slice((this.page.num - 1) * this.page.size, this.page.size)
+            } else if (response.code === 400) {
+              this.getListNum++
+              this.getList(this.tab)
+            }
+          },
+          // 切换tab
+          clickTabHandle(index) {
+            this.tab = index;
+            this.getList(index)
+          }
+        }
+      });
+    </script>
+
+  </body>
+
+</html>

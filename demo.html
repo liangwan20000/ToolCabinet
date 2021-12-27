@@ -26,9 +26,44 @@
             background-color: red;
             overflow: hidden;
         }
-    </style>
+        table {
+            width: 600px;
+        }    </style>
 </head>
 <body>
+    <img src="" alt="">
+    
+    <table id="table" cellspacing="0" cellpadding="1" width="100%" border="1">
+        <tbody>
+            <tr align="center" bgcolor="#1890ff">
+                <td style="width:100px;">id</td>
+                <td>公司名称</td>
+                <td>姓名</td>
+                <td>岗位</td>
+                <td>技术等级</td>
+                <td>年龄</td>
+                <td>民族</td>
+                <td>籍贯</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>科技有限公司</td>
+                <td>火星黑洞</td>
+                <td>web开发</td>
+                <td>吼吼吼</td>
+                <td>22</td>
+                <td>汉</td>
+                <td>湖北</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <select id="status">
+        <option value="0" >优秀</option>
+        <option value="1" >良好</option>
+        <option value="2" >中等</option>
+        <option value="3">合格</option>
+        <option value="4" >不合格</option>
+    </select>
     <dl class="dl-horizontal">
         <dt>Description 1</dt>
         <dd>Item 1</dd>
@@ -52,7 +87,7 @@
         <div :id="'aa'" class="boxDiv">
             <div>{{ value }}</div>
         </div>
-    </div>
+    </div> -->
     <!-- 引入Vue -->
     <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
     <!-- 引入组件库 -->
@@ -65,10 +100,51 @@
     <script src="./demo.js"></script>
     <script src="./js/jquery.min.js"></script>
     <script>
-        let di = $('#app').get(0)
-        console.log($('#app'))
-        let diTwo = document.querySelector('#app');
-        console.log(diTwo)
+        let obj = {
+            name: '张三',
+            age: 18
+        };
+        for (let key in obj) {
+            console.log(key)
+        }
+        var tTD;
+        var table = document.getElementById("table");
+        console.dir(table)
+        let cells = table.rows[0].cells;
+        for (i = 0; i < cells.length; i++) {
+            cells[i].onmousedown = function() {
+                tTD = this;
+                if (event.offsetX > tTD.offsetWidth - 10) {
+                    tTD.mouseDown = true;
+                    tTD.oldX = event.x;
+                    tTD.oldWidth = tTD.offsetWidth;
+                }
+            };
+            cells[i].onmouseup = function() {
+                if (tTD == undefined) tTD = this;
+                tTD.mouseDown = false;
+                tTD.style.cursor = 'default';
+            };
+            cells[i].onmousemove = function() {
+                if (event.offsetX > this.offsetWidth - 10)
+                    this.style.cursor = 'col-resize';
+                else
+                    this.style.cursor = 'default';
+                if (tTD == undefined) tTD = this;
+                if (tTD.mouseDown != null && tTD.mouseDown == true) {
+                    tTD.style.cursor = 'default';
+                    if (tTD.oldWidth + (event.x - tTD.oldX) > 0)
+                        tTD.width = tTD.oldWidth + (event.x - tTD.oldX);
+                    tTD.style.width = tTD.width;
+                    tTD.style.cursor = 'col-resize';
+                    table = tTD;
+                    while (table.tagName != 'TABLE') table = table.parentElement;
+                    for (j = 0; j < table.rows.length; j++) {
+                        table.rows[j].cells[tTD.cellIndex].width = tTD.width;
+                    }
+                }
+            };
+        }
     </script>
     <!-- <script type="text/javascript">
         let vm = new Vue({

@@ -154,6 +154,7 @@ function tableToExcel(jsonData, str, surfaceName) {
     //增加\t为了不让表格显示科学计数法或者其他格式
     for (let i = 0; i < jsonData.length; i++) {
         for (let item in jsonData[i]) {
+            console.log(item)
             str += `${jsonData[i][item] + '\t'},`;
         }
         str += '\n';

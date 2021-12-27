@@ -6,37 +6,60 @@
     <title>Document</title>
 </head>
 <body>
+    <input type="file" id="img">
     <button>提交</button>
     <script>
-        function formSubmit(url,type,jsonData,targetType) {
-            var dlform = document.createElement('form');
-            dlform.style = "display:none;";
-            dlform.method = type;
-            dlform.action = url;
-            dlform.target = targetType
-            var json = jsonData;
-            for(var i=0,l=json.length;i<l;i++){
-                for(var key in json[i]){
-                    var hdnFilePath = document.createElement('input');
-                    hdnFilePath.type = 'hidden';
-                    hdnFilePath.name = key;
-                    hdnFilePath.value = json[i][key];
-                }
-            }
-            dlform.appendChild(hdnFilePath);
-            document.body.appendChild(dlform);
-            dlform.submit();
-            document.body.removeChild(dlform);
-        }
         var btn = document.querySelector('button');
         btn.onclick = function () {
-            var url = "123.html";   //请求路径
-            var type = "POST";  //请求类型
-            var jsonData = [];  //构建json
-            jsonData.push({"commodityid":"36"});    //将传参放入json中
-            var targetType = "_self";   //在当前页面打开
-            formSubmit(url,type,jsonData,targetType)
-        };
+            let imgInput = document.querySelector('#img');
+            console.log(imgInput.files[0])
+            let imgData = new FormData();
+            imgData.append('file', imgInput.files[0])
+
+            // console.log(imgData, imgData.get('file'))
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://10.128.34.165:8080/shapeFile/upload', false); // 参数1：请求的方式, 参数2：请求的地址,参数3：同步还是异步(布尔值)
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // xhr.responseType = 'json'; // 自动处理服务器返回的结果
+            xhr.send('file=' + imgData); // 发送请求，请求参数写在里面
+            xhr.onreadystatechange = function () {
+                // console.log('状态值为：' + this.readyState);
+            };
+            xhr.onload = function (result) { // 当服务器的响应结束，然后再接收服务器响应的结果
+                // var data = JSON.parse(result);
+                // this.response：服务器返回的结果
+                // this.result：返回值;
+            };
+        }
+        // function formSubmit(url,type,jsonData,targetType) {
+        //     var dlform = document.createElement('form');
+        //     dlform.style = "display:none;";
+        //     dlform.method = type;
+        //     dlform.action = url;
+        //     dlform.target = targetType
+        //     var json = jsonData;
+        //     for(var i=0,l=json.length;i<l;i++){
+        //         for(var key in json[i]){
+        //             var hdnFilePath = document.createElement('input');
+        //             hdnFilePath.type = 'hidden';
+        //             hdnFilePath.name = key;
+        //             hdnFilePath.value = json[i][key];
+        //         }
+        //     }
+        //     dlform.appendChild(hdnFilePath);
+        //     document.body.appendChild(dlform);
+        //     dlform.submit();
+        //     document.body.removeChild(dlform);
+        // }
+        // var btn = document.querySelector('button');
+        // btn.onclick = function () {
+        //     var url = "123.html";   //请求路径
+        //     var type = "POST";  //请求类型
+        //     var jsonData = [];  //构建json
+        //     jsonData.push({"commodityid":"36"});    //将传参放入json中
+        //     var targetType = "_self";   //在当前页面打开
+        //     formSubmit(url,type,jsonData,targetType)
+        // };
     </script>
 </body>
 </html>

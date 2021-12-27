@@ -4,22 +4,150 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+    <!-- 引入样式 -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <link rel="stylesheet" href="css/element.css">
 	<style type="text/css">
-        .aa {
-            background-color: lime;
+        .box {
+            width: 400px;
+            display: flex;
         }
-        .bb {
-            background-color: red;
+        .nameList {
+            flex: 1;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nameItem {
+            width: 100%;
+        }
+        .nameItem a {
+            width: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        .itemList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            padding-left: 10px;
+        }
+        .characterList {
+            width: 34px;
+            overflow: hidden;
+        }
+        .character {
+            float: left;
+            padding-left: 4px;
+        }
+        [v-cloak] {
+            display: none;
         }
     </style>
 </head>
 <body>
-	<div id="app"></div>
+	<div id="app" v-cloak>
+        <!-- <el-row>
+            <el-button round>圆角按钮</el-button>
+            <el-button type="primary" round>主要按钮</el-button>
+            <el-button type="success" round>成功按钮</el-button>
+            <el-button type="info" round>信息按钮</el-button>
+            <el-button type="warning" round>警告按钮</el-button>
+            <el-button type="danger" round>危险按钮</el-button>
+        </el-row> -->
+        <div class="box">
+            <ul class="nameList">
+                <li class="nameItem" v-for="name in nameList" :key="name.label + '1'" :id="name.label">
+                    <el-divider content-position="left">{{ name.label }}</el-divider>
+                    <ul class="itemList">
+                        <li class="name" v-for="item in name.list" :key="item.name + '2'">
+                            <el-checkbox v-model="item.check">{{ item.name }}</el-checkbox>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="characterList">
+                <el-link v-for="edit in characterList" :key="edit + '3'" class="character" :href="'#' + edit" target="_self">{{ edit }}</el-link>
+            </div>
+        </div>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<!-- 自己的方法 -->
     <script src="./js/hao.js"></script>
     <script src="./js/EventUtil.js"></script>
     <script src="./demo.js"></script>
     <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                checked: false,
+                nameList: [
+                    { label: 'A', list: [
+                        { check: false, name: '阿斯蒂芬1' },
+                        { check: false, name: '阿斯蒂芬2' },
+                        { check: false, name: '阿斯蒂芬3' },
+                        { check: false, name: '阿斯蒂芬4' },
+                        { check: false, name: '阿斯蒂芬5' },
+                        { check: false, name: '阿斯蒂芬6' },
+                        { check: false, name: '阿斯蒂芬7' },
+                        { check: false, name: '阿斯蒂芬8' }
+                    ]},
+                    { label: 'B', list: [
+                        { check: false, name: '阿斯蒂芬1' },
+                        { check: false, name: '阿斯蒂芬2' },
+                        { check: false, name: '阿斯蒂芬3' },
+                        { check: false, name: '阿斯蒂芬4' },
+                        { check: false, name: '阿斯蒂芬5' },
+                        { check: false, name: '阿斯蒂芬6' },
+                        { check: false, name: '阿斯蒂芬7' },
+                        { check: false, name: '阿斯蒂芬8' }
+                    ]},
+                    { label: 'C', list: [
+                        { check: false, name: '阿斯蒂芬1' },
+                        { check: false, name: '阿斯蒂芬2' },
+                        { check: false, name: '阿斯蒂芬3' },
+                        { check: false, name: '阿斯蒂芬4' },
+                        { check: false, name: '阿斯蒂芬5' },
+                        { check: false, name: '阿斯蒂芬6' },
+                        { check: false, name: '阿斯蒂芬7' },
+                        { check: false, name: '阿斯蒂芬8' }
+                    ]},
+                    { label: 'D', list: [
+                        { check: false, name: '阿斯蒂芬1' },
+                        { check: false, name: '阿斯蒂芬2' },
+                        { check: false, name: '阿斯蒂芬3' },
+                        { check: false, name: '阿斯蒂芬4' },
+                        { check: false, name: '阿斯蒂芬5' },
+                        { check: false, name: '阿斯蒂芬6' },
+                        { check: false, name: '阿斯蒂芬7' },
+                        { check: false, name: '阿斯蒂芬8' }
+                    ]},
+                    { label: 'E', list: [
+                        { check: false, name: '阿斯蒂芬1' },
+                        { check: false, name: '阿斯蒂芬2' },
+                        { check: false, name: '阿斯蒂芬3' },
+                        { check: false, name: '阿斯蒂芬4' },
+                        { check: false, name: '阿斯蒂芬5' },
+                        { check: false, name: '阿斯蒂芬6' },
+                        { check: false, name: '阿斯蒂芬7' },
+                        { check: false, name: '阿斯蒂芬8' }
+                    ]}
+                ],
+                characterList: [
+                    'A',
+                    'B',
+                    'C',
+                    'D',
+                    'E'
+                ]
+            }
+        })
+    </script>   
+    <!-- <script>
         let obj = new spa({
             originDom: '#app',
             template: {
@@ -74,6 +202,6 @@
         });
         // let a = queryE('#btn')
         // console.dir(a)
-    </script> 
+    </script>  -->
 </body>
 </html>
