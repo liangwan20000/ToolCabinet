@@ -4543,6 +4543,20 @@
 			nrm 是管理镜像源的模块，通过nrm来管理镜像源
 				npm i nrm  #-- 自己搜索如何使用
 			start 是唯一可以省略 run 的命令 npm start
+
+			登录
+			npm login
+			发布包，上传到npm包服务器
+			npm publish
+			更新一个已经发布的包
+			npm version patch  该命令在原来的版本上自动加1,实际上是将package.json文件中的version值修改了
+			重新发布
+			npm publish
+			删除指定的版本
+			npm unpublish 包名@版本号
+			删除整个包
+			npm unpublish 包名 --force
+			
 		}
 		let cmd {
 			cmd是command的缩写.即命令提示符（CMD）,在windows环境下，命令行程序为cmd.exe，是一个32位的命令行程序,比如输入shutdown -s -t 30 就会在30秒后关机

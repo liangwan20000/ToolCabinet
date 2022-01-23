@@ -7,9 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <button class="box one" title="按钮">按钮</button>
     <script>
+        function HoldAll () {}
         // 得到数组中键对应的值
-        function getData (keyList, symbol) {
+        // HoldAll.prototype.
+        let getData = function (keyList, symbol) {
             let obj = {}
             for (let key of keyList) {
                 let list = []
@@ -20,8 +23,20 @@
             }
             return obj
         }
+        // 寄生组合式继承
+        function inher (subType, superType) {
+            var pro = Object.create(superType.prototype)
+            pro.constructor = subType;
+            subType.prototype = pro
+        }
         // 调用方式
         // getData.call(ary, keyList, symbol)
+        // 为对象添加方法
+        function packingArrayHandle (superType) {
+            var pro = Object.create(superType)
+            pro.getData = getData
+            return pro
+        }
 
         let ary = [
             { name: '张一', age: 20, height: 170 },
@@ -29,11 +44,27 @@
             { name: '张三', age: 20, height: 175 },
             { name: '张四', age: 20, height: 185 },
         ]
-        function implementHandle (fn, data, keyList, symbol) {
-            return 
-        }
         
+        // function SuperType (name) {
+        //     this.name = name;
+        //     this.colors = ['red', 'blue', 'green'];
+        // }
+        // SuperType.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // function SubType (name, age) {
+        //     SuperType.call(this, name);
+        // }
+        // // inher(SubType, SuperType)
+        // SubType.prototype.sayAge = function () {
+        //     console.log(this.age)
+        // }
+        // console.log(SuperType.prototype)
+        // let btn = document.querySelector('.box')
+        // console.log(btn.attributes)
         
+        let obj = packingArrayHandle(ary).getData(['name'], '-')
+        console.log(obj)
     </script>
 </body>
 </html>
