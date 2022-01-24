@@ -39,10 +39,10 @@
         }
 
         let ary = [
-            { name: '张一', age: 20, height: 170 },
-            { name: '张二', age: 20, height: 180 },
-            { name: '张三', age: 20, height: 175 },
-            { name: '张四', age: 20, height: 185 },
+            { name: '张一', age: 18, height: 170, type: 1 },
+            { name: '张二', age: 20, height: 180, type: 1 },
+            { name: '张三', age: 23, height: 175, type: 2 },
+            { name: '张四', age: 24, height: 185, type: 2 },
         ]
         
         // function SuperType (name) {
@@ -63,8 +63,103 @@
         // let btn = document.querySelector('.box')
         // console.log(btn.attributes)
         
-        let obj = packingArrayHandle(ary).getData(['name'], '-')
-        console.log(obj)
+        // let obj = packingArrayHandle(ary).getData(['name'], '-')
+        
+        // console.log(obj)
+        // let obj = {
+        //     // 是单循环还是双循环
+        //     singleOrDouble: 'single', // single\double
+        //     // 目标数组
+        //     target: ary, // 单循环目标数组
+        //     targetList: [ary, aryTwo], // 双循环目标数组
+        //     // 在第二个目标数组前的判断和处理
+        //     // 判断条件和执行语句
+        //     judgeCondition: {
+        //         // 是不是单对语句
+        //         isSingleJudge: true,
+        //         // 单对判断语句
+        //         judge: {
+        //             key: 'type',
+        //             relation: '===',
+        //             value: 1
+        //         },
+        //         // 多条判断语句
+        //         judgeList: [
+        //             {
+        //                 key: 'type',
+        //                 relation: '===',
+        //                 value: 1
+        //             },
+        //             {
+        //                 key: 'age',
+        //                 relation: '>',
+        //                 value: 18
+        //             }
+        //         ],
+        //         groupRelation: ['&&'],
+        //         handle: itemHandle, // 处理函数
+        //     }
+        // }
+        // 处理数组的功能函数
+        function arrayHandle (obj) {
+            // 判断是单循环还是双循环
+            if (obj.singleOrDouble === 'single') {
+                singleHandle.apply(obj.target, [obj.judgeCondition])
+            } else {
+
+            }
+        }
+        function singleHandle (judgeCondition) {
+            this.forEach(item => {
+                // 判断是不是单对判断语句
+                if (judgeCondition.isSingleJudge) {
+                    let obj = judgeCondition.judge
+                    switch (obj.relation) {
+                        case '===':
+                            if (item[obj.key] === obj.value) {
+                                judgeCondition.handle(item)
+                            }
+                            break;
+                        case '>':
+                            if (item[obj.key] > obj.value) {
+                                judgeCondition.handle(item)
+                            }
+                            break;
+                        case '<':
+                            if (item[obj.key] < obj.value) {
+                                judgeCondition.handle(item)
+                            }
+                            break;
+                    }
+                }
+            })
+        }
+        
+        
+        
+        let aryList = []
+        function itemHandle (item, data) {
+            aryList.push(item)
+        }
+        arrayHandle({
+            // 是单循环还是双循环
+            singleOrDouble: 'single', // single\double
+            // 目标数组
+            target: ary, // 单循环目标数组
+            // 判断条件和执行语句
+            judgeCondition: {
+                // 是不是单对语句
+                isSingleJudge: true,
+                // 单对判断语句
+                judge: {
+                    key: 'age',
+                    relation: '>',
+                    value: 18
+                },
+                handle: itemHandle, // 处理函数
+            }
+        })
+        console.log(aryList)
     </script>
 </body>
 </html>
