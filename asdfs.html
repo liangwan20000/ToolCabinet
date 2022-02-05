@@ -1,13 +1,113 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:math="http://www.w3.org/1999/Math/MathMl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lime;
+        }
+        .box1 {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        .box2 {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
-    <math:div>x3/X</div>
+    <script>
+        function sayHi (event) {
+            console.log('你好', event)
+        }
+        // 获取单个元素
+        function queryE(element) {
+            return document.querySelector(element);
+        }
+        // 获取多个元素
+        function queryA(element) {
+            return document.querySelectorAll(element);
+        }
+        // 创建元素
+        function creatE(element) {
+            return document.createElement(element);
+        }
+        function create (domData) {
+            let fragment = document.createDocumentFragment();
+            let dom = creatE(domData.nodeName);
+            let j = 0;
+            if (domData.childNodes) {
+                let childNodes = domData.childNodes;
+                let lenOne = childNodes.length;
+                while (j < lenOne) {
+                    dom.appendChild(childNodes[j]);
+                    j++
+                }
+            }
+            let i = 0;
+            let attriList = domData.attributes
+            let len = attriList.length
+            while (i < len) {
+                dom.setAttribute(attriList[i].name, attriList[i].value)
+                i++
+            }
+            if (domData.evnetAttri) {
+                let e = 0;
+                let evnetAttri = domData.evnetAttri
+                let lenTwo = evnetAttri.length
+                while (e < lenTwo) {
+                    dom[evnetAttri[e].name] = evnetAttri[e].value
+                    e++
+                }
+            }
+            fragment.appendChild(dom);
+            return fragment;
+        }
+        document.body.appendChild(create({
+            nodeName: 'div',
+            attributes: [
+                { name: 'id', value: 'box' },
+                { name: 'class', value: ['box'] }
+            ],
+            // evnetAttri: [
+            //     { name: 'onclick', value: sayHi }
+            // ],
+            childNodes: [
+                create({
+                    nodeName: 'div',
+                    attributes: [
+                        { name: 'id', value: 'box1' },
+                        { name: 'class', value: ['box1'] }
+                    ]
+                }),
+                create({
+                    nodeName: 'div',
+                    attributes: [
+                        { name: 'id', value: 'box2' },
+                        { name: 'class', value: ['box2'] }
+                    ]
+                })
+            ]
+        }))
+        let obj = {
+            box2: function () {
+                console.log(this)
+            }
+        }
+        document.body.addEventListener('click', (event) => {
+            if (obj[event.target.id]) {
+                obj[event.target.id].call(event.target)
+            }
+        })
+    </script>
 </body>
 </html>
