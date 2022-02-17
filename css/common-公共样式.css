@@ -1,3 +1,6 @@
+.box {
+  height: calc(100vh - 156px);
+}
 /* 浮动 */
 .fl {
   float: left;

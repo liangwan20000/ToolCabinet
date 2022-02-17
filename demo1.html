@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入样式 -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <!-- <link rel="stylesheet" href="css/视口.css"> -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/demo.css">
+    <!-- <link rel="stylesheet" href="css/common-公共样式.css"> -->
+    <!-- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <title>Document</title>
+    <style type="text/css">
+        .aa {
+            width: 200px;
+            height: 200px;
+            background-color: lime;
+        }
+        .bb {
+            background-color: red;
+        }
+        #ddd {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            overflow: hidden;
+        }
+        table {
+            width: 600px;
+        }    </style>
+</head>
+<body>
+    <Worksheet ss:Name="yy">
+        <Table>
+            <Row>
+                <Cell><Data ss:Type="String">ID</Data></Cell>
+                <Cell><Data ss:Type="String">姓名</Data></Cell>
+                <Cell><Data ss:Type="String">手机号码</Data></Cell>
+                <Cell><Data ss:Type="String">邮箱</Data></Cell>
+                <Cell><Data ss:Type="String">密码</Data></Cell>
+                <Cell><Data ss:Type="String">最多评审案例</Data></Cell>
+                <Cell><Data ss:Type="String">评审中案例</Data></Cell>
+                <Cell><Data ss:Type="String">评审成功案例</Data></Cell>
+                <Cell><Data ss:Type="String">擅长领域</Data></Cell>
+            <Row><Cell><Data ss:Type="String">1</Data></Cell>
+                <Cell><Data ss:Type="String">2</Data></Cell>
+                <Cell><Data ss:Type="String">3</Data></Cell>
+                <Cell><Data ss:Type="String">4</Data></Cell>
+                <Cell><Data ss:Type="String">5</Data></Cell>
+                <Cell><Data ss:Type="String">6</Data></Cell>
+                <Cell><Data ss:Type="String">7</Data></Cell>
+                <Cell><Data ss:Type="String">8</Data></Cell>
+                <Cell><Data ss:Type="String">9</Data></Cell>
+            </Row></Table></Worksheet>
+    <a id="exportBtn">导出</a>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        $("#exportBtn").click(function() {
+            var jsonData = [{
+                name: '路人甲',
+                phone: '123456',
+                email: '123@123456.com'
+            }, {
+                name: '炮灰乙',
+                phone: '123456',
+                email: '123@123456.com'
+            }]
+            //列标题
+            var table = '\
+                <tr>\
+                <td>姓名</td>\
+                <td>电话</td>\
+                <td>邮箱</td></tr>'
+    
+            var fileName = 'dd';
+            tableToExcel(table, jsonData, fileName);
+        });
+        function tableToExcel(table, jsonData, fileName) {
+            //循环遍历，每行加入tr标签，
+            //每个单元格加td标签
+            jsonData.forEach(function(item) {
+                table += '<tr>';
+                for (let key in item) {
+                    //增加\t为了不让表格显示科学计数法或者其他格式
+                    table += `<td>${item[key] + '\t'}</td>`
+                }
+                table += '</tr>';
+            })
+            //Worksheet名
+            var worksheet = 'Sheet1'
+            //下载的表格模板数据
+            var template = '';
+            // 下载模板
+            var fileName = 'ddd';
+            document.getElementById('exportBtn').href = 'data:application/vnd.ms-excel;base64,' + base64(template); 
+            document.getElementById('exportBtn').download = fileName;
+        }
+        //输出base64编码
+        function base64(s) {
+            return window.btoa(unescape(encodeURIComponent(s)))
+        }
+    </script>
+</body>
+</html>

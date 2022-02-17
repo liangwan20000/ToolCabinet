@@ -172,6 +172,72 @@ function tableToExcel(jsonData, str, surfaceName) {
     document.body.removeChild(link)
 }
 
+//导出excel包含多个sheet
+//list:json的数组;wsbames:sheet的名字数组; wbname:工作簿名字
+function toExcel(list, wbname, wsbames) {
+    // var list = [
+    //     ['ID', '姓名', '手机号码', '邮箱', '密码', '最多评审案例', '评审中案例', '评审成功案例', '擅长领域'],
+    //     ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    //     ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    // ]
+    let tmplWorkbookXML = '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+        '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author><Created>{created}</Created></DocumentProperties>' +
+        '<Styles>' +
+        '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>' +
+        '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>' +
+        '</Styles>' +
+        '{worksheets}</Workbook>',
+        tmplWorksheetXML = '<Worksheet ss:Name="{nameWS}"><Table>{rows}</Table></Worksheet>',
+        tmplCellXML = '<Cell{attributeStyleID}{attributeFormula}><Data ss:Type="{nameType}">{data}</Data></Cell>',
+        base64 = function(s) {
+            return window.btoa(unescape(encodeURIComponent(s)))
+        },
+        format = function(s, c) {
+            return s.replace(/{(\w+)}/g, function(m, p) {
+                return c[p];
+            })
+        };
+
+    let ctx = "";
+    let workbookXML = "";
+    let worksheetsXML = "";
+    let rowsXML = "";
+    
+    for (let i = 0; i < list.length; i++) {
+        const itemList = list[i]
+        rowsXML += '<Row>';
+        for (let k = 0; k < itemList.length; k++) {
+            ctx = {
+                attributeStyleID: '',
+                nameType: 'String',
+                data: itemList[k],
+                attributeFormula: ''
+            };
+            rowsXML += format(tmplCellXML, ctx);
+        }
+        rowsXML += '</Row>'
+    }
+    ctx = {
+        rows: rowsXML,
+        nameWS: wsbames
+    };
+    worksheetsXML += format(tmplWorksheetXML, ctx)
+    rowsXML = ""
+    ctx = {
+        created: (new Date()).getTime(),
+        worksheets: worksheetsXML
+    }
+    workbookXML = format(tmplWorkbookXML, ctx)
+    // 查看后台的打印输出
+    var link = document.createElement("A")
+    link.href = 'data:application/vnd.ms-excel;base64,' + base64(workbookXML)
+    link.download = wbname || 'Workbook.xls'
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+}
+
 /**
  *根据指定的分割数，将数组（字符串）分割成块，剩余数量不足以达到分割数的亦形成一个数组
  *
