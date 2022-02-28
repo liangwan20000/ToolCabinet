@@ -11,32 +11,21 @@
 	<!-- map 标签 -->
 	<!-- js  假设法 假设一个最小值  定标假设法,设置一个返回值 一个开关 -->
 
-	
-
 	以对象的形式展开查看所有属性,console.dir();学习方法
-	<style>
-		js操作标签与操作数据类型;js把标签/数据,看成一个个对象,用方法
-			(函数)操作他们,操作他们需要给他们起个名字,这个名字就是变量; 
-			用方法把他们组合起来这种思想就是面向对象编程思想;
-			当开始写的时候,你需要把对象划分出来,划分对象;
-			看到这些标签/数据就是一个个对象,给他们添加方法就是面向对象编程;
-			方法中的每一步就是面向过程;
-			面向对象就是找对象做事，就是通过构造函数创建对象，并调用方法；
-
+	<!-- <style> -->
 		js代码是如何写出来的:  d就是你要干啥,c就是具体化目标,通过a来控制b
 			a .(点) / =(赋值) / if(判断,逻辑运算符) / ()[]{}(三个括号) / 运算符 +(拼接) - * /
 			b 属性 / 方法 
 			c 数组/ 函数(方法) / 对象
 			d 获取元素 创建元素 删除元素 修改属性方法 查看属性方法
 			
-		点：点代表对象结构中具有作用域链，访问一级一级的作用域下的属性或方法，需要用点来打开作用域
+		点：用点来打开作用域
 		封装函数 : 需要拼接字符串,数组与对象中的值相互转换,判断语句
-			问题: 形参设置了4个,想要只写2个,可以用ES6默认值
-	</style>
+	<!-- </style> -->
 
 
 	关键属性  关键字
-	<script>
+	<!-- <script> -->
 		var 关键字 = {
 			NaN  		不是一个数字
 
@@ -105,11 +94,11 @@
 			document.compatMode 查询浏览器是否运行在混杂模式\BackCompat
 			元素.getBoundingClientRect() 返回一个对象，对象存在四个属性：left\right\top\bottom;表示元素在页面中相对于视口的位置
 		}
-	</script>
+	<!-- </script> -->
 
 
 	所有对象
-	<script>
+	<!-- <script> -->
 		里面都有方法可以借用
 		var 对象 {
 			Array 
@@ -151,11 +140,11 @@
 				5. configurable:当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。
 				6. enumerable:当且仅当指定对象的属性可以被枚举出时，为 true。
 		}
-	</script>
+	<!-- </script> -->
 
 
 	ECMAScript
-	<script>
+	<!-- <script> -->
 		ECMAScript可以识别两种类型的对象，一种叫做Native Object属于语言范畴;一种叫做Host Object
 			，由运行环境提供例如document对象，Dom Node等 
 		Native objects是一种松散的结构并且可以动态的增加属性(property)，所有的属性都有一个名字和
@@ -163,11 +152,11 @@
 		赋值操作 : 直接通过赋值操作就可以完成属性的创建。 
 			如果复制的属性名称已经存在那么不会再次创建这个属性，赋值操作仅仅是重新设置属性的值,
 			从栈和堆来看，在堆里的对象重新设置属性的值，对象就改变了
-	</script>
+	<!-- </script> -->
 
 
 	js语法基础
-	<script>
+	<!-- <script> -->
 		1. 尽管并不安全，但声明语句中忽略var关键字是合法的 JScript 语法。这时，JScript解释器给予变量全局范围
 				的可见度。当在过程级中声明一个变量时，它不能用于全局范围；这种情况下，变量声明必须用var关键字。
 		2. 从上面的描述看来，对待这两种定义方法要区分以下两种情况：
@@ -723,11 +712,11 @@
 					item1,item2...要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。
 					splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改。
 		}
-	</script>
+	<!-- </script> -->
 
 
 	js高级
-	<script>
+	<!-- <script> -->
 		var 面向过程和面向对象 {
 			1. 面向过程：过程中的每一步
 			2. 面向对象：1.找到对象，2.做事(调用方法)
@@ -1305,11 +1294,11 @@
 				递归返回段
 			2. 递归的作用 : 减少代码量
 		}
-	</script>
+	<!-- </script> -->
 
 
 	ES6
-	<script>
+	<!-- <script> -->
 		var 变量 {
 			ES6 的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言
 				2015 年 6 月发布
@@ -1652,11 +1641,11 @@
 					}
 				}
 		}
-	</script>
+	<!-- </script> -->
 
 
 	ES7
-	<script type="text/javascript">
+	<!-- <script type="text/javascript"> -->
 		let 字符串新增 {
 			padStart(2, '0'); 第一个参数规定字符串长度，第二个参数不足时在头部用什么填充
         	padEnd()；用于尾部补全，与 padStart() 一样。
@@ -1688,11 +1677,11 @@
 			}
 			abcd();
 		}
-	</script>
+	<!-- </script> -->
 
 
 	web api
-	<script>
+	<!-- <script> -->
 		charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。
 		window.atob() 方法用于解码使用 base-64 编码的字符串。
 
@@ -1999,11 +1988,11 @@
 	   	    	setDragImage(element, x, y): 指定一幅图像，当拖动发生时，显示在光标下方
 	   	    	types: 当前保存的数据类型。这是一个类似数组的集合，以'text'这样的字符串形式保存着数据类型
    	    }
-	</script>
+	<!-- </script> -->
 
 
 	DOM一级
-	<script>
+	<!-- <script> -->
 		var Node类型 {
    	    	所有节点类型都继承自Node，不是每种节点都有子节点
    	    	Node.ELEMENT_NODE(1);
@@ -2119,11 +2108,11 @@
    	    			6.	访问元素的标签名：nodeName、tagName属性，返回相同的值；
    	    	3.	attribute: width、height、align、value 这些自带属性
    	    }
-	</script>
+	<!-- </script> -->
 
 
 	BOM
-	<script>
+	<!-- <script> -->
 		navigator.onLine; 这个属性值为true表示设备能上网，值为false表示设备离线；
 		window.dispatchEvent(new Event('resize'));窗口尺寸变化时->触发resize事件->重新设置动态高
 		JS中顶级对象： window
@@ -2229,10 +2218,10 @@
 		}
 		var BOM事件 {
 			onload 页面加载事件: 页面上的所有元素都创建完成，资源下载完成后才执行该事件;只能设置一个
-				window.onload = function() {
-					var div = document.querySelector('div');
-				 	console.log(div);
-				}
+			window.onload = function() {
+				var div = document.querySelector('div');
+				console.log(div);
+			}
 		}
 		var 浏览器地址栏	{
 			location： 可以设置或者获取浏览器地址栏中的url
@@ -2445,11 +2434,6 @@
     			1. 该方法用来实时获取位置信息
     		map.enableScrollWheelZoom : 在地图中使用鼠标滚轮控制缩放
     		panTo()方法将让地图平滑移动至新中心点，如果移动距离超过了当前地图区域大小，则地图会直跳到该点。
-    		◇ 回调函数：
-    			 将函数作为参数去使用
-    		百度开发秘钥：
-				DGr4upIYwrKhhf73RkQHMvhV2OW1NBXh(这个有效果的概率大)
-				rFwb7Ow6y08zThgDXpGoovvtNIKkQIQO
     	}
     	var 本地缓存（本地存储）{
     			☞ 保存数据到本地浏览器中，以键值对形式保存。
@@ -2548,13 +2532,13 @@
 				})
 				在iOS中，调用play()时会弹出一个对话框，得到用户的许可后才能播放声音。如果想在一段音频播放后再播放另一段音频，必须在onfinish事件处理程序中调用 play()方法。
     	}
-	</script>
+	<!-- </script> -->
 
 
 	ajax
-	<script>
+	<!-- <script> -->
 		var Ajax概述 {
-			简介 : 简单来说，Ajax是一种技术、是能够使浏览器和服务器进行交互（请求响应）的一种技术。
+			简介 : Ajax是一种技术、是能够使浏览器和服务器进行交互（请求响应）的一种技术。
 					Ajax也是一套内置在浏览器端的API，核心对象是内置在浏览的中的 XMLHttpRequest ，
 					通过这些API的调用，可以实现发送Ajax类型的请求和收取服务器端响应的数据。
 			简化url：在发送Ajax请求的时候，比如AB两个网页文件或接口地址，都属于同一个服务器上的资源，则请求的URL可以省略前面的IP和端口	
@@ -2562,22 +2546,11 @@
 				127.0.0.1 永远指向自己的计算机
 				localhost 永远指向自己的计算机
 				注意：浏览器使用的那个IP，代码中也要使用相应的IP
-			GET : 字面意思获取，一般指用户从服务器获取数据;
-				请求参数 : 请求参数又叫做查询字符串,一般用于告诉服务器此次请求的详细目的
-					格式：http://www.baidu.com/s?q=word&sug=5017
-					查询字符串只适合传输少量数据,因为搜索框本身有限制输入个数;
-					问号后边的内容就是查询字符串 q=值&a=值;
 			缓存问题(了解)
 				1. 	只有IE浏览器会有缓存问题，所以作为了解内容
 				2. 	缓存问题指的是：两次或多次 AJAX GET 请求同一个 URL ，IE浏览器在第二次请求的
 					时候，并不会重新向服务器发请求，而是直接使用上次请求的结果。
 				3.	解决方案 : 让每次请求的URL都不同 (加一个时间戳);
-			POST : 把数据提交给服务器;
-				1. post 请求，必须调用setRequestHeader方法设置 Content-Type
-				2. 请求头中的 Content-Type，告诉服务器发送过去的数据的格式
-				3. send方法的参数就是post方式发送给服务器的数据。（和get不同）
-				4. xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-					请求头必须写在open下
 			非Ajax请求：(也有两种方式)没有XMLHttpRequest对象
 				GET方式：
 					地址栏输入地址，按下回车
@@ -2736,11 +2709,11 @@
 				var fd = new FormData();
 				fd.append('avatar', fileObj);
 		}
-	</script>
+	<!-- </script> -->
 
 
 	网络与跨域
-	<script>
+	<!-- <script> -->
 		let 网络基础 {
 			HTTP 协议
 				HTTP(HyperText Transfer Protocol) 超文本传输协议
@@ -2857,8 +2830,6 @@
 							一个用户想要的 HTML 页面。
 						动态网站指的也就是每次请求时服务端动态生成 HTML 返回给用户的这种网站。
 						实现动态网站的技术有很多，例如：JSP、ASP.NET、PHP、Node.js 等等。
-						这里我们选择 Node.js 作为我们了解服务端动态网页开发的技术方案，注意：
-							我们学习的重心不在 Node.js，而是了解服务端开发，以及某些其他对前端开发有帮助的东西。
 		}
 		var 整个请求响应过程 {
 			1. 用户打开浏览器
@@ -2895,18 +2866,19 @@
 			2.	其原理就是在客户端借助 script 标签请求其他服务端的一个地址
 				，服务端的这个地址返回自身的某个全局函数，这个函数将需要返回给客户端的数据放入形参传递给客户端，客户端的函数中就可以得到服务端想要返回的数据。
 				注意：返回的数据是 JavaScript 脚本（而非一段 HTML），返回的脚本可以被执行
+			3.  JSONP只能处理GET请求
 		}
 		let 实现跨域操作 {
 			1.	响应的结果会被请求的网站当做js代码来执行
-				<script>
+				<!-- <script> -->
 					// 因为4000网站，返回的结果是，调用一个叫做abcd的函数
 					// 所以要先准备好这个函数
 					// 形参x就是4000网站返回的数据
 					function abcd (x) {
 					    console.log(x);
 					}
-				<script>
-				<script src="http://127.0.0.1:4000/getStu"><script>
+				<!-- // <script> -->
+				<!-- // <script src="http://127.0.0.1:4000/getStu"><script> -->
 			2.	获取url中传递的参数的值，这个值就是请求的函数的名字，将要返回的数据当做函数的参数
 				，传递给函数
 			3.	// 服务端把数据转成JSON格式
@@ -2915,8 +2887,8 @@
      			res.send('getStu(' + data + ')');
      		5.	jQuery封装的ajax方法跨域请求
      			// 联网，加载百度的jquery文件，来学习jquery
-  				<script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-  				<script>
+  				<!-- // <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script> -->
+  				<!-- // <script> -->
   				    // 向4000网站中的 getStu2 接口，发送请求，请求所有的学生信息
   				    $.ajax({
   				        type: 'GET',
@@ -2928,19 +2900,19 @@
   				        },
   				        dataType: 'jsonp' // 必须指定预期服务器返回数据的类型为jsonp
   				    });
-  				</script>
+  				<!-- // </script> -->
 		}
-	</script>
+	<!-- </script> -->
 
 
 	正则
-	<script>
+	<!-- <script> -->
 		测试地址：https://tool.oschina.net/regex/
 		var 正则表达式 {
 			1. 正则表达式Regular Expression：是对字符串操作的一种逻辑公式
 			正则表达式在其他语言中也广泛应用。
 			正则表达式，就是定义好一个字符串规则 ，然后根据规则实现对象字符串的匹配、提取、替换等
-			2. 正则表达式的作用【了解】 1. 匹配 2. 提取 3. 替换
+			2. 正则表达式的作用 1. 匹配 2. 提取 3. 替换
 				1. 给定的字符串是否符合正则表达式的过滤逻辑(匹配)
 				2. 可以通过正则表达式，从字符串中获取我们想要的特定部分(提取)
 				3. 强大的字符串替换能力(替换)
@@ -2966,8 +2938,8 @@
 				n{x}  	匹配包含 x 个 n 的序列的字符串                      
 				n{x,} 	匹配包含至少 x 个 n 的序列的字符串。                   
 				n{x,y}	匹配包含 至少x个 至多 y 个 n 的序列的字符串。             
-				n$    	匹配任何结尾为 n 的字符串                          
 				^n    	匹配任何开头为 n 的字符串                          
+				n$    	匹配任何结尾为 n 的字符串                          
 				注意：==^正则表达式$==   使用时，会对字符串整体校验，完全符合才能够匹配。否则，不匹配。
 				注意：在使用花括号限制字符个数时，将来在去匹配时，首先从前向后匹配，先按照至多的要求匹配，至多不满足时，再降低要求匹配，若将至最少时还不匹配→ 最终是不匹配。
 				注意：关于次数至少是0时，表示的有没有都符合。  没有符合，内容不是也符合
@@ -3018,16 +2990,16 @@
 				字符串.replace(正则对象,替换后的内容); 替换所匹配正则的子字符串。返回替换后的字符串。
 		}
 		let 常用表达式 {
-			1. 匹配标签结构
+			<!-- 1. 匹配标签结构
 				/<td(((?!form|table)[\s\S])*?)<\/el-button>/g：取反form或table
 			2. 匹配 <el-button><el-button>：/<el-button.+class="(.*?)".+/g;
-			3. 匹配 class="xxx"：/class="(.*?)"/
+			3. 匹配 class="xxx"：/class="(.*?)"/ -->
 		}
-	</script>
+	<!-- </script> -->
 
 
 	Canvas
-	<script>
+	<!-- <script> -->
 		let '使用前' {
 			1： '要使用canvas元素，必须先设置其width和height属性，指定可以绘图的区域大小。如果浏览器不支持canvas元素，就会显示标签内的文字。',
 			2： '<canvas id="drawing" width="640" height="360">A drawing of something.<canvas>',
@@ -3229,11 +3201,11 @@
 				context.fillStyle = 'rgba(0, 0, 255, 1)'
 				context.fillRect(30, 30, 50, 50)
 		}
-	</script>
+	<!-- </script> -->
 
 
 	WebGL
-	<script>
+	<!-- <script> -->
 		let 'WebGL' {
 			'WebGL是针对Canvas的3D上下文'
 			ArrayBuffer: '类型化数组,表示的是内存中指定的字节数，但不会指定这些字节用于保存什么类型的数据。通过ArrayBuffer所能做的，就是为了将来使用而分配一定数量的字节'
@@ -3266,11 +3238,11 @@
 			Float64Array: 表示64位IEEE浮点值。
 			第一个参数是要使用ArrayBuffer对象，第二个参数是作为起点的字节偏移量（默认为0），第三个参数是要包含的字节数。只有第一个参数是必须的。
 		}
-	</script>
+	<!-- </script> -->
 
 
 	jQuery
-	<script>
+	<!-- <script> -->
 		var 说明 {
 			1. jQuery 是一个快速、简洁的 JavaScript 库
 			2. JavaScript库：即 library，是一个封装好的特定的集合（方法和函数）。
@@ -3439,13 +3411,10 @@
 			外部添加
 				element.after(''内容'') // 把内容放入目标元素后面
 				element.before(''内容'')    //  把内容放入目标元素前面
-			注意:
-				①内部添加元素，生成之后，它们是父子关系。
-				②外部添加元素，生成之后，他们是兄弟关系。
 			删除元素
 				element.remove()   //  删除匹配的元素（本身）
 				element.empty()    //  删除匹配的元素集合中所有的子节点
-				element.html('''')   //  清空匹配的元素内容
+				element.html('')   //  清空匹配的元素内容
 				①remove 删除元素本身。
 				②empt() 和  html('''') 作用等价，都可以删除元素里面的内容，只不过 html 还可以设置内容。
 		}
@@ -3554,22 +3523,17 @@
 			3、复制粘贴
 		}
 		var 多库共存 {
-			jQuery使用$作为标示符，随着jQuery的流行,其他 js 库也会用这​$作为标识符，
-			这样一起使用会引起冲突。
+			jQuery使用$作为标示符，随着jQuery的流行,其他 js 库也会用这​$作为标识符，这样一起使用会引起冲突。
 			需要一个解决方案，让jQuery 和其他的js库不存在冲突，可以同时存在，这就叫做多库共存。
 			解决方案：
 				1. 把里面的 $ 符号 统一改为 jQuery。 比如 jQuery(''div'')
 				2. jQuery 变量规定新的名称：$.noConflict()        var xx = $.noConflict();
 		}
-	</script>
+	<!-- </script> -->
 
 
 	VUE
-	<script>
-		let 一些概念 {
-			1.	属性名上添加 $前缀 不是必须的，但是这样做可以提醒糊涂的开发人员（可能是你），这是一个公共API属性或方法
-			2.	View Model（视图模型）
-		}
+	<!-- <script> -->
 		let SPA {
 			1. 单页应用-SPA的特点
 				1. 传统模式 每个页面及其内容都需要从服务器一次次请求  如果网络差, 体验则会感觉很慢
@@ -3592,15 +3556,12 @@
 					4. hash值是url地址的一部分,会存储在页面地址上 我们可以获取到
 					5. 可以通过事件监听hash值得改变
 					6. 拿到了hash值,就可以根据不同的hash值进行不同的模块切换
-			3. 	$message 	elementui的方法  输出提示消息
-			4.	token：	令牌(加密信息)[胸牌]，可以表明当前用户拥有权力做某些事情
-				，这个token是服务器端给当前用户分配的
 		}
 		let vue = {
 		    特点
 		        1. 和 DOM 解耦
 		        2. single page application开发.(单页应用程序)
-		        3. 数据驱动视图,我们只关心数据
+		        3. 数据驱动视图
 		        4. MVVM双向绑定
 		        5. 通过指令增强了html功能
 		        6. 组件化,复用代码
@@ -3608,22 +3569,15 @@
 		    	Vue开源项目汇总 : https://github.com/opendigg/awesome-github-vue
 		    	Vue开源社区 : https://www.vue-js.com/
 		    	Vue官方文档 : https://cn.vuejs.org/
-		    安装方式 : 
-		    	1. 采用本地文件引入的方式  直接下载 在页面中引入
-				2. 采用 在线cdn引入的方式
-					cdn相当于把一个文件放在了全国各地,然后你离哪里近,就从哪里调拨给你,用更快的方式获取到文件资源
-				3. 采用 npm 安装的方式 
-					npm install vue
-					现状: 都会采用npm的方式来进行正式项目开发
 		}
 		let VUE使用 = {
 			1.	防止闪烁
-				// <style>
+				<!-- // <style>
 				// 		[v-cloak] {
 				//			display: none;
 				//		}
 				//	<style>
-				<div id="add" v-cloak><div>
+				<div id="add" v-cloak><div> -->
 			2. 	let obj = new Vue({	//实例化vue对象
 					el : '#app', 	//选择器
 					data : {},	//数据
@@ -3637,65 +3591,14 @@
 					created: function () {}, // 实例挂载前
 					router 	//引入路由
 				})
-			3. 	<router-link to="/bj">北京<router-link> //在页面中设置导航内容
-				<router-view><router-view> //路由匹配到的组件将渲染在这里
-			4. 	let router = new VueRouter({	//实例化路由对象
-					routes : [	//路由表
-						// 一个个路由
-						{
-							path : '/A',	//地址
-							components : { //组件,可以在外部定义然后赋值对象名 components : obj
-								template : ``,
-								children : [ // 子路由路由规则表 要配置在路由的children下
-									{
-										// path: "/music/pop", // 一种方式
-										path: "pop", // 第二种模式  =>  /music/pop
-										components : {
-											template : ``,
-											..等
-										}
-									}
-								]
-							}
-						}
-					]
-				})
-			5.	组件
-				var objA = {
-					template: `<div><button @click="goB">跳转到B页面</button></div>`,
-					methods: {
-						//编程式导航 只需要承载视图就可以
-						goB() { this.$router.push({ path: "/B" });} //跳转到这个地址,等价于to
-					}
-				};
 			6.	this.$set(this.obj, 'name', '李四');
 				参数 1. 哪个data成员;
 				参数 2. 添加什么属性;
 				参数 3. 初始值;
 			7. 插值表达式
-				1. 通过 '{{ 插值表达式 }}'包裹的形式,将绑定的数据实时的显示出来
-				2. 通过任何方式修改所绑定的数据,所显示的数据都会被实时替换,(响应式数据)
-				3. '{{js表达式、三元运算符、方法调用等}}'里边可以随意写
-				4. 注意,不能写 var a = 10(关键字); 分支语句 循环语句
-			8. 指令,响应式地作用于 DOM。;
-				1. 指令是带有 v- 前缀的特殊特性。;
-				2. 指令特性的值预期是单个 JavaScript 表达式,(v-for 是例外情况);
-				3. 指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。;
-				4. 指令位置:  起始标签;
+				'{{js表达式、三元运算符、方法调用等}}'里边可以随意写
 		}
 		let 指令 {
-			1. v-text和插值表达式的区别
-				v-text  更新整个标签中的内容
-				插值表达式: 更新标签中局部的内容
-			2. v-html:更新标签中的内容/标签
-				可以渲染内容中的HTML标签
-				注意:尽量避免使用，容易造成危险 (XSS跨站脚本攻击)
-			3. v-if 和 v-show
-				1. 判断引号里得到的值是 false or true; true 显示, false 隐藏;
-				2. 注意 : v-if 操作的是元素是否渲染,而 v-show 操作样式来实现显示隐藏
-				3. 	v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。
-					因此，如果需要非常频繁地切换，则使用 v-show 较好；
-					如果在运行时条件很少改变，则使用 v-if 较好。
 			4. v-on绑定事件
 				1. v-on:click="fn";  @click="fn"
 				2. 注意,方法名中可以采用$event的方式添加event参数,也可以直接写事件名,默认第一个参数为event事件参数
@@ -3707,26 +3610,12 @@
 					@click.stop 阻止单击事件冒泡
 					@click.stop.prevent 修饰符可以串联
 					@click.submit.prevent 只有修饰符
-			5. v-for-数组
-				1. v-for 指令需要使用 item in items 或者 item of items 形式的特殊语法
-				3. (item,index) in list   //item为当前遍历属性数组项的值 index为数组的索引
-				4. 注意 v-for写的位置 应该是重复的标签上  不是其父级元素上 需要注意
-				5. <li v-for="(item,index) in list">'{{item}}---{{index}}'<li>
 			6. v-for-对象
-				1. item in items  // item为当前遍历属性对象的值
 				2. (item, key, index) in  items // 顺序是默认的
 					//item为当前遍历属性对象的值 key为当前属性名的值  index为当前索引的值
-			7. v-for-key
-				1. 列表数据变动会导致视图列表重新更新,为了提升性能，方便更新，需要提供一个属性 key
-					key是一个标识,不是一个属性。 找不到.他是Vue运行机制需要的一个值
-				2. 通常是给列表数据中的唯一值 也可以用索引值,最好用ID
-				3. <li v-for="(item,index) in list" :key="index">'{{item}}---{{index}}'<li>
 			8. v-if和v-for相遇
 				1. v-if 的优先级大于v-for ,所以v-if可以使用v-for的变量
 				2. 如果遇到 v-if判断数组变量 需要在循环体外再建立一个判断 v-if
-			9. v-bind
-				1. 绑定标签上的任何自带属性,自定义属性也可绑定
-				2. <p v-bind:id="ID"><p>   // ID为数据对象中的变量
 			10. v-bind-绑定class-对象语法
 				1. 绑定class对象语法    :class="{ class名称: 布尔值}"
 				2. <p :class="{left:showClass}">内容<p> 
@@ -3767,28 +3656,17 @@
 			18. v-once
 				1. 使得所在元素只渲染一次  
 				2. 场景:静态化数据 
-			19. 过滤器的文档分析
-				1. 场景: data中的数据格式(日期格式/货币格式/大小写等)需要数据时
-				2. 使用位置:{{}}和v-bind="表达式"
-				3. 具体用法:{{msg | 过滤器名字}}
-				4. 分类:本地(局部)和全局  全局 所有实例均可使用  Vue
-				5. 本地: 通过选项filters
-				6. 全局: 在newVue上面 Vue.filter()
 			20. 全局过滤器
 				1. 在创建 Vue 实例之前定义全局过滤器Vue.filter()
-				2. Vue.filter('该过滤器的名字',(要过滤的数据)=>{return 对数据的处理结果});
-					Vue.filter("toUpper", function(value) {});
+				2. Vue.filter("toUpper", function(value) {});
 				3. 在视图中通过{{数据 | 过滤器的名字}}或者v-bind使用过滤器
 				4. 注意 可使用多种表达式形式  全局过滤器 多个Vue实例可共享使用
 			21. 局部过滤器
-				1. 在vm对象的选项中配置过滤器filters:{}
-				2. 过滤器的名字: (要过滤的数据)=>{return 过滤的结果}
-					filters: {
+				1. filters: {
     					toUpper(value) {
     					  	return value.charAt(0).toUpperCase() + value.substr(1);
     					}
 					}
-				3. 在视图中使用过滤器:  {{被过滤的数据 | 过滤器的名字}}
 				4. 注意 局部过滤器只能用在当前Vue实例视图上
 			22. 过滤器-传参数和串联使用
 				1. 过滤器可以传递参数,第一个参数永远是前面传递过来的过滤值
@@ -3825,69 +3703,6 @@
 				}
 				// 使用自定义指令
 				<input v-focus>
-			27. 计算属性
-				1. 当表达式过于复杂的情况下 可以采用计算属性 对于任何复杂逻辑都可以采用计算属性
-				2. 当 数据对象中的数据发生变化时，计算属性会重新计算 数据对象发生改变 => 计算属性发生改变=> 视图改变
-				3. methods 和 计算属性的区别
-					1. 计算属性会每次比较更新前后的值，如果前后一致则不会引起视图变化
-					2. methods每次都会执行 性能差于计算属性
-					3. 计算属性不需要调用形式的写法  而methods方法必须采用 方法() 调用的形式
-				4. 计算属性必须要返回值
-					computed: {
-						// 定义计算属性
-						nameReverse() {
-							return this.name.split("").reverse().join("");
-						}
-					}
-			29. watch-使用
-				1. 当需要根据数据变化 进行相应业务操作,且该操作是异步操作时,可以使用watch监听
-				2. computed和watch区别: watch是异步使用的；计算属性 必须要有返回值，所以说不能写异步请求
-				3. watch选项中可以写很多逻辑 不需要返回值
-					watch: {
-						// 第一种监听情况   newval是新值  oldval是旧值
-						xxx:function(newval,oldval){},
-						// 这样是深层次监听
-						xxx: {
-							deep: true, // 深层次监听  就是cat中嵌套的对象也能监听到
-							immedlate: true, // 回调函数会在观察(data observer)开始后立即被调用
-							handler: function (newval, oldval) {} // handler是固定写法
-						},
-						// 针对某一个成员进行监听
-						'cat.name': function (newval, oldval) {}
-					}
-					// 自定义方法
-				    methods: {
-						// 监听页面是否变化方法   无缝跳转
-				        editFormWatch: function () {
-				            // 设置监听事件 参数,1.监听对象;2.处理方法;3.设置深层次监听
-				            this.$watch('editForm', function () {
-				                // 如果页面数据发生变化,给editFormDirty赋值  editFormDirty在data中已创建
-				                this.editFormDirty = true;
-				                // 深层次监听
-				            }, { deep: true });
-				        }
-				    }
-			30. json-server工具的使用
-				1. 没有后端的支撑下 ,前端难以为继,json-server可以快速构建一个后台的接口服务,供前端调用
-				2. json-server 是一个命令行工具 可以json文件变成接口文件
-				3. json-server遵循restful接口规则
-				4. 安装 npm i -g  json-server // 也可以采用yarn 和 cnpm
-				5. 新建一个json文件 db.json,并在相对目录下运行命令行命令
-					json-server --watch db.json
-				6. 启动完成后=>  通过访问地址访问接口
-			31. RESTFUL的接口规则
-				1. RESTful是一套接口设计规范
-				2. 用不同的请求类型发送同样一个请求标识 所对应的处理是不同的
-				3. 通过Http请求的不同类型(POST/DELETE/PUT/GET)来判断是什么业务操作(CRUD ) 
-				4. CRUD => 增删改查
-				5. json-server应用了RESTful规范
-					1. 查询数据  GET  /brands 获取db.json下brands对应的所有数据 列表
-					2. GET /brands/1 查询id=1数据 单条
-					3. 删除数据 DELETE   /brands/1 删除id=1数据
-					4. 修改数据 PUT  /brands/1 请求体对象
-					5. 上传/添加 POST /brands 请求体
-					6. PUT和POST用法一样  请求体 {name:"张三"}
-					7. 查询 GET /brands?title_like=关键字  -> 模糊搜索
 		}
 		let 组件 {
 			1. 特点
@@ -3898,16 +3713,6 @@
 				5. 和实例相似之处:   data/methods/computed/watch  等一应俱全
 				6. 注意 值得注意的是  data和Vue实例的区别为 组件中data为一个函数  没有el选项
 				7. 每个组件都是独立的 运行作用域  数据 逻辑没有任何关联
-			2. 定义组件
-				1. 在Vue里添加components对象,对象中是组件对象
-				2. 组件对象名称作为自定义标签在页面输出
-				3. 组件对象中第一项是模板template,在模板中书写的就是组件的组成,template 代表其页面结构 (有且只有一个根元素)
-				4. 模板下一项是data,这里的data是一个函数,data返回一个对象,data里面和普通的vue实例一样是数据
-				5. 其他部分组件也都有
-			3. 组件嵌套
-				1. 在父组件的components中,再定义一个组件对象
-				2. 在父组件的template中以标签的形式书写对象名
-				3. 把子组件template写好,其他部分写好
 			4. Props
 				1. 在子标签绑定属性 					
 				1. props是组件的选项  定义接收属性 	
@@ -3922,57 +3727,36 @@
 			5. 父组件给子组件传值
 				1. 绑定属性 			v-bind:属性="值"
 				2. props 接收属性 	props : ['属性']
-			6. 子组件给父组件传值(自定义事件methods)
-				1. 通过点击事件或其他事件触发有 $emit事件的 函数
-					v-on:click="selectCity"
-					selectCity() {
-						// this当前实例 this.属性名直接可以获取props属性值 所以props不能
-						// 和data属性重名 也不能和方法重名
-						// $emit是当前实例的方法 (自定义事件名称(可随意定义),params...)
-						this.$emit("changecity", this.city); // 抛出了一个事件  注意：抛出事件名必须为全小写
-					}
-				2. 通过在子组件中触发$emit事件,然后在父组件中监视此事件 进行追踪
+			6. 子组件给父组件传值($emit)
+				1. 通过在子组件中触发$emit事件,然后在父组件中监视此事件 进行追踪
 					v-on:changecity="change"
 					v-on可以绑定$emit返回的属性
 				3. 注意：抛出事件名必须为全小写
 				4. 如果props有驼峰命名的情况,赋值时,需要拆成 - 分割的形式 否则无法传递
 		}
 		let 路由 {
-			linkActiveClass: 'active'   // active为路由激活时动态添加的类，类名可以自定义
 			1. 路由
 				1. VueRouter 是 Vue.js 官方的路由管理器。它和 Vue.js的核心深度集成，让构建单页面应用变得易如反掌
 				2. 作用：实现根据不同的请求地址，显示不同的组件
 				3. 如果要使用 vue开发项目,前端路由功能必须使用vue-router来实现
 				4. 动态路由和路由传参是两个不同的东西
 					动态路由是前端页面跳转使用；
-					路由传参是给后端提供的数据；
+					路由传参是携带需要的数据；
 			2. 使用步骤
-				1. 导入vue和vue-router
 				2. 设置HTML中的内容
 					// router-link 最终会被渲染成a标签，to指定路由的跳转地址
 					<router-link to="/users">用户管理<router-link>
 					// 视图容器：路由匹配到的组件将渲染在这里
 					<router-view><router-view>
-				3. 创建组件
-					// 组件也可以放到单独的js文件中
-					var Home = {
-					    template: '<div>这是Home内容</div>'
-					};
-					var Users = {
-					    template: '<div>这是用户管理内容</div>'
-					};
 				4. 实例化路由对象,配置路由规则
 				    // 配置路由规则
 				    var router = new VueRouter({
+						linkActiveClass: 'active', // 为路由激活时动态添加的类，类名可以自定义
+						mode: 'histofy', // 模式
 				        routes: [
 				            { name: 'home', path: '/', component: Home },
 				            { name: 'users', path: '/users', component: Users }
 				        ]
-				    });
-				5. vue实例挂载router实例
-				    var vm = new Vue({
-				        el: '#app',
-				        router
 				    });
 			3. 动态路由实现步骤：组件复用
 				1. 动态路由概念:当页面path不同却需要对应同一个组件
@@ -3982,8 +3766,6 @@
 				    routes: [{ name: 'users', path: '/users/:id', component: Users }]
 				5. 通过 <router-link> 传参，在路径上传入具体的值(赋值)
 				    <router-link to=`/users/${id}`>用户管理<router-link>
-				6. 在组件内部使用 this.$route 获取当前路由对象
-					console.log(this.$route.params.id);
 				7. params 是一个对象,path参数中冒号后边的值是 params 的键名 to里面冒号后边是赋值
 			4.	路由规则 						匹配路径 				$route.params
 				/user/:username 				/user/evan 				{ username: 'evan' }
@@ -4017,40 +3799,9 @@
 				5. replace方法 相当于替换了当前的记录  历史记录并没有多 但是地址会变
 				6. go(数字) 代表希望是前进还是回退,当数字大于0 时 就是前进 n(数字)次,小于0时,就是后退n(数字)次
 					可以通过vue实例 获取当前的路由实例 $router 
-				7. 	<button @click="goB">跳转到B页面<button>
-					methods: {
-						//编程式导航
-						goBack() {
-							this.$router.push({ path: "/B" }); //跳转到这个地址,等价于to
-						}
-					}
 			8. vue之this.$route.params和this.$route.query的区别
-				1. this.$route.query的使用
-					A、传参数：
-						this.$router.push({
-						    path: '/monitor',
-						    query:{
-						        id:id,
-						    }
-						})
-					B、获取参数：
-						this.$route.query.id
-					C、在url中形式（url中带参数）
-						http://172.19.186.224:8080/#/monitor?id=1
-					D、页面之间用路由跳转传参时，刷新跳转后传参的页面，数据还会显示存在（项目中遇到此问题）
-				2. this.$route.params的使用
-					A、传参数：
-						this.$router.push({
-						    name: 'monitor',
-						    params:{
-						    	id:id,
-						    }
-						})
-					B、获取参数：
-						this.$route.params.id
-					C、在url中形式（url中不带参数）
-						http://172.19.186.224:8080/#/monitor
-					D、页面之间用路由跳转传参时，刷新跳转后传参的页面，数据不存在（项目中遇到此问题）
+				query: http://172.19.186.224:8080/#/monitor?id=1
+				params： http://172.19.186.224:8080/#/monitor
         	9. vue-router-routerlink-tag-激活样式
         		1. 当前路由在导航中是拥有激活class样式的
 				2. 查看导航元素,可以找到 激活样式 router-link-exact-active
@@ -4089,17 +3840,6 @@
 			11. 路由守卫
 				1. 	beforeEach()  全部路由执行之前必须经历的关卡，称为前置路由守卫
 					afterEach()    全部路由执行之后必须经历的关卡，称为后置路由守卫
-				2.  路由前置守卫		以token为限制
-					router.beforeEach((to, form, next) => {
-					    // to跳转地址
-					    // form跳转过来的地址
-					    // next回调函数,可填跳转地址
-					    // 获取token
-					    let token = window.sessionStorage.getItem('token');
-					    // 判断
-					    if (!token && to.path !== '/login') { return next('/login'); };
-					    next();
-					});
 				3.  离开当前路由的守卫
 					beforeRouteLeave (to, from, next) {}
 		}
@@ -4309,11 +4049,11 @@
 			this.$set(this.obj, 'name', '李四') // 1. 哪个data成员 2.	添加什么属性 3.	初始值
 			
 		}
-	</script>
+	<!-- /* </script> */ -->
 
 
 	辅助工具
-	<script>
+	<!-- <script> -->
 		let cli {
 			1. vue-cli工具介绍
 				1. vue-cli是一个辅助开发工具=> 代码编译 + 样式 + 语法校验 + 输出设置 + 等;
@@ -4323,10 +4063,6 @@
 				1. 说明:vue-cli本质上是一个npm包,需要npm安装下载
 				2. npm i -g @vue/cli  /全局安装  默认安装最新版本
 				3. npm install -g @vue/cli-init  /桥接 将2.0 补齐到目前的脚手架上
-				4. 查看版本
-					vue -V  // 查看cli版本号
-					vue --version // 和上面等价
-				6. 注意 vue-cli的命令行 关键字 是vue
 			3. 创建项目
 				1. 2.0 的特性创建项目: 采用 cli  (生成简易模板)
 				    heroes 创建的项目文件夹名称
@@ -4342,20 +4078,11 @@
 								name: "[name].[ext]?[hash]"
 							}
 						}
-				2. 注意 3.0 +创建项目时  有两种模式, 一种默认模式, 一种选择模式,
-					1. 默认模式:一种标准的模板
-					2. 选择模式 可以根据自己的需求选择需要的工具和模式
 			4. 单文件组件及入口解析
-				1. 注意Vue 选项中的 render 函数若存在，则 Vue 构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。
-					render 把指定的文件渲染到 el 选中的标签里
+				render 把指定的文件渲染到 el 选中的标签里
 		}
 		let cli 3.0 项目 {
-			1. 全局安装  默认安装最新版本
-				npm i -g @vue/cli            /
-			2. 创建项目
-				vue create heroes // heroes是项目名称
 			3. 目录解释
-				1. node_modules		// 项目需要的依赖包
 				2. public			// 静态资源存储目录
 					index.html		// 项目主容器文件
 					favicon.ico		// 项目默认索引图片
@@ -4381,7 +4108,6 @@
 					    host: '127.0.0.1' // IP地址
 					  }
 					}
-				2. 删除不需要的文件和内容
 				3. 做按需引入配置
 					1. 安装插件 
 						yarn add babel-plugin-component -D
@@ -4395,14 +4121,6 @@
 					      }
 					    ]
 					  ]
-			5. 初始化 git
-				git init  // 创建本地仓库
-				git add .
-				git commit -m '第一次提交' 
-				git remote add origin https://github.com/liangwan20000/1000.git
-				git push -u origin master
-			6. 启动项目
-				npm run serve 或 npm run dev
 			7. 删除 vue cli 保存的模板  在用户文件夹下 administrator下  .vuerc 文件
 		}
 		let json-bigint 大数字处理组件 {
@@ -4490,6 +4208,9 @@
 			
 			更新依赖包到最新版本
 			npm install 依赖包名称@latest -D
+
+			查看依赖版本
+			依赖包名 + --version
 
 			查看最新版本
 			npm info 依赖包名称（查看所有版本）
@@ -4581,20 +4302,6 @@
 					点击请求列表下的一项,弹出的headers里就有Request Method
 				Response : 响应结果;在弹出的headers里;
 		}
-		var Apache服务器 {
-			WampServer软件是一个集成软件，包含了：Apache、MySQL等服务器软件。
-			下载：https://sourceforge.net/projects/wampserver/
-			安装
-				1.  检测计算机的端口是否被占用了
-					Apache默认使用80端口
-					MySQL默认使用3306端口
-					如果计算机中的这两个端口被占用了，就会影响到wampserver。
-				2. 	打开命令行工具  netstat -an
-				3. 	如果发现端口被占用了，则需要使用管理员打开命令行工具
-					netstat -anb   查看哪个程序使用了3306端口
-				4.	打开任务管理器，找到占用程序，结束任务
-				5. 	核心重点：  安装任何与开发相关的软件时都必须安装到英文路径下。
-		}
 		let MIME类型 {
 			文件后缀					Mime类型										说明
 			.flv				flv/flv-flash 								在线播放
@@ -4623,9 +4330,24 @@
 			.jad				text/vnd.sun.j2me.app-descriptor			JAD文件(JAVA平台手机通用格式)
 			.sisx 				application/vnd.symbian.epoc/x-sisx-app 	SISX文件(symbian平台)
 		}
-	</script>
+	<!-- </script> -->
 
-
+	
+	不是很重要
+	var Apache服务器 {
+		WampServer软件是一个集成软件，包含了：Apache、MySQL等服务器软件。
+		下载：https://sourceforge.net/projects/wampserver/
+		安装
+			1.  检测计算机的端口是否被占用了
+				Apache默认使用80端口
+				MySQL默认使用3306端口
+				如果计算机中的这两个端口被占用了，就会影响到wampserver。
+			2. 	打开命令行工具  netstat -an
+			3. 	如果发现端口被占用了，则需要使用管理员打开命令行工具
+				netstat -anb   查看哪个程序使用了3306端口
+			4.	打开任务管理器，找到占用程序，结束任务
+			5. 	核心重点：  安装任何与开发相关的软件时都必须安装到英文路径下。
+	}
 	
 
 	IE11: 支持ES6,ES7; CSS样式也都支持;
