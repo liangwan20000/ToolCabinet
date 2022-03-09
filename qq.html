@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .client-a {
+            width: 1000px;
+            min-height: 500px;
+            padding: 32px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .client-a > .client-b {
+            width: 33%;
+            height: 50px;
+            border: 1px solid #999;
+            background-color: lime;
+            float: left;
+            /*margin-right: 16px;*/
+        }
+        .client-b:nth-child(3n) {
+            margin-right: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="client-a">
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+    </div>
+    <script type="text/javascript">
+        
+    </script>
+</body>
+</html>
