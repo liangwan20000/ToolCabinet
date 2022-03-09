@@ -20,19 +20,28 @@
 <body>
     <a id="test" >test1</a>
     <script>
-        (function(global, factory) {
-            typeof exports === 'object' && typeof module !== 'undefined' ?
-            module.exports = factory() : typeof define === 'function' && define.amd ?
-            define(factory) : (global.Vue = factory());
-        }(this, (function() {
-            'use strict';
+        // (
+        //     function(global, factory) {
+        //         typeof exports === 'object' && typeof module !== 'undefined' ?
+        //         module.exports = factory() : typeof define === 'function' && define.amd ?
+        //         define(factory) : (global.Vue = factory());
+        //     }
+        //     (this, (
+        //             function() {
+        //                 'use strict';
 
-            let Vue = { name: 'vue' }
+        //                 let Vue = { name: 'vue' }
 
-            return Vue;
+        //                 return Vue;
 
-        })));
-        console.log(this.Vue)
+        //             }
+        //         )
+        //     )
+        // );
+        // console.log(this.Vue)
+        (function(value, data) {
+            console.log(value, data)
+        }('张三', '李四'))
     </script>
 </body>
 </html>

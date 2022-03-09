@@ -18,28 +18,104 @@
 	      	var canvas = document.getElementById("canvas");
 	      	// 判断方法是否存在，检查canvas的支持性
 	      	if (canvas.getContext) {
+	      		// 取得canvas上下文
 	      	  	var ctx = canvas.getContext("2d");
-	
-	      // 	  	ctx.fillRect(25, 25, 100, 100);
-			    // ctx.clearRect(45, 45, 60, 60);
-			    // ctx.strokeRect(50, 50, 50, 50);
 
+				// 正方形
+	      		// ctx.fillRect(25, 25, 100, 100); // 绘制一个填充的矩形
+			    // ctx.clearRect(45, 45, 60, 60); // 清除指定矩形区域，让清除部分完全透明。
+			    // ctx.strokeRect(50, 50, 50, 50); // 绘制一个矩形的边框
+			    
+			    // 三角形
+			    // ctx.beginPath(); // 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。
+			    // ctx.moveTo(75, 50); // 移动起始点
+			    // ctx.lineTo(100, 75); // 设置终点
+			    // ctx.lineTo(100, 25); // 设置终点
+			    // ctx.fill(); // 通过填充路径的内容区域生成实心的图形。
+			    
+			    // 笑脸
 			    // ctx.beginPath();
-			    // ctx.moveTo(75, 50);
-			    // ctx.lineTo(100, 75);
-			    // ctx.lineTo(100, 25);
-			    // ctx.fill();
-			    ctx.beginPath();
-			    ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
-			    ctx.moveTo(110, 75);
-			    ctx.arc(75, 75, 35, 0, Math.PI, false);   // 口(顺时针)
-			    ctx.moveTo(65, 65);
-			    ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // 左眼
-			    ctx.moveTo(95, 65);
-			    ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // 右眼
-			    ctx.stroke();
+			    // ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
+			    // ctx.moveTo(110, 75); // 设置起始点
+			    // ctx.arc(75, 75, 35, 0, Math.PI, false);   // 口(顺时针)
+			    // ctx.moveTo(65, 65); // 设置起始点
+			    // ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // 左眼
+			    // ctx.moveTo(95, 65); // 设置起始点
+			    // ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // 右眼
+			    // ctx.stroke(); // 通过线条来绘制图形轮廓。
+			    
+			    // 填充三角形
+				// ctx.beginPath();
+				// ctx.moveTo(25, 25);
+				// ctx.lineTo(105, 25);
+				// ctx.lineTo(25, 105);
+				// ctx.fill();
+				// 描边三角形
+				// ctx.beginPath();
+				// ctx.moveTo(125, 125);
+				// ctx.lineTo(125, 45);
+				// ctx.lineTo(45, 125);
+				// ctx.closePath(); // 闭合路径之后图形绘制命令又重新指向到上下文中。
+				// ctx.stroke();
+				
+				// 圆弧
+				// for(var i = 0; i < 4; i++){
+				// 	for(var j = 0; j < 3; j++){
+				// 		ctx.beginPath();
+				// 		var x = 25 + j * 50; // x 坐标值
+				// 		var y = 25 + i * 50; // y 坐标值
+				// 		var radius = 20; // 圆弧半径
+				// 		var startAngle = 0; // 开始点
+				// 		var endAngle = Math.PI + (Math.PI * j) / 2; // 结束点
+				// 		var anticlockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针
+
+				// 		ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+
+				// 		if (i>1){
+				// 			ctx.fill();
+				// 		} else {
+				// 			ctx.stroke();
+				// 		}
+				// 	}
+				// }
+				
+				// 二次贝塞尔曲线
+				// ctx.beginPath();
+				// ctx.moveTo(75, 25);
+				// ctx.quadraticCurveTo(25, 25, 25, 62.5);
+				// ctx.quadraticCurveTo(25, 100, 50, 100);
+				// ctx.quadraticCurveTo(50, 120, 30, 125);
+				// ctx.quadraticCurveTo(60, 120, 65, 100);
+				// ctx.quadraticCurveTo(125, 100, 125, 62.5);
+				// ctx.quadraticCurveTo(125, 25, 75, 25);
+				// ctx.stroke();
+
+				//三次贝塞尔曲线
+				ctx.beginPath();
+				ctx.moveTo(75, 40);
+				ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+				ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+				ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+				ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+				ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+				ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+				ctx.fill();
 	      	}
 	    }
+	    // 封装的一个用于绘制圆角矩形的函数.
+		function roundedRect(ctx, x, y, width, height, radius){
+			ctx.beginPath();
+			ctx.moveTo(x, y + radius);
+			ctx.lineTo(x, y + height - radius);
+			ctx.quadraticCurveTo(x, y + height, x + radius, y + height);
+			ctx.lineTo(x + width - radius, y + height);
+			ctx.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+			ctx.lineTo(x + width, y + radius);
+			ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
+			ctx.lineTo(x + radius, y);
+			ctx.quadraticCurveTo(x, y, x, y + radius);
+			ctx.stroke();
+		}
 	    draw();
 	</script>
 
@@ -122,11 +198,15 @@
 			moveTo(x, y): '将绘图游标移动到(x, y), 不画线',
 			quadraticCurveTo(cx, cy, x, y): '从上一点开始绘制一条二次曲线,到(x, y)为止,并且以(cx, cy)为控制点',
 			rect(x, y, width, height): '从点(x, y)开始绘制一个矩形，这个方法绘制的是矩形路径',
-			closePath(): '创建路径后，绘制一条连接到路径起点的线条',
+			closePath(): '闭合路径，创建路径后，绘制一条连接到路径起点的线条',
 			fill(): '路径完成，使用fillStyle填充',
 			stroke(): '路径完成，使用strokeStyle描边',
 			clip(): '在路径上创建一个剪切区域',
 			isPointInPath(x, y): '在路劲关闭前，确定画布上的某一点是否位于路径上'
+
+			注意：arc()函数中表示角的单位是弧度，不是角度。角度与弧度的js表达式:
+
+			弧度=(Math.PI/180)*角度。
 		}
 		let '绘制文本' {
 			'fillText()模仿了网页正常显示文本，使用的更多',

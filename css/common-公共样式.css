@@ -1,3 +1,6 @@
+.box {
+  height: calc(100vh - 156px);
+}
 /* 浮动 */
 .fl {
   float: left;
@@ -78,10 +81,10 @@
  */
 .divHover {
   position: sticky;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
+  -webkit-position: sticky;
+  -moz-position: sticky;
+  -ms-position: sticky;
+  -o-position: sticky;
   /*距离顶部1px悬停*/
   top: 1px; 
 }

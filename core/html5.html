@@ -6,6 +6,75 @@
 	<title>HTML5</title>
 </head>
 <body>
+	基础标签
+
+	<h1>标题</h1>
+	<p>段落</p>
+	<hr>水平线标签
+	<br>换行标签
+	<strong>粗体</strong>
+	<em>斜体</em>
+	<del>加删除线</del>
+	<ins>加下划线</ins>
+
+	<div>容器</div>
+	<span>文字</span>
+	<a href="">超链接</a> 绝对路径指完整的路径；相对路径指从当前文件出发；锚点跳转指本页内跳转
+	<img src="../mime/123.jpg" alt="">图片标签
+	<ol>
+		<li>有序列表</li>
+	</ol>
+	<ul>
+		<li>无序列表</li>
+	</ul>
+	<dl>
+		自定义列表
+		<dt>列表标题</dt>
+		<dd>对标题的说明</dd>
+	</dl>
+	表格
+	<table border="1" cellpadding="0" cellspacing="0" width="200">
+	  	<thead>
+	    	<tr style="background-color: gray;">
+		      <th>Month</th>
+		      <th>Savings</th>
+	    	</tr>
+	  	</thead>
+	
+		<tfoot style="background-color: black;color: white;">
+		    <tr>
+		      	<td>Sum</td>
+		      	<td>$180</td>
+		    </tr>
+		</tfoot>
+	
+	  	<tbody>
+	    	<tr>
+	      		<td>January</td>
+	      		<td>$100</td>
+	    	</tr>
+	    	<tr>
+	      		<td>February</td>
+	      		<td>$80</td>
+	    	</tr>
+	  	</tbody>
+	</table>
+	表单
+	<form action="" method="get">
+        <fieldset>
+            <legend>注册信息</legend>
+
+            <span>用户名:</span>
+            <input type="text" class="form-control">
+
+            <br>
+            <br>
+            <span>用户名:</span>
+            <input type="text" class="form-control">
+
+        </fieldset>
+    </form>
+
 	1、语义标签 http://know.webhek.com/html5/html5-progress.html
 
 	 		标签	 					描述
@@ -68,12 +137,20 @@
 
 		placehoder 属性，简短的提示在用户输入值前会显示在输入域上。即我们常见的输入框默认提示，在用户输入后消失。
 		required  属性，是一个 boolean 属性。要求填写的输入域不能为空
+		readonly  属性，只读，不可编辑
 		pattern 属性，描述了一个正则表达式用于验证<input> 元素的值。
 		min 和 max 属性，设置元素最小值与最大值。
 		step 属性，为输入域规定合法的数字间隔。
 		height 和 width 属性，用于 image 类型的 <input> 标签的图像高度和宽度。
 		autofocus 属性，是一个 boolean 属性。规定在页面加载时，域自动地获得焦点。
 		multiple 属性 ，是一个 boolean 属性。规定<input> 元素中可选择多个值。
+		
+		老属性
+		maxlength = "200";  最大输入数 直接写在标签里 多行文本輸入框用 (內置屬性)
+        disabled=disabled   设置input禁用  (內置屬性)
+        checked             单选框/复选框设置默认选中   (內置屬性)
+        selected="selected" 下拉框的默认选中项 selected  (內置屬性)
+        multiple="multiple" 表单可选择多个值
 
 	3、视频和音频
 		<video src="">视频</video>
