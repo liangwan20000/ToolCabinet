@@ -20,30 +20,6 @@
                 <td>籍贯</td>
                 <td>籍贯</td>
             </tr>
-            <!-- <tr>
-                <td>20</td>
-                <td>科技有限公司</td>
-                <td>火星黑洞</td>
-                <td>web开发</td>
-                <td>吼吼吼</td>
-                <td>22</td>
-                <td>汉</td>
-                <td>湖北</td>
-            </tr> -->
-        </tbody>
-    </table>
-    <table id="tableOne" cellspacing="0" cellpadding="1" style="border-collapse:collapse;" border="1" width="100%">
-        <tbody>
-            <!-- <tr align="center" bgcolor="#1890ff">
-                <td style="width:100px;">id</td>
-                <td>公司名称</td>
-                <td>姓名</td>
-                <td>岗位</td>
-                <td>技术等级</td>
-                <td>年龄</td>
-                <td>民族</td>
-                <td>籍贯</td>
-            </tr> -->
             <tr>
                 <td>20</td>
                 <td>科技有限公司</td>
@@ -53,72 +29,33 @@
                 <td>22</td>
                 <td>汉</td>
                 <td>湖北</td>
-                <td>湖北</td>
-                <td>湖北</td>
             </tr>
         </tbody>
     </table>
     <script>
         let tTD;
-        let tTDTwo;
-        let table = document.querySelectorAll("table");
-        console.log(table)
-        let cells = table[0].rows[0].cells;
-        let cellsTwo = table[1].rows[0].cells;
-
-
-        for (i = 0; i < cells.length; i++) {
-            cells[i].indexNum = i;
-            cells[i].onmousedown = function() {
+        let table = document.getElementById("table");
+        console.log(table.rows[0].cells)
+        for (let i = 0; i < table.rows[0].cells.length; i++) {
+            table.rows[0].cells[i].onmousedown = function() {
                 tTD = this;
-                tTDTwo = cellsTwo[tTD.indexNum];
                 if (event.offsetX > tTD.offsetWidth - 10) {
                     tTD.mouseDown = true;
                     tTD.oldX = event.x;
                     tTD.oldWidth = tTD.offsetWidth;
                 }
-                if (event.offsetX > tTD.offsetWidth - 10) {
-                    tTDTwo.mouseDown = true;
-                    tTDTwo.oldX = event.x;
-                    tTDTwo.oldWidth = tTDTwo.offsetWidth;
-                }
-                this.parentNode.onmouseleave = function() {
-                    console.log(555)
-                    // if (tTD == undefined) {
-                    //     tTD = this;
-                    // }
-                    
-                    tTD.mouseDown = false;
-                    tTD.style.cursor = 'default';
-
-                    // tTDTwo = cellsTwo[tTD.indexNum];
-                    tTDTwo.mouseDown = false;
-                    tTDTwo.style.cursor = 'default';
-                    // console.log(this)
-                    // console.log(tTD, tTDTwo)
-                };
             };
-            cells[i].onmouseup = function() {
-                if (tTD == undefined) {
-                    tTD = this;
-                }
-                
+            table.rows[0].cells[i].onmouseup = function() {
+                if (tTD == undefined) tTD = this;
                 tTD.mouseDown = false;
                 tTD.style.cursor = 'default';
-
-                tTDTwo = cellsTwo[tTD.indexNum];
-                tTDTwo.mouseDown = false;
-                tTDTwo.style.cursor = 'default';
             };
-            cells[i].onmousemove = function() {
-                if (event.offsetX > this.offsetWidth - 10) {
+            table.rows[0].cells[i].onmousemove = function() {
+                if (event.offsetX > this.offsetWidth - 10)
                     this.style.cursor = 'col-resize';
-                } else {
+                else
                     this.style.cursor = 'default';
-                }
-                if (tTD == undefined) {
-                    tTD = this
-                };
+                if (tTD == undefined) tTD = this;
                 if (tTD.mouseDown != null && tTD.mouseDown == true) {
                     tTD.style.cursor = 'default';
                     if (tTD.oldWidth + (event.x - tTD.oldX) > 0)
@@ -129,20 +66,6 @@
                     while (table.tagName != 'TABLE') table = table.parentElement;
                     for (j = 0; j < table.rows.length; j++) {
                         table.rows[j].cells[tTD.cellIndex].width = tTD.width;
-                    }
-                }
-
-                tTDTwo = cellsTwo[tTD.indexNum];
-                if (tTDTwo.mouseDown != null && tTDTwo.mouseDown == true) {
-                    tTDTwo.style.cursor = 'default';
-                    if (tTDTwo.oldWidth + (event.x - tTDTwo.oldX) > 0)
-                        tTDTwo.width = tTDTwo.oldWidth + (event.x - tTDTwo.oldX);
-                    tTDTwo.style.width = tTDTwo.width;
-                    tTDTwo.style.cursor = 'col-resize';
-                    table = tTDTwo;
-                    while (table.tagName != 'TABLE') table = table.parentElement;
-                    for (j = 0; j < table.rows.length; j++) {
-                        table.rows[j].cells[tTDTwo.cellIndex].width = tTDTwo.width;
                     }
                 }
             };

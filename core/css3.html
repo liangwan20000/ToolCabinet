@@ -97,6 +97,8 @@
         .box:first-child {}
         /*第N个元素，并且是box*/
         .box:nth-child(n) {}
+        /*三的倍数的元素*/
+        .box:nth-child(3n) {}
         .box:last-child {}
         /*选择.box的第五个元素,不受其他元素的影响*/
         .box:nth-of-type(5) {}
@@ -302,6 +304,8 @@
     关键属性
     <style>
         * {
+            width: calc(100vw);
+            height: calc(100vh);
             font-family: "microsoft yahei","sans-serif";
             /*图片与文字中线对齐：top(顶线)bottom(底线)baseline(基线)middle(中线)*/
             vertical-align: middle;
@@ -340,6 +344,8 @@
         .box:first-child {}
         /*第N个元素，并且是box*/
         .box:nth-child(n) {}
+        /*3的倍数的元素，并且是box*/
+        .box:nth-child(3n) {}
         .box:last-child {}
         /*选择.box的第五个元素,不受其他元素的影响*/
         .box:nth-of-type(5) {}

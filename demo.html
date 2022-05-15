@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Document</title>
+	<style>
+		@import './new_css.css';
+		img {
+			filter: brightness(150%);
+		}
+	</style>
+</head>
+<body>
+	<img src="./mime/123.jpg" alt="">
+	<div class="box"></div>
+    <script>
+		let deviceList = [
+			{name:1,count:2},
+			{name:2,count:3},{name:3,count:4},{name:4,count:6},
+		]
+		let totalPrice = 0
+		let sumdeviceList = deviceList.reduce((totalPrice, item) => totalPrice + item.count, 0)
+		console.log(sumdeviceList )
+		
+		function flatten (obj) {
+			let newObj = {};
+			
+			function getObjData (value, keyValue) {
+				for (let key in value) {
+					// console.log(key)
+					if (Object.prototype.toString.call(value[key]) === '[object Array]') {
+						// getData()
+					} else if (Object.prototype.toString.call(value[key]) === '[object Object]') {
+						getObjData(value[key], keyValue + '.' + key)
+					} else {
+						newObj[keyValue + '.' + key] = value[key]
+					}
+				}
+				
+			}
+			function getArrData (list, keyValue) {
+				for (let i = 0; i < list.length; i++) {
+					// console.log(keyValue)
+					if (Object.prototype.toString.call(list[i]) === '[object Array]') {
+						getArrData(list[i], keyValue + '[' + i + ']')
+					} else if (Object.prototype.toString.call(list[i]) === '[object Object]') {
+						getObjData(list[i], keyValue + '[' + i + ']')
+					} else {
+						newObj[keyValue + '[' + i + ']'] = list[i]
+					}
+				}
+				
+			}
+			for (let key in obj) {
+				if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
+					getArrData(obj[key], key)
+				} else if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
+					getObjData(obj[key], key)
+				} else {
+					newObj[key] = obj[key];
+				}
+			}
+			console.log(newObj)
+		}
+		flatten({
+		  a: {
+		    b: 1,
+		    c: 2,
+		    d: {e: 5}
+		  },
+		  b: [1, 3, {a: 2, b: 3}, [6, { t: 8 }]],
+		  c: 3
+		})
+	</script>
+    <script>
+        // 得到数组中键对应的值
+        // HoldAll.prototype.
+        // let getData = function (keyList, symbol) {
+        //     let obj = {}
+        //     for (let key of keyList) {
+        //         let list = []
+        //         this.forEach(item => {
+        //             list.push(item[key])
+        //         })
+        //         obj[key] = list.join(symbol)
+        //     }
+        //     return obj
+        // }
+        // 寄生组合式继承
+        // function inher (subType, superType) {
+        //     var pro = Object.create(superType.prototype)
+        //     pro.constructor = subType;
+        //     subType.prototype = pro
+        // }
+        // 调用方式
+        // getData.call(ary, keyList, symbol)
+        // 为对象添加方法
+        function packingArrayHandle (superType) {
+            var pro = Object.create(superType)
+            // 获取数组中的某个键对应的值，用symbol拼接，返回一个字符串
+            pro.getData = function (keyList, symbol) {
+                var obj = {}
+                for (let key of keyList) {
+                    var list = []
+                    var i = 0
+                    var len = this.length
+                    while (i < len) {
+                        list.push(this[i][key])
+                        i++
+                    }
+                    if (symbol) {
+                        obj[key] = list.join(symbol)
+                    } else {
+                        obj[key] = list
+                    }
+                }
+                return obj
+            }
+            return pro
+        }
+
+        let ary = [
+            { name: '张一', age: 18, height: 170, type: 1 },
+            { name: '张二', age: 20, height: 180, type: 1 },
+            { name: '张三', age: 23, height: 175, type: 2 },
+            { name: '张四', age: 24, height: 185, type: 2 },
+        ]
+        
+        // function SuperType (name) {
+        //     this.name = name;
+        //     this.colors = ['red', 'blue', 'green'];
+        // }
+        // SuperType.prototype.sayName = function () {
+        //     console.log(this.name);
+        // }
+        // function SubType (name, age) {
+        //     SuperType.call(this, name);
+        // }
+        // inher(SubType, SuperType)
+        // SubType.prototype.sayAge = function () {
+        //     console.log(this.age)
+        // }
+        // console.log(SuperType.prototype)
+        // let btn = document.querySelector('.box')
+        // console.log(btn.attributes)
+        
+        let obj = packingArrayHandle(ary).getData(['name'], '-')
+        
+        console.log(obj)
+        let aa = {}
+        console.log(Object.prototype.toString.call(aa))
+        // let obj = {
+        //     // 是单循环还是双循环
+        //     singleOrDouble: 'single', // single\double
+        //     // 目标数组
+        //     target: ary, // 单循环目标数组
+        //     targetList: [ary, aryTwo], // 双循环目标数组
+        //     // 在第二个目标数组前的判断和处理
+        //     // 判断条件和执行语句
+        //     judgeCondition: {
+        //         // 是不是单对语句
+        //         isSingleJudge: true,
+        //         // 单对判断语句
+        //         judge: {
+        //             key: 'type',
+        //             relation: '===',
+        //             value: 1
+        //         },
+        //         // 多条判断语句
+        //         judgeList: [
+        //             {
+        //                 key: 'type',
+        //                 relation: '===',
+        //                 value: 1
+        //             },
+        //             {
+        //                 key: 'age',
+        //                 relation: '>',
+        //                 value: 18
+        //             }
+        //         ],
+        //         // 多条语句的关系的最后结果只有两个，且 或者 或；且必须全是真，或只要有一个真
+        //         groupRelation: '&&',
+        //         // 符合条件的处理函数
+        //         correctHandle: itemHandle,
+        //         // 不符合条件的处理函数
+        //         errorHandle: errorItemHandle
+        //     }
+        // }
+
+        // let aryList = []
+        // function correctHandle (item) {
+        //     aryList.push(item)
+        // }
+        // function errorHandle (item) {
+
+        // }
+        // let ary = [
+        //     { name: '张一', age: 18, height: 170, type: 1 },
+        //     { name: '张二', age: 20, height: 180, type: 1 },
+        //     { name: '张三', age: 23, height: 175, type: 2 },
+        //     { name: '张四', age: 24, height: 185, type: 2 },
+        // ]
+        // arrayHandle({
+        //     // 是单循环还是双循环
+        //     singleOrDouble: 'single', // single\double
+        //     // 目标数组
+        //     target: ary, // 单循环目标数组
+        //     // 判断条件和执行语句
+        //     judgeCondition: {
+        //         // 是不是单对语句
+        //         isSingleJudge: false,
+        //         // 单对判断语句
+        //         judge: {
+        //             key: 'age',
+        //             relation: '>',
+        //             value: 18
+        //         },
+        //         judgeList: [
+        //             {
+        //                 key: 'type',
+        //                 relation: '===',
+        //                 value: 1
+        //             },
+        //             {
+        //                 key: 'age',
+        //                 relation: '>',
+        //                 value: 18
+        //             },
+        //             {
+        //                 key: 'height',
+        //                 relation: '>',
+        //                 value: 170
+        //             },
+        //             {
+        //                 key: 'name',
+        //                 relation: '===',
+        //                 value: '张三'
+        //             }
+        //         ],
+        //         // 不只存在或，就是用或来分组，有一组是真的就可以
+        //         groupRelation: ['&&', '||', '||'],
+        //         correctHandle: correctHandle,
+        //         errorHandle: errorHandle
+        //     }
+        // })
+        // console.log(aryList)
+    </script>
+</body>
+</html>

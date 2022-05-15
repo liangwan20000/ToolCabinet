@@ -5,21 +5,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>宝龙地产 新商业后台管理系统</title>
-    <meta name="keywords" content="后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-    <meta name="description" content="基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
-    <!-- icon图标 -->
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-
-    <link rel="shortcut icon" href="favicon.ico">
-    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
-    <!-- <link rel="stylesheet" href=""> -->
-    <link rel="stylesheet" type="text/css" href="js/plugins/element/index.2.12.0.bl.css">
-    <link rel="stylesheet" type="text/css" href="css/btntype.css?v=3.3.6">
-    <link rel="stylesheet" type="text/css" href="js/window/window.css">
     <style>
         [v-cloak] {
             display: none;
@@ -83,26 +68,9 @@
     </div>
 </div>
 
-
-<!-- 全局js -->
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap.min.js?v=3.3.6"></script>
-<script src="js/window/window.js"></script>
-<!--全局api配置-->
-<script src="js/api.js?v=1.0.0"></script>
-
 <!--vue代码-->
 <script src="js/vue.min.js"></script>
-<script src="js/crypto-js.min.js"></script>
-<script src="js/fn.js"></script>
-
-<script src="js/plugins/element/index.2.12.0.js"></script>
-
 <script>
-    // 登录页取值
-    var miniAppKey = "ADMIN_SYSTEM";
-    var projectId = parent.getUserInfo().projectId;
-    var roleType = parent.getUserInfo().roleType;
     // vue 设置
     var vm = new Vue({
         el: '#list',
@@ -135,7 +103,6 @@
             }
         },
         mounted () {
-            this.getData();
         },
         methods: {
             // 异常扣款原因验证规则
@@ -168,124 +135,9 @@
                 } else {
                     callback();
                 }
-            },
-            // 添加异常扣款原因事件处理程序
-            addDeduction () {
-                this.ruleForm.deduction.push({
-                    name: ''
-                })
-                this.deductionLength = this.ruleForm.deduction.length
-              vm.$nextTick(() => {
-                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
-              })
-            },
-            // 删除异常扣款原因事件处理程序
-            delDeduction (value) {
-                if (this.ruleForm.deduction.length === 1) {
-                    this.ruleForm.deduction[0].name = '';
-                    return
-                }
-                this.ruleForm.deduction.splice(value, 1)
-                this.deductionLength = this.ruleForm.deduction.length
-              vm.$nextTick(() => {
-                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
-              })
-            },
-            // 添加发票事件处理程序
-            addInvoice () {
-                this.ruleForm.invoice.push({
-                    name: ''
-                })
-                this.invoiceLength = this.ruleForm.invoice.length
-              vm.$nextTick(() => {
-                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
-              })
-            },
-            // 删除发票税率事件处理程序
-            delInvoice (value) {
-                if (this.ruleForm.invoice.length === 1) {
-                    this.ruleForm.invoice[0].name = '';
-                    return
-                }
-                this.ruleForm.invoice.splice(value, 1)
-                this.invoiceLength = this.ruleForm.invoice.length
-              vm.$nextTick(() => {
-                fn.buttonPermissionVerification('sub_ledger_subsidy_options')
-              })
-            },
-            // 提交事件处理程序
-            submitForm() {
-              let _this = this
-                this.$refs.ruleForm.validate((valid) => {
-                    if (valid) {
-                        this.text1 = []
-                        this.text2 = []
-                        this.ruleForm.deduction.forEach((item) => {
-                            this.text1.push(item.name)
-                        })
-                        this.ruleForm.invoice.forEach((item) => {
-                            this.text2.push(item.name + '%')
-                        })
-                        fn.ajax('POST', '/subsidy/saveSubsidyConfigure', {
-                            projectId: projectId,
-                            text1: this.text1,
-                            text2: this.text2
-                        }, (value) => {
-                            if (value.code === 200) {
-                                win.confirm('提示', '提交成功！', function (r) {
-                                    if(r){
-                                        _this.getData()
-                                    }
-                                });
-
-                            } else {
-                                win.alert('提示', '提交失败！')
-                            }
-                        }, true)
-                    } else {
-                        // console.log('error submit!!');
-                        return false;
-                    }
-                });
-            },
-            // 刷新事件处理程序
-            reset () {
-                this.getData()
-            },
-            // 获取所有参数
-            getData () {
-                fn.ajax('GET', `/subsidy/details/${projectId}`, '', (value) => {
-                    if (value.code === 200) {
-                        let dataValue = value.data
-                        let ary = [],array = [];
-                        if (dataValue.text1.length !== 0) {
-                            dataValue.text1.forEach(item => {
-                                ary.push({
-                                    name: item
-                                })
-                            })
-                            this.ruleForm.deduction = ary
-                            this.deductionLength = this.ruleForm.deduction.length
-                        }
-                        if (dataValue.text2.length !== 0) {
-                            dataValue.text2.forEach(item => {
-                                array.push({
-                                    name: Number(item.slice(0, item.length-1))
-                                })
-                                
-                            })
-                            this.ruleForm.invoice = array
-                            this.invoiceLength = this.ruleForm.invoice.length
-                        }
-                      vm.$nextTick(() => {
-                        fn.buttonPermissionVerification('sub_ledger_subsidy_options')
-                      })
-                    }
-                })
             }
         }
     });
-    fn.buttonPermissionVerification('sub_ledger_subsidy_options')
 </script>
 
 </body>
