@@ -1,0 +1,1 @@
+export let url = 'http://www.baidu.com'

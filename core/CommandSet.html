@@ -1439,7 +1439,7 @@
             				查找下标大于3的值
         				    return i > 3;
         				});
-        		4. includes(value, start) -- 查找数组中是否含有某个值
+        		4. (value, start) -- 查找数组中是否含有某个值
         			[3, 2, 8, 7, 4].includes(2, 2); false
         			// 从索引为2的值开始向后查找，查找2，结果false
         }
@@ -2439,14 +2439,14 @@
     			☞ 保存数据到本地浏览器中，以键值对形式保存。
     			☞ sessionStorage
     				注意：
-    					 1. sessionStorage保存的值，只能在本页面中获取
-    					 2. sessionStorage保存的值生命周期只有在页面打开时候才能使用
-    					 3. 大小为5M
+    					1. sessionStorage保存的值，只能在本页面中获取
+    					2. sessionStorage保存的值生命周期只有在页面打开时候才能使用
+    					3. 大小为5M
     			☞ localStorage
     				注意：
-    					 1. localStorage保存的值，可以在其他页面中获取到
-    					 2. localStorage保存的值属于持久化保存（除非手动删除）
-    					 3. 大小为约20M
+    					1. localStorage保存的值，可以在其他页面中获取到
+    					2. localStorage保存的值属于持久化保存（除非手动删除）
+    					3. 大小为约20M
     			◇
     			   setItem(key,值)  ---》 保存数据
     			   getItem(key)   ----》 通过键获取对应的值,需要先保存再获取
